@@ -1,10 +1,13 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 
 const STORAGE_KEY = 'ai_chat_history'
+const SESSIONS_KEY = 'ai_chat_sessions'
+const MAX_SESSIONS = 50
+
 const DEFAULT_WELCOME_MESSAGE = {
   role: 'assistant' as const,
   content: '你好！我是你的AI学习助手。我可以帮你：\n\n• 解释技术概念\n• 推荐学习路径\n• 回答编程问题\n• 对比Java和新技术\n• 📎 添加上下文后针对性问答\n\n有什么我可以帮你的吗？'
@@ -12,14 +15,76 @@ const DEFAULT_WELCOME_MESSAGE = {
 
 interface ContextItem {
   id: string
-  type: 'page' | 'text'
+  type: 'page' | 'text' | 'selection' | 'image' | 'file'
   label: string
   content: string
+  /** base64 data URL for image contexts */
+  imageData?: string
+}
+
+interface ChatSession {
+  id: string
+  title: string
+  preview: string
+  createdAt: string
+  messageCount: number
+}
+
+type Message = {
+  role: 'user' | 'assistant'
+  content: string
+  contexts?: { type: string; label: string }[]
+}
+
+// --- Session helpers ---
+function getSessions(): ChatSession[] {
+  try {
+    return JSON.parse(localStorage.getItem(SESSIONS_KEY) || '[]')
+  } catch { return [] }
+}
+
+function saveSessions(sessions: ChatSession[]) {
+  localStorage.setItem(SESSIONS_KEY, JSON.stringify(sessions))
+}
+
+function getSessionMessages(id: string): Message[] {
+  try {
+    return JSON.parse(localStorage.getItem(`ai_session_${id}`) || '[]')
+  } catch { return [] }
+}
+
+function saveSessionMessages(id: string, messages: Message[]) {
+  localStorage.setItem(`ai_session_${id}`, JSON.stringify(messages))
+}
+
+function deleteSessionData(id: string) {
+  localStorage.removeItem(`ai_session_${id}`)
+}
+
+function generateTitle(messages: Message[]): string {
+  const firstUser = messages.find(m => m.role === 'user')
+  if (!firstUser) return '新对话'
+  const text = firstUser.content.trim()
+  return text.length > 30 ? text.slice(0, 28) + '...' : text
+}
+
+function formatDate(iso: string): string {
+  const d = new Date(iso)
+  const now = new Date()
+  const diffMs = now.getTime() - d.getTime()
+  const diffMin = Math.floor(diffMs / 60000)
+  if (diffMin < 1) return '刚刚'
+  if (diffMin < 60) return `${diffMin}分钟前`
+  const diffHr = Math.floor(diffMin / 60)
+  if (diffHr < 24) return `${diffHr}小时前`
+  const diffDay = Math.floor(diffHr / 24)
+  if (diffDay < 7) return `${diffDay}天前`
+  return d.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' })
 }
 
 export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant', content: string }>>([DEFAULT_WELCOME_MESSAGE])
+  const [messages, setMessages] = useState<Message[]>([DEFAULT_WELCOME_MESSAGE])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
@@ -27,32 +92,100 @@ export default function AIAssistant() {
   const [showContextMenu, setShowContextMenu] = useState(false)
   const [showTextInput, setShowTextInput] = useState(false)
   const [customText, setCustomText] = useState('')
+  const [selectionPopup, setSelectionPopup] = useState<{ text: string; x: number; y: number } | null>(null)
+  const [showHistory, setShowHistory] = useState(false)
+  const [sessions, setSessions] = useState<ChatSession[]>([])
+  const [currentSessionId, setCurrentSessionId] = useState<string>('')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectMode, setSelectMode] = useState(false)
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set())
+  const [copiedId, setCopiedId] = useState<number | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const imageInputRef = useRef<HTMLInputElement>(null)
+  const selectionTextRef = useRef<string>('')
+  const selectionPopupRef = useRef<HTMLDivElement>(null)
 
-  // 加载历史对话
+  // 初始化：加载当前会话或创建新会话
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      if (saved) {
-        try {
-          const parsedMessages = JSON.parse(saved)
-          if (Array.isArray(parsedMessages) && parsedMessages.length > 0) {
-            setMessages(parsedMessages)
-          }
-        } catch (error) {
-          console.error('Failed to load chat history:', error)
-        }
+    if (typeof window === 'undefined') return
+    const allSessions = getSessions()
+    setSessions(allSessions)
+
+    // 尝试恢复上次活跃的会话
+    const lastActiveId = localStorage.getItem('ai_active_session')
+    if (lastActiveId) {
+      const msgs = getSessionMessages(lastActiveId)
+      if (msgs.length > 0) {
+        setMessages(msgs)
+        setCurrentSessionId(lastActiveId)
+        return
       }
     }
+
+    // 兼容旧数据迁移
+    const legacySaved = localStorage.getItem(STORAGE_KEY)
+    if (legacySaved) {
+      try {
+        const parsed = JSON.parse(legacySaved)
+        if (Array.isArray(parsed) && parsed.length > 1) {
+          const id = Date.now().toString()
+          saveSessionMessages(id, parsed)
+          const session: ChatSession = {
+            id,
+            title: generateTitle(parsed),
+            preview: parsed.find((m: Message) => m.role === 'user')?.content.slice(0, 60) || '',
+            createdAt: new Date().toISOString(),
+            messageCount: parsed.filter((m: Message) => m.role === 'user').length,
+          }
+          const updated = [session, ...allSessions]
+          saveSessions(updated)
+          setSessions(updated)
+          setMessages(parsed)
+          setCurrentSessionId(id)
+          localStorage.removeItem(STORAGE_KEY)
+          localStorage.setItem('ai_active_session', id)
+          return
+        }
+      } catch {}
+    }
+
+    // 没有任何历史，创建空会话
+    const id = Date.now().toString()
+    setCurrentSessionId(id)
+    localStorage.setItem('ai_active_session', id)
   }, [])
 
-  // 保存对话历史
+  // 自动保存当前会话
+  const saveCurrentSession = useCallback(() => {
+    if (!currentSessionId || typeof window === 'undefined') return
+    if (messages.length <= 1) return // 只有欢迎消息不保存
+
+    saveSessionMessages(currentSessionId, messages)
+    localStorage.setItem('ai_active_session', currentSessionId)
+
+    const userMsgCount = messages.filter(m => m.role === 'user').length
+    if (userMsgCount === 0) return
+
+    setSessions(prev => {
+      const exists = prev.find(s => s.id === currentSessionId)
+      const session: ChatSession = {
+        id: currentSessionId,
+        title: generateTitle(messages),
+        preview: messages.find(m => m.role === 'user')?.content.slice(0, 60) || '',
+        createdAt: exists?.createdAt || new Date().toISOString(),
+        messageCount: userMsgCount,
+      }
+      const updated = [session, ...prev.filter(s => s.id !== currentSessionId)].slice(0, MAX_SESSIONS)
+      saveSessions(updated)
+      return updated
+    })
+  }, [currentSessionId, messages])
+
   useEffect(() => {
-    if (typeof window !== 'undefined' && messages.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
-    }
-  }, [messages])
+    saveCurrentSession()
+  }, [messages, saveCurrentSession])
 
   // 自动滚动到最新消息
   useEffect(() => {
@@ -107,6 +240,121 @@ export default function AIAssistant() {
     setContexts(prev => prev.filter(c => c.id !== id))
   }
 
+  // 划线选中 → 弹窗添加上下文
+  useEffect(() => {
+    const handleMouseUp = (e: MouseEvent) => {
+      // 如果点击的是弹窗本身，不处理
+      if (selectionPopupRef.current?.contains(e.target as Node)) return
+
+      const sel = window.getSelection()
+      const text = sel?.toString().trim()
+      if (!text || text.length < 5) {
+        setSelectionPopup(null)
+        return
+      }
+      // 不在 AI 助手面板内触发
+      const anchorNode = sel?.anchorNode
+      if (anchorNode) {
+        const el = anchorNode.nodeType === Node.ELEMENT_NODE
+          ? (anchorNode as HTMLElement)
+          : anchorNode.parentElement
+        if (el?.closest('.ai-assistant-panel')) return
+      }
+      const range = sel?.getRangeAt(0)
+      if (!range) return
+      const rect = range.getBoundingClientRect()
+      // 同时存入 ref，保证 click handler 一定能拿到
+      selectionTextRef.current = text
+      setSelectionPopup({
+        text,
+        x: rect.left + rect.width / 2,
+        y: rect.top - 10,
+      })
+    }
+
+    const handleMouseDown = (e: MouseEvent) => {
+      // 如果点击的是弹窗本身，不清除
+      if (selectionPopupRef.current?.contains(e.target as Node)) return
+      setSelectionPopup(null)
+    }
+
+    document.addEventListener('mouseup', handleMouseUp)
+    document.addEventListener('mousedown', handleMouseDown)
+    return () => {
+      document.removeEventListener('mouseup', handleMouseUp)
+      document.removeEventListener('mousedown', handleMouseDown)
+    }
+  }, [])
+
+  const handleAddSelectionContext = () => {
+    // 从 ref 读取，避免 state 时序问题
+    const text = selectionTextRef.current
+    if (!text) return
+    setContexts(prev => [...prev, {
+      id: Date.now().toString(),
+      type: 'selection',
+      label: text.slice(0, 30) + (text.length > 30 ? '...' : ''),
+      content: text,
+    }])
+    selectionTextRef.current = ''
+    setSelectionPopup(null)
+    window.getSelection()?.removeAllRanges()
+    // 自动打开聊天窗口
+    if (!isOpen) setIsOpen(true)
+  }
+
+  // 图片上下文
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (!file.type.startsWith('image/')) {
+      alert('请选择图片文件')
+      return
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      alert('图片大小不能超过 5MB')
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = () => {
+      const dataUrl = reader.result as string
+      setContexts(prev => [...prev, {
+        id: Date.now().toString(),
+        type: 'image',
+        label: file.name,
+        content: `[图片: ${file.name}]`,
+        imageData: dataUrl,
+      }])
+    }
+    reader.readAsDataURL(file)
+    e.target.value = ''
+    setShowContextMenu(false)
+  }
+
+  // 文件上下文
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (file.size > 1 * 1024 * 1024) {
+      alert('文件大小不能超过 1MB')
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = () => {
+      const text = reader.result as string
+      const truncated = text.length > 8000 ? text.slice(0, 8000) + '\n\n[...内容已截断]' : text
+      setContexts(prev => [...prev, {
+        id: Date.now().toString(),
+        type: 'file',
+        label: file.name,
+        content: truncated,
+      }])
+    }
+    reader.readAsText(file)
+    e.target.value = ''
+    setShowContextMenu(false)
+  }
+
   const quickQuestions = [
     'TypeScript和JavaScript有什么区别？',
     'React和Spring有什么相似之处？',
@@ -119,7 +367,14 @@ export default function AIAssistant() {
 
     const userMessage = input.trim()
     setInput('')
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }])
+    const userMsg: Message = {
+      role: 'user',
+      content: userMessage,
+      ...(contexts.length > 0 ? {
+        contexts: contexts.map(c => ({ type: c.type, label: c.label }))
+      } : {}),
+    }
+    setMessages(prev => [...prev, userMsg])
     setIsLoading(true)
 
     // 创建新的 AbortController
@@ -139,7 +394,10 @@ export default function AIAssistant() {
         body: JSON.stringify({
           message: userMessage,
           history: messages.filter(msg => msg.role !== 'assistant' || messages.indexOf(msg) > 0), // 排除初始欢迎消息
-          contexts: contexts.map(c => ({ type: c.type, label: c.label, content: c.content })),
+          contexts: contexts.map(c => ({
+            type: c.type, label: c.label, content: c.content,
+            ...(c.imageData ? { imageData: c.imageData } : {}),
+          })),
         }),
         signal: abortControllerRef.current.signal, // 添加取消信号
       })
@@ -232,12 +490,51 @@ export default function AIAssistant() {
     }
   }
 
-  // 清空对话
-  const handleClearChat = () => {
-    if (confirm('确定要清空所有对话记录吗？')) {
-      setMessages([DEFAULT_WELCOME_MESSAGE])
-      localStorage.removeItem(STORAGE_KEY)
+  // 新建对话（保存当前会话后新建）
+  const handleNewChat = () => {
+    saveCurrentSession()
+    const id = Date.now().toString()
+    setCurrentSessionId(id)
+    setMessages([DEFAULT_WELCOME_MESSAGE])
+    setContexts([])
+    localStorage.setItem('ai_active_session', id)
+    setShowHistory(false)
+  }
+
+  // 加载历史会话
+  const handleLoadSession = (sessionId: string) => {
+    saveCurrentSession()
+    const msgs = getSessionMessages(sessionId)
+    if (msgs.length > 0) {
+      setMessages(msgs)
+      setCurrentSessionId(sessionId)
+      localStorage.setItem('ai_active_session', sessionId)
     }
+    setShowHistory(false)
+  }
+
+  // 删除单个会话
+  const handleDeleteSession = (e: React.MouseEvent, sessionId: string) => {
+    e.stopPropagation()
+    setSessions(prev => {
+      const updated = prev.filter(s => s.id !== sessionId)
+      saveSessions(updated)
+      return updated
+    })
+    deleteSessionData(sessionId)
+    // 如果删除的是当前会话，新建一个
+    if (sessionId === currentSessionId) {
+      handleNewChat()
+    }
+  }
+
+  // 清空所有历史
+  const handleClearAllHistory = () => {
+    if (!confirm('确定要清空所有历史对话？此操作不可恢复。')) return
+    sessions.forEach(s => deleteSessionData(s.id))
+    saveSessions([])
+    setSessions([])
+    handleNewChat()
   }
 
   // 导出对话为Markdown
@@ -281,6 +578,65 @@ export default function AIAssistant() {
     URL.revokeObjectURL(url)
   }
 
+  // 复制单条消息
+  const handleCopyMessage = async (index: number, content: string) => {
+    try {
+      await navigator.clipboard.writeText(content)
+      setCopiedId(index)
+      setTimeout(() => setCopiedId(null), 1500)
+    } catch {
+      // fallback
+      const ta = document.createElement('textarea')
+      ta.value = content
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+      setCopiedId(index)
+      setTimeout(() => setCopiedId(null), 1500)
+    }
+  }
+
+  // 切换消息选中
+  const handleToggleSelect = (index: number) => {
+    setSelectedIds(prev => {
+      const next = new Set(prev)
+      if (next.has(index)) next.delete(index)
+      else next.add(index)
+      return next
+    })
+  }
+
+  // 批量复制
+  const handleBatchCopy = async () => {
+    const selected = Array.from(selectedIds).sort((a, b) => a - b)
+    const text = selected.map(i => {
+      const msg = messages[i]
+      const role = msg.role === 'user' ? '用户' : 'AI助手'
+      return `**${role}**:\n${msg.content}`
+    }).join('\n\n---\n\n')
+    try {
+      await navigator.clipboard.writeText(text)
+    } catch {
+      const ta = document.createElement('textarea')
+      ta.value = text
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+    }
+    setSelectMode(false)
+    setSelectedIds(new Set())
+  }
+
+  // 批量删除
+  const handleBatchDelete = () => {
+    if (!confirm(`确定删除选中的 ${selectedIds.size} 条消息？`)) return
+    setMessages(prev => prev.filter((_, i) => !selectedIds.has(i)))
+    setSelectMode(false)
+    setSelectedIds(new Set())
+  }
+
   const handleQuickQuestion = async (question: string) => {
     setInput(question)
     // 等待一下让input更新，然后发送
@@ -306,9 +662,50 @@ export default function AIAssistant() {
         )}
       </button>
 
+      {/* 划线选中弹窗 */}
+      {selectionPopup && (
+        <div
+          ref={selectionPopupRef}
+          className="fixed z-[60]"
+          style={{
+            left: `${selectionPopup.x}px`,
+            top: `${selectionPopup.y}px`,
+            transform: 'translate(-50%, -100%)',
+          }}
+        >
+          <button
+            onMouseDown={(e) => { e.preventDefault(); e.stopPropagation() }}
+            onClick={handleAddSelectionContext}
+            className="flex items-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg shadow-lg hover:bg-gray-800 transition whitespace-nowrap"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+            添加到 AI 助手
+          </button>
+          <div className="w-2 h-2 bg-gray-900 rotate-45 mx-auto -mt-1" />
+        </div>
+      )}
+
+      {/* 隐藏的文件输入 */}
+      <input
+        ref={imageInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleImageUpload}
+        className="hidden"
+      />
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".txt,.md,.json,.js,.ts,.tsx,.jsx,.py,.java,.xml,.yaml,.yml,.csv,.log,.html,.css,.sql,.sh,.go,.rs,.c,.cpp,.h,.hpp,.rb,.php,.swift,.kt"
+        onChange={handleFileUpload}
+        className="hidden"
+      />
+
       {/* 聊天窗口 */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[420px] h-[650px] bg-white rounded-2xl shadow-2xl flex flex-col z-50 border border-gray-200 overflow-hidden">
+        <div className="fixed bottom-24 right-6 w-[420px] h-[650px] bg-white rounded-2xl shadow-2xl flex flex-col z-50 border border-gray-200 overflow-hidden ai-assistant-panel">
           {/* 头部 */}
           <div className="bg-white border-b border-gray-200 px-5 py-4">
             <div className="flex items-center justify-between">
@@ -341,6 +738,34 @@ export default function AIAssistant() {
                   <div className="absolute top-full right-0 mt-2 w-48 bg-white text-gray-900 rounded-xl shadow-xl border border-gray-200 z-10 overflow-hidden">
                     <button
                       onClick={() => {
+                        handleNewChat()
+                        setShowMenu(false)
+                      }}
+                      className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center gap-2 text-sm transition"
+                    >
+                      <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                      <span className="text-gray-700">新建对话</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowHistory(true)
+                        setShowMenu(false)
+                      }}
+                      className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center gap-2 text-sm transition"
+                    >
+                      <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-gray-700">历史记录</span>
+                      {sessions.length > 0 && (
+                        <span className="ml-auto text-xs text-gray-400">{sessions.length}</span>
+                      )}
+                    </button>
+                    <div className="border-t border-gray-100" />
+                    <button
+                      onClick={() => {
                         handleExportChat()
                         setShowMenu(false)
                       }}
@@ -349,7 +774,7 @@ export default function AIAssistant() {
                       <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
-                      <span className="text-gray-700">导出为Markdown</span>
+                      <span className="text-gray-700">导出 Markdown</span>
                     </button>
                     <button
                       onClick={() => {
@@ -361,20 +786,21 @@ export default function AIAssistant() {
                       <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
                       </svg>
-                      <span className="text-gray-700">导出为JSON</span>
+                      <span className="text-gray-700">导出 JSON</span>
                     </button>
                     <div className="border-t border-gray-100" />
                     <button
                       onClick={() => {
-                        handleClearChat()
+                        setSelectMode(true)
+                        setSelectedIds(new Set())
                         setShowMenu(false)
                       }}
-                      className="w-full text-left px-4 py-3 hover:bg-red-50 flex items-center gap-2 text-sm transition"
+                      className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center gap-2 text-sm transition"
                     >
-                      <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                       </svg>
-                      <span className="text-red-600">清空对话</span>
+                      <span className="text-gray-700">选择消息</span>
                     </button>
                   </div>
                 )}
@@ -382,13 +808,175 @@ export default function AIAssistant() {
             </div>
           </div>
 
+          {/* 历史记录面板 */}
+          {showHistory && (
+            <div className="flex-1 overflow-y-auto bg-gray-50 flex flex-col">
+              {/* 历史面板头部 */}
+              <div className="px-5 pt-4 pb-3 border-b border-gray-200 bg-white">
+                <div className="flex items-center justify-between mb-3">
+                  <button
+                    onClick={() => setShowHistory(false)}
+                    className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 transition"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    返回对话
+                  </button>
+                  {sessions.length > 0 && (
+                    <button
+                      onClick={handleClearAllHistory}
+                      className="text-xs text-gray-400 hover:text-red-500 transition"
+                    >
+                      清空全部
+                    </button>
+                  )}
+                </div>
+                {sessions.length > 3 && (
+                  <div className="relative">
+                    <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="搜索历史对话..."
+                      className="w-full pl-9 pr-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100 transition"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* 会话列表 */}
+              <div className="flex-1 overflow-y-auto">
+                {sessions.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center h-full text-gray-400 px-8">
+                    <svg className="w-12 h-12 mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-sm">暂无历史对话</p>
+                    <p className="text-xs mt-1">开始一次新对话吧</p>
+                  </div>
+                ) : (
+                  <div className="py-2">
+                    {sessions
+                      .filter(s => !searchQuery || s.title.toLowerCase().includes(searchQuery.toLowerCase()) || s.preview.toLowerCase().includes(searchQuery.toLowerCase()))
+                      .map(session => (
+                        <button
+                          key={session.id}
+                          onClick={() => handleLoadSession(session.id)}
+                          className={`w-full text-left px-5 py-3 hover:bg-white transition group ${
+                            session.id === currentSessionId ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+                          }`}
+                        >
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="flex-1 min-w-0">
+                              <p className={`text-sm font-medium truncate ${
+                                session.id === currentSessionId ? 'text-blue-700' : 'text-gray-800'
+                              }`}>
+                                {session.title}
+                              </p>
+                              {session.preview && (
+                                <p className="text-xs text-gray-400 truncate mt-0.5">{session.preview}</p>
+                              )}
+                              <div className="flex items-center gap-2 mt-1">
+                                <span className="text-[11px] text-gray-400">
+                                  {formatDate(session.createdAt)}
+                                </span>
+                                <span className="text-[11px] text-gray-300">
+                                  {session.messageCount} 条消息
+                                </span>
+                              </div>
+                            </div>
+                            <button
+                              onClick={(e) => handleDeleteSession(e, session.id)}
+                              className="opacity-0 group-hover:opacity-100 p-1 text-gray-300 hover:text-red-500 transition flex-shrink-0"
+                              title="删除此对话"
+                            >
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                            </button>
+                          </div>
+                        </button>
+                      ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 底部新建按钮 */}
+              <div className="px-5 py-3 border-t border-gray-200 bg-white">
+                <button
+                  onClick={handleNewChat}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 bg-gray-900 text-white text-sm rounded-xl hover:bg-gray-800 transition"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  新建对话
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* 消息列表 */}
-          <div className="flex-1 overflow-y-auto px-5 py-6 space-y-6 bg-gray-50">
+          <div className={`flex-1 overflow-y-auto px-5 py-6 space-y-6 bg-gray-50 ${showHistory ? 'hidden' : ''}`}>
+            {/* 批量操作栏 */}
+            {selectMode && (
+              <div className="sticky top-0 z-10 flex items-center justify-between bg-white px-4 py-2.5 rounded-xl shadow-sm border border-gray-200">
+                <span className="text-sm text-gray-600">
+                  已选 <span className="font-semibold text-blue-600">{selectedIds.size}</span> 条
+                </span>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handleBatchCopy}
+                    disabled={selectedIds.size === 0}
+                    className="px-3 py-1.5 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                  >
+                    复制
+                  </button>
+                  <button
+                    onClick={handleBatchDelete}
+                    disabled={selectedIds.size === 0}
+                    className="px-3 py-1.5 text-xs bg-red-500 text-white rounded-lg hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                  >
+                    删除
+                  </button>
+                  <button
+                    onClick={() => { setSelectMode(false); setSelectedIds(new Set()) }}
+                    className="px-3 py-1.5 text-xs bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition"
+                  >
+                    取消
+                  </button>
+                </div>
+              </div>
+            )}
+
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+                className={`flex gap-3 group ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} ${
+                  selectMode ? 'cursor-pointer' : ''
+                }`}
+                onClick={selectMode ? () => handleToggleSelect(index) : undefined}
               >
+                {/* 选择模式 checkbox */}
+                {selectMode && (
+                  <div className="flex-shrink-0 flex items-start pt-2">
+                    <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition ${
+                      selectedIds.has(index)
+                        ? 'bg-blue-600 border-blue-600'
+                        : 'border-gray-300 bg-white'
+                    }`}>
+                      {selectedIds.has(index) && (
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 {/* 头像 */}
                 <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
                   msg.role === 'user'
@@ -448,9 +1036,49 @@ export default function AIAssistant() {
                         </ReactMarkdown>
                       </div>
                     ) : (
-                      <div className="text-sm break-words leading-relaxed">{msg.content}</div>
+                      <div>
+                        <div className="text-sm break-words leading-relaxed">{msg.content}</div>
+                        {/* 用户消息中显示上下文标签 */}
+                        {msg.contexts && msg.contexts.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t border-white/20">
+                            {msg.contexts.map((ctx, ci) => (
+                              <span key={ci} className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-white/20 text-white/90 text-[10px] rounded">
+                                {ctx.type === 'page' && '📄'}
+                                {ctx.type === 'text' && '📝'}
+                                {ctx.type === 'selection' && '✂️'}
+                                {ctx.type === 'image' && '🖼️'}
+                                {ctx.type === 'file' && '📎'}
+                                <span className="max-w-[100px] truncate">{ctx.label}</span>
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     )}
                   </div>
+
+                  {/* 消息操作栏（hover 显示） */}
+                  {!selectMode && index > 0 && (
+                    <div className={`flex items-center gap-1 mt-1 opacity-0 group-hover:opacity-100 transition ${
+                      msg.role === 'user' ? 'justify-end' : 'justify-start'
+                    }`}>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleCopyMessage(index, msg.content) }}
+                        className="p-1 text-gray-400 hover:text-gray-600 transition rounded"
+                        title="复制内容"
+                      >
+                        {copiedId === index ? (
+                          <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : (
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -493,7 +1121,7 @@ export default function AIAssistant() {
           </div>
 
           {/* 输入框 */}
-          <div className="p-4 bg-white border-t border-gray-200">
+          <div className={`p-4 bg-white border-t border-gray-200 ${showHistory ? 'hidden' : ''}`}>
             {/* 上下文标签 */}
             {contexts.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mb-2">
@@ -502,13 +1130,24 @@ export default function AIAssistant() {
                     key={ctx.id}
                     className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-lg border border-blue-200"
                   >
-                    {ctx.type === 'page' ? (
+                    {ctx.type === 'page' && (
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
-                    ) : (
+                    )}
+                    {(ctx.type === 'text' || ctx.type === 'selection') && (
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                      </svg>
+                    )}
+                    {ctx.type === 'image' && (
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    )}
+                    {ctx.type === 'file' && (
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                       </svg>
                     )}
                     <span className="max-w-[120px] truncate">{ctx.label}</span>
@@ -599,6 +1238,25 @@ export default function AIAssistant() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                       </svg>
                       <span className="text-gray-700">添加文本片段</span>
+                    </button>
+                    <div className="border-t border-gray-100" />
+                    <button
+                      onClick={() => { imageInputRef.current?.click(); setShowContextMenu(false) }}
+                      className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center gap-2 text-sm transition"
+                    >
+                      <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-gray-700">添加图片</span>
+                    </button>
+                    <button
+                      onClick={() => { fileInputRef.current?.click(); setShowContextMenu(false) }}
+                      className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center gap-2 text-sm transition"
+                    >
+                      <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                      </svg>
+                      <span className="text-gray-700">添加文件</span>
                     </button>
                     {contexts.length > 0 && (
                       <>
