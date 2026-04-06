@@ -36,6 +36,9 @@ next-env.d.ts
 .vscode
 .idea
 
+# embeddings (generated, large file)
+src/lib/embeddings.json
+
 # temp files
 *.log
 /tmp

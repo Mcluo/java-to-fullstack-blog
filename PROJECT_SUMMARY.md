@@ -151,10 +151,11 @@ java-to-fullstack-blog/
 - [ ] 基础组件（Header, Footer, ArticleCard）
 
 ### 任务 #4: AI 功能集成
-- [ ] 语义搜索（pgvector）
-- [ ] 智能文章推荐
-- [ ] 学习助手聊天机器人
-- [ ] 代码示例生成
+- [x] RAG 向量检索知识库（Qwen3-Embedding-8B + 余弦相似度）
+- [x] AI 学习助手（Claude Sonnet 4.6 + SSE 流式输出）
+- [x] 动态文章目录注入（元数据查询支持）
+- [x] 文章变更自动重建 embedding（predev/prebuild/watch）
+- [ ] 智能文章推荐（基于阅读历史）
 
 ### 任务 #6: 部署和测试
 - [ ] Vercel 部署配置

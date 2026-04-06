@@ -30,14 +30,17 @@
   - 迁移管理简单
 
 ### AI 功能技术栈
-- **LLM API**: Alibaba Cloud Model Studio (通义千问)
-  - 智能推荐、语义搜索、学习助手
-- **向量数据库**: Supabase pgvector
-  - 存储文章 embeddings
-  - 语义搜索功能
-- **框架**: LangChain.js
-  - 构建 RAG 应用
-  - 对话管理
+- **Chat 模型**: Claude Sonnet 4.6（通过内部代理）
+  - 流式 SSE 输出，AI 学习助手问答
+- **Embedding 模型**: Qwen3-Embedding-8B（ModelScope 免费 API）
+  - 4096 维向量，中文语义优化
+- **RAG 检索**: 本地 JSON + 余弦相似度
+  - 文章分块（1000 字/块，200 字重叠）→ 向量化 → 运行时 top-5 检索
+  - 同一文章最多取 2 个 chunk，防止单篇垄断
+- **System Prompt 三层架构**:
+  - 基础角色定义 + 动态文章目录（元数据层）+ RAG 上下文（内容层）
+- **自动化**: 文章变更时自动重建 embedding（predev/prebuild + watch）
+- **搜索**: Fuse.js 客户端模糊搜索（实时输入即搜索）
 
 ### DevOps
 - **部署**: Vercel
@@ -79,10 +82,11 @@
 - [ ] 收藏功能
 
 ### 5. AI 功能
+- [x] RAG 知识库问答（基于文章内容向量检索）
+- [x] 学习助手聊天机器人（Claude Sonnet 4.6 + 流式输出）
+- [x] 动态文章目录注入（解决元数据查询）
+- [x] 文章变更自动重建 embedding
 - [ ] 智能文章推荐（基于阅读历史）
-- [ ] 语义搜索（理解查询意图）
-- [ ] 学习助手聊天机器人
-- [ ] 代码示例生成
 - [ ] 学习路径个性化
 
 ## 项目目录结构
@@ -105,9 +109,10 @@ java-to-fullstack-blog/
 │   │   ├── roadmap/          # 路径图组件
 │   │   └── chat/             # 聊天组件
 │   ├── lib/                   # 工具函数
-│   │   ├── db.ts             # 数据库客户端
-│   │   ├── ai.ts             # AI 集成
-│   │   └── markdown.ts       # Markdown 处理
+│   │   ├── articles.ts       # 文章读取和分类
+│   │   ├── rag.ts            # RAG 检索模块（余弦相似度 + context 构建）
+│   │   ├── embeddings.json   # 向量数据（构建时生成，gitignore）
+│   │   └── progress.ts       # 学习进度
 │   └── styles/               # 全局样式
 ├── content/                   # Markdown 文章内容
 │   └── articles/             # 按分类组织
@@ -210,9 +215,10 @@ model UserProgress {
 - [ ] 项目案例
 
 ### Phase 5: AI 功能集成
-- [ ] 语义搜索
+- [x] RAG 向量检索知识库
+- [x] AI 学习助手（Claude + 流式输出）
+- [x] 文章 embedding 自动化构建
 - [ ] 智能推荐
-- [ ] 学习助手
 
 ### Phase 6: 部署和优化
 - [ ] Vercel 部署
@@ -233,9 +239,11 @@ model UserProgress {
    - 类型安全的端到端开发
 
 3. **AI 原生体验**
-   - 语义搜索
-   - 智能推荐
-   - 互动学习助手
+   - RAG 向量检索：基于 Qwen3-Embedding-8B 将文章内容向量化，用户提问时检索最相关片段注入 Claude 上下文
+   - System Prompt 三层架构：角色定义 + 文章目录（元数据）+ RAG 上下文（内容），覆盖所有问题类型
+   - 防幻觉设计：检索到内容时引用来源，无相关内容时明确告知
+   - 实时搜索：Fuse.js 客户端模糊匹配，输入即搜索
+   - 文章变更自动化：predev/prebuild 自动重建 embedding，watch 模式实时监听
 
 4. **可扩展性**
    - 模块化设计

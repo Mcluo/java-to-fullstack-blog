@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import AIAssistant from '@/components/AIAssistant'
+import AuthProvider from '@/components/AuthProvider'
+import LoginButton from '@/components/LoginButton'
 
 export const metadata: Metadata = {
   title: 'Java 工程师全栈+AI 转型博客',
@@ -15,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className="min-h-screen bg-gray-50">
+        <AuthProvider>
         <header className="bg-white shadow-sm border-b">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16 items-center">
@@ -23,10 +26,11 @@ export default function RootLayout({
                   Java → 全栈+AI
                 </h1>
               </div>
-              <div className="flex space-x-8">
+              <div className="flex items-center space-x-8">
                 <a href="/" className="text-gray-700 hover:text-blue-600">首页</a>
                 <a href="/articles" className="text-gray-700 hover:text-blue-600">教程</a>
                 <a href="/roadmap" className="text-gray-700 hover:text-blue-600">学习路径</a>
+                <LoginButton />
               </div>
             </div>
           </nav>
@@ -40,6 +44,7 @@ export default function RootLayout({
           </div>
         </footer>
         <AIAssistant />
+        </AuthProvider>
       </body>
     </html>
   )
