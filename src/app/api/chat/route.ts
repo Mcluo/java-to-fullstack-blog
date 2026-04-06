@@ -1,12 +1,17 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { NextRequest, NextResponse } from 'next/server'
+import { searchRelevantChunks, buildContext, isRagAvailable } from '@/lib/rag'
+import { getAllArticles, CATEGORY_CONFIG } from '@/lib/articles'
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN,
+  baseURL: process.env.ANTHROPIC_BASE_URL
+    ? `${process.env.ANTHROPIC_BASE_URL}`
+    : undefined,
 })
 
-// 系统提示词 - 定义AI助手的角色和能力
-const SYSTEM_PROMPT = `你是一个专业的全栈+AI学习助手，专门帮助Java工程师转型学习前端、后端和AI技术。
+// 基础系统提示词
+const BASE_SYSTEM_PROMPT = `你是一个专业的全栈+AI学习助手，专门帮助Java工程师转型学习前端、后端和AI技术。
 
 ## 你的专长
 - 解释TypeScript、React、Node.js等技术概念
@@ -14,25 +19,7 @@ const SYSTEM_PROMPT = `你是一个专业的全栈+AI学习助手，专门帮助
 - 推荐学习路径和资源
 - 回答编程问题和最佳实践
 - 提供实用的代码示例
-
-## 网站内容
-本网站提供以下学习资源：
-
-**快速启动教程**：
-- TypeScript + React 30分钟快速上手 (/articles/quickstart/01-typescript-react-30min)
-
-**前端教程**：
-- TypeScript快速入门 (/articles/frontend/01-typescript-for-java-developers)
-- React核心概念 (/articles/frontend/02-react-vs-spring)
-
-**后端教程**：
-- Node.js异步编程 (/articles/backend/01-nodejs-async-programming)
-
-**AI教程**：
-- Python for Java开发者 (/articles/ai/01-python-for-java-developers)
-
-**学习路径**：
-- 完整学习路线图 (/roadmap)
+- 分享职业成长和技术趋势的见解
 
 ## 回答风格
 - 简洁明了，避免冗长
@@ -45,13 +32,40 @@ const SYSTEM_PROMPT = `你是一个专业的全栈+AI学习助手，专门帮助
 - 推荐"30分钟法则"：快速实践，立即看到成果
 - 强调边做项目边学习，而非死记语法
 - 建议使用AI工具（Claude、ChatGPT）辅助学习
-- 适时推荐网站内的相关文章（使用markdown链接格式）
+- 当回答基于网站文章内容时，使用 markdown 链接引用来源文章
+- 如果检索到相关文章内容，优先基于文章内容回答，并标注来源
+- 如果没有检索到相关内容，使用你的通用知识回答，但不要伪造文章引用
 
 记住：你的目标是让Java工程师轻松、快速、有信心地完成技术转型！`
 
+/**
+ * 生成网站文章目录概览，注入 system prompt
+ */
+function buildArticleCatalog(): string {
+  const articles = getAllArticles()
+  const byCategory: Record<string, Array<{ title: string; slug: string; category: string }>> = {}
+
+  for (const a of articles) {
+    if (!byCategory[a.category]) byCategory[a.category] = []
+    byCategory[a.category].push({ title: a.title, slug: a.slug, category: a.category })
+  }
+
+  const lines = [`## 网站文章目录（共 ${articles.length} 篇）\n`]
+  for (const [cat, items] of Object.entries(byCategory)) {
+    const catName = CATEGORY_CONFIG[cat]?.name || cat
+    lines.push(`### ${catName}（${items.length} 篇）`)
+    for (const item of items) {
+      lines.push(`- [${item.title}](/articles/${item.category}/${item.slug})`)
+    }
+    lines.push('')
+  }
+
+  return lines.join('\n')
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const { message, history = [] } = await request.json()
+    const { message, history = [], contexts = [] } = await request.json()
 
     if (!message || typeof message !== 'string') {
       return NextResponse.json(
@@ -61,13 +75,46 @@ export async function POST(request: NextRequest) {
     }
 
     // 检查API Key
-    if (!process.env.ANTHROPIC_API_KEY) {
-      console.error('ANTHROPIC_API_KEY is not set')
+    if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) {
+      console.error('ANTHROPIC_API_KEY or ANTHROPIC_AUTH_TOKEN is not set')
       return NextResponse.json(
         { error: 'API配置错误，请联系管理员' },
         { status: 500 }
       )
     }
+
+    // RAG 检索：基于用户消息检索相关文章片段
+    let ragContext = ''
+    const ragAvailable = isRagAvailable()
+    console.log(`[RAG] 可用: ${ragAvailable}, 查询: "${message}"`)
+    if (ragAvailable) {
+      try {
+        const relevantChunks = await searchRelevantChunks(message, 5, 0.3)
+        console.log(`[RAG] 检索到 ${relevantChunks.length} 个相关片段`)
+        relevantChunks.forEach((c, i) => {
+          console.log(`  [${i + 1}] ${c.metadata.title} (score: ${c.score.toFixed(3)})`)
+        })
+        ragContext = buildContext(relevantChunks)
+      } catch (err) {
+        console.warn('RAG 检索失败，降级为无上下文模式:', err)
+      }
+    }
+
+    // 构建用户提供的上下文
+    let userContext = ''
+    if (Array.isArray(contexts) && contexts.length > 0) {
+      const sections = contexts.map((ctx: { type: string; label: string; content: string }, i: number) => {
+        const typeLabel = ctx.type === 'page' ? '页面内容' : '用户提供的文本'
+        return `### ${typeLabel} ${i + 1}: ${ctx.label}\n\n${ctx.content}`
+      })
+      userContext = `## 用户提供的上下文\n\n以下是用户主动添加的参考内容，请优先基于这些内容回答问题。\n\n${sections.join('\n\n---\n\n')}`
+    }
+
+    // 组装 system prompt：基础 prompt + 文章目录 + RAG 上下文 + 用户上下文
+    const catalog = buildArticleCatalog()
+    const systemPrompt = [BASE_SYSTEM_PROMPT, catalog, ragContext, userContext]
+      .filter(Boolean)
+      .join('\n\n')
 
     // 构建消息历史
     const messages = [
@@ -88,9 +135,9 @@ export async function POST(request: NextRequest) {
         try {
           // 使用Anthropic的流式API
           const messageStream = await anthropic.messages.stream({
-            model: 'claude-3-5-sonnet-20241022',
+            model: process.env.CHAT_MODEL || 'claude-sonnet-4-6',
             max_tokens: 2048,
-            system: SYSTEM_PROMPT,
+            system: systemPrompt,
             messages: messages
           })
 

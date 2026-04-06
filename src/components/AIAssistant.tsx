@@ -7,7 +7,14 @@ import Link from 'next/link'
 const STORAGE_KEY = 'ai_chat_history'
 const DEFAULT_WELCOME_MESSAGE = {
   role: 'assistant' as const,
-  content: '你好！我是你的AI学习助手。我可以帮你：\n\n• 解释技术概念\n• 推荐学习路径\n• 回答编程问题\n• 对比Java和新技术\n\n有什么我可以帮你的吗？'
+  content: '你好！我是你的AI学习助手。我可以帮你：\n\n• 解释技术概念\n• 推荐学习路径\n• 回答编程问题\n• 对比Java和新技术\n• 📎 添加上下文后针对性问答\n\n有什么我可以帮你的吗？'
+}
+
+interface ContextItem {
+  id: string
+  type: 'page' | 'text'
+  label: string
+  content: string
 }
 
 export default function AIAssistant() {
@@ -16,6 +23,10 @@ export default function AIAssistant() {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
+  const [contexts, setContexts] = useState<ContextItem[]>([])
+  const [showContextMenu, setShowContextMenu] = useState(false)
+  const [showTextInput, setShowTextInput] = useState(false)
+  const [customText, setCustomText] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
 
@@ -48,6 +59,54 @@ export default function AIAssistant() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  // 添加当前页面为上下文
+  const handleAddPageContext = () => {
+    const pageTitle = document.title
+    const articleEl = document.querySelector('article')
+    const mainEl = document.querySelector('main')
+    const content = (articleEl || mainEl)?.innerText || ''
+
+    if (!content.trim()) {
+      alert('当前页面没有可提取的内容')
+      return
+    }
+
+    // 截断过长内容
+    const truncated = content.length > 6000 ? content.slice(0, 6000) + '\n\n[...内容已截断]' : content
+
+    const newContext: ContextItem = {
+      id: Date.now().toString(),
+      type: 'page',
+      label: pageTitle || window.location.pathname,
+      content: truncated,
+    }
+
+    setContexts(prev => [...prev, newContext])
+    setShowContextMenu(false)
+  }
+
+  // 添加自定义文本为上下文
+  const handleAddTextContext = () => {
+    if (!customText.trim()) return
+
+    const newContext: ContextItem = {
+      id: Date.now().toString(),
+      type: 'text',
+      label: customText.slice(0, 30) + (customText.length > 30 ? '...' : ''),
+      content: customText.trim(),
+    }
+
+    setContexts(prev => [...prev, newContext])
+    setCustomText('')
+    setShowTextInput(false)
+    setShowContextMenu(false)
+  }
+
+  // 移除上下文
+  const handleRemoveContext = (id: string) => {
+    setContexts(prev => prev.filter(c => c.id !== id))
+  }
+
   const quickQuestions = [
     'TypeScript和JavaScript有什么区别？',
     'React和Spring有什么相似之处？',
@@ -79,7 +138,8 @@ export default function AIAssistant() {
         },
         body: JSON.stringify({
           message: userMessage,
-          history: messages.filter(msg => msg.role !== 'assistant' || messages.indexOf(msg) > 0) // 排除初始欢迎消息
+          history: messages.filter(msg => msg.role !== 'assistant' || messages.indexOf(msg) > 0), // 排除初始欢迎消息
+          contexts: contexts.map(c => ({ type: c.type, label: c.label, content: c.content })),
         }),
         signal: abortControllerRef.current.signal, // 添加取消信号
       })
@@ -434,7 +494,130 @@ export default function AIAssistant() {
 
           {/* 输入框 */}
           <div className="p-4 bg-white border-t border-gray-200">
+            {/* 上下文标签 */}
+            {contexts.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mb-2">
+                {contexts.map(ctx => (
+                  <span
+                    key={ctx.id}
+                    className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-lg border border-blue-200"
+                  >
+                    {ctx.type === 'page' ? (
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    ) : (
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                      </svg>
+                    )}
+                    <span className="max-w-[120px] truncate">{ctx.label}</span>
+                    <button
+                      onClick={() => handleRemoveContext(ctx.id)}
+                      className="hover:text-red-500 transition ml-0.5"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* 自定义文本输入面板 */}
+            {showTextInput && (
+              <div className="mb-2 p-3 bg-gray-50 rounded-xl border border-gray-200">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-medium text-gray-600">添加文本上下文</span>
+                  <button
+                    onClick={() => { setShowTextInput(false); setCustomText('') }}
+                    className="text-gray-400 hover:text-gray-600"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <textarea
+                  value={customText}
+                  onChange={(e) => setCustomText(e.target.value)}
+                  placeholder="粘贴代码、错误日志、文档片段等..."
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 resize-none"
+                  rows={4}
+                />
+                <button
+                  onClick={handleAddTextContext}
+                  disabled={!customText.trim()}
+                  className="mt-2 px-3 py-1.5 bg-blue-600 text-white text-xs rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                >
+                  添加
+                </button>
+              </div>
+            )}
+
             <div className="flex gap-2 items-end">
+              {/* 添加上下文按钮 */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowContextMenu(!showContextMenu)}
+                  className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition ${
+                    contexts.length > 0
+                      ? 'bg-blue-100 text-blue-600 hover:bg-blue-200'
+                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                  }`}
+                  title="添加上下文"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                  </svg>
+                  {contexts.length > 0 && (
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-600 text-white text-[10px] rounded-full flex items-center justify-center">
+                      {contexts.length}
+                    </span>
+                  )}
+                </button>
+
+                {/* 上下文菜单 */}
+                {showContextMenu && (
+                  <div className="absolute bottom-full left-0 mb-2 w-52 bg-white rounded-xl shadow-xl border border-gray-200 z-10 overflow-hidden">
+                    <button
+                      onClick={handleAddPageContext}
+                      className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center gap-2 text-sm transition"
+                    >
+                      <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <span className="text-gray-700">添加当前页面</span>
+                    </button>
+                    <div className="border-t border-gray-100" />
+                    <button
+                      onClick={() => { setShowTextInput(true); setShowContextMenu(false) }}
+                      className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center gap-2 text-sm transition"
+                    >
+                      <svg className="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                      </svg>
+                      <span className="text-gray-700">添加文本片段</span>
+                    </button>
+                    {contexts.length > 0 && (
+                      <>
+                        <div className="border-t border-gray-100" />
+                        <button
+                          onClick={() => { setContexts([]); setShowContextMenu(false) }}
+                          className="w-full text-left px-4 py-3 hover:bg-red-50 flex items-center gap-2 text-sm transition"
+                        >
+                          <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                          <span className="text-red-600">清除所有上下文</span>
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+
               <div className="flex-1 relative">
                 <textarea
                   value={input}
@@ -445,7 +628,7 @@ export default function AIAssistant() {
                       handleSend()
                     }
                   }}
-                  placeholder="输入消息... (Shift + Enter 换行)"
+                  placeholder={contexts.length > 0 ? "基于上下文提问..." : "输入消息... (Shift + Enter 换行)"}
                   className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 resize-none transition"
                   disabled={isLoading}
                   rows={1}

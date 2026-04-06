@@ -26,7 +26,10 @@ export default function SearchBar({ onSearch, placeholder = '搜索文章...' }:
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value)
+            onSearch(e.target.value)
+          }}
           placeholder={placeholder}
           className="w-full px-4 py-3 pl-12 pr-20 text-gray-900 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition"
         />
@@ -60,12 +63,7 @@ export default function SearchBar({ onSearch, placeholder = '搜索文章...' }:
         )}
       </div>
 
-      {/* 搜索提示 */}
-      {query && (
-        <div className="absolute top-full mt-2 text-sm text-gray-500">
-          按 Enter 搜索，或点击 ✕ 清除
-        </div>
-      )}
+      {/* 搜索提示 - 实时搜索无需提示 */}
     </form>
   )
 }

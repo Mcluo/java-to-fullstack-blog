@@ -13,6 +13,7 @@ interface ArticleCardProps {
     difficulty?: string
     readTime?: number
     tags?: string[]
+    publishedAt?: string
   }
   onTagClick?: (tag: string) => void
 }
@@ -25,13 +26,20 @@ export default function ArticleCard({ article, onTagClick }: ArticleCardProps) {
     setIsCompleted(isArticleCompleted(articleSlug))
   }, [articleSlug])
 
-  const categoryConfig = {
+  const categoryConfig: Record<string, { name: string; bgColor: string; textColor: string }> = {
     quickstart: { name: '🚀 快速启动', bgColor: 'bg-orange-100', textColor: 'text-orange-800' },
     frontend: { name: '前端', bgColor: 'bg-blue-100', textColor: 'text-blue-800' },
     backend: { name: '后端', bgColor: 'bg-green-100', textColor: 'text-green-800' },
     ai: { name: 'AI', bgColor: 'bg-purple-100', textColor: 'text-purple-800' },
     devops: { name: 'DevOps', bgColor: 'bg-yellow-100', textColor: 'text-yellow-800' },
-    projects: { name: '实战项目', bgColor: 'bg-red-100', textColor: 'text-red-800' }
+    projects: { name: '实战项目', bgColor: 'bg-red-100', textColor: 'text-red-800' },
+    architecture: { name: '架构设计', bgColor: 'bg-indigo-100', textColor: 'text-indigo-800' },
+    'personal-growth': { name: '个人成长', bgColor: 'bg-pink-100', textColor: 'text-pink-800' },
+    'tools-and-tips': { name: '工具技巧', bgColor: 'bg-teal-100', textColor: 'text-teal-800' },
+    'product-design': { name: '产品设计', bgColor: 'bg-cyan-100', textColor: 'text-cyan-800' },
+    research: { name: '技术调研', bgColor: 'bg-amber-100', textColor: 'text-amber-800' },
+    'work-logs': { name: '工作记录', bgColor: 'bg-slate-100', textColor: 'text-slate-800' },
+    troubleshooting: { name: '问题排查', bgColor: 'bg-red-100', textColor: 'text-red-800' },
   }
 
   const category = categoryConfig[article.category as keyof typeof categoryConfig] || {
@@ -87,26 +95,33 @@ export default function ArticleCard({ article, onTagClick }: ArticleCardProps) {
           {article.excerpt}
         </p>
 
-        {/* 标签 */}
-        {article.tags && article.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {article.tags.map((tag, index) => (
-              <button
-                key={index}
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  if (onTagClick) {
-                    onTagClick(tag)
-                  }
-                }}
-                className="text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded hover:bg-blue-100 hover:text-blue-700 transition cursor-pointer"
-              >
-                #{tag}
-              </button>
-            ))}
-          </div>
-        )}
+        {/* 标签和时间 */}
+        <div className="flex items-center justify-between mt-auto">
+          {article.tags && article.tags.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {article.tags.map((tag, index) => (
+                <button
+                  key={index}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    if (onTagClick) {
+                      onTagClick(tag)
+                    }
+                  }}
+                  className="text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded hover:bg-blue-100 hover:text-blue-700 transition cursor-pointer"
+                >
+                  #{tag}
+                </button>
+              ))}
+            </div>
+          ) : <div />}
+          {article.publishedAt && (
+            <span className="text-xs text-gray-400 whitespace-nowrap ml-4">
+              {article.publishedAt.slice(0, 10)}
+            </span>
+          )}
+        </div>
       </div>
     </Link>
   )
