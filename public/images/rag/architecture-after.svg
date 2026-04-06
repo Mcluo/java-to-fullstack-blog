@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 420" font-family="system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="425" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">改造后：RAG 向量检索 + 动态目录 + Claude 生成</text>
+
+  <!-- ===== BUILD TIME (top section) ===== -->
+  <rect x="15" y="45" width="820" height="110" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="30" y="65" font-size="12" fill="#166534" font-weight="600">构建时 (npm run build:embeddings)</text>
+
+  <!-- Articles -->
+  <rect x="30" y="80" width="130" height="55" rx="10" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="95" y="102" text-anchor="middle" font-size="12" fill="#166534" font-weight="600">23 篇文章</text>
+  <text x="95" y="120" text-anchor="middle" font-size="10" fill="#15803d">content/articles/</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="107" x2="210" y2="107" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Chunking -->
+  <rect x="220" y="80" width="130" height="55" rx="10" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="285" y="102" text-anchor="middle" font-size="12" fill="#166534" font-weight="600">分块</text>
+  <text x="285" y="120" text-anchor="middle" font-size="10" fill="#15803d">1000字/块, 200重叠</text>
+
+  <!-- Arrow -->
+  <line x1="350" y1="107" x2="400" y2="107" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Embedding -->
+  <rect x="410" y="80" width="160" height="55" rx="10" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="490" y="102" text-anchor="middle" font-size="12" fill="#166534" font-weight="600">Qwen3-Embedding-8B</text>
+  <text x="490" y="120" text-anchor="middle" font-size="10" fill="#15803d">ModelScope API</text>
+
+  <!-- Arrow -->
+  <line x1="570" y1="107" x2="620" y2="107" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- JSON -->
+  <rect x="630" y="80" width="190" height="55" rx="10" fill="#bbf7d0" stroke="#22c55e" stroke-width="2"/>
+  <text x="725" y="102" text-anchor="middle" font-size="12" fill="#166534" font-weight="600">embeddings.json</text>
+  <text x="725" y="120" text-anchor="middle" font-size="10" fill="#15803d">237 chunks, 4096维, 18MB</text>
+
+  <!-- ===== RUNTIME (bottom section) ===== -->
+  <rect x="15" y="175" width="820" height="230" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="30" y="195" font-size="12" fill="#1e40af" font-weight="600">运行时 (用户提问)</text>
+
+  <!-- User Query -->
+  <rect x="30" y="210" width="140" height="55" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="100" y="232" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="600">用户提问</text>
+  <text x="100" y="250" text-anchor="middle" font-size="10" fill="#3b82f6">"架构师为何不可替代"</text>
+
+  <!-- Arrow to embedding -->
+  <line x1="170" y1="237" x2="220" y2="237" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Query Embedding -->
+  <rect x="230" y="210" width="140" height="55" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="300" y="232" text-anchor="middle" font-size="12" fill="#4338ca" font-weight="600">查询向量化</text>
+  <text x="300" y="250" text-anchor="middle" font-size="10" fill="#6366f1">Qwen3-Embedding</text>
+
+  <!-- Arrow to search -->
+  <line x1="370" y1="237" x2="420" y2="237" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Cosine Similarity -->
+  <rect x="430" y="210" width="140" height="55" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="500" y="232" text-anchor="middle" font-size="12" fill="#92400e" font-weight="600">余弦相似度</text>
+  <text x="500" y="250" text-anchor="middle" font-size="10" fill="#b45309">Top-5 检索</text>
+
+  <!-- Arrow down from JSON to cosine -->
+  <line x1="725" y1="135" x2="725" y2="200" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="725" y1="200" x2="570" y2="237" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+  <!-- Arrow down to prompt assembly -->
+  <line x1="500" y1="265" x2="500" y2="300" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- System Prompt Assembly -->
+  <rect x="250" y="310" width="350" height="80" rx="12" fill="#fff" stroke="#6366f1" stroke-width="2"/>
+  <text x="425" y="332" text-anchor="middle" font-size="13" fill="#4338ca" font-weight="700">System Prompt 三层组装</text>
+  <text x="425" y="352" text-anchor="middle" font-size="11" fill="#6366f1">① 角色定义 + 回答风格</text>
+  <text x="425" y="368" text-anchor="middle" font-size="11" fill="#6366f1">② 动态文章目录（23篇元数据）</text>
+  <text x="425" y="384" text-anchor="middle" font-size="11" fill="#6366f1">③ RAG 检索片段（含来源链接）</text>
+
+  <!-- Arrow to Claude -->
+  <line x1="600" y1="350" x2="650" y2="350" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Claude -->
+  <rect x="660" y="310" width="120" height="80" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="720" y="340" text-anchor="middle" font-size="13" fill="#4338ca" font-weight="600">Claude</text>
+  <text x="720" y="358" text-anchor="middle" font-size="11" fill="#6366f1">Sonnet 4.6</text>
+  <text x="720" y="376" text-anchor="middle" font-size="10" fill="#22c55e">✅ 引用来源</text>
+</svg>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="Java-Python概念映射">
+    <mxGraphModel dx="1200" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 标题 -->
+        <mxCell id="title" value="Java → Python 核心概念映射图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="50" y="15" width="1000" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Java 列标题 -->
+        <mxCell id="java_header" value="☕ Java" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#ffffff;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="65" width="320" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Python 列标题 -->
+        <mxCell id="python_header" value="🐍 Python" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#2E8B57;fontColor=#ffffff;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="65" width="320" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- 中间连接区域标题 -->
+        <mxCell id="center_header" value="等价关系" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=3;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="400" y="75" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ======================================= -->
+        <!-- 分类1: 数据结构 -->
+        <!-- ======================================= -->
+        <mxCell id="cat1_label" value="📦 数据结构" style="text;html=1;strokeColor=none;fillColor=#E8E8E8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="138" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ArrayList → list -->
+        <mxCell id="j_arraylist" value="ArrayList&lt;T&gt;&#xa;动态数组，泛型约束" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB3B3;strokeColor=#FF6B6B;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="180" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_list" value="list&#xa;内置类型，动态类型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3E5C8;strokeColor=#50C878;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="180" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_al_list" value="≈" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_arraylist" target="p_list" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- HashMap → dict -->
+        <mxCell id="j_hashmap" value="HashMap&lt;K,V&gt;&#xa;键值对映射，哈希实现" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB3B3;strokeColor=#FF6B6B;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="250" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_dict" value="dict&#xa;字典推导式 {k:v for...}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3E5C8;strokeColor=#50C878;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="250" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_hm_dict" value="≈" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_hashmap" target="p_dict" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- HashSet → set -->
+        <mxCell id="j_hashset" value="HashSet&lt;T&gt;&#xa;不重复元素集合" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB3B3;strokeColor=#FF6B6B;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="320" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_set" value="set&#xa;{1,2,3}，支持 &amp;、|、- 运算" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3E5C8;strokeColor=#50C878;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="320" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_hs_set" value="≈" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_hashset" target="p_set" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ======================================= -->
+        <!-- 分类2: 函数式/Stream -->
+        <!-- ======================================= -->
+        <mxCell id="cat2_label" value="🔄 函数式编程" style="text;html=1;strokeColor=none;fillColor=#E8E8E8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="395" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Stream API → list comprehension -->
+        <mxCell id="j_stream" value="Stream API&#xa;.filter().map().collect()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD9B3;strokeColor=#FFA040;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="438" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_listcomp" value="列表推导式&#xa;[f(x) for x in lst if cond]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE8C0;strokeColor=#FFA040;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="438" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_stream_lc" value="≈" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_stream" target="p_listcomp" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- CompletableFuture → asyncio -->
+        <mxCell id="j_future" value="CompletableFuture&lt;T&gt;&#xa;异步任务链式调用" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD9B3;strokeColor=#FFA040;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="508" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_asyncio" value="asyncio / async-await&#xa;async def + await + asyncio.run()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE8C0;strokeColor=#FFA040;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="508" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_future_asyncio" value="≈" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_future" target="p_asyncio" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ======================================= -->
+        <!-- 分类3: 工具/生态 -->
+        <!-- ======================================= -->
+        <mxCell id="cat3_label" value="🔧 工具 &amp; 生态" style="text;html=1;strokeColor=none;fillColor=#E8E8E8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="583" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Maven → pip -->
+        <mxCell id="j_maven" value="Maven / Gradle&#xa;pom.xml / build.gradle 依赖管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6FF;strokeColor=#4A90D9;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="625" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_pip" value="pip / conda&#xa;requirements.txt / pyproject.toml" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6FF;strokeColor=#4A90D9;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="625" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_maven_pip" value="≈" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_maven" target="p_pip" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- HttpClient → requests -->
+        <mxCell id="j_http" value="HttpClient&#xa;build().uri().send() 链式调用" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6FF;strokeColor=#4A90D9;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="695" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_requests" value="requests&#xa;requests.get(url).json()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6FF;strokeColor=#4A90D9;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="695" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_http_req" value="≈" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_http" target="p_requests" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ======================================= -->
+        <!-- 分类4: 测试 -->
+        <!-- ======================================= -->
+        <mxCell id="cat4_label" value="🧪 测试框架" style="text;html=1;strokeColor=none;fillColor=#E8E8E8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="770" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- JUnit → pytest -->
+        <mxCell id="j_junit" value="JUnit 5&#xa;@Test, @BeforeEach, assertEquals" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0D0F0;strokeColor=#9B59B6;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="813" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_pytest" value="pytest&#xa;def test_*(), assert, fixture" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0D0F0;strokeColor=#9B59B6;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="813" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_junit_pytest" value="≈" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_junit" target="p_pytest" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- @Autowired → DI -->
+        <mxCell id="j_autowired" value="@Autowired（Spring DI）&#xa;IoC 容器自动注入依赖" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0D0F0;strokeColor=#9B59B6;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="883" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="p_di" value="手动注入 / 构造函数传参&#xa;或 dependency-injector 库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0D0F0;strokeColor=#9B59B6;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="883" width="320" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arr_aw_di" value="→" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontSize=16;fontColor=#666666;strokeColor=#999999;" edge="1" source="j_autowired" target="p_di" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ======================================= -->
+        <!-- 图例说明 -->
+        <!-- ======================================= -->
+        <mxCell id="legend_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="60" y="960" width="980" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend_ds" value="■ 数据结构" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#FF6B6B;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="960" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_fp" value="■ 函数式/异步" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#FFA040;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="960" width="140" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_tools" value="■ 工具 &amp; 生态" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#4A90D9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="960" width="130" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_test" value="■ 测试 &amp; DI" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#9B59B6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="960" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_note" value="≈ 等价概念　→ 相近但有差异" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="840" y="960" width="200" height="25" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="艾宾浩斯遗忘曲线">
+    <mxGraphModel dx="1400" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1200" pageHeight="820" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="100" value="艾宾浩斯遗忘曲线 × 间隔复习干预" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="20" width="1100" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Chart background -->
+        <mxCell id="101" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="100" y="80" width="980" height="520" as="geometry"/>
+        </mxCell>
+
+        <!-- Y-axis label -->
+        <mxCell id="102" value="记忆保留率 (%)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#555555;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="20" y="250" width="120" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- X-axis label -->
+        <mxCell id="103" value="时间轴" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="500" y="640" width="100" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Y-axis lines and labels -->
+        <!-- 100% line -->
+        <mxCell id="110" value="100%" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="98" width="45" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="111" value="" style="endArrow=none;dashed=1;strokeColor=#DDDDDD;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="108" as="sourcePoint"/>
+            <mxPoint x="1080" y="108" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 80% line -->
+        <mxCell id="112" value="80%" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="200" width="45" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="113" value="" style="endArrow=none;dashed=1;strokeColor=#DDDDDD;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="210" as="sourcePoint"/>
+            <mxPoint x="1080" y="210" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 60% line -->
+        <mxCell id="114" value="60%" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="302" width="45" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="115" value="" style="endArrow=none;dashed=1;strokeColor=#DDDDDD;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="312" as="sourcePoint"/>
+            <mxPoint x="1080" y="312" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 40% line -->
+        <mxCell id="116" value="40%" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="402" width="45" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="117" value="" style="endArrow=none;dashed=1;strokeColor=#DDDDDD;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="412" as="sourcePoint"/>
+            <mxPoint x="1080" y="412" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 20% line -->
+        <mxCell id="118" value="20%" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="502" width="45" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="119" value="" style="endArrow=none;dashed=1;strokeColor=#DDDDDD;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="512" as="sourcePoint"/>
+            <mxPoint x="1080" y="512" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- X-axis -->
+        <mxCell id="120" value="" style="endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="590" as="sourcePoint"/>
+            <mxPoint x="1090" y="590" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Y-axis -->
+        <mxCell id="121" value="" style="endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="590" as="sourcePoint"/>
+            <mxPoint x="100" y="85" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- X-axis time labels -->
+        <!-- Day 0: x=150 -->
+        <mxCell id="130" value="Day 0&#xa;学习" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="130" y="598" width="60" height="35" as="geometry"/>
+        </mxCell>
+        <!-- Day 1: x=330 -->
+        <mxCell id="131" value="Day 1&#xa;第1天" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="310" y="598" width="60" height="35" as="geometry"/>
+        </mxCell>
+        <!-- Day 3: x=530 -->
+        <mxCell id="132" value="Day 3&#xa;第3天" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="510" y="598" width="60" height="35" as="geometry"/>
+        </mxCell>
+        <!-- Day 7: x=730 -->
+        <mxCell id="133" value="Day 7&#xa;第7天" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="710" y="598" width="60" height="35" as="geometry"/>
+        </mxCell>
+        <!-- Day 30: x=990 -->
+        <mxCell id="134" value="Day 30&#xa;第30天" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="965" y="598" width="70" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Tick marks -->
+        <mxCell id="135" value="" style="endArrow=none;strokeColor=#555555;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="585" as="sourcePoint"/>
+            <mxPoint x="160" y="595" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="136" value="" style="endArrow=none;strokeColor=#555555;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="585" as="sourcePoint"/>
+            <mxPoint x="340" y="595" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="137" value="" style="endArrow=none;strokeColor=#555555;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="585" as="sourcePoint"/>
+            <mxPoint x="540" y="595" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="138" value="" style="endArrow=none;strokeColor=#555555;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="585" as="sourcePoint"/>
+            <mxPoint x="740" y="595" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="139" value="" style="endArrow=none;strokeColor=#555555;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="585" as="sourcePoint"/>
+            <mxPoint x="1000" y="595" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- === FORGETTING CURVE (no review) === -->
+        <!-- Curve: Day0(160,108) -> Day1(340,270) -> Day3(540,380) -> Day7(740,450) -> Day30(1000,530) -->
+        <mxCell id="200" value="" style="endArrow=none;strokeColor=#FF6B6B;strokeWidth=3;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="108" as="sourcePoint"/>
+            <mxPoint x="1000" y="530" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="250" y="175"/>
+              <mxPoint x="340" y="270"/>
+              <mxPoint x="440" y="335"/>
+              <mxPoint x="540" y="380"/>
+              <mxPoint x="640" y="420"/>
+              <mxPoint x="740" y="450"/>
+              <mxPoint x="870" y="495"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="201" value="无复习遗忘曲线" style="resizable=0;html=1;align=left;verticalAlign=middle;labelBackgroundColor=none;fontSize=12;fontColor=#FF6B6B;fontStyle=1;" connectable="0" vertex="1" parent="200">
+          <mxGeometry x="0.6" relative="1" as="geometry"><mxPoint y="-20" as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Starting point dot -->
+        <mxCell id="202" value="100%" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C62828;fontColor=#FFFFFF;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="148" y="96" width="24" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- === REVIEW INTERVENTION POINTS === -->
+        <!-- Review 1: Day 0 same day (x=160, y=108) -> bounce up to ~150 -->
+        <mxCell id="210" value="复习 #1&#xa;当天" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#388E3C;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="130" width="70" height="45" as="geometry"/>
+        </mxCell>
+        <!-- Bounce arrow up from curve -->
+        <mxCell id="211" value="" style="endArrow=open;endFill=1;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="270" as="sourcePoint"/>
+            <mxPoint x="160" y="140" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Review 2: Day 1 (x=340) -> bounce from 270 to 160 -->
+        <mxCell id="220" value="复习 #2&#xa;第1天" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#388E3C;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="140" width="70" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="221" value="" style="endArrow=open;endFill=1;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="270" as="sourcePoint"/>
+            <mxPoint x="340" y="175" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Review curve after Day 1 (higher baseline) -->
+        <mxCell id="222" value="" style="endArrow=none;strokeColor=#50C878;strokeWidth=2;dashed=1;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="175" as="sourcePoint"/>
+            <mxPoint x="540" y="310" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="440" y="240"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Review 3: Day 3 (x=540) -> bounce from 310 to 145 -->
+        <mxCell id="230" value="复习 #3&#xa;第3天" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#388E3C;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="115" width="70" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="231" value="" style="endArrow=open;endFill=1;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="310" as="sourcePoint"/>
+            <mxPoint x="540" y="150" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Review curve after Day 3 -->
+        <mxCell id="232" value="" style="endArrow=none;strokeColor=#50C878;strokeWidth=2;dashed=1;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="150" as="sourcePoint"/>
+            <mxPoint x="740" y="265" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="640" y="200"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Review 4: Day 7 (x=740) -> bounce from 265 to 120 -->
+        <mxCell id="240" value="复习 #4&#xa;第7天" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#388E3C;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="98" width="70" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="241" value="" style="endArrow=open;endFill=1;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="265" as="sourcePoint"/>
+            <mxPoint x="740" y="135" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Review curve after Day 7 (much flatter - long term memory) -->
+        <mxCell id="242" value="" style="endArrow=none;strokeColor=#50C878;strokeWidth=2.5;dashed=1;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="135" as="sourcePoint"/>
+            <mxPoint x="1000" y="175" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="870" y="148"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="243" value="长期记忆形成" style="resizable=0;html=1;align=center;verticalAlign=top;labelBackgroundColor=none;fontSize=11;fontColor=#388E3C;fontStyle=1;" connectable="0" vertex="1" parent="242">
+          <mxGeometry x="0.6" relative="1" as="geometry"><mxPoint y="10" as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Fluency Illusion Zone -->
+        <mxCell id="300" value="Fluency Illusion 区&#xa;(流畅度错觉)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#FFA000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="155" y="92" width="145" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="301" value="" style="endArrow=open;endFill=0;strokeColor=#FFA000;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="228" y="132" as="sourcePoint"/>
+            <mxPoint x="228" y="155" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="302" value="「我学会了！」&#xa;（其实还没有）" style="text;html=1;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#7D5500;" vertex="1" parent="1">
+          <mxGeometry x="155" y="158" width="145" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 24h annotation -->
+        <mxCell id="310" value="24小时后&#xa;遗忘 70%+" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#FF6B6B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="280" width="110" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="311" value="" style="endArrow=open;endFill=0;strokeColor=#FF6B6B;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="280" as="sourcePoint"/>
+            <mxPoint x="340" y="270" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Day 30 annotation -->
+        <mxCell id="320" value="Day 30 无复习&#xa;仅剩 ~15%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#FF6B6B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="910" y="540" width="130" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="400" value="图例：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="660" width="60" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="401" value="" style="endArrow=none;strokeColor=#FF6B6B;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="168" y="672" as="sourcePoint"/>
+            <mxPoint x="230" y="672" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="402" value="不复习遗忘曲线" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#FF6B6B;" vertex="1" parent="1">
+          <mxGeometry x="238" y="658" width="140" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="403" value="" style="endArrow=none;strokeColor=#50C878;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="672" as="sourcePoint"/>
+            <mxPoint x="462" y="672" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="404" value="间隔复习曲线" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#388E3C;" vertex="1" parent="1">
+          <mxGeometry x="470" y="658" width="130" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="405" value="复习 #N" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#388E3C;fontColor=#FFFFFF;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="620" y="658" width="65" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="406" value="复习干预点" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#388E3C;" vertex="1" parent="1">
+          <mxGeometry x="695" y="658" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="407" value="Fluency Illusion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#FFA000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="810" y="658" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="408" value="流畅度错觉区" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#7D5500;" vertex="1" parent="1">
+          <mxGeometry x="940" y="658" width="100" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

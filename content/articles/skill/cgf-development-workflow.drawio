@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="CGF开发工作流">
+    <mxGraphModel dx="1200" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 标题 -->
+        <mxCell id="title" value="cgf-coding-skill 需求开发 9 步工作流" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="100" y="20" width="900" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 左侧：9步主流程 ===== -->
+
+        <!-- 步骤1 -->
+        <mxCell id="step1" value="步骤 1&#xa;识别需求&#xa;（从 Aone 链接获取需求信息）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="90" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 1→2 -->
+        <mxCell id="arr12" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="step1" target="step2" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤2 -->
+        <mxCell id="step2" value="步骤 2&#xa;收集 URL&#xa;（页面 URL + Aone 需求链接）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="200" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 2→3 -->
+        <mxCell id="arr23" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="step2" target="step3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤3 -->
+        <mxCell id="step3" value="步骤 3&#xa;解析 URL&#xa;（提取代码组 + 仓库名）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="310" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 3→4 -->
+        <mxCell id="arr34" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="step3" target="step4" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤4 -->
+        <mxCell id="step4" value="步骤 4&#xa;验证 git remote&#xa;（git remote -v 逐个验证）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="420" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 判断菱形：匹配？ -->
+        <mxCell id="decision" value="remote&#xa;匹配？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#B8860B;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="530" width="160" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 4→决策 -->
+        <mxCell id="arr4dec" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="step4" target="decision" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 不匹配分支 -->
+        <mxCell id="nomatch" value="告知用户候选目录&#xa;询问是否 clone&#xa;目标仓库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#999999;fontColor=#333333;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="430" y="540" width="180" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 不匹配箭头 -->
+        <mxCell id="arrnomatch" value="否" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontColor=#FF6B6B;" edge="1" source="decision" target="nomatch" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤5 -->
+        <mxCell id="step5" value="步骤 5&#xa;直接使用该仓库&#xa;（remote 匹配，确认用户）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#2E8B57;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="660" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 匹配箭头 decision→step5 -->
+        <mxCell id="arrmatch" value="是" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;fontColor=#50C878;" edge="1" source="decision" target="step5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 5→6 -->
+        <mxCell id="arr56" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="step5" target="step6" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤6 -->
+        <mxCell id="step6" value="步骤 6&#xa;查看项目结构&#xa;（判断 ICE 版本，读取 package.json）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="770" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 6→7 -->
+        <mxCell id="arr67" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="step6" target="step7" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤7 -->
+        <mxCell id="step7" value="步骤 7&#xa;理解需求&#xa;（深入分析功能点）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="880" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 7→8 -->
+        <mxCell id="arr78" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="step7" target="step8" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤8 -->
+        <mxCell id="step8" value="步骤 8&#xa;制定计划&#xa;（列出修改方案）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="990" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 8→9 -->
+        <mxCell id="arr89" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="step8" target="step9" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤9 -->
+        <mxCell id="step9" value="步骤 9&#xa;开始开发&#xa;（按计划执行，遵循铁律）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#2E8B57;fontColor=#ffffff;fontSize=13;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="1100" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 快速跳转旁路 ===== -->
+
+        <!-- 旁路标签区 -->
+        <mxCell id="bypass_label" value="⚡ 快速跳转路径" style="text;html=1;strokeColor=none;fillColor=#FFF8DC;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=13;fontStyle=1;fontColor=#8B6914;borderColor=#D4AC0D;" vertex="1" parent="1">
+          <mxGeometry x="650" y="200" width="200" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 旁路节点A：用户提供本地路径 -->
+        <mxCell id="bypassA" value="用户提供本地路径&#xa;（如 /Users/robin/work/xxx）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#6C3483;fontColor=#ffffff;fontSize=12;fontStyle=1;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="630" y="280" width="230" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- 旁路节点B：用户提供Git地址 -->
+        <mxCell id="bypassB" value="用户提供 Git 地址&#xa;（如 git@gitlab...xxx.git）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#6C3483;fontColor=#ffffff;fontSize=12;fontStyle=1;arcSize=15;" vertex="1" parent="1">
+          <mxGeometry x="630" y="380" width="230" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- 旁路A → 步骤6 -->
+        <mxCell id="arrBypassA" value="跳到步骤 6" style="edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;entryX=1;entryY=0.5;dashed=1;strokeColor=#9B59B6;fontStyle=3;fontColor=#6C3483;" edge="1" source="bypassA" target="step6" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="310"/>
+              <mxPoint x="570" y="805"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 旁路B → 步骤4 -->
+        <mxCell id="arrBypassB" value="跳到步骤 4" style="edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;entryX=1;entryY=0.5;dashed=1;strokeColor=#9B59B6;fontStyle=3;fontColor=#6C3483;" edge="1" source="bypassB" target="step4" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="410"/>
+              <mxPoint x="590" y="455"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 右侧：三层金字塔 ===== -->
+
+        <!-- 金字塔标题 -->
+        <mxCell id="pyramid_title" value="技能架构三层金字塔" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="680" y="520" width="400" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- 铁律层（顶层，最窄） -->
+        <mxCell id="tier1" value="🔒 铁律（4 条）&#xa;违反即终止 · 最高优先级&#xa;· 验证 git remote · 禁止 master 开发&#xa;· 同名推送 · 只格式化修改代码" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="575" width="320" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- 常驻规范层（中层） -->
+        <mxCell id="tier2" value="📋 常驻规范（4 个）&#xa;每次对话自动加载&#xa;· 9 步工作流 · Git 提交规范&#xa;· 编码标准 · 角色定义" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="685" width="360" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- 按需技能层（底层，最宽） -->
+        <mxCell id="tier3" value="⚙️ 按需技能（25 个）&#xa;关键词触发 · 按需加载&#xa;· URL 解析 · API 请求 · 样式开发 · 状态管理&#xa;· 国际化 · 构建发布 · 单元测试 · 性能优化 ···" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#2E8B57;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="795" width="400" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- 优先级标注 -->
+        <mxCell id="priority_high" value="高" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=11;fontColor=#FF6B6B;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1085" y="610" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="priority_mid" value="↕&#xa;优&#xa;先&#xa;级" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;fontColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="680" width="25" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="priority_low" value="低" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=11;fontColor=#50C878;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1085" y="830" width="30" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- 设计原则 -->
+        <mxCell id="design_principle" value="💡 设计原则：宁可误触发，不可漏触发" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8DC;strokeColor=#D4AC0D;fontColor=#8B6914;fontSize=13;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="680" y="910" width="400" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 步骤编号标注 -->
+        <mxCell id="note1" value="① 铁律 1：不信文件夹名，只信 git remote -v" style="text;html=1;strokeColor=none;fillColor=#FFF0F0;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#CC4444;borderColor=#FF6B6B;" vertex="1" parent="1">
+          <mxGeometry x="420" y="427" width="310" height="28" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="note2" value="② 铁律 2：开发前检查分支，禁止在 master 上开发" style="text;html=1;strokeColor=none;fillColor=#FFF0F0;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#CC4444;borderColor=#FF6B6B;" vertex="1" parent="1">
+          <mxGeometry x="420" y="1107" width="310" height="28" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

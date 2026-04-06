@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" font-family="system-ui, -apple-system, sans-serif">
+  <!-- Title -->
+  <text x="300" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">System Prompt 三层架构</text>
+
+  <!-- Layer 1: Base -->
+  <rect x="50" y="50" width="500" height="80" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="80" y="75" font-size="14" fill="#1e40af" font-weight="700">第一层：角色定义</text>
+  <text x="80" y="95" font-size="11" fill="#3b82f6">• AI 学习助手角色 + 回答风格 + Java 类比</text>
+  <text x="80" y="112" font-size="11" fill="#3b82f6">• 防幻觉指令：有检索内容则引用，无则不伪造</text>
+  <text x="490" y="75" font-size="10" fill="#93c5fd" font-weight="600">静态</text>
+
+  <!-- Arrow -->
+  <text x="300" y="145" text-anchor="middle" font-size="18" fill="#94a3b8">+</text>
+
+  <!-- Layer 2: Catalog -->
+  <rect x="50" y="155" width="500" height="80" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="80" y="180" font-size="14" fill="#92400e" font-weight="700">第二层：文章目录（元数据层）</text>
+  <text x="80" y="200" font-size="11" fill="#b45309">• buildArticleCatalog() 动态生成</text>
+  <text x="80" y="217" font-size="11" fill="#b45309">• 共 23 篇文章，含分类、数量、标题、链接</text>
+  <text x="470" y="180" font-size="10" fill="#fbbf24" font-weight="600">动态生成</text>
+
+  <!-- Arrow -->
+  <text x="300" y="250" text-anchor="middle" font-size="18" fill="#94a3b8">+</text>
+
+  <!-- Layer 3: RAG -->
+  <rect x="50" y="260" width="500" height="100" rx="12" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="80" y="285" font-size="14" fill="#166534" font-weight="700">第三层：RAG 检索上下文（内容层）</text>
+  <text x="80" y="305" font-size="11" fill="#15803d">• searchRelevantChunks() 余弦相似度 top-5</text>
+  <text x="80" y="322" font-size="11" fill="#15803d">• 每个片段含：文章标题、链接、相关度评分</text>
+  <text x="80" y="339" font-size="11" fill="#15803d">• 同一文章最多 2 个 chunk，防止单篇垄断</text>
+  <text x="466" y="285" font-size="10" fill="#4ade80" font-weight="600">按需检索</text>
+
+  <!-- Annotations -->
+  <text x="300" y="375" text-anchor="middle" font-size="11" fill="#64748b">元数据层解决"有多少篇文章" | 内容层解决"文章里写了什么"</text>
+</svg>

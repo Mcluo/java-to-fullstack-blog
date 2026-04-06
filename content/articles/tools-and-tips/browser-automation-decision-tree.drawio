@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="浏览器自动化决策树">
+    <mxGraphModel dx="1200" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 标题 -->
+        <mxCell id="title" value="Claude Code 浏览器自动化工具选型决策树" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="50" y="20" width="1100" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 起始节点 -->
+        <mxCell id="start" value="需要浏览器操作？" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="80" width="200" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 分支1：只读取文本 ===== -->
+        <mxCell id="q1" value="只需要读取&#xa;网页文本内容？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#B8860B;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="220" width="180" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- start → q1 -->
+        <mxCell id="arr_start_q1" value="是" style="edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;entryX=0.5;entryY=0;fontStyle=1;fontColor=#50C878;" edge="1" source="start" target="q1" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- WebFetch 结果 -->
+        <mxCell id="res_webfetch" value="✅ WebFetch&#xa;（内置工具）&#xa;&#xa;• 抓取 URL 内容→Markdown&#xa;• AI 模型处理内容&#xa;• 最简单，零配置&#xa;• 不支持 JS 渲染 / 交互" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#2E8B57;fontColor=#ffffff;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="30" y="360" width="200" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- q1 → WebFetch -->
+        <mxCell id="arr_q1_webfetch" value="是" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;fontColor=#50C878;" edge="1" source="q1" target="res_webfetch" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 分支2：需要交互 ===== -->
+        <mxCell id="q2" value="需要交互操作&#xa;（点击/填写/截图）？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#B8860B;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="220" width="200" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- start → q2 -->
+        <mxCell id="arr_start_q2" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;" edge="1" source="start" target="q2" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 一次性任务分支 -->
+        <mxCell id="q2a" value="一次性任务&#xa;在对话中完成？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#B8860B;fontColor=#333333;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="370" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- q2 → q2a -->
+        <mxCell id="arr_q2_q2a" value="是" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;fontColor=#50C878;" edge="1" source="q2" target="q2a" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Playwright MCP 结果 -->
+        <mxCell id="res_playwright" value="✅ Playwright MCP&#xa;（内置 MCP Server）&#xa;&#xa;• Claude 直接调用 20+ 工具&#xa;• 零配置，开箱即用&#xa;• browser_navigate / snapshot&#xa;• browser_click / type / fill&#xa;• 对话中逐步操作&#xa;• 不支持持久化认证" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2C6FA8;fontColor=#ffffff;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="240" y="500" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- q2a → Playwright -->
+        <mxCell id="arr_q2a_playwright" value="是" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;fontColor=#50C878;" edge="1" source="q2a" target="res_playwright" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 分支3：需要重复/脚本化 ===== -->
+        <mxCell id="q3" value="需要重复执行&#xa;或脚本化？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#B8860B;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="220" width="190" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- start → q3 -->
+        <mxCell id="arr_start_q3" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0.5;entryY=0;fontStyle=1;" edge="1" source="start" target="q3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 分支4：认证持久化 ===== -->
+        <mxCell id="q4" value="需要认证状态&#xa;保存 / 持久化？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#B8860B;fontColor=#333333;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="220" width="195" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- start → q4 -->
+        <mxCell id="arr_start_q4" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.3;entryX=0.5;entryY=0;" edge="1" source="start" target="q4" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="115"/>
+              <mxPoint x="928" y="115"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- agent-browser 结果（来自q3/q4/重复） -->
+        <mxCell id="res_agent" value="✅ agent-browser Skill&#xa;（独立 CLI 工具）&#xa;&#xa;• npm i -g agent-browser&#xa;• snapshot→ref→interact 流程&#xa;• 5 种认证持久化方案&#xa;• 多 session 并行支持&#xa;• 视频录制 / Diff 对比&#xa;• 批量数据采集脚本化&#xa;• iOS Simulator 支持&#xa;• token 消耗极低" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#6C3483;fontColor=#ffffff;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="660" y="370" width="230" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- q3 → agent-browser（是） -->
+        <mxCell id="arr_q3_agent" value="是" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0;entryY=0.3;fontStyle=1;fontColor=#50C878;" edge="1" source="q3" target="res_agent" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- q4 → agent-browser（是，唯一选择） -->
+        <mxCell id="arr_q4_agent" value="是（唯一选择）" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=1;entryY=0.2;fontStyle=1;fontColor=#50C878;" edge="1" source="q4" target="res_agent" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- q2a → agent-browser（否，需要脚本化） -->
+        <mxCell id="arr_q2a_agent" value="否（需要脚本化）" style="edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontStyle=1;fontColor=#FF6B6B;dashed=1;" edge="1" source="q2a" target="res_agent" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="410"/>
+              <mxPoint x="560" y="475"/>
+              <mxPoint x="660" y="475"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 截图转代码分支 ===== -->
+        <mxCell id="q5" value="需要截图转&#xa;React 代码？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#B8860B;fontColor=#333333;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="370" width="190" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- q4 → q5 (否) -->
+        <mxCell id="arr_q4_q5" value="否" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;fontColor=#FF6B6B;" edge="1" source="q4" target="q5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- alex-image2code 结果 -->
+        <mxCell id="res_alex" value="✅ alex-image2code Skill&#xa;（设计转代码工具）&#xa;&#xa;• 截图 1:1 还原 React 组件&#xa;• 非浏览器自动化工具&#xa;• 触发：提供 UI 截图&#xa;• 输出：可运行 React 代码" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#ffffff;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="820" y="510" width="210" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- q5 → alex -->
+        <mxCell id="arr_q5_alex" value="是" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;fontColor=#50C878;" edge="1" source="q5" target="res_alex" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 对比表格 -->
+        <mxCell id="compare_title" value="三工具核心对比" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="50" y="680" width="700" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="compare_table" value="&lt;table border=&quot;1&quot; cellpadding=&quot;6&quot; style=&quot;border-collapse:collapse;font-size:12px;&quot;&gt;&lt;tr style=&quot;background:#4A90D9;color:white;&quot;&gt;&lt;th&gt;维度&lt;/th&gt;&lt;th&gt;WebFetch&lt;/th&gt;&lt;th&gt;Playwright MCP&lt;/th&gt;&lt;th&gt;agent-browser&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;调用方式&lt;/td&gt;&lt;td&gt;内置工具&lt;/td&gt;&lt;td&gt;Claude 直接调用&lt;/td&gt;&lt;td&gt;Bash CLI 命令&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;JS 渲染&lt;/td&gt;&lt;td&gt;❌ 不支持&lt;/td&gt;&lt;td&gt;✅ 支持&lt;/td&gt;&lt;td&gt;✅ 支持&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;认证持久化&lt;/td&gt;&lt;td&gt;❌&lt;/td&gt;&lt;td&gt;❌&lt;/td&gt;&lt;td&gt;✅ 5种方案&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;脚本化&lt;/td&gt;&lt;td&gt;❌&lt;/td&gt;&lt;td&gt;有限&lt;/td&gt;&lt;td&gt;✅ 完整支持&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;视频录制&lt;/td&gt;&lt;td&gt;❌&lt;/td&gt;&lt;td&gt;❌&lt;/td&gt;&lt;td&gt;✅ webm&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;安装成本&lt;/td&gt;&lt;td&gt;零&lt;/td&gt;&lt;td&gt;零&lt;/td&gt;&lt;td&gt;npm install&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;html=1;strokeColor=#CCCCCC;fillColor=#F9F9F9;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="50" y="720" width="700" height="155" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="架构师时间分配">
+    <mxGraphModel width="1100" height="620" dx="0" dy="0" grid="0" gridSize="10" guides="0" tooltips="1" connect="0" arrows="0" fold="0" page="0" pageScale="1" pageWidth="1100" pageHeight="620" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Background -->
+        <mxCell id="2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="1060" height="580" as="geometry"/>
+        </mxCell>
+
+        <!-- Title -->
+        <mxCell id="3" value="架构师时间分配：AI 时代前后对比" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="20" y="30" width="1060" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== BEFORE AI ===== -->
+        <!-- Before label -->
+        <mxCell id="10" value="过去（AI 之前）" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="60" y="85" width="460" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Before bar total width = 400, starting x=80 -->
+        <!-- 40% Research: #4A90D9 -->
+        <mxCell id="11" value="方案调研 40%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2E6DA4;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="135" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <!-- 25% Docs: #50C878 -->
+        <mxCell id="12" value="文档与沟通 25%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#3A9B5A;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="264" y="135" width="112" height="60" as="geometry"/>
+        </mxCell>
+        <!-- 20% Decisions: #9B59B6 -->
+        <mxCell id="13" value="系统设计 20%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C9A;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="135" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <!-- 15% Review: #FF6B6B -->
+        <mxCell id="14" value="代码审查 15%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="474" y="135" width="66" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Axis line Before -->
+        <mxCell id="15" value="" style="endArrow=none;html=1;strokeColor=#888888;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry x="80" y="195" width="10" height="10" relative="1" as="geometry">
+            <mxPoint x="80" y="195" as="sourcePoint"/>
+            <mxPoint x="540" y="195" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" value="0%" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="72" y="197" width="30" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="100%" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="527" y="197" width="36" height="16" as="geometry"/>
+        </mxCell>
+
+        <!-- Before legend -->
+        <mxCell id="20" value="● 方案调研 40%（AI 正在接管）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#4A90D9;" vertex="1" parent="1">
+          <mxGeometry x="80" y="225" width="230" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="● 文档与沟通 25%（AI 部分辅助）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#50C878;" vertex="1" parent="1">
+          <mxGeometry x="80" y="248" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="● 系统设计与决策 20%（核心价值）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#9B59B6;" vertex="1" parent="1">
+          <mxGeometry x="80" y="271" width="250" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="● 代码审查与指导 15%（AI 部分辅助）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#FF6B6B;" vertex="1" parent="1">
+          <mxGeometry x="80" y="294" width="260" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== AFTER AI ===== -->
+        <!-- After label -->
+        <mxCell id="30" value="未来（AI 之后）" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="580" y="85" width="460" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- After bars, same total width 460, starting x=590 -->
+        <!-- 10% Research: #4A90D9 lighter -->
+        <mxCell id="31" value="方案调研 10%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A8C9F0;strokeColor=#4A90D9;fontColor=#1A4A7A;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="135" width="46" height="60" as="geometry"/>
+        </mxCell>
+        <!-- 15% Docs: #50C878 lighter -->
+        <mxCell id="32" value="文档 15%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A8EEC4;strokeColor=#50C878;fontColor=#1A5A3A;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="135" width="69" height="60" as="geometry"/>
+        </mxCell>
+        <!-- 40% Decisions: #9B59B6 bold -->
+        <mxCell id="33" value="系统决策与&#xa;Tradeoff判断 40%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C9A;fontColor=#FFFFFF;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="713" y="135" width="184" height="60" as="geometry"/>
+        </mxCell>
+        <!-- 20% Org-Tech: #FFD700 -->
+        <mxCell id="34" value="组织与技术对齐 20%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#C8A800;fontColor=#5A4A00;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="901" y="135" width="92" height="60" as="geometry"/>
+        </mxCell>
+        <!-- 15% Risk: #FF6B6B darker -->
+        <mxCell id="35" value="风险与演进 15%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#FFFFFF;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="997" y="135" width="43" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Axis line After -->
+        <mxCell id="36" value="" style="endArrow=none;html=1;strokeColor=#888888;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry x="590" y="195" width="10" height="10" relative="1" as="geometry">
+            <mxPoint x="590" y="195" as="sourcePoint"/>
+            <mxPoint x="1040" y="195" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" value="0%" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="580" y="197" width="30" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="38" value="100%" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="197" width="36" height="16" as="geometry"/>
+        </mxCell>
+
+        <!-- After legend -->
+        <mxCell id="40" value="● 方案调研 10%（AI 做初筛，人做判断）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#4A90D9;" vertex="1" parent="1">
+          <mxGeometry x="590" y="225" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="● 文档与沟通 15%" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#50C878;" vertex="1" parent="1">
+          <mxGeometry x="590" y="248" width="200" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="42" value="● 系统决策与 Tradeoff 判断 40%（价值集中）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#9B59B6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="271" width="320" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="43" value="● 组织与技术对齐 20%" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#B8860B;" vertex="1" parent="1">
+          <mxGeometry x="590" y="294" width="220" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="44" value="● 风险预判与演进规划 15%" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#FF6B6B;" vertex="1" parent="1">
+          <mxGeometry x="590" y="317" width="230" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Divider -->
+        <mxCell id="50" value="" style="endArrow=none;html=1;strokeColor=#CCCCCC;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry x="550" y="85" width="10" height="10" relative="1" as="geometry">
+            <mxPoint x="550" y="85" as="sourcePoint"/>
+            <mxPoint x="550" y="350" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow showing shift -->
+        <mxCell id="51" value="价值重心转移" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#E74C3C;" vertex="1" parent="1">
+          <mxGeometry x="430" y="360" width="240" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="52" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#E74C3C;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry x="430" y="372" width="10" height="10" relative="1" as="geometry">
+            <mxPoint x="430" y="372" as="sourcePoint"/>
+            <mxPoint x="670" y="372" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Key insight boxes -->
+        <mxCell id="60" value="做事 → 调研、编码、写文档" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#AAAAAA;fontSize=12;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="60" y="390" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="做判断 → 决策、对齐、风险" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C9A;fontSize=12;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="390" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="62" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#E74C3C;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry x="300" y="410" width="10" height="10" relative="1" as="geometry">
+            <mxPoint x="300" y="410" as="sourcePoint"/>
+            <mxPoint x="780" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Three core abilities -->
+        <mxCell id="70" value="核心能力 1：模糊问题结构化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2E6DA4;fontSize=12;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="80" y="465" width="250" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="71" value="核心能力 2：组织与技术对齐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#C8A800;fontSize=12;fontColor=#5A4A00;" vertex="1" parent="1">
+          <mxGeometry x="410" y="465" width="250" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="72" value="核心能力 3：不可逆决策风险判断" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontSize=12;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="740" y="465" width="280" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Footer note -->
+        <mxCell id="80" value="AI 替代的是「架构工作」，替代不了「架构判断」" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=3;fontColor=#7F8C8D;" vertex="1" parent="1">
+          <mxGeometry x="20" y="540" width="1060" height="30" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

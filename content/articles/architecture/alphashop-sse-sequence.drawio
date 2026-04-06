@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="SSE流式渲染时序图">
+    <mxGraphModel dx="1400" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="100" value="遨虾选品报告 SSE 流式渲染架构时序图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1000" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Swimlane headers -->
+        <!-- User -->
+        <mxCell id="10" value="用户" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2E6DA4;fontColor=#FFFFFF;fontSize=13;fontStyle=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Frontend -->
+        <mxCell id="11" value="前端 (React/MobX)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2E6DA4;fontColor=#FFFFFF;fontSize=13;fontStyle=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="280" y="80" width="150" height="50" as="geometry"/>
+        </mxCell>
+        <!-- ChatCache API -->
+        <mxCell id="12" value="POST /chatCache/create" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="530" y="80" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Algo SSE API -->
+        <mxCell id="13" value="POST /algo/execute (SSE)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Polling APIs -->
+        <mxCell id="14" value="/chatCache/get &amp; /searchSkus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="80" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Lifelines -->
+        <mxCell id="20" value="" style="endArrow=none;dashed=1;strokeColor=#AAAAAA;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry x="110" y="130" relative="1" as="geometry">
+            <Array as="points"/>
+            <mxPoint x="110" y="780" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="" style="endArrow=none;dashed=1;strokeColor=#AAAAAA;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry x="355" y="130" relative="1" as="geometry">
+            <Array as="points"/>
+            <mxPoint x="355" y="780" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" value="" style="endArrow=none;dashed=1;strokeColor=#AAAAAA;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry x="615" y="130" relative="1" as="geometry">
+            <Array as="points"/>
+            <mxPoint x="615" y="780" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" value="" style="endArrow=none;dashed=1;strokeColor=#AAAAAA;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry x="885" y="130" relative="1" as="geometry">
+            <Array as="points"/>
+            <mxPoint x="885" y="780" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" value="" style="endArrow=none;dashed=1;strokeColor=#AAAAAA;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry x="1160" y="130" relative="1" as="geometry">
+            <Array as="points"/>
+            <mxPoint x="1160" y="780" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Step 1: User Input -->
+        <mxCell id="30" value="输入选品参数，点击生成报告" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#AAAAAA;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="155" width="180" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="" style="endArrow=open;endFill=0;strokeColor=#2C3E50;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="172" as="sourcePoint"/>
+            <mxPoint x="355" y="172" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" value="用户触发" style="resizable=0;html=1;align=center;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="31">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Step 2: POST /chatCache/create -->
+        <mxCell id="40" value="POST /chatCache/create&#xa;{sessionId, taskId, params}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE7F6;strokeColor=#9B59B6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="280" y="215" width="180" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="" style="endArrow=open;endFill=0;strokeColor=#9B59B6;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="235" as="sourcePoint"/>
+            <mxPoint x="615" y="235" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="42" value="" style="endArrow=open;endFill=0;strokeColor=#9B59B6;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="615" y="255" as="sourcePoint"/>
+            <mxPoint x="355" y="255" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="43" value="返回 {code:200, sessionId}" style="resizable=0;html=1;align=center;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="42">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Step 3: POST /algo/execute SSE stream -->
+        <mxCell id="50" value="POST /algo/execute&#xa;发起 SSE 长连接 (Fetch + AbortController)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE7F6;strokeColor=#9B59B6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="280" y="295" width="210" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="51" value="" style="endArrow=open;endFill=0;strokeColor=#9B59B6;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="317" as="sourcePoint"/>
+            <mxPoint x="885" y="317" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="52" value="建立 SSE 流连接" style="resizable=0;html=1;align=center;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="51">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- SSE stream events -->
+        <mxCell id="60" value="data: {type:'heartbeat'}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="790" y="360" width="190" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="" style="endArrow=open;endFill=0;strokeColor=#F9A825;strokeWidth=1.5;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="375" as="sourcePoint"/>
+            <mxPoint x="355" y="375" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="62" value="data: {type:'content', token:'...'}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#50C878;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="790" y="400" width="190" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="63" value="" style="endArrow=open;endFill=0;strokeColor=#50C878;strokeWidth=1.5;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="415" as="sourcePoint"/>
+            <mxPoint x="355" y="415" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="64" value="逐 token 推送内容" style="resizable=0;html=1;align=center;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="63">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Parallel polling box -->
+        <mxCell id="70" value="并行轮询（Polling）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#4A90D9;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="355" width="300" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="71" value="GET /chatCache/get?sessionId=xxx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#4A90D9;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="970" y="395" width="220" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="72" value="" style="endArrow=open;endFill=0;strokeColor=#4A90D9;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="410" as="sourcePoint"/>
+            <mxPoint x="1160" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="73" value="" style="endArrow=open;endFill=0;strokeColor=#4A90D9;strokeWidth=1.5;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1160" y="425" as="sourcePoint"/>
+            <mxPoint x="355" y="425" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="74" value="GET /searchSkus (商品数据)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#4A90D9;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="970" y="440" width="220" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="75" value="" style="endArrow=open;endFill=0;strokeColor=#4A90D9;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="455" as="sourcePoint"/>
+            <mxPoint x="1160" y="455" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="76" value="" style="endArrow=open;endFill=0;strokeColor=#4A90D9;strokeWidth=1.5;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1160" y="470" as="sourcePoint"/>
+            <mxPoint x="355" y="470" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="77" value="轮询间隔 500ms" style="resizable=0;html=1;align=center;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="76">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- MobX State Update -->
+        <mxCell id="80" value="MobX Store 更新&#xa;(observable 触发)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FF6B6B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="510" width="180" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="81" value="写入 token / 商品数据 到 MobX" style="resizable=0;html=1;align=left;verticalAlign=middle;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="80">
+          <mxGeometry x="0" y="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="82" value="" style="endArrow=open;endFill=0;strokeColor=#FF6B6B;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="480" as="sourcePoint"/>
+            <mxPoint x="355" y="510" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Markdown Rendering -->
+        <mxCell id="90" value="Markdown → HTML&#xa;逐 token 渲染 + CSS 动画" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#50C878;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="580" width="180" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="91" value="" style="endArrow=open;endFill=0;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="555" as="sourcePoint"/>
+            <mxPoint x="355" y="580" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="92" value="React 自动重渲染 UI" style="resizable=0;html=1;align=center;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="1">
+          <mxGeometry x="440" y="575" width="150" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- allDone signal -->
+        <mxCell id="95" value="data: {type:'allDone'}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#FFA000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="645" width="190" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="96" value="" style="endArrow=open;endFill=0;strokeColor=#FFA000;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="662" as="sourcePoint"/>
+            <mxPoint x="355" y="662" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="97" value="流结束信号" style="resizable=0;html=1;align=center;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="96">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cleanup -->
+        <mxCell id="98" value="AbortController.abort()&#xa;关闭连接，停止轮询" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#FF6B6B;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="280" y="700" width="180" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="99" value="" style="endArrow=open;endFill=0;strokeColor=#FF6B6B;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="680" as="sourcePoint"/>
+            <mxPoint x="355" y="700" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Show completed to user -->
+        <mxCell id="101" value="" style="endArrow=open;endFill=0;strokeColor=#2C3E50;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="745" as="sourcePoint"/>
+            <mxPoint x="110" y="745" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="102" value="报告渲染完成，展示给用户" style="resizable=0;html=1;align=center;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;" connectable="0" vertex="1" parent="101">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="110" value="图例" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="790" width="60" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="111" value="SSE 流事件" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#50C878;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="790" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="112" value="轮询请求" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#4A90D9;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="245" y="790" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="113" value="状态更新" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FF6B6B;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="360" y="790" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="114" value="完成信号" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#FFA000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="475" y="790" width="100" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

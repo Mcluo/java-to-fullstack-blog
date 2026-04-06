@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="Flexbox布局与概念映射">
+    <mxGraphModel width="1100" height="700" dx="0" dy="0" grid="0" gridSize="10" guides="0" tooltips="1" connect="0" arrows="1" fold="0" page="0" pageScale="1" pageWidth="1100" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Background -->
+        <mxCell id="2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="1060" height="660" as="geometry"/>
+        </mxCell>
+
+        <!-- Title -->
+        <mxCell id="3" value="前端入门：Flexbox 布局 + 后端概念映射" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="20" y="30" width="1060" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== FLEXBOX SECTION ====== -->
+        <mxCell id="4" value="Flexbox 布局可视化" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=15;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="40" y="82" width="300" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- Flex container outer box -->
+        <mxCell id="10" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#4A90D9;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="650" height="240" as="geometry"/>
+        </mxCell>
+        <mxCell id="10b" value=".container { display: flex; }" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#4A90D9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="42" y="122" width="260" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- Flex items -->
+        <mxCell id="11" value="Item 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2E6DA4;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="165" width="130" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="Item 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#3A9B5A;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="165" width="130" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="Item 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C9A;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="165" width="130" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="Item 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="165" width="130" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Main axis arrow (horizontal) -->
+        <mxCell id="20" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#E74C3C;strokeWidth=2.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="370" as="sourcePoint"/>
+            <mxPoint x="665" y="370" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="主轴（Main Axis）→ justify-content" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#E74C3C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="374" width="300" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Cross axis arrow (vertical) -->
+        <mxCell id="22" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#F39C12;strokeWidth=2.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="35" y="130" as="sourcePoint"/>
+            <mxPoint x="35" y="355" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" value="交叉轴&#xa;align-items" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontColor=#F39C12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="220" width="36" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- justify-content options panel -->
+        <mxCell id="30" value="justify-content 取值" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;fontStyle=1;fontColor=#E74C3C;" vertex="1" parent="1">
+          <mxGeometry x="40" y="410" width="280" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="flex-start（左对齐）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEDEC;strokeColor=#E74C3C;fontSize=11;fontColor=#E74C3C;" vertex="1" parent="1">
+          <mxGeometry x="40" y="438" width="160" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="center（居中）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEDEC;strokeColor=#E74C3C;fontSize=11;fontColor=#E74C3C;" vertex="1" parent="1">
+          <mxGeometry x="210" y="438" width="130" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="flex-end（右对齐）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEDEC;strokeColor=#E74C3C;fontSize=11;fontColor=#E74C3C;" vertex="1" parent="1">
+          <mxGeometry x="350" y="438" width="150" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="34" value="space-between（两端）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEDEC;strokeColor=#E74C3C;fontSize=11;fontColor=#E74C3C;" vertex="1" parent="1">
+          <mxGeometry x="510" y="438" width="170" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- align-items options panel -->
+        <mxCell id="35" value="align-items 取值" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;fontStyle=1;fontColor=#F39C12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="482" width="240" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="flex-start（顶部对齐）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#F39C12;fontSize=11;fontColor=#B7770D;" vertex="1" parent="1">
+          <mxGeometry x="40" y="510" width="170" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="37" value="center（垂直居中）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#F39C12;fontSize=11;fontColor=#B7770D;" vertex="1" parent="1">
+          <mxGeometry x="220" y="510" width="150" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="38" value="stretch（拉伸填满）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#F39C12;fontSize=11;fontColor=#B7770D;" vertex="1" parent="1">
+          <mxGeometry x="380" y="510" width="160" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Code snippet -->
+        <mxCell id="39" value="/* 水平垂直居中（最常用）*/&#xa;.center-box {&#xa;  display: flex;&#xa;  justify-content: center;&#xa;  align-items: center;&#xa;  height: 100vh;&#xa;}" style="text;html=1;strokeColor=#AAAAAA;fillColor=#2C3E50;align=left;fontSize=11;fontColor=#50C878;fontFamily=monospace;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="558" width="300" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== CONCEPT MAPPING SECTION ====== -->
+        <mxCell id="5" value="后端 → 前端：核心概念映射" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=15;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="720" y="82" width="360" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- Table header -->
+        <mxCell id="60" value="后端概念" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2C3E50;strokeColor=#2C3E50;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="120" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="前端对应" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2C3E50;strokeColor=#2C3E50;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="120" width="160" height="44" as="geometry"/>
+        </mxCell>
+
+        <!-- Row 1: Controller → Component -->
+        <mxCell id="62" value="Controller" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2E6DA4;fontColor=#FFFFFF;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="720" y="164" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="63" value="React 组件" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2E6DA4;fontColor=#FFFFFF;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="900" y="164" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="63b" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#4A90D9;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="900" y="189" as="sourcePoint"/>
+            <mxPoint x="900" y="189" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Row 2: DTO → Interface -->
+        <mxCell id="64" value="DTO / POJO" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#3A9B5A;fontColor=#FFFFFF;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="720" y="214" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="65" value="TypeScript Interface" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#3A9B5A;fontColor=#FFFFFF;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="900" y="214" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Row 3: Service → Hooks -->
+        <mxCell id="66" value="Service 层" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C9A;fontColor=#FFFFFF;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="720" y="264" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="67" value="Hooks / 自定义逻辑" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C9A;fontColor=#FFFFFF;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="900" y="264" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Row 4: JSP → JSX -->
+        <mxCell id="68" value="模板引擎 (JSP)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#FFFFFF;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="720" y="314" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="69" value="JSX" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#CC4444;fontColor=#FFFFFF;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="900" y="314" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Row 5: CSS -->
+        <mxCell id="70" value="CSS 文件" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#C8A800;fontColor=#5A4A00;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="720" y="364" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="71" value="CSS / Tailwind" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#C8A800;fontColor=#5A4A00;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="900" y="364" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow between columns -->
+        <mxCell id="72" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#2C3E50;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="900" y="189" as="sourcePoint"/>
+            <mxPoint x="900" y="189" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <!-- Central mapping arrows -->
+        <mxCell id="73" value="→" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontColor=#2C3E50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="874" y="183" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="74" value="→" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontColor=#2C3E50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="874" y="233" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="75" value="→" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontColor=#2C3E50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="874" y="283" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="76" value="→" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontColor=#2C3E50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="874" y="333" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="77" value="→" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontColor=#2C3E50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="874" y="383" width="30" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Key insight boxes - right side -->
+        <mxCell id="80" value="State = 组件成员变量（用 setState 修改）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2E6DA4;fontColor=#FFFFFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="720" y="435" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="81" value="useEffect = @PostConstruct + @PreDestroy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#3A9B5A;fontColor=#FFFFFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="720" y="485" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="82" value="Props = 只读参数（单向数据流）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C9A;fontColor=#FFFFFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="720" y="535" width="340" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Divider vertical -->
+        <mxCell id="90" value="" style="endArrow=none;html=1;strokeColor=#CCCCCC;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="82" as="sourcePoint"/>
+            <mxPoint x="700" y="660" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Footer -->
+        <mxCell id="91" value="前端开发的本质：用代码控制用户看到的界面。你已有后端基础，前端只是换了一种表达方式。" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=3;fontColor=#7F8C8D;" vertex="1" parent="1">
+          <mxGeometry x="20" y="648" width="1060" height="22" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,6 +1,6 @@
 ---
 title: 'TypeScript + React 全栈项目 30分钟快速上手'
-date: '2026-03-22'
+publishedAt: '2026-03-22'
 excerpt: '用AI工具30分钟搭建一个可部署的TODO应用，边做边学TypeScript和React核心概念'
 category: 'quickstart'
 difficulty: 'beginner'
