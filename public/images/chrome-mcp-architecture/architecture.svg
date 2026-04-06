@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+    <linearGradient id="arrow-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa"/>
+      <stop offset="100%" style="stop-color:#a78bfa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="620" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#f8fafc" font-size="20" font-weight="bold">Chrome MCP 四层通信架构</text>
+  <text x="400" y="60" text-anchor="middle" fill="#94a3b8" font-size="12">Claude Code 如何控制你的浏览器</text>
+
+  <!-- Layer 1: Claude Code -->
+  <rect x="200" y="80" width="400" height="70" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="230" y="105" fill="#93c5fd" font-size="11" font-weight="bold">Layer 1</text>
+  <text x="400" y="108" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="bold">Claude Code (CLI)</text>
+  <text x="400" y="130" text-anchor="middle" fill="#94a3b8" font-size="12">AI 助手 - 发起工具调用请求</text>
+
+  <!-- Arrow 1 -->
+  <line x1="400" y1="150" x2="400" y2="190" stroke="url(#arrow-grad)" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="393,185 400,195 407,185" fill="#60a5fa"/>
+  <rect x="310" y="160" width="180" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="175" text-anchor="middle" fill="#60a5fa" font-size="11">stdio (JSON-RPC)</text>
+
+  <!-- Layer 2: MCP Server -->
+  <rect x="200" y="195" width="400" height="70" rx="10" fill="#1e3a5f" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="230" y="220" fill="#c4b5fd" font-size="11" font-weight="bold">Layer 2</text>
+  <text x="400" y="223" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="bold">MCP Server (Node.js)</text>
+  <text x="400" y="245" text-anchor="middle" fill="#94a3b8" font-size="12">翻译官 - 将指令转为浏览器操作</text>
+
+  <!-- Arrow 2 -->
+  <line x1="400" y1="265" x2="400" y2="305" stroke="url(#arrow-grad)" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="393,300 400,310 407,300" fill="#a78bfa"/>
+  <rect x="290" y="275" width="220" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="290" text-anchor="middle" fill="#a78bfa" font-size="11">Native Messaging (stdin/stdout)</text>
+
+  <!-- Layer 3: Native Messaging Host -->
+  <rect x="200" y="310" width="400" height="70" rx="10" fill="#1e3a5f" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="230" y="335" fill="#fcd34d" font-size="11" font-weight="bold">Layer 3</text>
+  <text x="400" y="338" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="bold">Chrome Extension</text>
+  <text x="400" y="360" text-anchor="middle" fill="#94a3b8" font-size="12">执行者 - 拥有 chrome.tabs / chrome.scripting API</text>
+
+  <!-- Arrow 3 -->
+  <line x1="400" y1="380" x2="400" y2="420" stroke="url(#arrow-grad)" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="393,415 400,425 407,415" fill="#f59e0b"/>
+  <rect x="310" y="390" width="180" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="405" text-anchor="middle" fill="#fbbf24" font-size="11">Chrome APIs / CDP</text>
+
+  <!-- Layer 4: Browser -->
+  <rect x="200" y="425" width="400" height="80" rx="10" fill="#1e3a5f" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="230" y="450" fill="#6ee7b7" font-size="11" font-weight="bold">Layer 4</text>
+  <text x="400" y="453" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="bold">Your Chrome Browser</text>
+  <text x="400" y="475" text-anchor="middle" fill="#94a3b8" font-size="12">你的标签页 / 页面 / DOM / 登录状态</text>
+
+  <!-- Tab icons in browser layer -->
+  <rect x="260" y="483" width="70" height="16" rx="3" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <text x="295" y="494" text-anchor="middle" fill="#94a3b8" font-size="9">LeetCode</text>
+  <rect x="340" y="483" width="70" height="16" rx="3" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <text x="375" y="494" text-anchor="middle" fill="#94a3b8" font-size="9">DingTalk</text>
+  <rect x="420" y="483" width="70" height="16" rx="3" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <text x="455" y="494" text-anchor="middle" fill="#94a3b8" font-size="9">GitHub</text>
+
+  <!-- Side annotations -->
+  <!-- Left side: Process boundary -->
+  <line x1="170" y1="80" x2="170" y2="265" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="165" y="175" text-anchor="end" fill="#3b82f6" font-size="10" transform="rotate(-90, 165, 175)">Terminal Process</text>
+
+  <line x1="170" y1="310" x2="170" y2="505" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="165" y="410" text-anchor="end" fill="#10b981" font-size="10" transform="rotate(-90, 165, 410)">Chrome Process</text>
+
+  <!-- Key insight box -->
+  <rect x="80" y="530" width="640" height="70" rx="8" fill="#1a1a2e" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="110" y="555" fill="#fbbf24" font-size="13" font-weight="bold">KEY INSIGHT</text>
+  <text x="110" y="575" fill="#e2e8f0" font-size="12">Chrome 扩展是唯一能在不改变用户使用习惯的前提下，</text>
+  <text x="110" y="592" fill="#e2e8f0" font-size="12">从外部程序控制已运行 Chrome 浏览器的方式。没有它，前面所有层都是空转。</text>
+</svg>
