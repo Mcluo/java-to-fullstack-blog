@@ -114,7 +114,41 @@ readTime: 10
 
 博客右下角有一个 AI 聊天助手，你可以问它任何关于博客内容的问题。它不是直接把问题丢给大模型，而是先检索相关文章内容，再让大模型基于检索结果回答。
 
-**聊天记录持久化**：GitHub 登录后，聊天记录自动同步到 Supabase 数据库，跨设备可用。未登录用户的聊天记录仍保存在浏览器 localStorage 中。首次登录时，本地历史会自动迁移到云端。
+#### 聊天记录持久化
+
+GitHub 登录后，聊天记录自动同步到 Supabase 数据库，跨设备可用。未登录用户的聊天记录仍保存在浏览器 localStorage 中。
+
+**双模式存储架构**：
+
+```
+┌──────────────────────────────────────────────┐
+│              AIAssistant.tsx                  │
+│                    │                         │
+│                    ▼                         │
+│           chat-storage.ts                    │
+│          （存储抽象层）                        │
+│                    │                         │
+│         ┌─────────┴──────────┐               │
+│         │                    │               │
+│    已登录用户?             未登录?            │
+│         │                    │               │
+│         ▼                    ▼               │
+│   Supabase DB          localStorage          │
+│  (跨设备同步)          (仅当前浏览器)         │
+│                                              │
+│  chat_sessions 表      ai_chat_sessions key  │
+│  chat_messages 表      ai_session_{id} key   │
+└──────────────────────────────────────────────┘
+```
+
+核心设计：
+
+- **存储抽象层** (`src/lib/chat-storage.ts`)：对组件透明，根据 `githubId` 是否存在自动选择后端。所有方法都是 async，Supabase 走网络请求，localStorage 走同步调用但用 Promise 包装保持接口一致。
+- **自动迁移**：用户首次 GitHub 登录时，`syncFromLocal()` 将 localStorage 中的所有会话和消息批量写入 Supabase，然后清理本地数据。通过 `ai_chat_synced_{githubId}` flag 确保只迁移一次。
+- **会话保存策略**：消息变更时触发 `saveCurrentSession()`，对 Supabase 采用"删旧插新"（delete + insert）而非 diff，避免消息顺序和内容不一致。
+- **RLS 策略**：使用 anon key + 宽松 RLS（任何人可读写），安全性依赖 `user_github_id` 字段过滤。个人博客场景下足够，生产环境应使用 `auth.uid()` 绑定。
+
+**后端类比**：相当于 Spring Boot 里用策略模式（Strategy Pattern）切换 Redis Session 和 Cookie Session，通过一个 `SessionStore` 接口屏蔽底层差异。
 
 #### 整体流程
 
@@ -148,7 +182,7 @@ readTime: 10
 - **存储**：构建时生成 `embeddings.json`（本地 JSON 文件，不需要向量数据库）
 - **自动化**：文章新增或修改时，`predev` / `prebuild` 脚本自动重建 embedding
 
-**后端类比**：相当于 Elasticsearch 的语义检索。区别是我们用本地 JSON 文件代替了 ES 集群，用余弦相似度计算代替了 ES 的 kNN 查询。对 29 篇文章来说，这种方案足够了。
+**后端类比**：相当于 Elasticsearch 的语义检索。区别是我们用本地 JSON 文件代替了 ES 集群，用余弦相似度计算代替了 ES 的 kNN 查询。对 40 篇文章来说，这种方案足够了。
 
 ### 能力三：Supabase 评论 + 划线评注
 
@@ -182,6 +216,11 @@ readTime: 10
 │  ├─ content / contexts (jsonb)  │
 │  └─ created_at                  │
 │                                 │
+│  todos 表                       │
+│  ├─ id / title / description    │
+│  ├─ status / priority / category│
+│  └─ created_at / completed_at   │
+│                                 │
 │  认证：GitHub OAuth             │
 └─────────────────────────────────┘
 ```
@@ -195,18 +234,24 @@ readTime: 10
 
 **后端类比**：Supabase = Spring Data JPA + Spring Security + WebSocket 推送，但不需要你写 Controller/Service/DAO。
 
-### 能力四：全文搜索
+### 能力四：全文搜索（双模式）
 
-文章列表页顶部有一个搜索框，输入关键词实时过滤文章：
+文章列表页顶部有一个搜索框，支持两种搜索模式：
 
+**客户端搜索（默认）：**
 - 使用 **Fuse.js**（客户端模糊搜索库）
 - 搜索范围：文章标题、摘要、标签
 - 输入即搜索，不需要回车，不需要请求后端
 - 支持模糊匹配（"typscrpt" 也能匹配到 "TypeScript"）
 
+**服务端搜索 API（`/api/search`）：**
+- Next.js API Route，支持 GET 请求
+- 服务端读取所有文章内容进行全文匹配
+- 适用于外部调用和更精确的内容搜索
+
 **为什么不用 Elasticsearch？**
 
-29 篇文章的搜索，在浏览器里用 Fuse.js 做毫秒级返回。引入 ES 是杀鸡用牛刀——需要额外的服务器、索引管理、同步机制，完全没必要。
+40 篇文章的搜索，在浏览器里用 Fuse.js 做毫秒级返回。引入 ES 是杀鸡用牛刀——需要额外的服务器、索引管理、同步机制，完全没必要。
 
 **后端类比**：相当于把数据全部加载到内存里，用 `Stream.filter()` 搜索。数据量小的时候，这比任何搜索引擎都快。
 
@@ -288,7 +333,7 @@ Vercel 自动构建部署
 | 文章数量 | 40 篇 |
 | React 组件 | 20 个 |
 | API 接口 | 2 个（AI 聊天 + 搜索） |
-| 数据库表 | 4 个（评论 + 划线 + 聊天会话 + 聊天消息） |
+| 数据库表 | 5 个（评论 + 划线 + 聊天会话 + 聊天消息 + 待办事项） |
 | 自动化脚本 | 5 个 |
 
 ---

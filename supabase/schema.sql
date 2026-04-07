@@ -84,3 +84,27 @@ create policy "Anyone can delete chat_sessions" on chat_sessions for delete usin
 create policy "Anyone can read chat_messages" on chat_messages for select using (true);
 create policy "Anyone can insert chat_messages" on chat_messages for insert with check (true);
 create policy "Anyone can delete chat_messages" on chat_messages for delete using (true);
+
+-- =============================================
+-- Todo 待办事项持久化 Schema
+-- =============================================
+
+create table todos (
+  id text primary key,
+  title text not null,
+  description text,
+  status text not null default 'todo' check (status in ('backlog','todo','in_progress','done')),
+  priority int not null default 3 check (priority between 1 and 4),
+  category text not null default '工作',
+  created_at timestamptz default now(),
+  updated_at timestamptz default now(),
+  completed_at timestamptz
+);
+
+create index idx_todos_status on todos(status);
+
+alter table todos enable row level security;
+create policy "Anyone can read todos" on todos for select using (true);
+create policy "Anyone can insert todos" on todos for insert with check (true);
+create policy "Anyone can update todos" on todos for update using (true);
+create policy "Anyone can delete todos" on todos for delete using (true);
