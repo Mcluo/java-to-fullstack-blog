@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="system-ui,-apple-system,sans-serif">
+  <defs>
+    <filter id="ds"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+  </defs>
+  <rect width="800" height="400" fill="#f8fafc" rx="12"/>
+  <text x="300" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#1e293b">数据质量金字塔</text>
+  <!-- Pyramid levels -->
+  <polygon points="300,55 220,130 380,130" fill="#6366f1" filter="url(#ds)"/>
+  <text x="300" y="108" text-anchor="middle" font-size="12" fill="white" font-weight="600">多样性</text>
+  <polygon points="220,135 160,210 440,210 380,135" fill="#7c3aed" filter="url(#ds)"/>
+  <text x="300" y="183" text-anchor="middle" font-size="12" fill="white" font-weight="600">准确性</text>
+  <polygon points="160,215 100,290 500,290 440,215" fill="#8b5cf6" filter="url(#ds)"/>
+  <text x="300" y="263" text-anchor="middle" font-size="12" fill="white" font-weight="600">一致性</text>
+  <polygon points="100,295 60,350 540,350 500,295" fill="#a78bfa" filter="url(#ds)"/>
+  <text x="300" y="333" text-anchor="middle" font-size="12" fill="white" font-weight="600">完整性</text>
+  <polygon points="60,355 30,390 570,390 540,355" fill="#c4b5fd" filter="url(#ds)"/>
+  <text x="300" y="380" text-anchor="middle" font-size="12" fill="#4c1d95" font-weight="600">格式规范</text>
+  <!-- Right side descriptions -->
+  <line x1="380" y1="105" x2="600" y2="75" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="600" y="55" width="180" height="44" rx="8" fill="white" stroke="#e2e8f0" filter="url(#ds)"/>
+  <text x="690" y="73" text-anchor="middle" font-size="10" fill="#6366f1" font-weight="600">覆盖各种场景</text>
+  <text x="690" y="89" text-anchor="middle" font-size="10" fill="#94a3b8">包含边界情况和变体</text>
+  <line x1="440" y1="180" x2="600" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="600" y="118" width="180" height="44" rx="8" fill="white" stroke="#e2e8f0" filter="url(#ds)"/>
+  <text x="690" y="136" text-anchor="middle" font-size="10" fill="#7c3aed" font-weight="600">答案正确无歧义</text>
+  <text x="690" y="152" text-anchor="middle" font-size="10" fill="#94a3b8">人工审核 or 大模型评分</text>
+  <line x1="500" y1="260" x2="600" y2="210" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="600" y="188" width="180" height="44" rx="8" fill="white" stroke="#e2e8f0" filter="url(#ds)"/>
+  <text x="690" y="206" text-anchor="middle" font-size="10" fill="#8b5cf6" font-weight="600">格式统一风格一致</text>
+  <text x="690" y="222" text-anchor="middle" font-size="10" fill="#94a3b8">同类问题回答方式一致</text>
+  <line x1="540" y1="330" x2="600" y2="280" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="600" y="258" width="180" height="44" rx="8" fill="white" stroke="#e2e8f0" filter="url(#ds)"/>
+  <text x="690" y="276" text-anchor="middle" font-size="10" fill="#a78bfa" font-weight="600">指令清晰输出完整</text>
+  <text x="690" y="292" text-anchor="middle" font-size="10" fill="#94a3b8">不遗漏关键信息</text>
+  <line x1="570" y1="380" x2="600" y2="345" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="600" y="323" width="180" height="44" rx="8" fill="white" stroke="#e2e8f0" filter="url(#ds)"/>
+  <text x="690" y="341" text-anchor="middle" font-size="10" fill="#c4b5fd" font-weight="600">符合模型数据格式</text>
+  <text x="690" y="357" text-anchor="middle" font-size="10" fill="#94a3b8">ChatML / Alpaca / ShareGPT</text>
+</svg>

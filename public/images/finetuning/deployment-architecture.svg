@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" font-family="system-ui,-apple-system,sans-serif">
+  <defs>
+    <filter id="dsh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+    <linearGradient id="c1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#818cf8"/></linearGradient>
+    <linearGradient id="c2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#34d399"/></linearGradient>
+  </defs>
+  <rect width="800" height="360" fill="#f8fafc" rx="12"/>
+  <text x="400" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#1e293b">微调模型部署架构</text>
+  <!-- Left: Training -->
+  <rect x="20" y="50" width="230" height="280" rx="12" fill="white" stroke="#c7d2fe" filter="url(#dsh)"/>
+  <rect x="20" y="50" width="230" height="36" rx="12" fill="url(#c1)"/>
+  <text x="135" y="74" text-anchor="middle" font-size="13" fill="white" font-weight="600">训练产物</text>
+  <rect x="40" y="100" width="190" height="36" rx="8" fill="#f1f5f9"/>
+  <text x="135" y="123" text-anchor="middle" font-size="11" fill="#475569">LoRA 适配器 (~50MB)</text>
+  <text x="135" y="155" text-anchor="middle" font-size="16" fill="#94a3b8">↓ merge_and_unload()</text>
+  <rect x="40" y="170" width="190" height="36" rx="8" fill="#eff6ff"/>
+  <text x="135" y="193" text-anchor="middle" font-size="11" fill="#1d4ed8">合并后模型 (~14GB)</text>
+  <text x="135" y="225" text-anchor="middle" font-size="16" fill="#94a3b8">↓ llama-quantize</text>
+  <rect x="40" y="240" width="190" height="36" rx="8" fill="#fef3c7" stroke="#fcd34d"/>
+  <text x="135" y="263" text-anchor="middle" font-size="11" fill="#d97706" font-weight="600">GGUF Q4_K_M (~4.4GB)</text>
+  <text x="135" y="300" text-anchor="middle" font-size="10" fill="#94a3b8">质量 95%+ | 体积 -70%</text>
+  <!-- Arrow -->
+  <path d="M260 190 L300 190" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arw)"/>
+  <defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+  <!-- Middle: Deployment Options -->
+  <rect x="310" y="50" width="220" height="280" rx="12" fill="white" stroke="#bbf7d0" filter="url(#dsh)"/>
+  <rect x="310" y="50" width="220" height="36" rx="12" fill="url(#c2)"/>
+  <text x="420" y="74" text-anchor="middle" font-size="13" fill="white" font-weight="600">部署方案</text>
+  <!-- Ollama -->
+  <rect x="330" y="100" width="180" height="60" rx="8" fill="#ecfdf5" stroke="#86efac"/>
+  <text x="420" y="120" text-anchor="middle" font-size="12" fill="#059669" font-weight="600">Ollama</text>
+  <text x="420" y="138" text-anchor="middle" font-size="10" fill="#64748b">最简单 | 本地/小规模</text>
+  <text x="420" y="152" text-anchor="middle" font-size="10" fill="#64748b">GPU 可选 | 端口 11434</text>
+  <!-- vLLM -->
+  <rect x="330" y="175" width="180" height="60" rx="8" fill="#dbeafe" stroke="#93c5fd"/>
+  <text x="420" y="195" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">vLLM ★ 推荐</text>
+  <text x="420" y="213" text-anchor="middle" font-size="10" fill="#64748b">高性能 | Continuous Batching</text>
+  <text x="420" y="227" text-anchor="middle" font-size="10" fill="#64748b">OpenAI 兼容 API | 端口 8000</text>
+  <!-- llama.cpp -->
+  <rect x="330" y="250" width="180" height="60" rx="8" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="420" y="270" text-anchor="middle" font-size="12" fill="#475569" font-weight="600">llama.cpp</text>
+  <text x="420" y="288" text-anchor="middle" font-size="10" fill="#64748b">CPU 推理 | 边缘设备</text>
+  <text x="420" y="302" text-anchor="middle" font-size="10" fill="#64748b">最轻量 | GGUF 原生</text>
+  <!-- Arrow -->
+  <path d="M540 190 L580 190" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arw)"/>
+  <!-- Right: API -->
+  <rect x="590" y="50" width="190" height="280" rx="12" fill="white" stroke="#e2e8f0" filter="url(#dsh)"/>
+  <rect x="590" y="50" width="190" height="36" rx="12" fill="#475569"/>
+  <text x="685" y="74" text-anchor="middle" font-size="13" fill="white" font-weight="600">API 服务</text>
+  <rect x="610" y="100" width="150" height="44" rx="8" fill="#f1f5f9"/>
+  <text x="685" y="118" text-anchor="middle" font-size="11" fill="#475569">OpenAI 兼容 API</text>
+  <text x="685" y="136" text-anchor="middle" font-size="10" fill="#94a3b8">/v1/chat/completions</text>
+  <rect x="610" y="158" width="150" height="44" rx="8" fill="#f1f5f9"/>
+  <text x="685" y="176" text-anchor="middle" font-size="11" fill="#475569">应用层调用</text>
+  <text x="685" y="194" text-anchor="middle" font-size="10" fill="#94a3b8">Next.js / Spring Boot</text>
+  <rect x="610" y="216" width="150" height="44" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="685" y="234" text-anchor="middle" font-size="11" fill="#dc2626">反馈收集</text>
+  <text x="685" y="252" text-anchor="middle" font-size="10" fill="#94a3b8">用户评分 → 改进数据</text>
+  <rect x="610" y="274" width="150" height="44" rx="8" fill="#ecfdf5" stroke="#86efac"/>
+  <text x="685" y="292" text-anchor="middle" font-size="11" fill="#059669">持续迭代</text>
+  <text x="685" y="310" text-anchor="middle" font-size="10" fill="#94a3b8">v1.0 → v1.1 → v2.0</text>
+</svg>

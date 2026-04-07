@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="system-ui,-apple-system,sans-serif">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#34d399"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.1"/></filter>
+  </defs>
+  <rect width="800" height="340" fill="#f8fafc" rx="12"/>
+  <text x="400" y="36" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b">Pre-training vs Fine-tuning vs Inference</text>
+  <!-- Phase 1 -->
+  <rect x="30" y="60" width="220" height="260" rx="12" fill="white" filter="url(#shadow)" stroke="#e2e8f0"/>
+  <rect x="30" y="60" width="220" height="44" rx="12" fill="url(#g1)"/>
+  <text x="140" y="87" text-anchor="middle" font-size="15" font-weight="600" fill="white">Pre-training</text>
+  <text x="140" y="125" text-anchor="middle" font-size="12" fill="#64748b">TB 级互联网数据</text>
+  <rect x="55" y="142" width="170" height="28" rx="6" fill="#f1f5f9"/>
+  <text x="140" y="161" text-anchor="middle" font-size="11" fill="#475569">数千张 GPU / 数月</text>
+  <rect x="55" y="178" width="170" height="28" rx="6" fill="#f1f5f9"/>
+  <text x="140" y="197" text-anchor="middle" font-size="11" fill="#475569">百万~千万美元</text>
+  <rect x="55" y="214" width="170" height="28" rx="6" fill="#f1f5f9"/>
+  <text x="140" y="233" text-anchor="middle" font-size="11" fill="#475569">学习通用语言能力</text>
+  <text x="140" y="270" text-anchor="middle" font-size="11" fill="#94a3b8">OpenAI / Meta / 阿里</text>
+  <text x="140" y="288" text-anchor="middle" font-size="22">🏫</text>
+  <!-- Arrow -->
+  <path d="M260 190 L290 190" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+  <!-- Phase 2 -->
+  <rect x="290" y="60" width="220" height="260" rx="12" fill="white" filter="url(#shadow)" stroke="#e2e8f0"/>
+  <rect x="290" y="60" width="220" height="44" rx="12" fill="url(#g2)"/>
+  <text x="400" y="87" text-anchor="middle" font-size="15" font-weight="600" fill="white">Fine-tuning</text>
+  <text x="400" y="125" text-anchor="middle" font-size="12" fill="#64748b">KB~GB 级任务数据</text>
+  <rect x="315" y="142" width="170" height="28" rx="6" fill="#eff6ff"/>
+  <text x="400" y="161" text-anchor="middle" font-size="11" fill="#475569">1~8 张 GPU / 数小时</text>
+  <rect x="315" y="178" width="170" height="28" rx="6" fill="#eff6ff"/>
+  <text x="400" y="197" text-anchor="middle" font-size="11" fill="#475569">几十~几千美元</text>
+  <rect x="315" y="214" width="170" height="28" rx="6" fill="#eff6ff"/>
+  <text x="400" y="233" text-anchor="middle" font-size="11" fill="#475569">学习特定任务/领域</text>
+  <text x="400" y="270" text-anchor="middle" font-size="11" fill="#3b82f6" font-weight="600">你（应用开发者）</text>
+  <text x="400" y="288" text-anchor="middle" font-size="22">🎯</text>
+  <!-- Arrow -->
+  <path d="M520 190 L550 190" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <!-- Phase 3 -->
+  <rect x="550" y="60" width="220" height="260" rx="12" fill="white" filter="url(#shadow)" stroke="#e2e8f0"/>
+  <rect x="550" y="60" width="220" height="44" rx="12" fill="url(#g3)"/>
+  <text x="660" y="87" text-anchor="middle" font-size="15" font-weight="600" fill="white">Inference</text>
+  <text x="660" y="125" text-anchor="middle" font-size="12" fill="#64748b">用户实时请求</text>
+  <rect x="575" y="142" width="170" height="28" rx="6" fill="#ecfdf5"/>
+  <text x="660" y="161" text-anchor="middle" font-size="11" fill="#475569">单张 GPU 或 CPU</text>
+  <rect x="575" y="178" width="170" height="28" rx="6" fill="#ecfdf5"/>
+  <text x="660" y="197" text-anchor="middle" font-size="11" fill="#475569">毫秒级响应</text>
+  <rect x="575" y="214" width="170" height="28" rx="6" fill="#ecfdf5"/>
+  <text x="660" y="233" text-anchor="middle" font-size="11" fill="#475569">生产环境服务</text>
+  <text x="660" y="270" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">为终端用户提供服务</text>
+  <text x="660" y="288" text-anchor="middle" font-size="22">🚀</text>
+</svg>
