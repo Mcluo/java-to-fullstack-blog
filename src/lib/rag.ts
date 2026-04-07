@@ -47,11 +47,15 @@ function loadEmbeddings(): EmbeddingsData | null {
   const filePath = path.join(process.cwd(), 'src', 'lib', 'embeddings.json')
 
   try {
+    if (!fs.existsSync(filePath)) {
+      console.warn('⚠️ embeddings.json 未找到，RAG 功能不可用。请运行 npm run build:embeddings')
+      return null
+    }
     const raw = fs.readFileSync(filePath, 'utf8')
     cachedEmbeddings = JSON.parse(raw)
     return cachedEmbeddings
   } catch {
-    console.warn('⚠️ embeddings.json 未找到，RAG 功能不可用。请运行 npm run build:embeddings')
+    console.warn('⚠️ embeddings.json 加载失败，RAG 功能不可用')
     return null
   }
 }

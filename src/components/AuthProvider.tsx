@@ -69,7 +69,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     if (!supabase) return
     await supabase.auth.signInWithOAuth({
       provider: 'github',
-      options: { redirectTo: window.location.href },
+      options: { redirectTo: window.location.origin },
     })
   }, [])
 

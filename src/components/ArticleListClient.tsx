@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 import ArticleCard from '@/components/ArticleCard'
 import SearchBar from '@/components/SearchBar'
@@ -33,6 +33,10 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
   const [selectedDifficulty, setSelectedDifficulty] = useState('all')
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<ArticleMeta[] | null>(null)
+  const [isSearching, setIsSearching] = useState(false)
+  const [searchMode, setSearchMode] = useState<string>('')
+  const abortRef = useRef<AbortController | null>(null)
 
   useEffect(() => {
     const tagFromUrl = searchParams.get('tag')
@@ -41,17 +45,45 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
     }
   }, [searchParams])
 
-  let filteredArticles = articles
+  const handleSearch = useCallback(async (query: string) => {
+    setSearchQuery(query)
 
-  if (searchQuery.trim()) {
-    const query = searchQuery.toLowerCase()
-    filteredArticles = filteredArticles.filter(article =>
-      article.title.toLowerCase().includes(query) ||
-      article.excerpt.toLowerCase().includes(query) ||
-      article.tags.some(tag => tag.toLowerCase().includes(query))
-    )
-  }
+    if (!query.trim()) {
+      setSearchResults(null)
+      setSearchMode('')
+      setIsSearching(false)
+      return
+    }
 
+    // 取消上一次请求
+    if (abortRef.current) abortRef.current.abort('new search')
+    const controller = new AbortController()
+    abortRef.current = controller
+
+    setIsSearching(true)
+    try {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {
+        signal: controller.signal,
+      })
+      const data = await res.json()
+      setSearchResults(data.results)
+      setSearchMode(data.mode || '')
+    } catch (err: any) {
+      if (err.name !== 'AbortError') {
+        console.error('Search failed:', err)
+        setSearchResults(null)
+      }
+    } finally {
+      if (!controller.signal.aborted) {
+        setIsSearching(false)
+      }
+    }
+  }, [])
+
+  // 基础文章列表：搜索结果或全量
+  let filteredArticles = searchResults ?? articles
+
+  // 分类/难度/标签筛选仍然在客户端过滤
   if (selectedCategory !== 'all') {
     filteredArticles = filteredArticles.filter(article => article.category === selectedCategory)
   }
@@ -71,6 +103,8 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
     setSelectedDifficulty('all')
     setSelectedTag(null)
     setSearchQuery('')
+    setSearchResults(null)
+    setSearchMode('')
   }
 
   const hasActiveFilters = selectedCategory !== 'all' || selectedDifficulty !== 'all' || selectedTag !== null || searchQuery.trim() !== ''
@@ -84,8 +118,9 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
         </p>
         <div className="max-w-lg">
           <SearchBar
-            onSearch={setSearchQuery}
-            placeholder="搜索标题、内容、标签..."
+            onSearch={handleSearch}
+            placeholder="搜索标题、正文、标签..."
+            debounceMs={400}
           />
         </div>
       </div>
@@ -176,18 +211,32 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
       {/* 结果统计 */}
       <div className="mb-5 flex items-center justify-between">
         <p className="text-sm text-gray-500">
-          <span className="font-semibold text-gray-900">{filteredArticles.length}</span> 篇文章
-          {hasActiveFilters && (
-            <span className="text-gray-400 ml-1">
-              / {articles.length}
-            </span>
+          {isSearching ? (
+            <span className="text-gray-400">搜索中...</span>
+          ) : (
+            <>
+              <span className="font-semibold text-gray-900">{filteredArticles.length}</span> 篇文章
+              {hasActiveFilters && (
+                <span className="text-gray-400 ml-1">
+                  / {articles.length}
+                </span>
+              )}
+              {searchMode === 'semantic' && searchQuery && (
+                <span className="text-blue-500 ml-2 text-xs">语义搜索</span>
+              )}
+            </>
           )}
         </p>
       </div>
 
       {/* 文章列表 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filteredArticles.length === 0 ? (
+        {isSearching ? (
+          <div className="col-span-full text-center py-16">
+            <div className="inline-block w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p className="text-gray-400 text-sm">正在搜索文章内容...</p>
+          </div>
+        ) : filteredArticles.length === 0 ? (
           <div className="col-span-full text-center py-16">
             <div className="text-4xl mb-4">🔍</div>
             <p className="text-gray-500 mb-3">没有找到匹配的文章</p>

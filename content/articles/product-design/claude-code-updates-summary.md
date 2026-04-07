@@ -3,12 +3,13 @@ title: "Claude Code 更新整理"
 excerpt: "1. 过度工程避免原则 - ✅ 只做必要修改 - ❌ 不要添加未请求的特性 - ❌ 不要过度重构周边代码 - ❌ 不要添加\"以防万一\"的错误处理 - ❌ 不要为单次使用创建抽象"
 category: "product-design"
 tags: []
-publishedAt: "2026-04-06"
-readTime: 7
+publishedAt: "2026-04-07"
+readTime: 8
 ---
 
-**整理时间**: 2026-03-26
-**版本**: Claude Code (Opus 4.6)
+**整理时间**: 2026-04-07 (持续更新)
+**当前最新版本**: 2.1.92 (2026-04-04)
+**当前安装版本**: 2.1.91
 
 ---
 
@@ -283,7 +284,64 @@ Read insights/weekly-*.md       # 本周关键信息
 
 ---
 
-## 🆕 近期更新亮点
+## 📅 版本更新追踪
+
+| 版本 | 发布日期 | 主要变化 |
+|------|----------|----------|
+| 2.1.92 | 2026-04-04 | Latest (npm latest + next) |
+| 2.1.91 | 2026-04-03 | 当前安装版本 |
+| 2.1.90 | 2026-04-02 | - |
+| 2.1.89 | 2026-04-01 | - |
+| 2.1.88 | 2026-03-31 | - |
+| 2.1.87 | 2026-03-29 | - |
+| 2.1.86 | 2026-03-28 | - |
+| 2.1.85 | 2026-03-27 | stable 标签版本 |
+| 2.1.84 | 2026-03-26 | - |
+| 2.1.83 | 2026-03-25 | - |
+
+> 💡 Claude Code 保持高频更新节奏（几乎每日一版），dist-tags: `latest=2.1.92`, `stable=2.1.85`
+
+---
+
+## 🆕 近期更新亮点 (2026-04 观测)
+
+### 定时任务系统 (CronCreate) 🆕
+```bash
+# 创建持久化定时任务
+CronCreate → 标准 5 字段 cron 表达式 → 本地时区
+# 自动到期：recurring 任务 7 天后自动删除
+# 持久化：durable=true 写入 .claude/scheduled_tasks.json
+```
+
+**核心能力**:
+- 支持一次性提醒和循环调度
+- 本地时区，无需手动转换
+- `durable: true` 跨 session 存活
+- 自动避开 :00 和 :30 整点（减少 API 拥挤）
+- `CronList` / `CronDelete` 管理
+
+### Agent 子类型大幅扩展 🆕
+现已支持 50+ 种专业 Agent 类型：
+- **开发**: Frontend Developer, Backend Architect, Mobile App Builder, Senior Developer
+- **测试/质量**: Code Reviewer, Evidence Collector, Test Results Analyzer, API Tester
+- **安全**: Security Engineer, Threat Detection Engineer
+- **设计**: UI Designer, UX Researcher, UX Architect
+- **运维**: SRE, DevOps Automator, Performance Benchmarker
+- **AI/数据**: AI Engineer, Data Engineer, Database Optimizer
+- **内容**: Technical Writer, Brand Guardian, Visual Storyteller
+- **特殊**: Embedded Firmware Engineer, Solidity Smart Contract Engineer, WeChat Mini Program Developer
+
+### Auto Mode 增强 🆕
+- 连续自主执行模式
+- 减少中断，合理假设后直接行动
+- 偏向行动而非规划
+- 支持用户随时纠偏
+- 危险操作仍需确认
+
+### Companion (Gravy 小猫) 🆕
+- 输入框旁的虚拟伴侣
+- 独立的 speech bubble 交互
+- 用户可直接与 Gravy 对话
 
 ### 团队协作能力
 - 多 agent 协同工作
@@ -294,14 +352,15 @@ Read insights/weekly-*.md       # 本周关键信息
 - 自动记忆持久化
 - 分层索引（MEMORY.md + 详细文件）
 - 跨 session 上下文保持
+- 新增：记忆验证机制（先检查文件/函数是否仍存在）
 
 ### 工具生态丰富
-- MCP 服务器集成
+- MCP 服务器集成（Context7、Figma OAuth、21st Magic 等）
 - 100+ skills 开箱即用
 - 自定义扩展能力
 
 ### 性能和体验优化
-- Fast Mode 快速响应
+- Fast Mode 快速响应（同模型 Opus 4.6，输出更快）
 - 并行工具执行
 - 智能权限管理
 
@@ -317,5 +376,6 @@ Read insights/weekly-*.md       # 本周关键信息
 
 ---
 
-**最后更新**: 2026-03-26
+**最后更新**: 2026-04-07
 **整理人**: Claude Code (Opus 4.6)
+**更新方式**: 每日自动检查 + 手动补充

@@ -1,34 +1,45 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 interface SearchBarProps {
   onSearch: (query: string) => void
   placeholder?: string
+  debounceMs?: number
 }
 
-export default function SearchBar({ onSearch, placeholder = '搜索文章...' }: SearchBarProps) {
+export default function SearchBar({ onSearch, placeholder = '搜索文章...', debounceMs = 300 }: SearchBarProps) {
   const [query, setQuery] = useState('')
+  const timerRef = useRef<NodeJS.Timeout | null>(null)
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSearch(query)
-  }
+  const debouncedSearch = useCallback((value: string) => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => {
+      onSearch(value)
+    }, debounceMs)
+  }, [onSearch, debounceMs])
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
 
   const handleClear = () => {
     setQuery('')
+    if (timerRef.current) clearTimeout(timerRef.current)
     onSearch('')
   }
 
   return (
-    <form onSubmit={handleSearch} className="relative">
+    <form onSubmit={(e) => { e.preventDefault(); if (timerRef.current) clearTimeout(timerRef.current); onSearch(query) }} className="relative">
       <div className="relative">
         <input
           type="text"
           value={query}
           onChange={(e) => {
             setQuery(e.target.value)
-            onSearch(e.target.value)
+            debouncedSearch(e.target.value)
           }}
           placeholder={placeholder}
           className="w-full px-4 py-3 pl-12 pr-20 text-gray-900 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition"
@@ -62,8 +73,6 @@ export default function SearchBar({ onSearch, placeholder = '搜索文章...' }:
           </button>
         )}
       </div>
-
-      {/* 搜索提示 - 实时搜索无需提示 */}
     </form>
   )
 }

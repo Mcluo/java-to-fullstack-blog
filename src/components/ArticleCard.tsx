@@ -14,6 +14,7 @@ interface ArticleCardProps {
     readTime?: number
     tags?: string[]
     publishedAt?: string
+    updatedAt?: string
   }
   onTagClick?: (tag: string) => void
 }
@@ -118,11 +119,18 @@ export default function ArticleCard({ article, onTagClick }: ArticleCardProps) {
               ))}
             </div>
           ) : <div />}
-          {article.publishedAt && (
-            <span className="text-[11px] text-gray-400 whitespace-nowrap ml-4 tabular-nums">
-              {article.publishedAt.slice(0, 10)}
-            </span>
-          )}
+          <div className="flex items-center gap-2 ml-4 shrink-0">
+            {article.updatedAt && article.publishedAt && article.updatedAt.slice(0, 10) > article.publishedAt.slice(0, 10) && (
+              <span className="text-[11px] text-amber-500 whitespace-nowrap tabular-nums" title="更新时间">
+                updated {article.updatedAt.slice(0, 10)}
+              </span>
+            )}
+            {article.publishedAt && (
+              <span className="text-[11px] text-gray-400 whitespace-nowrap tabular-nums">
+                {article.publishedAt.slice(0, 10)}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </Link>

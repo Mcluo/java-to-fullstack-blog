@@ -39,6 +39,7 @@ export const CATEGORY_CONFIG: Record<string, { name: string; group: string; bgCo
   skill: { name: 'Skill', group: '技术实践', bgColor: 'bg-emerald-100', textColor: 'text-emerald-800' },
   'work-logs': { name: '工作记录', group: '技术实践', bgColor: 'bg-slate-100', textColor: 'text-slate-800' },
   troubleshooting: { name: '问题排查', group: '技术实践', bgColor: 'bg-red-100', textColor: 'text-red-800' },
+  'ai-brief': { name: 'AI论文简报', group: '技术实践', bgColor: 'bg-indigo-100', textColor: 'text-indigo-800' },
   // 思考
   'personal-growth': { name: '个人成长', group: '思考', bgColor: 'bg-pink-100', textColor: 'text-pink-800' },
 }
@@ -69,6 +70,7 @@ export function getAllArticles(): ArticleMeta[] {
       const filePath = path.join(categoryDir, file)
       const fileContents = fs.readFileSync(filePath, 'utf8')
       const { data } = matter(fileContents)
+      const fileMtime = fs.statSync(filePath).mtime.toISOString().slice(0, 10)
 
       articles.push({
         title: data.title || slug,
@@ -79,16 +81,16 @@ export function getAllArticles(): ArticleMeta[] {
         difficulty: data.difficulty,
         readTime: data.readTime,
         publishedAt: data.publishedAt,
-        updatedAt: data.updatedAt,
+        updatedAt: data.updatedAt || fileMtime,
         notebook: data.notebook,
       })
     }
   }
 
-  // 按发布时间倒序
+  // 按最近活跃时间倒序（优先 updatedAt，fallback publishedAt）
   articles.sort((a, b) => {
-    const dateA = a.publishedAt || '1970-01-01'
-    const dateB = b.publishedAt || '1970-01-01'
+    const dateA = a.updatedAt || a.publishedAt || '1970-01-01'
+    const dateB = b.updatedAt || b.publishedAt || '1970-01-01'
     return dateB.localeCompare(dateA)
   })
 

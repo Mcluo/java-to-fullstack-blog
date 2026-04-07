@@ -11,6 +11,7 @@ import NotebookLinks from '@/components/NotebookLinks'
 import TableOfContents from '@/components/TableOfContents'
 import CommentSection from '@/components/CommentSection'
 import HighlightComments from '@/components/HighlightComments'
+import AiBriefRenderer from '@/components/AiBriefRenderer'
 import {
   getAllArticles,
   getArticleBySlug,
@@ -46,6 +47,20 @@ export default async function ArticlePage({
   const categoryName = getCategoryName(params.category)
   const articleSlug = `${params.category}/${params.slug}`
   let pIdx = 0
+
+  // AI论文简报 使用专用渲染器
+  if (params.category === 'ai-brief') {
+    return (
+      <AiBriefRenderer
+        content={article.content}
+        title={article.title}
+        publishedAt={article.publishedAt}
+        excerpt={article.excerpt}
+        navigation={navigation}
+        slug={params.slug}
+      />
+    )
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
