@@ -1,6 +1,6 @@
 ---
 title: "本站技术全景：一个后端工程师用 Next.js + AI 搭的博客长什么样"
-excerpt: "这个博客本身就是一个全栈 + AI 项目的实战案例。本文介绍它的技术架构：Next.js 14 SSG/SSR、RAG 向量检索 AI 助手、Supabase 评论系统、Markdown 驱动内容管理，以及每个技术选型背后的理由。"
+excerpt: "这个博客本身就是一个全栈 + AI 项目的实战案例。本文介绍它的技术架构：Next.js 14 SSG/SSR、RAG 向量检索 AI 助手（聊天记录 Supabase 持久化）、评论系统、Markdown 驱动内容管理，以及每个技术选型背后的理由。"
 category: "architecture"
 tags: ["Next.js", "RAG", "Supabase", "博客架构", "全栈", "AI"]
 publishedAt: "2026-04-07"
@@ -37,13 +37,13 @@ readTime: 12
 │  ┌─────────┬───────┼───────┬──────────┐          │
 │  │         │       │       │          │          │
 │  ▼         ▼       ▼       ▼          ▼          │
-│ Markdown  Fuse.js  RAG   Claude    Supabase     │
-│ 文章管理   搜索   检索引擎  API     评论/认证    │
+│ Markdown  Fuse.js  RAG   Claude    Supabase          │
+│ 文章管理   搜索   检索引擎  API   评论/认证/聊天持久化 │
 │                                                  │
 └──────────────────────────────────────────────────┘
 ```
 
-用一句话概括：**Markdown 文件当数据库，Next.js 当框架，Claude 当 AI 大脑，Supabase 当用户系统，Vercel 当运维。**
+用一句话概括：**Markdown 文件当数据库，Next.js 当框架，Claude 当 AI 大脑，Supabase 当用户系统 + 聊天持久化，Vercel 当运维。**
 
 ---
 
@@ -60,8 +60,9 @@ readTime: 12
 | Embedding | Qwen3-Embedding-8B（向量化） | — |
 | RAG 检索 | 本地 JSON + 余弦相似度 | 相当于简版 Elasticsearch 向量检索 |
 | 数据库 | Supabase (PostgreSQL) | Spring Data JPA + PostgreSQL |
+| 聊天持久化 | Supabase + localStorage 双模式 | Redis Session + MySQL |
 | 认证 | Supabase Auth (GitHub OAuth) | Spring Security + OAuth2 |
-| 部署 | Vercel | 阿里云 ECS + Nginx + Jenkins |
+| 部署 | Vercel (已上线) | 阿里云 ECS + Nginx + Jenkins |
 
 ---
 
@@ -109,9 +110,11 @@ readTime: 10
 
 **后端类比**：相当于 Spring Boot 的 `resources/` 目录存静态配置，启动时加载到内存。只不过这里的"配置"是文章内容。
 
-### 能力二：AI 助手（RAG 向量检索增强）
+### 能力二：AI 助手（RAG 向量检索增强 + 聊天持久化）
 
 博客右下角有一个 AI 聊天助手，你可以问它任何关于博客内容的问题。它不是直接把问题丢给大模型，而是先检索相关文章内容，再让大模型基于检索结果回答。
+
+**聊天记录持久化**：GitHub 登录后，聊天记录自动同步到 Supabase 数据库，跨设备可用。未登录用户的聊天记录仍保存在浏览器 localStorage 中。首次登录时，本地历史会自动迁移到云端。
 
 #### 整体流程
 
@@ -168,6 +171,17 @@ readTime: 10
 │  ├─ start_offset / end_offset   │
 │  └─ user_name                   │
 │                                 │
+│  chat_sessions 表               │
+│  ├─ id / user_github_id         │
+│  ├─ title / preview             │
+│  └─ created_at / updated_at     │
+│                                 │
+│  chat_messages 表               │
+│  ├─ session_id (→ chat_sessions)│
+│  ├─ role (user / assistant)     │
+│  ├─ content / contexts (jsonb)  │
+│  └─ created_at                  │
+│                                 │
 │  认证：GitHub OAuth             │
 └─────────────────────────────────┘
 ```
@@ -215,7 +229,9 @@ readTime: 10
 scripts/
 ├── build-embeddings.ts    # 构建文章 embedding 向量
 ├── watch-articles.ts      # 监听文章变更，自动重建 embedding
-└── sync-notes.ts          # 从技术笔记库同步文章到博客
+├── sync-notes.ts          # 从技术笔记库同步文章到博客
+├── convert-ai-brief.mjs   # AI 简报格式转换
+└── fetch-ai-brief.sh      # 拉取 AI 简报数据
 ```
 
 - `build-embeddings.ts`：读取所有 Markdown 文章 → 分块 → 调用 Qwen3-Embedding API → 保存为 `embeddings.json`
@@ -268,25 +284,28 @@ Vercel 自动构建部署
 
 | 指标 | 数值 |
 |------|------|
-| 文章分类 | 13 个 |
-| 文章数量 | 29 篇 |
-| React 组件 | 13 个 |
-| API 接口 | 1 个（AI 聊天） |
-| 数据库表 | 2 个（评论 + 划线） |
-| 自动化脚本 | 3 个 |
-| 依赖包 | 22 个（生产） |
+| 文章分类 | 14 个 |
+| 文章数量 | 40 篇 |
+| React 组件 | 20 个 |
+| API 接口 | 2 个（AI 聊天 + 搜索） |
+| 数据库表 | 4 个（评论 + 划线 + 聊天会话 + 聊天消息） |
+| 自动化脚本 | 5 个 |
 
 ---
 
 ## 六、还想做的事
 
-- [ ] Vercel 部署上线
+- [x] Vercel 部署上线（已完成，域名：java-to-fullstack-blog.vercel.app）
+- [x] AI 助手聊天记录持久化（Supabase，登录用户跨设备同步）
+- [x] GitHub OAuth 登录（Supabase Auth）
+- [x] 全文搜索 API（/api/search）
 - [ ] SEO 优化（sitemap、Open Graph）
 - [ ] RSS 订阅
 - [ ] 暗色模式
 - [ ] 文章阅读数据统计
 - [ ] 基于阅读历史的智能推荐
 - [ ] 国际化（中英双语）
+- [ ] AI 助手外网 API 接入（当前内网代理外网不可达）
 
 ---
 
