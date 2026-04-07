@@ -520,6 +520,8 @@ Child → Parent（通过回调函数）
 
 类似 Spring 的控制反转（IoC）原则。
 
+<img src="/images/react-spring/react-vs-spring-dataflow.svg" alt="Spring IoC 双向注入 vs React 单向数据流对比" style="max-width:100%;margin:1em 0;" />
+
 ## 下一步
 
 1. **深入 React Hooks**
@@ -533,7 +535,7 @@ Child → Parent（通过回调函数）
    - React Hook Form（表单处理）
 
 3. **构建完整项目**
-   - 结合 TypeScript
+   - 结合 [TypeScript](/articles/frontend/01-typescript-for-java-developers "TypeScript 快速入门：Java 工程师视角")
    - 集成 Spring Boot 后端
    - 实现完整的 CRUD 应用
 
@@ -545,7 +547,7 @@ React 和 Spring 有许多相似之处：
 - 生命周期管理
 - 关注点分离
 
-作为 Java/Spring 开发者，你已经具备了理解 React 的核心思想。下一篇文章我们将探讨 Node.js 的异步编程模型。
+作为 Java/Spring 开发者，你已经具备了理解 React 的核心思想。下一篇文章我们将探讨 [Node.js 的异步编程模型](/articles/backend/01-nodejs-async-programming "Node.js 异步编程：对比 Java 多线程模型")。
 
 ## 参考资源
 

@@ -24,6 +24,8 @@ Python 是 AI 开发的首选语言。作为 Java 工程师，你会发现 Pytho
 | 包管理 | Maven/Gradle | pip/conda |
 | 缩进 | {} | 强制缩进 |
 
+<img src="/images/python-java/java-python-concept-map.svg" alt="Java → Python 概念映射图" style="max-width:100%;margin:1em 0;" />
+
 ## 1. 基本语法对比
 
 ### Hello World
@@ -67,7 +69,7 @@ is_active = True  # 注意大写
 age_str = str(age)
 parsed_age = int("25")
 
-# 类型提示（可选，类似 TypeScript）
+# 类型提示（可选，类似 [TypeScript](/articles/frontend/01-typescript-for-java-developers "TypeScript 快速入门：Java 工程师视角")）
 name: str = "Alice"
 age: int = 25
 ```

@@ -12,6 +12,8 @@ readTime: 7
 
 ---
 
+<img src="/images/cc-updates/claude-code-mindmap.svg" alt="Claude Code 功能全景思维导图" style="max-width:100%;margin:1em 0;" />
+
 ## 🚀 核心能力更新
 
 ### 1. 模型升级
@@ -37,7 +39,7 @@ TeamCreate → 生成任务列表 → 分配给多个 agents → 并行执行
 ```
 
 **核心能力**:
-- 多 agent 协作，任务自动分配
+- [多 agent 协作](/articles/product-design/claude-code-agent-teams-guide)，任务自动分配
 - 共享任务列表 (`~/.claude/tasks/{team-name}/`)
 - 自动消息传递和状态同步
 - 优雅关闭和资源清理
@@ -86,7 +88,7 @@ EnterPlanMode → 探索代码库 → 设计方案 → ExitPlanMode (用户审�
 
 ### MCP 服务器集成
 - **Context7**: 获取最新技术文档和代码示例
-- **Playwright**: 浏览器自动化
+- **[Playwright](/articles/tools-and-tips/claude-code-browser-automation-guide)**: 浏览器自动化
 - **Sequential Thinking**: 复杂问题推理
 - **21st Magic**: UI 组件生成
 - **Yuque**: 语雀文档读取

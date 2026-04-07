@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="翻译流水线与数据决策">
+    <mxGraphModel width="1100" height="820" dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="820" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 标题 -->
+        <mxCell id="2" value="图搜评价标签翻译流水线 + 静态/动态数据决策" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="150" y="15" width="800" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 副标题 -->
+        <mxCell id="3" value="ImageProductSearchNode.java | Commit: 70ac47056 | Branch: feature/20260331_28834172_image_search_multilingual_1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="100" y="52" width="900" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 翻译流程 ===== -->
+
+        <!-- 左侧标题 -->
+        <mxCell id="ft" value="翻译处理流程" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=15;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="300" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- Node 1: 图搜 workflow -->
+        <mxCell id="f1" value="🔍 图搜 Workflow 执行" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2C3E50;strokeColor=#1A252F;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="115" width="200" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fa1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#2C3E50;strokeWidth=2;" edge="1" parent="1" source="f1" target="f2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Node 2: productComment -->
+        <mxCell id="f2" value="productComment()&#xa;图搜商品节点" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="210" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fa2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=2;" edge="1" parent="1" source="f2" target="f3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Node 3: aggReviewTag -->
+        <mxCell id="f3" value="aggReviewTag()&#xa;聚合评论标签&#xa;（以原始标签为 key）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="315" width="200" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fa3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=2;" edge="1" parent="1" source="f3" target="f4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Node 4: convertToReviewTagAggregateVO -->
+        <mxCell id="f4" value="convertToReviewTagAggregateVO()&#xa;转换为聚合 VO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="435" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fa4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=2;" edge="1" parent="1" source="f4" target="f5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Node 5: translateReviewTags -->
+        <mxCell id="f5" value="translateReviewTags()&#xa;调用翻译（核心步骤）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="545" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fa5" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=2;" edge="1" parent="1" source="f5" target="f6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Node 6: 排序 -->
+        <mxCell id="f6" value="sort()&#xa;按评论数量降序排列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#27AE60;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="655" width="200" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fa6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1" source="f6" target="f7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Node 7: 发布卡片 -->
+        <mxCell id="f7" value="🃏 发布卡片事件&#xa;返回已翻译内容给前端" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27AE60;strokeColor=#1E8449;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="755" width="200" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 异步翻译详情 ===== -->
+        <mxCell id="asyncbg" value="" style="rounded=1;dashed=1;whiteSpace=wrap;html=1;fillColor=#F0E6FF;strokeColor=#9B59B6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="280" y="520" width="500" height="220" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="asynctitle" value="异步并发翻译详情（CompletableFuture）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=14;fontStyle=1;fontColor=#7D3C98;" vertex="1" parent="1">
+          <mxGeometry x="295" y="528" width="480" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- 语言判断 -->
+        <mxCell id="langcheck" value="getLanguage()&#xa;是 zh_CN？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;fontColor=#2C3E50;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="555" width="150" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 是 → 跳过 -->
+        <mxCell id="skip" value="直接返回&#xa;（跳过翻译）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;strokeColor=#999999;fontColor=#666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="295" y="690" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lc1" value="是" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#999;strokeWidth=2;fontColor=#666;" edge="1" parent="1" source="langcheck" target="skip">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 否 → 并发翻译 -->
+        <mxCell id="translate" value="TranslateFacade&#xa;.transferEnTextByLanguage()&#xa;并发翻译三个字段：&#xa;• reviewTag&#xa;• labelCategory&#xa;• sentimentTypeName" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="470" y="555" width="290" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lc2" value="否（非中文）" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=2;fontColor=#7D3C98;" edge="1" parent="1" source="langcheck" target="translate">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 线程池说明 -->
+        <mxCell id="pool" value="OppThreadPoolUtils.getOppAgentExecutor()" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=2;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="470" y="683" width="290" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- 连接 f5 到 langcheck -->
+        <mxCell id="conn1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=2;dashed=1;" edge="1" parent="1" source="f5" target="langcheck">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 右侧：静态/动态决策表 ===== -->
+        <mxCell id="decbg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#AAAAAA;" vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="270" height="450" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="dectitle" value="数据类型决策表" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=15;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="800" y="88" width="270" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- 静态文案 -->
+        <mxCell id="static_title" value="静态文案" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="130" width="240" height="35" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="static_chars" value="• 内容固定、可枚举&#xa;• 开发时可预先配置&#xa;• 数据来源可控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEEFF;strokeColor=#4A90D9;fontColor=#2C3E50;fontSize=12;align=left;" vertex="1" parent="1">
+          <mxGeometry x="815" y="170" width="240" height="65" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="static_sol" value="✅ 方案：@Translated + MCMS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="240" width="240" height="35" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="static_ex" value="示例：title、description&#xa;表格列标题、按钮文字" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;fontColor=#555;fontSize=12;align=left;" vertex="1" parent="1">
+          <mxGeometry x="815" y="280" width="240" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- 分隔 -->
+        <mxCell id="sep" value="" style="line;strokeColor=#AAAAAA;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="340" width="240" height="10" as="geometry"/>
+        </mxCell>
+
+        <!-- 动态数据 -->
+        <mxCell id="dyn_title" value="动态数据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C0392B;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="355" width="240" height="35" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="dyn_chars" value="• 内容不可预测、无限可能&#xa;• 随商品/市场持续变化&#xa;• 数据来源第三方（亚马逊）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFDDDD;strokeColor=#FF6B6B;fontColor=#2C3E50;fontSize=12;align=left;" vertex="1" parent="1">
+          <mxGeometry x="815" y="395" width="240" height="65" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="dyn_sol" value="✅ 方案：TranslateFacade 实时翻译" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C0392B;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="465" width="240" height="35" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="dyn_ex" value="示例：评论标签、商品名称&#xa;reviewTag、labelCategory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;fontColor=#555;fontSize=12;align=left;" vertex="1" parent="1">
+          <mxGeometry x="815" y="505" width="240" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 性能对比 ===== -->
+        <mxCell id="perfbg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#AAAAAA;" vertex="1" parent="1">
+          <mxGeometry x="800" y="550" width="270" height="200" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="perftitle" value="并发翻译性能对比" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="800" y="558" width="270" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="serial" value="串行翻译 100 标签" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C0392B;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="593" width="240" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="serialv" value="100 × 50ms = 5000ms ❌ 慢" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#C0392B;" vertex="1" parent="1">
+          <mxGeometry x="815" y="630" width="240" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="parallel" value="并发翻译 100 标签" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#27AE60;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="660" width="240" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="parallelv" value="≈ 50-100ms ✅ 快 50-100x" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#27AE60;" vertex="1" parent="1">
+          <mxGeometry x="815" y="697" width="240" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="perfnote" value="CompletableFuture 异步 + OppAgentExecutor 线程池" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontColor=#888;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="815" y="722" width="240" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- 底部注释 -->
+        <mxCell id="note" value="经验教训：选择多语言方案前先判断数据类型！静态文案 → @Translated；动态数据 → 实时翻译服务" style="text;html=1;strokeColor=none;fillColor=#FFF9CC;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontColor=#8E6000;strokeColor=#FFD700;" vertex="1" parent="1">
+          <mxGeometry x="40" y="780" width="730" height="30" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

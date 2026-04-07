@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
+import { useSettings } from './SettingsProvider'
 
 const STORAGE_KEY = 'ai_chat_history'
 const SESSIONS_KEY = 'ai_chat_sessions'
@@ -10,7 +11,7 @@ const MAX_SESSIONS = 50
 
 const DEFAULT_WELCOME_MESSAGE = {
   role: 'assistant' as const,
-  content: '你好！我是你的AI学习助手。我可以帮你：\n\n• 解释技术概念\n• 推荐学习路径\n• 回答编程问题\n• 对比Java和新技术\n• 📎 添加上下文后针对性问答\n\n有什么我可以帮你的吗？'
+  content: '你好！我是你的 AI 学习助手，可以帮你解释技术概念、推荐学习路径、回答编程问题、对比 Java 和新技术栈。\n\n划选文章内容可以直接添加为上下文，让我针对性回答。'
 }
 
 interface ContextItem {
@@ -83,6 +84,7 @@ function formatDate(iso: string): string {
 }
 
 export default function AIAssistant() {
+  const { settings } = useSettings()
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([DEFAULT_WELCOME_MESSAGE])
   const [input, setInput] = useState('')
@@ -643,22 +645,32 @@ export default function AIAssistant() {
     setTimeout(() => handleSend(), 100)
   }
 
+  if (!settings.showAiButton && !isOpen) return null
+
   return (
     <>
       {/* 浮动按钮 */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gray-900 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center z-50"
+        className={`fixed bottom-6 right-6 w-14 h-14 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center z-50 ${
+          isOpen
+            ? 'bg-gray-900 hover:bg-gray-800 rotate-0'
+            : 'bg-gradient-to-br from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 hover:scale-110'
+        }`}
         aria-label="AI助手"
       >
         {isOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
+          <>
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+            </svg>
+            {/* 脉冲光环 */}
+            <span className="absolute inset-0 rounded-2xl bg-violet-500/30 animate-ping" style={{ animationDuration: '3s' }} />
+          </>
         )}
       </button>
 
@@ -705,30 +717,40 @@ export default function AIAssistant() {
 
       {/* 聊天窗口 */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[420px] h-[650px] bg-white rounded-2xl shadow-2xl flex flex-col z-50 border border-gray-200 overflow-hidden ai-assistant-panel">
+        <div
+          className="fixed bottom-24 right-6 w-[400px] h-[620px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_24px_80px_-12px_rgba(0,0,0,0.25)] flex flex-col z-50 border border-white/50 overflow-hidden ai-assistant-panel animate-in slide-in-from-bottom-4 fade-in duration-300"
+          style={{ animation: 'slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
+        >
+          <style>{`
+            @keyframes slideUp { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+          `}</style>
           {/* 头部 */}
-          <div className="bg-white border-b border-gray-200 px-5 py-4">
+          <div className="bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-600 px-5 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                <div className="w-9 h-9 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">AI学习助手</h3>
-                  <p className="text-xs text-gray-500">
-                    {isLoading ? '正在思考...' : '在线'}
+                  <h3 className="font-semibold text-white text-sm">AI 学习助手</h3>
+                  <p className="text-[11px] text-white/70 flex items-center gap-1.5">
+                    {isLoading ? (
+                      <><span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />思考中...</>
+                    ) : (
+                      <><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />在线</>
+                    )}
                   </p>
                 </div>
               </div>
               <div className="relative">
                 <button
                   onClick={() => setShowMenu(!showMenu)}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition"
+                  className="p-2 hover:bg-white/20 rounded-lg transition"
                   aria-label="菜单"
                 >
-                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                   </svg>
                 </button>
@@ -920,7 +942,7 @@ export default function AIAssistant() {
           )}
 
           {/* 消息列表 */}
-          <div className={`flex-1 overflow-y-auto px-5 py-6 space-y-6 bg-gray-50 ${showHistory ? 'hidden' : ''}`}>
+          <div className={`flex-1 overflow-y-auto px-4 py-5 space-y-5 bg-gradient-to-b from-gray-50 to-white ${showHistory ? 'hidden' : ''}`}>
             {/* 批量操作栏 */}
             {selectMode && (
               <div className="sticky top-0 z-10 flex items-center justify-between bg-white px-4 py-2.5 rounded-xl shadow-sm border border-gray-200">
@@ -978,29 +1000,21 @@ export default function AIAssistant() {
                 )}
 
                 {/* 头像 */}
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-                  msg.role === 'user'
-                    ? 'bg-gradient-to-br from-blue-500 to-blue-600'
-                    : 'bg-gradient-to-br from-purple-500 to-purple-600'
-                }`}>
-                  {msg.role === 'user' ? (
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                {msg.role === 'assistant' && (
+                  <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-sm">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                     </svg>
-                  ) : (
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  )}
-                </div>
+                  </div>
+                )}
 
                 {/* 消息内容 */}
-                <div className={`flex-1 max-w-[85%] ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                <div className={`flex-1 ${msg.role === 'user' ? 'max-w-[80%]' : 'max-w-[88%]'}`}>
                   <div
                     className={`px-4 py-3 rounded-2xl overflow-hidden ${
                       msg.role === 'user'
-                        ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-tr-md'
-                        : 'bg-white text-gray-800 rounded-tl-md shadow-sm border border-gray-200'
+                        ? 'bg-gray-900 text-white rounded-br-lg'
+                        : 'bg-white text-gray-700 rounded-bl-lg shadow-sm ring-1 ring-gray-100'
                     }`}
                   >
                     {msg.role === 'assistant' ? (
@@ -1086,16 +1100,16 @@ export default function AIAssistant() {
 
             {isLoading && (
               <div className="flex gap-3">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-sm">
+                  <svg className="w-4 h-4 text-white animate-spin" style={{ animationDuration: '3s' }} fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                   </svg>
                 </div>
-                <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-md shadow-sm border border-gray-200">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                <div className="bg-white px-4 py-3 rounded-2xl rounded-bl-lg shadow-sm ring-1 ring-gray-100">
+                  <div className="flex space-x-1.5">
+                    <div className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-bounce"></div>
+                    <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
                   </div>
                 </div>
               </div>
@@ -1103,14 +1117,14 @@ export default function AIAssistant() {
 
             {/* 快速问题（仅在开始时显示） */}
             {messages.length === 1 && !isLoading && (
-              <div className="space-y-3 px-2">
-                <p className="text-xs text-gray-500 font-medium">快速开始</p>
-                <div className="grid gap-2">
+              <div className="space-y-3 px-1">
+                <p className="text-[11px] text-gray-400 font-medium uppercase tracking-wider">试试这些</p>
+                <div className="grid grid-cols-2 gap-2">
                   {quickQuestions.map((q, i) => (
                     <button
                       key={i}
                       onClick={() => handleQuickQuestion(q)}
-                      className="text-left text-sm bg-white text-gray-700 px-4 py-3 rounded-xl hover:bg-gray-50 transition border border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                      className="text-left text-[13px] bg-white text-gray-600 px-3.5 py-3 rounded-xl hover:bg-violet-50 hover:text-violet-700 transition-all ring-1 ring-gray-100 hover:ring-violet-200 hover:shadow-sm leading-snug"
                     >
                       {q}
                     </button>
@@ -1121,14 +1135,14 @@ export default function AIAssistant() {
           </div>
 
           {/* 输入框 */}
-          <div className={`p-4 bg-white border-t border-gray-200 ${showHistory ? 'hidden' : ''}`}>
+          <div className={`p-3.5 bg-white/80 backdrop-blur-sm border-t border-gray-100 ${showHistory ? 'hidden' : ''}`}>
             {/* 上下文标签 */}
             {contexts.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mb-2">
                 {contexts.map(ctx => (
                   <span
                     key={ctx.id}
-                    className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-lg border border-blue-200"
+                    className="inline-flex items-center gap-1 px-2 py-1 bg-violet-50 text-violet-700 text-xs rounded-lg border border-violet-200/60"
                   >
                     {ctx.type === 'page' && (
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1200,10 +1214,10 @@ export default function AIAssistant() {
               <div className="relative">
                 <button
                   onClick={() => setShowContextMenu(!showContextMenu)}
-                  className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition ${
+                  className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
                     contexts.length > 0
-                      ? 'bg-blue-100 text-blue-600 hover:bg-blue-200'
-                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                      ? 'bg-violet-100 text-violet-600 hover:bg-violet-200'
+                      : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600'
                   }`}
                   title="添加上下文"
                 >
@@ -1211,7 +1225,7 @@ export default function AIAssistant() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                   </svg>
                   {contexts.length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-blue-600 text-white text-[10px] rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-violet-600 text-white text-[10px] rounded-full flex items-center justify-center">
                       {contexts.length}
                     </span>
                   )}
@@ -1286,8 +1300,8 @@ export default function AIAssistant() {
                       handleSend()
                     }
                   }}
-                  placeholder={contexts.length > 0 ? "基于上下文提问..." : "输入消息... (Shift + Enter 换行)"}
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 resize-none transition"
+                  placeholder={contexts.length > 0 ? "基于上下文提问..." : "问点什么..."}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:bg-white focus:border-violet-400 focus:ring-2 focus:ring-violet-100 resize-none transition-all placeholder:text-gray-300"
                   disabled={isLoading}
                   rows={1}
                   style={{
@@ -1310,17 +1324,17 @@ export default function AIAssistant() {
                 <button
                   onClick={handleSend}
                   disabled={!input.trim()}
-                  className="flex-shrink-0 w-11 h-11 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition flex items-center justify-center"
+                  className="flex-shrink-0 w-11 h-11 bg-gradient-to-br from-violet-600 to-indigo-600 text-white rounded-xl hover:from-violet-500 hover:to-indigo-500 disabled:from-gray-200 disabled:to-gray-300 disabled:cursor-not-allowed transition-all flex items-center justify-center shadow-sm disabled:shadow-none"
                   title="发送消息"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                   </svg>
                 </button>
               )}
             </div>
-            <p className="text-xs text-gray-400 mt-2 px-1">
-              AI可能会犯错，请核实重要信息
+            <p className="text-[10px] text-gray-300 mt-1.5 text-center">
+              AI 可能出错 / Enter 发送 / Shift+Enter 换行
             </p>
           </div>
         </div>

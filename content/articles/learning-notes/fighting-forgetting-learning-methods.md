@@ -11,6 +11,8 @@ readTime: 5
 
 学了东西总是忘，看视频感觉懂了但过后全忘——这是遗忘曲线在起作用。不做任何复习，24小时后遗忘70%+。关键不是"学了多少"，而是"怎么留住"。
 
+<img src="/images/learning/forgetting-curve.svg" alt="艾宾浩斯遗忘曲线与间隔复习干预" style="max-width:100%;margin:1em 0;" />
+
 ## 核心原则：输出 > 输入
 
 看视频是**被动输入**，大脑会产生"我懂了"的错觉（fluency illusion）。真正记住需要**主动输出**。

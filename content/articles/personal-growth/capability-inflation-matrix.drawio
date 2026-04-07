@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="能力通胀四象限矩阵">
+    <mxGraphModel dx="1200" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="2" value="AI 时代程序员能力矩阵：名义能力 vs 真实能力" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="20" width="1000" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Subtitle -->
+        <mxCell id="3" value="X轴: AI工具依赖程度  |  Y轴: 个人真实能力" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#7F8C8D;" vertex="1" parent="1">
+          <mxGeometry x="50" y="60" width="1000" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- Y-Axis Label -->
+        <mxCell id="yLabel" value="个人真实能力" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontStyle=1;fontColor=#2C3E50;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="20" y="400" width="130" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Y High -->
+        <mxCell id="yHigh" value="高" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#27AE60;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="115" width="30" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- Y Low -->
+        <mxCell id="yLow" value="低" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#E74C3C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="680" width="30" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- X-Axis Label -->
+        <mxCell id="xLabel" value="AI 工具依赖程度" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="760" width="200" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- X Low -->
+        <mxCell id="xLow" value="低" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#27AE60;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="720" width="30" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- X High -->
+        <mxCell id="xHigh" value="高" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#E74C3C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="720" width="30" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- Y Axis Arrow -->
+        <mxCell id="yAxis" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#2C3E50;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry x="150" y="720" width="10" height="10" as="geometry">
+            <Array as="points"/>
+            <mxPoint x="150" y="720" as="sourcePoint"/>
+            <mxPoint x="150" y="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- X Axis Arrow -->
+        <mxCell id="xAxis" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#2C3E50;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry x="150" y="410" width="10" height="10" as="geometry">
+            <Array as="points"/>
+            <mxPoint x="150" y="410" as="sourcePoint"/>
+            <mxPoint x="900" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== QUADRANT 1: Top-Left: 稳固型 (High ability, Low dependency) ===== -->
+        <mxCell id="q1bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="150" y="100" width="370" height="310" as="geometry"/>
+        </mxCell>
+        <mxCell id="q1title" value="稳固型" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;fontColor=#27AE60;" vertex="1" parent="1">
+          <mxGeometry x="200" y="120" width="270" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="q1desc" value="高能力 + 低AI依赖" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontColor=#27AE60;" vertex="1" parent="1">
+          <mxGeometry x="200" y="155" width="270" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="q1body" value="✓  深厚的领域知识和系统思维&lt;br/&gt;✓  能判断 AI 方案的质量&lt;br/&gt;✓  离开 AI 仍能高质量交付&lt;br/&gt;✓  真正的技术护城河&lt;br/&gt;&lt;br/&gt;典型：资深架构师，有丰富生产经验的工程师" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#2C3E50;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="165" y="190" width="340" height="190" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== QUADRANT 2: Top-Right: 增强型 (High ability, High dependency) ===== -->
+        <mxCell id="q2bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="520" y="100" width="370" height="310" as="geometry"/>
+        </mxCell>
+        <mxCell id="q2title" value="增强型" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;fontColor=#2980B9;" vertex="1" parent="1">
+          <mxGeometry x="570" y="120" width="270" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="q2desc" value="高能力 + 高AI依赖" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontColor=#2980B9;" vertex="1" parent="1">
+          <mxGeometry x="570" y="155" width="270" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="q2body" value="★  AI 作为超级杠杆倍增器&lt;br/&gt;★  一人产出超越从前整个小团队&lt;br/&gt;★  能识别 AI 输出的错误&lt;br/&gt;★  AI native 开发能力&lt;br/&gt;&lt;br/&gt;典型：熟练掌握 AI 的高级工程师&lt;br/&gt;（这是最理想的目标状态）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#2C3E50;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="535" y="190" width="340" height="200" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== QUADRANT 3: Bottom-Left: 传统型 (Low ability, Low dependency) ===== -->
+        <mxCell id="q3bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F9F9F9;strokeColor=#BDC3C7;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="150" y="410" width="370" height="310" as="geometry"/>
+        </mxCell>
+        <mxCell id="q3title" value="传统型" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;fontColor=#7F8C8D;" vertex="1" parent="1">
+          <mxGeometry x="200" y="430" width="270" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="q3desc" value="低能力 + 低AI依赖" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontColor=#7F8C8D;" vertex="1" parent="1">
+          <mxGeometry x="200" y="465" width="270" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="q3body" value="△  技能仍是真实的，但竞争力下降&lt;br/&gt;△  没有 AI 杠杆，效率相对较低&lt;br/&gt;△  可能跟不上 AI 时代节奏&lt;br/&gt;△  需要快速学习 AI 工具&lt;br/&gt;&lt;br/&gt;典型：还没开始使用 AI 工具的老工程师" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#2C3E50;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="165" y="500" width="340" height="195" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== QUADRANT 4: Bottom-Right: 危险型 DANGER ZONE ===== -->
+        <mxCell id="q4bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="520" y="410" width="370" height="310" as="geometry"/>
+        </mxCell>
+
+        <!-- Danger Zone Highlight Border -->
+        <mxCell id="q4border" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#C0392B;strokeWidth=4;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="523" y="413" width="364" height="304" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="q4title" value="⚠ 危险型" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;fontColor=#C0392B;" vertex="1" parent="1">
+          <mxGeometry x="570" y="425" width="270" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="q4badge" value="能力通胀区" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C0392B;strokeColor=#922B21;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="462" width="110" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="q4desc" value="低真实能力 + 高AI依赖" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontColor=#C0392B;" vertex="1" parent="1">
+          <mxGeometry x="570" y="493" width="270" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="q4body" value="✗  用 AI 写代码，以为自己编码变强了&lt;br/&gt;✗  AI 做设计，以为架构能力提升了&lt;br/&gt;✗  AI 排 bug，以为 debug 能力增强了&lt;br/&gt;✗  去掉 AI，原形毕露&lt;br/&gt;&lt;br/&gt;&quot;骑电动车跑100公里&lt;br/&gt;不等于自己有100公里体能&quot;&lt;br/&gt;&lt;br/&gt;典型：大厂KPI考核导致的能力幻觉" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#2C3E50;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="535" y="522" width="340" height="190" as="geometry"/>
+        </mxCell>
+
+        <!-- Center Cross Lines -->
+        <mxCell id="vLine" value="" style="endArrow=none;html=1;strokeColor=#BDC3C7;strokeWidth=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry x="520" y="100" width="10" height="10" as="geometry">
+            <mxPoint x="520" y="100" as="sourcePoint"/>
+            <mxPoint x="520" y="720" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== 3 Checkpoints ===== -->
+        <mxCell id="check" value="三大检验标准" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F39C12;fontSize=13;fontStyle=1;fontColor=#E67E22;" vertex="1" parent="1">
+          <mxGeometry x="150" y="800" width="740" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="check1" value="① 离开 AI 工具，你能完成同等质量的工作吗？" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="160" y="838" width="720" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="check2" value="② 换一个 AI 工具，你的产出会大幅波动吗？" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="160" y="858" width="720" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="check3" value="③ 你能向别人解释 AI 给你的方案为什么是对的（或错的）吗？" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="160" y="878" width="720" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow from Q3 to Q4 showing danger path -->
+        <mxCell id="dangerPath" value="AI滥用路径" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#E74C3C;strokeWidth=2;dashed=1;fontColor=#E74C3C;fontSize=11;fontStyle=2;" edge="1" parent="1" source="q3bg" target="q4bg">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrow from Q4 to Q2 showing ideal path -->
+        <mxCell id="idealPath" value="理想路径" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#27AE60;strokeWidth=2;fontColor=#27AE60;fontSize=11;fontStyle=1;" edge="1" parent="1" source="q4bg" target="q2bg">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

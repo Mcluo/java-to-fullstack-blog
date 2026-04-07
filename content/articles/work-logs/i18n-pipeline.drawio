@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="i18n 处理流水线">
+    <mxGraphModel width="1100" height="720" dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="720" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 标题 -->
+        <mxCell id="2" value="i18n 多语言处理流水线架构" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="200" y="15" width="700" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 副标题 -->
+        <mxCell id="3" value="global-1688-ai-sel | Multix(@Translated) + MCMS 资源管理 | 分支: feature/20260331_28834172_image_search_multilingual_1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="100" y="52" width="900" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 主流水线 ===== -->
+
+        <!-- Step 1: TableHeaderVO -->
+        <mxCell id="s1" value="TableHeaderVO&#xa;@Translated 注解&#xa;（静态表格列标题）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 s1 → s2 -->
+        <mxCell id="a1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=2;" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 2: TableConfig -->
+        <mxCell id="s2" value="TableConfig&#xa;构建表格配置&#xa;（26 个字段元数据）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="110" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 s2 → s3 -->
+        <mxCell id="a2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=2;" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 3: TableDataVOConverter -->
+        <mxCell id="s3" value="TableDataVOConverter&#xa;数据转换处理&#xa;（VO 格式转换）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="110" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 s3 → s4 -->
+        <mxCell id="a3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=2;" edge="1" parent="1" source="s3" target="s4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 4: CardEventFactory -->
+        <mxCell id="s4" value="CardEventFactory&#xa;创建卡片事件&#xa;设置 titleMcmsKey" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="110" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 s4 → s5 -->
+        <mxCell id="a4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=2;" edge="1" parent="1" source="s4" target="s5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 5: Strategy Handler -->
+        <mxCell id="s5" value="ImprovedReviewTag&#xa;ListCardEvent&#xa;HandlerStrategy&#xa;（策略处理器）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="165" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 s5 → rendered -->
+        <mxCell id="a5" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1" source="s5" target="rendered">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Rendered UI -->
+        <mxCell id="rendered" value="🖥️ 渲染 UI&#xa;（已本地化的多语言界面）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#27AE60;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="250" width="235" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== MCMS 资源查找区域 ===== -->
+        <!-- 标注区域背景 -->
+        <mxCell id="mcmsbg" value="" style="rounded=1;dashed=1;whiteSpace=wrap;html=1;fillColor=#FFF9CC;strokeColor=#FFD700;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="230" width="780" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mcmstitle" value="MCMS 资源查找层（多语言资源管理）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=14;fontStyle=1;fontColor=#8E6000;" vertex="1" parent="1">
+          <mxGeometry x="55" y="238" width="400" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- MCMS 内容 - 表格列标题 -->
+        <mxCell id="mcms1" value="表格列标题（26个）&#xa;TableHeaderVO.title.{中文名}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;fontColor=#2C3E50;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="270" width="230" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- MCMS 内容 - 卡片标题 -->
+        <mxCell id="mcms2" value="卡片标题（4个）&#xa;CardDataEvent.title.reviewTagList&#xa;→ Review Tag List" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;fontColor=#2C3E50;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="270" width="230" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- MCMS 内容 - 字段值 -->
+        <mxCell id="mcms3" value="字段枚举值&#xa;ReviewTagAggregateVO.sentimentTypeName.好评&#xa;→ Good review" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;fontColor=#2C3E50;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="270" width="245" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- MCMS 三角标注指向 s1 -->
+        <mxCell id="ma1" value="@I18nEntrance AOP 切面&#xa;自动批量翻译" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F39C12;strokeWidth=2;dashed=1;fontColor=#8E6000;fontSize=11;" edge="1" parent="1" source="mcms1" target="s1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ma2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F39C12;strokeWidth=2;dashed=1;" edge="1" parent="1" source="mcms2" target="s4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 支持语言说明 -->
+        <mxCell id="lang" value="支持语言：zh_CN（中文）  |  en_US（英文）  |  ja_JP（日文）" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="55" y="345" width="760" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 资源 Key 格式说明 ===== -->
+        <mxCell id="keybg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#AAAAAA;" vertex="1" parent="1">
+          <mxGeometry x="40" y="410" width="780" height="150" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="keytitle" value="资源 Key 格式规范" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=14;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="55" y="418" width="300" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="key1" value="表格列标题" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="450" width="110" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="key1v" value="TableHeaderVO.title.{中文名称}" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontStyle=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="175" y="450" width="280" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="key2" value="卡片标题" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="500" width="110" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="key2v" value="CardDataEvent.title.{mcmsKey}" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontStyle=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="175" y="500" width="280" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="key3" value="字段枚举值" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#27AE60;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="455" y="450" width="110" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="key3v" value="{ClassName}.{fieldName}.{value}" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontStyle=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="575" y="450" width="240" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 状态指示器 ===== -->
+        <mxCell id="statusbg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#AAAAAA;" vertex="1" parent="1">
+          <mxGeometry x="840" y="340" width="220" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="stitle" value="当前状态" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="840" y="348" width="220" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="st1" value="✅ @Translated 注解已添加" style="text;html=1;strokeColor=none;fillColor=#CCFFCC;align=left;fontSize=12;fontColor=#27AE60;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="855" y="380" width="192" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="st2" value="✅ 文档配置清单已创建" style="text;html=1;strokeColor=none;fillColor=#CCFFCC;align=left;fontSize=12;fontColor=#27AE60;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="855" y="418" width="192" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="st3" value="✅ Git 已推送远程分支" style="text;html=1;strokeColor=none;fillColor=#CCFFCC;align=left;fontSize=12;fontColor=#27AE60;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="855" y="456" width="192" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="st4" value="⏳ MCMS 30条资源待配置" style="text;html=1;strokeColor=none;fillColor=#FFEECC;align=left;fontSize=12;fontColor=#F39C12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="855" y="494" width="192" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="st5" value="⏳ 多语言测试验证待完成" style="text;html=1;strokeColor=none;fillColor=#FFEECC;align=left;fontSize=12;fontColor=#F39C12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="855" y="532" width="192" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 底部说明 -->
+        <mxCell id="note" value="Commit: 18749eac8 + d4f3d550f | 共 8 个文件修改，612 行新增 | 技术栈：Multix + MCMS + @Translated 注解" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="1020" height="20" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

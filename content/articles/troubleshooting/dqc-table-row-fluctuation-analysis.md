@@ -174,7 +174,7 @@ GROUP BY ds ORDER BY ds;
 
 ## 3. 使用的技术与工具
 
-### 3.1 Chrome MCP — 内网页面数据提取
+### 3.1 [Chrome MCP](/articles/tools-and-tips/claude-code-browser-automation-guide) — 内网页面数据提取
 
 当目标页面需要内网登录认证时，WebFetch 无法访问。Chrome MCP 可以操控用户**已登录的浏览器**，实现：
 
@@ -269,5 +269,7 @@ DQC 告警
   ↓
 7. 形成结论：单日告警 → 系统性链路问题
 ```
+
+<img src="/images/dqc/dqc-troubleshooting-flow.svg" alt="DQC 异常排查方法论流程" style="max-width:100%;margin:1em 0;" />
 
 核心经验：**不要被单日告警限制视野，拉长时间窗口 + 多维度拆解才能看到真正的问题模式。**

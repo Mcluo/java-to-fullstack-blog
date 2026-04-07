@@ -100,11 +100,28 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 构建用户提供的上下文
+    // 分离文本上下文和图片上下文
+    const textContexts: Array<{ type: string; label: string; content: string }> = []
+    const imageContexts: Array<{ label: string; imageData: string }> = []
+
+    if (Array.isArray(contexts)) {
+      for (const ctx of contexts) {
+        if (ctx.type === 'image' && ctx.imageData) {
+          imageContexts.push({ label: ctx.label, imageData: ctx.imageData })
+        } else {
+          textContexts.push(ctx)
+        }
+      }
+    }
+
+    // 构建文本上下文
     let userContext = ''
-    if (Array.isArray(contexts) && contexts.length > 0) {
-      const sections = contexts.map((ctx: { type: string; label: string; content: string }, i: number) => {
-        const typeLabel = ctx.type === 'page' ? '页面内容' : '用户提供的文本'
+    if (textContexts.length > 0) {
+      const typeLabels: Record<string, string> = {
+        page: '页面内容', text: '用户提供的文本', selection: '选中文本', file: '文件内容',
+      }
+      const sections = textContexts.map((ctx, i: number) => {
+        const typeLabel = typeLabels[ctx.type] || '参考内容'
         return `### ${typeLabel} ${i + 1}: ${ctx.label}\n\n${ctx.content}`
       })
       userContext = `## 用户提供的上下文\n\n以下是用户主动添加的参考内容，请优先基于这些内容回答问题。\n\n${sections.join('\n\n---\n\n')}`
@@ -122,11 +139,30 @@ export async function POST(request: NextRequest) {
         role: msg.role,
         content: msg.content
       })),
-      {
-        role: 'user',
-        content: message
-      }
     ]
+
+    // 构建用户消息（可能包含图片）
+    if (imageContexts.length > 0) {
+      const contentBlocks: any[] = []
+      // 添加图片
+      for (const img of imageContexts) {
+        const match = img.imageData.match(/^data:(image\/\w+);base64,(.+)$/)
+        if (match) {
+          contentBlocks.push({
+            type: 'image',
+            source: {
+              type: 'base64',
+              media_type: match[1] as 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp',
+              data: match[2],
+            },
+          })
+        }
+      }
+      contentBlocks.push({ type: 'text', text: message })
+      messages.push({ role: 'user', content: contentBlocks })
+    } else {
+      messages.push({ role: 'user', content: message })
+    }
 
     // 创建流式响应
     const encoder = new TextEncoder()

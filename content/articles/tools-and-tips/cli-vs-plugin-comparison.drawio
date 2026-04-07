@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="CLI vs 插件对比">
+    <mxGraphModel width="1100" height="900" dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- 标题 -->
+        <mxCell id="2" value="Claude Code：CLI vs IDEA 插件 选型指南" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="150" y="15" width="800" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 雷达图区域（用六边形维度条形图模拟） ===== -->
+        <!-- 对比区域背景 -->
+        <mxCell id="bg1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#AAAAAA;" vertex="1" parent="1">
+          <mxGeometry x="40" y="65" width="1020" height="400" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="3" value="六维能力对比" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="1020" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 维度标签列 -->
+        <mxCell id="dim1" value="上下文感知" style="text;html=1;strokeColor=none;fillColor=none;align=right;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="118" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="dim2" value="工具能力" style="text;html=1;strokeColor=none;fillColor=none;align=right;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="168" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="dim3" value="批量处理" style="text;html=1;strokeColor=none;fillColor=none;align=right;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="218" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="dim4" value="灵活性" style="text;html=1;strokeColor=none;fillColor=none;align=right;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="268" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="dim5" value="启动速度" style="text;html=1;strokeColor=none;fillColor=none;align=right;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="318" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="dim6" value="学习曲线" style="text;html=1;strokeColor=none;fillColor=none;align=right;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="368" width="120" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="leg1" value="" style="rounded=1;fillColor=#4A90D9;strokeColor=#2980B9;" vertex="1" parent="1">
+          <mxGeometry x="720" y="95" width="20" height="14" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg1t" value="CLI" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontStyle=1;fontColor=#4A90D9;" vertex="1" parent="1">
+          <mxGeometry x="745" y="91" width="60" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg2" value="" style="rounded=1;fillColor=#9B59B6;strokeColor=#7D3C98;" vertex="1" parent="1">
+          <mxGeometry x="820" y="95" width="20" height="14" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg2t" value="IDEA 插件" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontStyle=1;fontColor=#9B59B6;" vertex="1" parent="1">
+          <mxGeometry x="845" y="91" width="100" height="22" as="geometry"/>
+        </mxCell>
+
+        <!-- 刻度线背景 -->
+        <mxCell id="grid" value="" style="line;strokeColor=#CCCCCC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="110" width="0" height="300" as="geometry"/>
+        </mxCell>
+
+        <!-- 分数刻度标签 -->
+        <mxCell id="s0" value="0" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="182" y="415" width="20" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5" value="★★★" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="370" y="415" width="50" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="s10" value="★★★★★" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="560" y="415" width="80" height="15" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== CLI bars ===== -->
+        <!-- 上下文感知 CLI: 3/5 = 228px -->
+        <mxCell id="c1" value="★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="185" y="119" width="228" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 工具能力 CLI: 5/5 = 380px -->
+        <mxCell id="c2" value="★★★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="185" y="169" width="380" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 批量处理 CLI: 5/5 -->
+        <mxCell id="c3" value="★★★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="185" y="219" width="380" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 灵活性 CLI: 5/5 -->
+        <mxCell id="c4" value="★★★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="185" y="269" width="380" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 启动速度 CLI: 4/5 = 304px -->
+        <mxCell id="c5" value="★★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="185" y="319" width="304" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 学习曲线 CLI: 3/5 -->
+        <mxCell id="c6" value="★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="185" y="369" width="228" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== Plugin bars (offset, semi-transparent) ===== -->
+        <!-- 上下文感知 Plugin: 5/5 -->
+        <mxCell id="p1" value="★★★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=11;align=left;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="570" y="119" width="380" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 工具能力 Plugin: 3/5 -->
+        <mxCell id="p2" value="★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=11;align=left;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="570" y="169" width="228" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 批量处理 Plugin: 2/5 -->
+        <mxCell id="p3" value="★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=11;align=left;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="570" y="219" width="152" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 灵活性 Plugin: 3/5 -->
+        <mxCell id="p4" value="★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=11;align=left;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="570" y="269" width="228" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 启动速度 Plugin: 5/5 -->
+        <mxCell id="p5" value="★★★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=11;align=left;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="570" y="319" width="380" height="28" as="geometry"/>
+        </mxCell>
+        <!-- 学习曲线 Plugin: 4/5 -->
+        <mxCell id="p6" value="★★★★" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=11;align=left;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="570" y="369" width="304" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- 中间分隔标 -->
+        <mxCell id="mid" value="←CLI胜出                       插件胜出→" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#888;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="440" width="765" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== 决策树 ===== -->
+        <mxCell id="bg2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#AAAAAA;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="1020" height="400" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="dt0" value="工具选型决策树" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="40" y="485" width="1020" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 根节点 -->
+        <mxCell id="dt1" value="你要做什么？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#2C3E50;strokeColor=#1A252F;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="530" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 分支1：日常编码 -->
+        <mxCell id="dt2" value="日常编码&#xa;（快速提问、补全、重构建议）" style="rhombus;whiteSpace=wrap;html=1;fillColor=#F39C12;strokeColor=#D68910;fontColor=#FFFFFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="660" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 分支2：复杂任务 -->
+        <mxCell id="dt3" value="复杂任务&#xa;（Git、MCP、批量重构）" style="rhombus;whiteSpace=wrap;html=1;fillColor=#F39C12;strokeColor=#D68910;fontColor=#FFFFFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="440" y="660" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 分支3：探索 + 精细调整 -->
+        <mxCell id="dt4" value="先探索架构&#xa;后精细调整代码" style="rhombus;whiteSpace=wrap;html=1;fillColor=#F39C12;strokeColor=#D68910;fontColor=#FFFFFF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="780" y="660" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 dt1 → dt2/dt3/dt4 -->
+        <mxCell id="da1" value="日常编码" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F39C12;strokeWidth=2;fontColor=#F39C12;fontSize=11;" edge="1" parent="1" source="dt1" target="dt2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="da2" value="复杂/批量" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F39C12;strokeWidth=2;fontColor=#F39C12;fontSize=11;" edge="1" parent="1" source="dt1" target="dt3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="da3" value="探索+精调" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F39C12;strokeWidth=2;fontColor=#F39C12;fontSize=11;" edge="1" parent="1" source="dt1" target="dt4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 推荐结果 1 -->
+        <mxCell id="dr1" value="✅ 使用 IDEA 插件&#xa;上下文自动感知&#xa;一键应用代码修改" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="790" width="240" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 推荐结果 2 -->
+        <mxCell id="dr2" value="✅ 使用 CLI&#xa;完整工具链 + MCP&#xa;Skills / Hooks 支持" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="790" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 推荐结果 3 -->
+        <mxCell id="dr3" value="✅ CLI + 插件混合&#xa;CLI 探索架构方案&#xa;插件精调具体代码" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#27AE60;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="790" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- 箭头 dt2/dt3/dt4 → 结果 -->
+        <mxCell id="db1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=2;" edge="1" parent="1" source="dt2" target="dr1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="db2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=2;" edge="1" parent="1" source="dt3" target="dr2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="db3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1" source="dt4" target="dr3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 底部最佳实践 -->
+        <mxCell id="best" value="💡 最佳实践：让工具为你服务，根据场景灵活切换，发挥各自优势！" style="text;html=1;strokeColor=none;fillColor=#FFF9CC;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=13;fontColor=#8E6000;strokeColor=#F39C12;" vertex="1" parent="1">
+          <mxGeometry x="200" y="875" width="700" height="35" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

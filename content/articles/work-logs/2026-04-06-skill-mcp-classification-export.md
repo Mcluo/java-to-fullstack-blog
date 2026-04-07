@@ -17,5 +17,5 @@ readTime: 3
 ## 关键结论
 1. MCP 内网依赖 3 个（aone-km/aone-mix/odps-query-mcp），公网可用 7 个
 2. Skill 内网依赖约 130 个，公网可用约 24 个
-3. Skill 迁移只需复制目录，纯 Markdown 无依赖
+3. [Skill 迁移](/articles/skill/2026-04-06-cgf-coding-skill-guide)只需复制目录，纯 Markdown 无依赖
 4. 导出包自带 import.sh，新电脑两行命令即可导入

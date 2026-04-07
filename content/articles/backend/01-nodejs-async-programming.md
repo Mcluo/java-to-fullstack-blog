@@ -204,6 +204,8 @@ const results = await Promise.allSettled(
 
 ## 5. 事件循环详解
 
+<img src="/images/nodejs-async/nodejs-vs-java-threading.svg" alt="Java 多线程 vs Node.js 事件循环模型对比" style="max-width:100%;margin:1em 0;" />
+
 Node.js 的事件循环是其核心机制：
 
 ```
@@ -485,6 +487,8 @@ const user = await withTimeout(fetchUser('123'), 5000); // 5秒超时
 2. 数据库集成（Prisma/TypeORM）
 3. 构建 RESTful API
 4. 微服务架构
+
+如果你同时在学习前端，可以对比阅读 [TypeScript 的 async/await 用法](/articles/frontend/01-typescript-for-java-developers "TypeScript 快速入门：Java 工程师视角")，两者的异步模型高度相似。
 
 ## 参考资源
 

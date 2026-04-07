@@ -24,6 +24,8 @@ BASE_SYSTEM_PROMPT（骨架）
   → 最终 prompt
 ```
 
+<img src="/images/knowledge-agent/knowledge-agent-architecture.svg" alt="Knowledge Agent Prompt 组合管道与降级链" style="max-width:100%;margin:1em 0;" />
+
 **启发**：把 prompt 当代码写 — 有模板、有变量、有组合函数。这样不同场景（chat/admin）可以复用基础能力，又能各自扩展。
 
 ---
@@ -123,7 +125,7 @@ Admin prompt 里的关键设计：
 
 ## 适用场景
 
-这些架构思想不局限于此项目，适用于任何 **AI Agent / RAG 系统**的设计。重点关注：
+这些架构思想不局限于此项目，适用于任何 **AI Agent / [RAG 系统](/articles/architecture/blog-ai-rag-enhancement)**的设计。重点关注：
 - **#3 多层防幻觉** — 生产环境最容易踩坑
 - **#5 渐进降级** — 决定系统稳定性的关键
 

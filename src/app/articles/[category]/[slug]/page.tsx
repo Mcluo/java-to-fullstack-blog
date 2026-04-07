@@ -50,29 +50,29 @@ export default async function ArticlePage({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* 面包屑 */}
-      <nav className="mb-8 text-sm text-gray-600">
-        <a href="/" className="hover:text-blue-600">首页</a>
-        <span className="mx-2">/</span>
-        <a href="/articles" className="hover:text-blue-600">教程</a>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">{categoryName}</span>
+      <nav className="mb-8 flex items-center gap-1.5 text-sm text-gray-400">
+        <a href="/" className="hover:text-gray-600 transition">首页</a>
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        <a href="/articles" className="hover:text-gray-600 transition">教程</a>
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        <span className="text-gray-700 font-medium">{categoryName}</span>
       </nav>
 
       <div className="lg:flex lg:gap-8">
         {/* 文章主体 */}
         <div className="flex-1 min-w-0 max-w-4xl">
           {/* 文章头部 */}
-          <header className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+          <header className="mb-10 pb-8 border-b border-gray-100">
+            <div className="flex items-center gap-2.5 mb-5">
+              <span className="px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-50 text-blue-600 ring-1 ring-blue-100">
                 {categoryName}
               </span>
               {article.difficulty && (
                 <span className={`
-                  px-3 py-1 rounded-full text-sm font-medium
-                  ${article.difficulty === 'beginner' ? 'bg-green-100 text-green-700' : ''}
-                  ${article.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-700' : ''}
-                  ${article.difficulty === 'advanced' ? 'bg-red-100 text-red-700' : ''}
+                  px-2.5 py-0.5 rounded-md text-xs font-medium
+                  ${article.difficulty === 'beginner' ? 'bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100' : ''}
+                  ${article.difficulty === 'intermediate' ? 'bg-amber-50 text-amber-600 ring-1 ring-amber-100' : ''}
+                  ${article.difficulty === 'advanced' ? 'bg-rose-50 text-rose-600 ring-1 ring-rose-100' : ''}
                 `}>
                   {article.difficulty === 'beginner' ? '初级' : ''}
                   {article.difficulty === 'intermediate' ? '中级' : ''}
@@ -80,18 +80,18 @@ export default async function ArticlePage({
                 </span>
               )}
               {article.readTime && (
-                <span className="text-sm text-gray-500">
-                  阅读时间：{article.readTime} 分钟
+                <span className="text-xs text-gray-400">
+                  {article.readTime} min read
                 </span>
               )}
             </div>
 
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight leading-tight">
               {article.title}
             </h1>
 
             {article.excerpt && (
-              <p className="text-xl text-gray-600 mb-6">
+              <p className="text-lg text-gray-500 mb-5 leading-relaxed">
                 {article.excerpt}
               </p>
             )}
@@ -100,12 +100,12 @@ export default async function ArticlePage({
 
             {/* 时间信息 */}
             {(article.publishedAt || article.updatedAt) && (
-              <div className="flex items-center gap-4 text-sm text-gray-500 mt-4">
+              <div className="flex items-center gap-3 text-xs text-gray-400 mt-4 tabular-nums">
                 {article.publishedAt && (
-                  <span>发布于 {article.publishedAt.slice(0, 10)}</span>
+                  <span>{article.publishedAt.slice(0, 10)}</span>
                 )}
                 {article.updatedAt && (
-                  <span>· 更新于 {article.updatedAt}</span>
+                  <span>· 更新 {article.updatedAt}</span>
                 )}
               </div>
             )}
@@ -125,22 +125,23 @@ export default async function ArticlePage({
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeSlug]}
               components={{
-                h1: ({node, ...props}) => <h1 className="text-3xl font-bold mt-8 mb-4 text-gray-900" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-2xl font-bold mt-6 mb-3 text-gray-900" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-xl font-bold mt-5 mb-2 text-gray-900" {...props} />,
-                p: ({node, ...props}) => <p data-p-idx={pIdx++} className="mb-4 text-gray-700 leading-relaxed" {...props} />,
-                a: ({node, ...props}) => <a className="text-blue-600 hover:underline" {...props} />,
+                h1: ({node, ...props}) => <h1 data-p-idx={pIdx++} className="text-3xl font-extrabold mt-10 mb-4 text-gray-900 tracking-tight" {...props} />,
+                h2: ({node, ...props}) => <h2 data-p-idx={pIdx++} className="text-2xl font-bold mt-12 mb-4 text-gray-900 tracking-tight scroll-mt-20 pb-2 border-b border-gray-100" {...props} />,
+                h3: ({node, ...props}) => <h3 data-p-idx={pIdx++} className="text-xl font-bold mt-8 mb-3 text-gray-900 scroll-mt-20" {...props} />,
+                p: ({node, ...props}) => <p data-p-idx={pIdx++} className="mb-5 text-gray-600 leading-[1.8]" {...props} />,
+                a: ({node, ...props}) => <a className="text-blue-600 hover:text-blue-700 underline underline-offset-2 decoration-blue-200 hover:decoration-blue-400 transition" {...props} />,
                 code: ({node, inline, ...props}: any) =>
                   inline ?
-                    <code className="bg-gray-100 text-red-600 px-1.5 py-0.5 rounded text-sm" {...props} /> :
-                    <code className="block bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto" {...props} />,
-                pre: ({node, ...props}) => <pre className="bg-gray-900 rounded-lg overflow-x-auto my-4" {...props} />,
-                ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-2" {...props} />,
-                ol: ({node, ...props}) => <ol className="list-decimal list-inside mb-4 space-y-2" {...props} />,
-                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-600 my-4" {...props} />,
-                table: ({node, ...props}) => <table className="min-w-full divide-y divide-gray-200 my-4" {...props} />,
-                th: ({node, ...props}) => <th className="px-4 py-2 bg-gray-50 text-left font-semibold" {...props} />,
-                td: ({node, ...props}) => <td className="px-4 py-2 border-t" {...props} />,
+                    <code className="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-[0.85em] font-mono" {...props} /> :
+                    <code className="block bg-gray-950 text-gray-200 p-4 rounded-xl overflow-x-auto text-sm font-mono leading-relaxed" {...props} />,
+                pre: ({node, ...props}) => <pre data-p-idx={pIdx++} className="bg-gray-950 rounded-xl overflow-x-auto my-6 shadow-sm" {...props} />,
+                ul: ({node, ...props}) => <ul data-p-idx={pIdx++} className="list-disc pl-6 mb-5 space-y-2 text-gray-600 leading-[1.8]" {...props} />,
+                ol: ({node, ...props}) => <ol data-p-idx={pIdx++} className="list-decimal pl-6 mb-5 space-y-2 text-gray-600 leading-[1.8]" {...props} />,
+                blockquote: ({node, ...props}) => <blockquote data-p-idx={pIdx++} className="border-l-[3px] border-blue-400 pl-5 my-6 text-gray-500 italic bg-blue-50/30 py-3 pr-4 rounded-r-lg" {...props} />,
+                table: ({node, ...props}) => <div className="overflow-x-auto my-6 rounded-xl border border-gray-200"><table data-p-idx={pIdx++} className="min-w-full divide-y divide-gray-200" {...props} /></div>,
+                th: ({node, ...props}) => <th data-p-idx={pIdx++} className="px-4 py-2.5 bg-gray-50 text-left text-xs font-semibold uppercase tracking-wider text-gray-500" {...props} />,
+                td: ({node, ...props}) => <td data-p-idx={pIdx++} className="px-4 py-2.5 border-t border-gray-100 text-sm" {...props} />,
+                li: ({node, ...props}) => <li data-p-idx={pIdx++} {...props} />,
               }}
             >
               {article.content}
@@ -166,11 +167,14 @@ export default async function ArticlePage({
           />
 
           {/* 底部导航 */}
-          <div className="mt-12 pt-8 border-t">
+          <div className="mt-12 pt-8 border-t border-gray-100">
             <a
               href="/articles"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+              className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition group"
             >
+              <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
               返回文章列表
             </a>
           </div>

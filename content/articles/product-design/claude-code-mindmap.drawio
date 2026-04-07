@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="Claude Code功能全景思维导图">
+    <mxGraphModel dx="1200" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1200" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="2" value="Claude Code 功能全景思维导图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="15" width="1000" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== CENTER NODE ===== -->
+        <mxCell id="center" value="Claude Code" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2C3E50;strokeColor=#1A252F;fontColor=#FFFFFF;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="400" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== BRANCH 1: 模型 Models (Top) ===== -->
+        <mxCell id="b1" value="模型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C0392B;fontColor=#FFFFFF;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="100" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b1e1" value="Claude Opus 4.6&lt;br/&gt;最强大模型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="330" y="75" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b1e2" value="Claude Sonnet 4.6&lt;br/&gt;平衡性能速度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="490" y="60" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b1e3" value="Claude Haiku 4.5&lt;br/&gt;快速响应" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="75" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b1e4" value="Fast Mode&lt;br/&gt;/fast 切换" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="810" y="95" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <!-- Connections Branch 1 -->
+        <mxCell id="c_center_b1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#FF6B6B;strokeWidth=2;" edge="1" parent="1" source="center" target="b1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b1_e1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FF6B6B;strokeWidth=1.5;" edge="1" parent="1" source="b1" target="b1e1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b1_e2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FF6B6B;strokeWidth=1.5;" edge="1" parent="1" source="b1" target="b1e2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b1_e3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FF6B6B;strokeWidth=1.5;" edge="1" parent="1" source="b1" target="b1e3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b1_e4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FF6B6B;strokeWidth=1.5;" edge="1" parent="1" source="b1" target="b1e4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== BRANCH 2: 平台 Platforms (Top-Right) ===== -->
+        <mxCell id="b2" value="多平台" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50C878;strokeColor=#27AE60;fontColor=#FFFFFF;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="240" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2e1" value="CLI 工具&lt;br/&gt;Mac/Linux/Windows" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="930" y="160" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2e2" value="桌面应用&lt;br/&gt;Mac/Windows" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="220" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2e3" value="Web 应用&lt;br/&gt;claude.ai/code" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="278" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2e4" value="IDE 插件&lt;br/&gt;VS Code / JetBrains" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="940" y="336" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <!-- Connections Branch 2 -->
+        <mxCell id="c_center_b2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#50C878;strokeWidth=2;" edge="1" parent="1" source="center" target="b2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b2_e1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50C878;strokeWidth=1.5;" edge="1" parent="1" source="b2" target="b2e1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b2_e2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50C878;strokeWidth=1.5;" edge="1" parent="1" source="b2" target="b2e2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b2_e3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50C878;strokeWidth=1.5;" edge="1" parent="1" source="b2" target="b2e3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b2_e4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50C878;strokeWidth=1.5;" edge="1" parent="1" source="b2" target="b2e4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== BRANCH 3: 团队协作 Collaboration (Bottom-Right) ===== -->
+        <mxCell id="b3" value="团队协作" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B59B6;strokeColor=#7D3C98;fontColor=#FFFFFF;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="530" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b3e1" value="TeamCreate&lt;br/&gt;多 Agent 协作" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#9B59B6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="465" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b3e2" value="Worktree&lt;br/&gt;隔离开发环境" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#9B59B6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="523" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b3e3" value="任务管理&lt;br/&gt;TaskCreate/List/Update" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#9B59B6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="581" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <!-- Connections Branch 3 -->
+        <mxCell id="c_center_b3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9B59B6;strokeWidth=2;" edge="1" parent="1" source="center" target="b3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b3_e1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=1.5;" edge="1" parent="1" source="b3" target="b3e1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b3_e2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=1.5;" edge="1" parent="1" source="b3" target="b3e2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b3_e3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9B59B6;strokeWidth=1.5;" edge="1" parent="1" source="b3" target="b3e3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== BRANCH 4: 工具生态 Tools (Bottom) ===== -->
+        <mxCell id="b4" value="工具生态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;fontColor=#2C3E50;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="660" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b4e1" value="MCP 服务器&lt;br/&gt;Context7/Playwright&lt;br/&gt;Sequential Thinking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#FFD700;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="370" y="735" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="b4e2" value="Skill 系统&lt;br/&gt;100+ 开箱即用&lt;br/&gt;自定义扩展" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#FFD700;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="540" y="740" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="b4e3" value="Hooks 系统&lt;br/&gt;事件触发&lt;br/&gt;自动化操作" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#FFD700;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="710" y="735" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <!-- Connections Branch 4 -->
+        <mxCell id="c_center_b4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#FFD700;strokeWidth=2;" edge="1" parent="1" source="center" target="b4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b4_e1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FFD700;strokeWidth=1.5;" edge="1" parent="1" source="b4" target="b4e1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b4_e2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FFD700;strokeWidth=1.5;" edge="1" parent="1" source="b4" target="b4e2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b4_e3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FFD700;strokeWidth=1.5;" edge="1" parent="1" source="b4" target="b4e3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== BRANCH 5: 记忆系统 Memory (Bottom-Left) ===== -->
+        <mxCell id="b5" value="记忆系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="530" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b5e1" value="Auto Memory&lt;br/&gt;4种类型:&lt;br/&gt;user/feedback/project/reference" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="465" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="b5e2" value="MEMORY.md&lt;br/&gt;索引文件&lt;br/&gt;始终加载，&lt;200行" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="70" y="543" width="160" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="b5e3" value="Session 记录&lt;br/&gt;.jsonl 自动保存&lt;br/&gt;/session-restore" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="615" width="160" height="55" as="geometry"/>
+        </mxCell>
+        <!-- Connections Branch 5 -->
+        <mxCell id="c_center_b5" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#4A90D9;strokeWidth=2;" edge="1" parent="1" source="center" target="b5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b5_e1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=1.5;" edge="1" parent="1" source="b5" target="b5e1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b5_e2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=1.5;" edge="1" parent="1" source="b5" target="b5e2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b5_e3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4A90D9;strokeWidth=1.5;" edge="1" parent="1" source="b5" target="b5e3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== BRANCH 6: 最佳实践 Best Practices (Left) ===== -->
+        <mxCell id="b6" value="最佳实践" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#95A5A6;fontColor=#2C3E50;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="380" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b6e1" value="避免过度工程&lt;br/&gt;只做必要修改" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F3F4;strokeColor=#BDC3C7;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b6e2" value="安全操作原则&lt;br/&gt;危险操作需确认" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F3F4;strokeColor=#BDC3C7;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="30" y="358" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b6e3" value="专用工具优先&lt;br/&gt;Read/Edit/Glob/Grep" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F3F4;strokeColor=#BDC3C7;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="30" y="416" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="b6e4" value="并行执行优化&lt;br/&gt;独立任务同时运行" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F3F4;strokeColor=#BDC3C7;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="474" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <!-- Connections Branch 6 -->
+        <mxCell id="c_center_b6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#BDC3C7;strokeWidth=2;" edge="1" parent="1" source="center" target="b6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b6_e1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#BDC3C7;strokeWidth=1.5;" edge="1" parent="1" source="b6" target="b6e1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b6_e2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#BDC3C7;strokeWidth=1.5;" edge="1" parent="1" source="b6" target="b6e2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b6_e3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#BDC3C7;strokeWidth=1.5;" edge="1" parent="1" source="b6" target="b6e3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_b6_e4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#BDC3C7;strokeWidth=1.5;" edge="1" parent="1" source="b6" target="b6e4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== Bottom note ===== -->
+        <mxCell id="note" value="整理时间: 2026-03-26  |  版本: Claude Code (Opus 4.6)  |  来源: claude-code-updates-summary.md" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#95A5A6;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="100" y="910" width="1000" height="20" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

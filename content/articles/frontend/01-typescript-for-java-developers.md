@@ -243,7 +243,7 @@ fetchUser(id)
   .then(user => console.log(user));
 ```
 
-**TypeScript async/await（推荐）：**
+**TypeScript async/await（推荐）：** 关于异步编程的深入机制，可参考 [Node.js 异步编程详解](/articles/backend/01-nodejs-async-programming "Node.js 异步编程：对比 Java 多线程模型")。
 ```typescript
 async function loadUser(id: string): Promise<void> {
   try {
@@ -375,7 +375,7 @@ interface Employee extends User {
    - 条件类型
    - 映射类型
 
-2. **学习 React + TypeScript**
+2. **学习 React + TypeScript**（[30分钟快速上手](/articles/quickstart/01-typescript-react-30min "TypeScript + React 全栈项目 30分钟快速上手")）
    - 组件类型定义
    - Props 和 State 类型
    - Hooks 类型
@@ -387,6 +387,8 @@ interface Employee extends User {
 
 ## 总结
 
+<img src="/images/typescript/java-typescript-type-map.svg" alt="Java → TypeScript 类型系统概念映射" style="max-width:100%;margin:1em 0;" />
+
 | 特性 | Java | TypeScript |
 |------|------|------------|
 | 类型系统 | 编译时静态类型 | 编译时静态类型（转译为 JS） |
@@ -397,7 +399,7 @@ interface Employee extends User {
 | 异步编程 | CompletableFuture | Promise/async-await |
 | 包管理 | Maven/Gradle | npm/yarn/pnpm |
 
-TypeScript 让 Java 工程师能够利用现有的编程经验快速掌握前端开发。下一篇文章我们将学习 React 框架，看看它与 Java Spring 的对比。
+TypeScript 让 Java 工程师能够利用现有的编程经验快速掌握前端开发。下一篇文章我们将学习 [React 框架](/articles/frontend/02-react-vs-spring "React 核心概念：对比 Java Spring 框架")，看看它与 Java Spring 的对比。
 
 ## 参考资源
 

@@ -26,90 +26,92 @@ export default function ArticleCard({ article, onTagClick }: ArticleCardProps) {
     setIsCompleted(isArticleCompleted(articleSlug))
   }, [articleSlug])
 
-  const categoryConfig: Record<string, { name: string; bgColor: string; textColor: string }> = {
-    quickstart: { name: '🚀 快速启动', bgColor: 'bg-orange-100', textColor: 'text-orange-800' },
-    frontend: { name: '前端', bgColor: 'bg-blue-100', textColor: 'text-blue-800' },
-    backend: { name: '后端', bgColor: 'bg-green-100', textColor: 'text-green-800' },
-    ai: { name: 'AI', bgColor: 'bg-purple-100', textColor: 'text-purple-800' },
-    devops: { name: 'DevOps', bgColor: 'bg-yellow-100', textColor: 'text-yellow-800' },
-    projects: { name: '实战项目', bgColor: 'bg-red-100', textColor: 'text-red-800' },
-    architecture: { name: '架构设计', bgColor: 'bg-indigo-100', textColor: 'text-indigo-800' },
-    'personal-growth': { name: '个人成长', bgColor: 'bg-pink-100', textColor: 'text-pink-800' },
-    'tools-and-tips': { name: '工具技巧', bgColor: 'bg-teal-100', textColor: 'text-teal-800' },
-    'product-design': { name: '产品设计', bgColor: 'bg-cyan-100', textColor: 'text-cyan-800' },
-    research: { name: '技术调研', bgColor: 'bg-amber-100', textColor: 'text-amber-800' },
-    'work-logs': { name: '工作记录', bgColor: 'bg-slate-100', textColor: 'text-slate-800' },
-    troubleshooting: { name: '问题排查', bgColor: 'bg-red-100', textColor: 'text-red-800' },
+  const categoryConfig: Record<string, { name: string; color: string }> = {
+    quickstart: { name: '快速启动', color: 'text-orange-600 bg-orange-50 ring-orange-100' },
+    frontend: { name: '前端', color: 'text-blue-600 bg-blue-50 ring-blue-100' },
+    backend: { name: '后端', color: 'text-emerald-600 bg-emerald-50 ring-emerald-100' },
+    ai: { name: 'AI', color: 'text-violet-600 bg-violet-50 ring-violet-100' },
+    devops: { name: 'DevOps', color: 'text-amber-600 bg-amber-50 ring-amber-100' },
+    projects: { name: '实战项目', color: 'text-rose-600 bg-rose-50 ring-rose-100' },
+    architecture: { name: '架构设计', color: 'text-indigo-600 bg-indigo-50 ring-indigo-100' },
+    'personal-growth': { name: '个人成长', color: 'text-pink-600 bg-pink-50 ring-pink-100' },
+    'tools-and-tips': { name: '工具技巧', color: 'text-teal-600 bg-teal-50 ring-teal-100' },
+    'product-design': { name: '产品设计', color: 'text-cyan-600 bg-cyan-50 ring-cyan-100' },
+    research: { name: '技术调研', color: 'text-amber-700 bg-amber-50 ring-amber-100' },
+    'work-logs': { name: '工作记录', color: 'text-slate-600 bg-slate-50 ring-slate-100' },
+    troubleshooting: { name: '问题排查', color: 'text-red-600 bg-red-50 ring-red-100' },
+    skill: { name: 'Skill', color: 'text-emerald-600 bg-emerald-50 ring-emerald-100' },
+    'learning-notes': { name: '学习笔记', color: 'text-sky-600 bg-sky-50 ring-sky-100' },
   }
 
-  const category = categoryConfig[article.category as keyof typeof categoryConfig] || {
+  const category = categoryConfig[article.category] || {
     name: article.category,
-    bgColor: 'bg-gray-100',
-    textColor: 'text-gray-800'
+    color: 'text-gray-600 bg-gray-50 ring-gray-100',
   }
 
-  const difficultyConfig = {
-    beginner: { name: '初级', bgColor: 'bg-green-100', textColor: 'text-green-700' },
-    intermediate: { name: '中级', bgColor: 'bg-yellow-100', textColor: 'text-yellow-700' },
-    advanced: { name: '高级', bgColor: 'bg-red-100', textColor: 'text-red-700' }
+  const difficultyConfig: Record<string, { name: string; color: string }> = {
+    beginner: { name: '初级', color: 'text-emerald-600' },
+    intermediate: { name: '中级', color: 'text-amber-600' },
+    advanced: { name: '高级', color: 'text-rose-600' },
   }
 
   const difficulty = article.difficulty
-    ? difficultyConfig[article.difficulty as keyof typeof difficultyConfig]
+    ? difficultyConfig[article.difficulty]
     : null
 
   return (
     <Link href={`/articles/${article.category}/${article.slug}`}>
-      <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow relative">
-        {/* 完成标记 */}
+      <div className="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 transition-all duration-200 hover:shadow-lg hover:shadow-gray-100/80">
+        {/* Completed badge */}
         {isCompleted && (
-          <div className="absolute top-4 right-4 bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-            ✓
+          <div className="absolute top-5 right-5 flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium ring-1 ring-emerald-100">
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            </svg>
+            已完成
           </div>
         )}
 
-        {/* 分类和难度标签 */}
+        {/* Meta row */}
         <div className="flex items-center gap-2 mb-3">
-          <span className={`${category.bgColor} ${category.textColor} px-3 py-1 rounded-full text-sm font-medium`}>
+          <span className={`px-2.5 py-0.5 rounded-md text-xs font-medium ring-1 ${category.color}`}>
             {category.name}
           </span>
           {difficulty && (
-            <span className={`${difficulty.bgColor} ${difficulty.textColor} px-3 py-1 rounded-full text-sm font-medium`}>
+            <span className={`text-xs font-medium ${difficulty.color}`}>
               {difficulty.name}
             </span>
           )}
           {article.readTime && (
-            <span className="text-gray-500 text-sm">
-              {article.readTime} 分钟
+            <span className="text-xs text-gray-400 ml-auto">
+              {article.readTime} min
             </span>
           )}
         </div>
 
-        {/* 标题 */}
-        <h2 className="text-2xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition">
+        {/* Title */}
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2 pr-20">
           {article.title}
         </h2>
 
-        {/* 摘要 */}
-        <p className="text-gray-600 mb-4 line-clamp-2">
+        {/* Excerpt */}
+        <p className="text-sm text-gray-500 mb-4 line-clamp-2 leading-relaxed">
           {article.excerpt}
         </p>
 
-        {/* 标签和时间 */}
-        <div className="flex items-center justify-between mt-auto">
+        {/* Tags & date */}
+        <div className="flex items-center justify-between">
           {article.tags && article.tags.length > 0 ? (
-            <div className="flex flex-wrap gap-2">
-              {article.tags.map((tag, index) => (
+            <div className="flex flex-wrap gap-1.5">
+              {article.tags.slice(0, 4).map((tag, index) => (
                 <button
                   key={index}
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    if (onTagClick) {
-                      onTagClick(tag)
-                    }
+                    onTagClick?.(tag)
                   }}
-                  className="text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded hover:bg-blue-100 hover:text-blue-700 transition cursor-pointer"
+                  className="text-xs text-gray-500 bg-gray-50 px-2 py-0.5 rounded-md hover:bg-blue-50 hover:text-blue-600 transition cursor-pointer"
                 >
                   #{tag}
                 </button>
@@ -117,7 +119,7 @@ export default function ArticleCard({ article, onTagClick }: ArticleCardProps) {
             </div>
           ) : <div />}
           {article.publishedAt && (
-            <span className="text-xs text-gray-400 whitespace-nowrap ml-4">
+            <span className="text-[11px] text-gray-400 whitespace-nowrap ml-4 tabular-nums">
               {article.publishedAt.slice(0, 10)}
             </span>
           )}

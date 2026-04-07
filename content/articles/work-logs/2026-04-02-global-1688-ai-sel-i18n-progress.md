@@ -34,7 +34,7 @@ readTime: 10
 - 配置步骤和验证清单
 
 #### mcms-review-tag-resources.md
-- 评论标签卡片的多语言配置方案
+- [评论标签卡片](/articles/work-logs/image-search-review-tag-i18n-implementation)的多语言配置方案
 - 解决 Tag Type 列值和弹窗标题的中文问题
 - 4 个 MCMS 资源配置
 
@@ -103,6 +103,8 @@ CardEventFactory.java (创建卡片事件，设置 titleMcmsKey)
   ↓
 ImprovedReviewTagListCardEventHandlerStrategy.java (处理卡片事件)
 ```
+
+<img src="/images/i18n/i18n-pipeline.svg" alt="i18n 国际化处理管道架构" style="max-width:100%;margin:1em 0;" />
 
 ### 多语言资源格式
 ```

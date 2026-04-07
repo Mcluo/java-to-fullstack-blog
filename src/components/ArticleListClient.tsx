@@ -77,12 +77,12 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
 
   return (
     <>
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">文章</h1>
-        <p className="text-xl text-gray-600 mb-6">
+      <div className="mb-10">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">文章</h1>
+        <p className="text-gray-500 mb-6">
           技术学习、工程实践与思考
         </p>
-        <div className="max-w-2xl">
+        <div className="max-w-lg">
           <SearchBar
             onSearch={setSearchQuery}
             placeholder="搜索标题、内容、标签..."
@@ -91,16 +91,16 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
       </div>
 
       {/* 筛选器 */}
-      <div className="mb-8 space-y-4">
+      <div className="mb-8 space-y-4 bg-white rounded-2xl border border-gray-100 p-5">
         <div className="space-y-3">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-sm font-semibold text-gray-700">分类</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400">分类</h3>
             {selectedCategory !== 'all' && (
               <button
                 onClick={() => setSelectedCategory('all')}
-                className="text-xs text-blue-600 hover:text-blue-800"
+                className="text-xs text-blue-600 hover:text-blue-800 font-medium"
               >
-                显示全部
+                全部
               </button>
             )}
           </div>
@@ -109,15 +109,15 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
             if (groupCategories.length === 0) return null
             return (
               <div key={group} className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs text-gray-400 w-16 shrink-0">{group}</span>
+                <span className="text-[11px] text-gray-400 w-16 shrink-0 font-medium">{group}</span>
                 {groupCategories.map((cat) => (
                   <button
                     key={cat.slug}
                     onClick={() => setSelectedCategory(selectedCategory === cat.slug ? 'all' : cat.slug)}
-                    className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
                       selectedCategory === cat.slug
-                        ? cat.color + ' ring-2 ring-blue-500'
-                        : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                        ? cat.color + ' ring-1 ring-blue-400 shadow-sm'
+                        : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-gray-700'
                     }`}
                   >
                     {cat.name}
@@ -128,17 +128,17 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
           })}
         </div>
 
-        <div>
-          <h3 className="text-sm font-semibold text-gray-700 mb-2">难度</h3>
-          <div className="flex gap-2 flex-wrap">
+        <div className="pt-2 border-t border-gray-50">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">难度</h3>
+          <div className="flex gap-1.5 flex-wrap">
             {difficulties.map((diff) => (
               <button
                 key={diff.slug}
                 onClick={() => setSelectedDifficulty(diff.slug)}
-                className={`px-4 py-2 rounded-lg font-medium transition ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   selectedDifficulty === diff.slug
-                    ? diff.color + ' ring-2 ring-blue-500'
-                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                    ? diff.color + ' ring-1 ring-blue-400 shadow-sm'
+                    : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-gray-700'
                 }`}
               >
                 {diff.name}
@@ -148,13 +148,13 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
         </div>
 
         {selectedTag && (
-          <div className="flex items-center gap-2 p-3 bg-blue-50 border-l-4 border-blue-600 rounded-r">
-            <span className="text-sm text-blue-800">
-              <strong>当前标签:</strong> #{selectedTag}
+          <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-xl ring-1 ring-blue-100">
+            <span className="text-xs text-blue-700 font-medium">
+              标签: #{selectedTag}
             </span>
             <button
               onClick={() => setSelectedTag(null)}
-              className="ml-auto text-blue-600 hover:text-blue-800 font-medium"
+              className="ml-auto text-xs text-blue-500 hover:text-blue-700 font-medium"
             >
               清除
             </button>
@@ -162,39 +162,40 @@ export default function ArticleListClient({ articles, categories, groups }: Prop
         )}
 
         {hasActiveFilters && (
-          <div className="flex justify-end">
+          <div className="flex justify-end pt-1">
             <button
               onClick={clearFilters}
-              className="text-sm text-gray-600 hover:text-gray-900 underline"
+              className="text-xs text-gray-400 hover:text-gray-600 transition"
             >
-              清除所有筛选
+              重置筛选
             </button>
           </div>
         )}
       </div>
 
       {/* 结果统计 */}
-      <div className="mb-4 flex items-center justify-between">
-        <p className="text-gray-600">
-          找到 <strong className="text-blue-600">{filteredArticles.length}</strong> 篇文章
+      <div className="mb-5 flex items-center justify-between">
+        <p className="text-sm text-gray-500">
+          <span className="font-semibold text-gray-900">{filteredArticles.length}</span> 篇文章
           {hasActiveFilters && (
-            <span className="text-sm text-gray-500 ml-2">
-              （共 {articles.length} 篇）
+            <span className="text-gray-400 ml-1">
+              / {articles.length}
             </span>
           )}
         </p>
       </div>
 
       {/* 文章列表 */}
-      <div className="grid grid-cols-1 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredArticles.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg mb-4">没有找到匹配的文章</p>
+          <div className="col-span-full text-center py-16">
+            <div className="text-4xl mb-4">🔍</div>
+            <p className="text-gray-500 mb-3">没有找到匹配的文章</p>
             <button
               onClick={clearFilters}
-              className="text-blue-600 hover:underline"
+              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
             >
-              清除筛选条件
+              重置筛选
             </button>
           </div>
         ) : (

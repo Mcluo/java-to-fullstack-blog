@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="CLI痛点优先级矩阵">
+    <mxGraphModel dx="1200" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="2" value="Claude Code CLI 痛点优先级矩阵" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="50" y="15" width="1000" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Subtitle -->
+        <mxCell id="3" value="X轴: 解决难度（低→高）  |  Y轴: 影响范围（低→高）" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontColor=#7F8C8D;" vertex="1" parent="1">
+          <mxGeometry x="50" y="55" width="1000" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- Y Axis Label -->
+        <mxCell id="yLabel" value="影响范围" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontStyle=1;fontColor=#2C3E50;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="15" y="430" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="yHigh" value="高" style="text;html=1;strokeColor=none;fillColor=none;align=right;fontSize=12;fontColor=#27AE60;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="95" y="100" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="yLow" value="低" style="text;html=1;strokeColor=none;fillColor=none;align=right;fontSize=12;fontColor=#BDC3C7;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="95" y="690" width="30" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- X Axis Label -->
+        <mxCell id="xLabel" value="解决难度" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="430" y="760" width="140" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="xLow" value="低" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#27AE60;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="725" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="xHigh" value="高" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontColor=#E74C3C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="725" width="30" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Y Axis -->
+        <mxCell id="yAxis" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#2C3E50;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="720" as="sourcePoint"/>
+            <mxPoint x="130" y="90" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- X Axis -->
+        <mxCell id="xAxis" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#2C3E50;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="720" as="sourcePoint"/>
+            <mxPoint x="910" y="720" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Grid Lines -->
+        <mxCell id="gv1" value="" style="endArrow=none;html=1;strokeColor=#E8E8E8;strokeWidth=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="90" as="sourcePoint"/>
+            <mxPoint x="320" y="720" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gv2" value="" style="endArrow=none;html=1;strokeColor=#E8E8E8;strokeWidth=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="90" as="sourcePoint"/>
+            <mxPoint x="520" y="720" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gv3" value="" style="endArrow=none;html=1;strokeColor=#E8E8E8;strokeWidth=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="90" as="sourcePoint"/>
+            <mxPoint x="720" y="720" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gh1" value="" style="endArrow=none;html=1;strokeColor=#E8E8E8;strokeWidth=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="270" as="sourcePoint"/>
+            <mxPoint x="910" y="270" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gh2" value="" style="endArrow=none;html=1;strokeColor=#E8E8E8;strokeWidth=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="450" as="sourcePoint"/>
+            <mxPoint x="910" y="450" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gh3" value="" style="endArrow=none;html=1;strokeColor=#E8E8E8;strokeWidth=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="600" as="sourcePoint"/>
+            <mxPoint x="910" y="600" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Zone Labels -->
+        <mxCell id="zoneQuickWin" value="Quick Wins ✨" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=3;fontColor=#27AE60;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="135" y="92" width="180" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="zoneMajorProj" value="大项目 🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=3;fontColor=#E74C3C;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="720" y="92" width="180" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="zoneFillIn" value="补充项 📝" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=3;fontColor=#BDC3C7;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="135" y="660" width="180" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ====================== PAIN POINTS ====================== -->
+
+        <!-- P0: 权限确认 (High impact ~⭐⭐⭐⭐⭐, Medium effort) -->
+        <!-- Impact: y=170 (high), Effort: x=370 (medium) -->
+        <mxCell id="p1" value="权限确认打断&lt;br/&gt;🔥 P0" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C0392B;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="145" width="130" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- P0: 错误处理 (High impact ⭐⭐⭐⭐⭐, Medium effort ~400) -->
+        <mxCell id="p2" value="错误处理不友好&lt;br/&gt;🔥 P0" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C0392B;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="355" y="230" width="130" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- P1: Skills 发现 (High impact ⭐⭐⭐⭐, Low-medium effort ~280) -->
+        <mxCell id="p3" value="Skills 发现困难&lt;br/&gt;🔥 P1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;fontColor=#2C3E50;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="270" width="130" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- P1: 记忆系统 (High impact ⭐⭐⭐⭐, Medium-high effort ~530) -->
+        <mxCell id="p4" value="记忆系统不可靠&lt;br/&gt;🔥 P1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;fontColor=#2C3E50;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="285" width="130" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- P1: 学习曲线 (High impact ⭐⭐⭐⭐, High effort ~680) -->
+        <mxCell id="p5" value="学习曲线陡峭&lt;br/&gt;⚡ P1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;fontColor=#2C3E50;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="305" width="130" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- P2: 上下文切换 (Medium impact ⭐⭐⭐, Medium-high effort ~560) -->
+        <mxCell id="p6" value="上下文切换成本高&lt;br/&gt;⚡ P2" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="455" width="130" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- P2: 长操作焦虑 (Medium impact ⭐⭐⭐, Medium effort ~380) -->
+        <mxCell id="p7" value="长操作焦虑&lt;br/&gt;⚡ P2" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="315" y="470" width="130" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- P2: 可视化反馈 (Medium impact ⭐⭐⭐, Medium-high effort ~560) -->
+        <mxCell id="p8" value="缺少可视化反馈&lt;br/&gt;⚡ P2" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="505" width="130" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- ====================== LEGEND ====================== -->
+        <mxCell id="legendTitle" value="优先级说明" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="130" y="798" width="120" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- P0 Legend -->
+        <mxCell id="legP0" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C0392B;" vertex="1" parent="1">
+          <mxGeometry x="260" y="796" width="28" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="legP0t" value="🔥 P0 - 立即修复（高影响，中等难度）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="295" y="798" width="290" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- P1 Legend -->
+        <mxCell id="legP1" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#F39C12;" vertex="1" parent="1">
+          <mxGeometry x="260" y="833" width="28" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="legP1t" value="🔥 P1 - 本季度（高影响，较高难度）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="295" y="835" width="290" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- P2 Legend -->
+        <mxCell id="legP2" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;" vertex="1" parent="1">
+          <mxGeometry x="260" y="868" width="28" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="legP2t" value="⚡ P2 - 中期规划（中等影响，各种难度）" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="295" y="870" width="290" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- Data Labels for pain points -->
+        <mxCell id="d1" value="影响⭐⭐⭐⭐⭐ 难度🔧🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#C0392B;" vertex="1" parent="1">
+          <mxGeometry x="308" y="222" width="154" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2" value="影响⭐⭐⭐⭐⭐ 难度🔧🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#C0392B;" vertex="1" parent="1">
+          <mxGeometry x="343" y="307" width="154" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3" value="影响⭐⭐⭐⭐ 难度🔧🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#E67E22;" vertex="1" parent="1">
+          <mxGeometry x="173" y="347" width="154" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="d4" value="影响⭐⭐⭐⭐ 难度🔧🔧🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#E67E22;" vertex="1" parent="1">
+          <mxGeometry x="478" y="362" width="154" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="d5" value="影响⭐⭐⭐⭐ 难度🔧🔧🔧🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#E67E22;" vertex="1" parent="1">
+          <mxGeometry x="628" y="382" width="154" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="d6" value="影响⭐⭐⭐ 难度🔧🔧🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#2980B9;" vertex="1" parent="1">
+          <mxGeometry x="498" y="532" width="154" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="d7" value="影响⭐⭐⭐ 难度🔧🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#2980B9;" vertex="1" parent="1">
+          <mxGeometry x="303" y="547" width="154" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="d8" value="影响⭐⭐⭐ 难度🔧🔧🔧" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#2980B9;" vertex="1" parent="1">
+          <mxGeometry x="668" y="582" width="154" height="16" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

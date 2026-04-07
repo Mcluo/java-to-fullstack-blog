@@ -27,6 +27,8 @@ readTime: 5
 └─ 负反馈循环
 ```
 
+<img src="/images/motivation/motivation-loops.svg" alt="自驱力正向与负向反馈循环" style="max-width:100%;margin:1em 0;" />
+
 **核心差异**：不是"想不想做"，而是**大脑能否识别到奖励信号**
 
 ### 2. **认知模式差异**
@@ -111,7 +113,7 @@ readTime: 5
 - 可能是当前环境缺乏正反馈
 
 **可以这样做**：
-1. 找1件"做了就能立刻看到效果"的事（如做side project而非无期限的KPI）
+1. 找1件"做了就能立刻看到效果"的事（如做[side project](/articles/personal-growth/ai-era-programmer-career-value-analysis)而非无期限的KPI）
 2. 降低启动难度：把"学习新框架"改成"运行官方demo"
 3. 寻找同行者：加入社区/找学习伙伴（社交动机补充内在动机）
 

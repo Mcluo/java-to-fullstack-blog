@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="Java-TypeScript类型系统对比">
+    <mxGraphModel dx="1200" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="2" value="Java → TypeScript 类型系统概念对应图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#2C3E50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="20" width="1000" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== LEFT COLUMN: JAVA ===== -->
+        <!-- Java Header -->
+        <mxCell id="10" value="Java" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C0392B;fontColor=#FFFFFF;fontSize=16;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="100" y="90" width="380" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Java Generics -->
+        <mxCell id="11" value="&lt;b&gt;泛型 Generics&lt;/b&gt;&lt;br/&gt;List&amp;lt;String&amp;gt; names&lt;br/&gt;Map&amp;lt;String, Integer&amp;gt; ages&lt;br/&gt;Optional&amp;lt;User&amp;gt; user" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="100" y="170" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Java Interfaces -->
+        <mxCell id="12" value="&lt;b&gt;接口 Interfaces&lt;/b&gt;&lt;br/&gt;public interface User { ... }&lt;br/&gt;class Student implements User&lt;br/&gt;只能定义方法契约" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="100" y="280" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Java Enum -->
+        <mxCell id="13" value="&lt;b&gt;枚举 Enum&lt;/b&gt;&lt;br/&gt;enum Status { PENDING, APPROVED }&lt;br/&gt;常量集合，类型安全&lt;br/&gt;编译时检查" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="100" y="390" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Java Optional -->
+        <mxCell id="14" value="&lt;b&gt;Optional&lt;/b&gt;&lt;br/&gt;Optional&amp;lt;String&amp;gt; name&lt;br/&gt;name.orElse(&quot;default&quot;)&lt;br/&gt;name.ifPresent(v -&gt; ...)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="100" y="500" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Java Type Casting -->
+        <mxCell id="15" value="&lt;b&gt;类型检查&lt;/b&gt;&lt;br/&gt;if (obj instanceof String) {&lt;br/&gt;  ((String) obj).toUpperCase()&lt;br/&gt;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#FF6B6B;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="100" y="610" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== ARROWS (middle) ===== -->
+        <!-- Arrow 1 -->
+        <mxCell id="a1" value="对应" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9B59B6;strokeWidth=2;fontColor=#9B59B6;fontStyle=1;fontSize=11;" edge="1" parent="1" source="11" target="31">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Arrow 2 -->
+        <mxCell id="a2" value="对应" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9B59B6;strokeWidth=2;fontColor=#9B59B6;fontStyle=1;fontSize=11;" edge="1" parent="1" source="12" target="32">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Arrow 3 -->
+        <mxCell id="a3" value="对应" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9B59B6;strokeWidth=2;fontColor=#9B59B6;fontStyle=1;fontSize=11;" edge="1" parent="1" source="13" target="33">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Arrow 4 -->
+        <mxCell id="a4" value="对应" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9B59B6;strokeWidth=2;fontColor=#9B59B6;fontStyle=1;fontSize=11;" edge="1" parent="1" source="14" target="34">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Arrow 5 -->
+        <mxCell id="a5" value="对应" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9B59B6;strokeWidth=2;fontColor=#9B59B6;fontStyle=1;fontSize=11;" edge="1" parent="1" source="15" target="35">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== RIGHT COLUMN: TypeScript ===== -->
+        <!-- TypeScript Header -->
+        <mxCell id="30" value="TypeScript" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A90D9;strokeColor=#2980B9;fontColor=#FFFFFF;fontSize=16;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="90" width="380" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- TS Generics -->
+        <mxCell id="31" value="&lt;b&gt;泛型 Generics&lt;/b&gt;&lt;br/&gt;string[] 或 Array&amp;lt;string&amp;gt;&lt;br/&gt;Map&amp;lt;string, number&amp;gt;&lt;br/&gt;function get&amp;lt;T&amp;gt;(arr: T[]): T" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="170" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- TS Interfaces -->
+        <mxCell id="32" value="&lt;b&gt;接口 Interfaces&lt;/b&gt;&lt;br/&gt;interface User { name: string }&lt;br/&gt;class Student implements User&lt;br/&gt;可描述对象形状，支持扩展" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="280" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- TS Enum -->
+        <mxCell id="33" value="&lt;b&gt;枚举 Enum&lt;/b&gt;&lt;br/&gt;enum Status { Pending, Approved }&lt;br/&gt;字符串枚举更常用&lt;br/&gt;编译为 JS 对象" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="390" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- TS Optional Chaining -->
+        <mxCell id="34" value="&lt;b&gt;可选链 Optional Chaining&lt;/b&gt;&lt;br/&gt;user?.name ?? 'default'&lt;br/&gt;obj?.prop?.nested&lt;br/&gt;arr?.[0]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="500" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- TS Type Guards -->
+        <mxCell id="35" value="&lt;b&gt;类型守卫 Type Guards&lt;/b&gt;&lt;br/&gt;if (typeof value === 'string')&lt;br/&gt;编译器自动推断缩小类型&lt;br/&gt;更简洁，更安全" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#4A90D9;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="610" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== TYPESCRIPT-UNIQUE SECTION ===== -->
+        <!-- Section Title -->
+        <mxCell id="50" value="TypeScript 独有特性（Java 无对应）" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontStyle=1;fontColor=#27AE60;" vertex="1" parent="1">
+          <mxGeometry x="100" y="730" width="1000" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Union Types -->
+        <mxCell id="51" value="&lt;b&gt;联合类型&lt;/b&gt;&lt;br/&gt;Union Types&lt;br/&gt;&lt;br/&gt;string | number&lt;br/&gt;'pending' | 'approved' | 'rejected'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="780" width="220" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Literal Types -->
+        <mxCell id="52" value="&lt;b&gt;字面量类型&lt;/b&gt;&lt;br/&gt;Literal Types&lt;br/&gt;&lt;br/&gt;type Dir = 'left' | 'right'&lt;br/&gt;const x: 42 = 42" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="780" width="220" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Mapped Types -->
+        <mxCell id="53" value="&lt;b&gt;映射类型&lt;/b&gt;&lt;br/&gt;Mapped Types&lt;br/&gt;&lt;br/&gt;Partial&amp;lt;User&amp;gt;&lt;br/&gt;Readonly&amp;lt;User&amp;gt;&lt;br/&gt;Record&amp;lt;K, V&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="780" width="220" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Conditional Types -->
+        <mxCell id="54" value="&lt;b&gt;条件类型&lt;/b&gt;&lt;br/&gt;Conditional Types&lt;br/&gt;&lt;br/&gt;T extends U ? X : Y&lt;br/&gt;类型级别的 if/else" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFAF1;strokeColor=#50C878;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="820" y="780" width="260" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="60" value="图例" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="910" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="" style="rounded=1;fillColor=#FDECEA;strokeColor=#FF6B6B;" vertex="1" parent="1">
+          <mxGeometry x="160" y="908" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="62" value="Java 特性" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="185" y="908" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="63" value="" style="rounded=1;fillColor=#EBF5FB;strokeColor=#4A90D9;" vertex="1" parent="1">
+          <mxGeometry x="290" y="908" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="64" value="TypeScript 对应" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="315" y="908" width="110" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="65" value="" style="rounded=1;fillColor=#EAFAF1;strokeColor=#50C878;" vertex="1" parent="1">
+          <mxGeometry x="450" y="908" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="66" value="TypeScript 独有" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="475" y="908" width="110" height="20" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

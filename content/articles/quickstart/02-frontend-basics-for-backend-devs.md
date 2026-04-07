@@ -172,6 +172,8 @@ function UserForm() {
 
 ### 1.4 useEffect = 生命周期钩子
 
+> 想深入了解 React 组件和 Hooks 的设计理念，可以阅读 [React 核心概念：对比 Java Spring 框架](/articles/frontend/02-react-vs-spring "React 核心概念：对比 Java Spring 框架")。
+
 **后端思维：**
 ```java
 @PostConstruct
@@ -451,6 +453,8 @@ align-items: stretch;
 .content { flex: 1; } /* 占满剩余空间 */
 ```
 
+<img src="/images/frontend-basics/flexbox-and-concepts.svg" alt="Flexbox 布局与后端前端概念映射" style="max-width:100%;margin:1em 0;" />
+
 ---
 
 ### 2.3 常用布局模式速查
@@ -494,7 +498,7 @@ align-items: stretch;
 
 ---
 
-## Part 3: TypeScript 类型定义速查
+## Part 3: [TypeScript](/articles/frontend/01-typescript-for-java-developers "TypeScript 快速入门：Java 工程师视角") 类型定义速查
 
 ### 3.1 基本类型
 
@@ -822,7 +826,7 @@ function increment() {
 3. **UI 组件库**（快速开发）
    - Ant Design（企业级）
    - Material-UI（Google 风格）
-   - Tailwind CSS（工具类优先）
+   - [Tailwind CSS](/articles/frontend/03-tailwind-css-for-backend-devs "Tailwind CSS 入门：后端工程师的样式速成课")（工具类优先）
 
 ---
 

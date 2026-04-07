@@ -35,7 +35,7 @@ readTime: 13
 - ❌ `@Translated` 注解适用于静态文案，不适用于动态数据
 
 **经验教训**：
-在选择多语言方案时，需要区分静态文案（title、description）和动态数据（评论标签、商品名称）：
+在选择多语言方案时，需要区分静态文案（title、description）和动态数据（评论标签、商品名称），详见 [global-1688-ai-sel 多语言实现进度](/articles/work-logs/2026-04-02-global-1688-ai-sel-i18n-progress)：
 - 静态文案 → `@Translated` + 美杜莎配置
 - 动态数据 → 翻译服务实时翻译
 
@@ -137,6 +137,8 @@ ImageProductSearchNode.productComment()
   ↓
 返回给前端（已翻译的内容）
 ```
+
+<img src="/images/review-tag-i18n/review-tag-translation-flow.svg" alt="评价标签翻译管道与静态/动态数据选择" style="max-width:100%;margin:1em 0;" />
 
 ### 与改进workflow的对比
 

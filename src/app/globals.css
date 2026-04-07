@@ -2,7 +2,156 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Settings-driven CSS variables ── */
+:root {
+  --accent-hue: 220;
+  --prose-size: 16px;
+  --prose-width: 768px;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
     'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Light theme background ── */
+[data-theme="light"] body::before,
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--accent-hue) 90% 96%), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, hsl(calc(var(--accent-hue) + 40) 80% 96%), transparent),
+    hsl(0 0% 98%);
+}
+
+/* ── Dark theme ── */
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] body {
+  background: #0f0f11;
+  color: #e4e4e7;
+}
+
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--accent-hue) 50% 12%), transparent),
+    #0f0f11;
+}
+
+/* Dark: cards, inputs, panels */
+[data-theme="dark"] .bg-white {
+  background-color: #18181b;
+}
+[data-theme="dark"] .bg-gray-50 {
+  background-color: #131316;
+}
+[data-theme="dark"] .border-gray-100,
+[data-theme="dark"] .border-gray-200 {
+  border-color: #27272a;
+}
+[data-theme="dark"] .text-gray-900 {
+  color: #fafafa;
+}
+[data-theme="dark"] .text-gray-800 {
+  color: #e4e4e7;
+}
+[data-theme="dark"] .text-gray-700 {
+  color: #d4d4d8;
+}
+[data-theme="dark"] .text-gray-600 {
+  color: #a1a1aa;
+}
+[data-theme="dark"] .text-gray-500 {
+  color: #71717a;
+}
+[data-theme="dark"] .text-gray-400 {
+  color: #52525b;
+}
+
+/* Dark: header/footer */
+[data-theme="dark"] header.backdrop-blur-xl {
+  background-color: rgba(15, 15, 17, 0.85);
+  border-color: #27272a;
+}
+[data-theme="dark"] footer {
+  background-color: rgba(15, 15, 17, 0.6);
+  border-color: #27272a;
+}
+
+/* Dark: hover states */
+[data-theme="dark"] .hover\:bg-gray-100:hover {
+  background-color: #27272a;
+}
+[data-theme="dark"] .hover\:bg-gray-50:hover {
+  background-color: #1f1f23;
+}
+
+/* Dark: code blocks (already dark, minimal adjustment) */
+[data-theme="dark"] .bg-gray-100 {
+  background-color: #27272a;
+}
+
+/* Dark: shadows */
+[data-theme="dark"] .shadow-md,
+[data-theme="dark"] .shadow-lg,
+[data-theme="dark"] .shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Prose: apply settings ── */
+.prose {
+  font-size: var(--prose-size);
+}
+
+.prose h2 {
+  scroll-margin-top: 5rem;
+}
+.prose h3 {
+  scroll-margin-top: 5rem;
+}
+
+/* ── TOC visibility ── */
+[data-show-toc="false"] aside {
+  display: none !important;
+}
+
+/* ── Scrollbar ── */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+[data-theme="dark"] .scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+}
+
+/* ── Selection color ── */
+::selection {
+  background: hsl(var(--accent-hue) 90% 90%);
+  color: hsl(var(--accent-hue) 90% 20%);
+}
+
+[data-theme="dark"] ::selection {
+  background: hsl(var(--accent-hue) 60% 30%);
+  color: hsl(var(--accent-hue) 60% 90%);
 }

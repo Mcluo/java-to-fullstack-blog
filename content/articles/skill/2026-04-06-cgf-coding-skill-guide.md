@@ -160,6 +160,8 @@ cd ~/work/order-detail-wap && git remote -v  # → ctf-m-page/order-detail ❌
 - **用户提供了本地目录**（如 `/Users/robin/work/order-detail`）→ 跳到**步骤 6**
 - **用户提供了 Git 地址**（如 `git@gitlab...order-detail.git`）→ 跳到**步骤 4**
 
+<img src="/images/cgf-skill/cgf-development-workflow.svg" alt="cgf-coding-skill 9步需求开发流程" style="max-width:100%;margin:1em 0;" />
+
 ### 2. Git 提交规范
 
 提交格式遵循 commitlint 标准：

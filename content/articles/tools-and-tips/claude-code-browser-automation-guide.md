@@ -333,7 +333,7 @@ agent-browser click @e5
 
 ### 4.1 alex-image2code Skill
 
-将高保真设计截图 1:1 还原为 React 代码。不是浏览器自动化工具，而是**设计转代码**工具。
+将高保真设计截图 1:1 还原为 [React](/articles/frontend/02-react-vs-spring) 代码。不是浏览器自动化工具，而是**设计转代码**工具。
 - 触发: 用户提供 UI 截图要求还原
 - 输出: 可运行的 React 组件代码
 
@@ -360,6 +360,8 @@ agent-browser click @e5
 ├── 需要录制视频 / Diff 对比 → agent-browser
 └── 需要截图转代码 → alex-image2code
 ```
+
+<img src="/images/browser-automation/browser-automation-decision-tree.svg" alt="浏览器自动化工具选择决策树" style="max-width:100%;margin:1em 0;" />
 
 ---
 

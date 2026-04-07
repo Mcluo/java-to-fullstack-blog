@@ -9,7 +9,7 @@ readTime: 15
 
 ## 🎯 什么是 Agent Teams
 
-Agent Teams（也叫 Swarm）是 Claude Code 的多 agent 协作功能，允许你创建一个团队，由多个 AI agents 并行工作，共同完成复杂任务。
+Agent Teams（也叫 Swarm）是 Claude Code 的多 agent 协作功能，允许你创建一个团队，由多个 AI agents 并行工作，共同完成复杂任务。这是 Claude Code 近期最重要的能力升级之一，详见 [Claude Code 更新整理](/articles/product-design/claude-code-updates-summary)。
 
 ### 核心概念
 
@@ -23,6 +23,8 @@ Leader (你)
        ↓
   共享任务列表 (~/.claude/tasks/{team-name}/)
 ```
+
+<img src="/images/agent-teams/agent-teams-topology.svg" alt="Agent Teams 团队拓扑与生命周期" style="max-width:100%;margin:1em 0;" />
 
 ---
 

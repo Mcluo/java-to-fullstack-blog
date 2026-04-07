@@ -178,7 +178,7 @@ async function eC(reader, decoder, buffer, onStream) {
     //    因为每次 await reader.read() 会让出执行权给浏览器渲染线程
     //    如果用 while(true)，虽然有 await，但 V8 引擎的微任务队列调度
     //    可能导致渲染任务被推迟。递归调用可以确保每次循环之间有"喘息"的机会
-    //    类比：类似后端用 EventLoop 而不是 while(true) 轮询
+    //    类比：类似后端用 [EventLoop](/articles/backend/01-nodejs-async-programming "Node.js 异步编程：对比 Java 多线程模型") 而不是 while(true) 轮询
     eC(reader, decoder, buffer, onStream);
 
   } catch (e) {
@@ -228,7 +228,7 @@ return {
 };
 ```
 
-每次 `onStream(parsed)` 往 `blocks` 数组推入一条新消息，React 就会自动把对应的 UI 片段渲染出来。不需要手动操作 DOM，不需要轮询——**数据驱动视图，这就是 React + MobX 的核心理念**。
+每次 `onStream(parsed)` 往 `blocks` 数组推入一条新消息，React 就会自动把对应的 UI 片段渲染出来。不需要手动操作 DOM，不需要轮询——**数据驱动视图，这就是 [React](/articles/frontend/02-react-vs-spring "React 核心概念：对比 Java Spring 框架") + MobX 的核心理念**。
 
 ---
 
@@ -293,6 +293,8 @@ data: {"content": "| yoga pants plus size | 31% | ... |"}
 ---
 
 ## 六、完整数据流时序
+
+<img src="/images/alphashop-sse/alphashop-sse-sequence.svg" alt="AlphaShop SSE 流式渲染时序图" style="max-width:100%;margin:1em 0;" />
 
 把前面的所有环节串起来：
 

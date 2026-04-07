@@ -402,9 +402,9 @@ Tailwind 的文档写得非常好，每个工具类都有可视化示例：[tail
 
 | 你可能的顾虑 | 实际情况 |
 |------------|---------|
-| "class 太长了，HTML 太乱" | 用 React 组件封装后，每个组件只有几行 |
+| "class 太长了，HTML 太乱" | 用 [React 组件](/articles/frontend/02-react-vs-spring "React 核心概念：对比 Java Spring 框架")封装后，每个组件只有几行 |
 | "记不住这么多 class 名" | VS Code 插件自动补全，写几天就熟了 |
 | "不如自己写 CSS 灵活" | 99% 的需求 Tailwind 都能覆盖，极端情况再写自定义 CSS |
 | "生成的 CSS 会不会很大" | Tree-shaking 自动优化，生产包通常 < 10KB |
 
-**对后端工程师的一句话建议**：不要试图"学完 CSS 再学 Tailwind"，直接从 Tailwind 开始。就像你不需要学 Servlet 再学 Spring Boot 一样。
+**对后端工程师的一句话建议**：不要试图"学完 CSS 再学 Tailwind"，直接从 Tailwind 开始。就像你不需要学 Servlet 再学 Spring Boot 一样。关于如何高效建立前端知识体系，可以参考[对抗遗忘的学习方法](/articles/learning-notes/fighting-forgetting-learning-methods "对抗遗忘的学习方法")。

@@ -18,7 +18,7 @@ readTime: 10
 ### 1. **发现性问题** - "我不知道能做什么"
 
 #### 表现
-- 有 100+ skills，但用户不知道存在
+- 有 [100+ skills](/articles/product-design/claude-code-updates-summary)，但用户不知道存在
 - 功能强大，但藏得太深
 - 没有好的浏览/搜索机制
 - 文档分散，难以快速定位
@@ -480,6 +480,8 @@ src/index.ts
 | 上下文切换 | ⭐⭐⭐ | 🔧🔧🔧 | ⚡ P2 | 效率 +25% |
 | 学习曲线 | ⭐⭐⭐⭐ | 🔧🔧🔧🔧 | ⚡ P2 | 新手留存 +30% |
 | 可视化 | ⭐⭐⭐ | 🔧🔧🔧 | 💡 P3 | 体验 +20% |
+
+<img src="/images/cli-painpoints/cli-painpoints-priority-matrix.svg" alt="痛点优先级矩阵：影响力 vs 实现难度" style="max-width:100%;margin:1em 0;" />
 
 ---
 

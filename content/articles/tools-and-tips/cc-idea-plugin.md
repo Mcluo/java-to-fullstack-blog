@@ -74,7 +74,7 @@ $ cc < task.txt  # 批量任务
 ### 5. **高级功能可能延迟**
 - CLI 作为核心版本，新功能通常先在 CLI 实现
 - 插件版本可能需要等待适配更新
-- Hooks、Skills、Agent 等高级特性可能支持有限
+- [Hooks、Skills、Agent](/articles/product-design/claude-code-updates-summary) 等高级特性可能支持有限
 
 ---
 
@@ -125,6 +125,8 @@ $ cc < task.txt  # 批量任务
 | **启动速度** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 插件 |
 | **高级特性** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | CLI |
 
+<img src="/images/cc-idea/cli-vs-plugin-comparison.svg" alt="CLI vs IDEA 插件能力对比与选择指南" style="max-width:100%;margin:1em 0;" />
+
 ---
 
 ## 💡 实战建议
@@ -132,7 +134,7 @@ $ cc < task.txt  # 批量任务
 ### 针对 1688 选品系统开发：
 
 1. **继续使用 CLI 作为主力**：
-   - 复杂的多 Agent 系统调试
+   - 复杂的[多 Agent](/articles/product-design/claude-code-agent-teams-guide) 系统调试
    - 批量修改配置文件
    - Git 提交、分支管理
    - 运行测试套件

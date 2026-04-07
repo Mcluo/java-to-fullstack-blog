@@ -16,6 +16,9 @@ readTime: 3
 - 分析了魔改版 requesting-code-review skill 的工作机制
 
 ## 关键结论
+
+关于 Chrome MCP 工具集的完整使用指南，参见 [Claude Code 浏览器自动化指南](/articles/tools-and-tips/claude-code-browser-automation-guide)。
+
 1. chrome-mcp 通过 tabId 精准定位标签页，用户切换标签不影响后台操作
 2. 钉钉文档正文在 iframe 中渲染，需要通过 JS 或 frameId 方式提取
 3. B站弹幕可以通过 `.bpx-player-dm-wrap` 选择器抓取当前已渲染的弹幕

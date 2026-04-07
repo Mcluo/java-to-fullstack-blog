@@ -13,7 +13,7 @@ tags: ['typescript', 'react', 'nextjs', 'ai-assisted']
 
 # TypeScript + React 全栈项目 30分钟快速上手
 
-> **💡 AI时代学习理念**: 不要先学完所有语法再动手，而是边做项目边学习，遇到问题时用AI辅助理解。30分钟内你将拥有一个可部署的真实项目！
+> **💡 AI时代学习理念**: 不要先学完所有语法再动手，而是边做项目边学习，遇到问题时用AI辅助理解（详见[对抗遗忘的学习方法](/articles/learning-notes/fighting-forgetting-learning-methods "对抗遗忘的学习方法")）。30分钟内你将拥有一个可部署的真实项目！
 
 ---
 
@@ -67,6 +67,8 @@ Create a Next.js project with TypeScript and Tailwind CSS
 | 项目搭建 | 15分钟 | 2分钟 |
 | 配置调试 | 20分钟 | 1分钟 |
 | **总计** | **65分钟** | **3分钟** |
+
+<img src="/images/quickstart/dev-workflow-comparison.svg" alt="传统开发 vs AI 辅助开发工作流对比" style="max-width:100%;margin:1em 0;" />
 
 ---
 
@@ -356,7 +358,7 @@ npm run dev
 - 一个完整的TODO应用
 - TypeScript类型安全的代码
 - React函数组件
-- Tailwind样式
+- [Tailwind](/articles/frontend/03-tailwind-css-for-backend-devs "Tailwind CSS 入门：后端工程师的样式速成课")样式
 - 已部署的在线网址
 
 ### 💡 学到的核心概念

@@ -9,7 +9,7 @@ readTime: 6
 
 ## 引言
 
-在 AI 编码能力飞速进步的 2026 年，"程序员会被 AI 替代吗"已经从一个假设性问题变成了每个技术人的切身焦虑。Claude Code、Cursor、Copilot 这些工具确实在吞噬大量编码工作。但有一类角色，反而在 AI 时代变得更加不可替代——**架构师**。
+在 AI 编码能力飞速进步的 2026 年，"程序员会被 AI 替代吗"已经从一个假设性问题变成了每个技术人的切身焦虑。[Claude Code](/articles/product-design/claude-code-cli-pain-points-analysis)、Cursor、Copilot 这些工具确实在吞噬大量编码工作。但有一类角色，反而在 AI 时代变得更加不可替代——**架构师**。
 
 这不是一句安慰话，而是从架构工作的本质出发得出的结论。
 
@@ -112,6 +112,8 @@ AI 没有"后果"这个概念。它不需要在凌晨三点被叫起来处理因
 └── 15% 风险预判和演进规划
 ```
 
+<img src="/images/architect-ai/architect-time-allocation.svg" alt="架构师时间分配变化：AI 前 vs AI 后" style="max-width:100%;margin:1em 0;" />
+
 核心价值正在从"做事"向"做判断"转移。未来架构师的三大核心能力：
 
 1. **模糊问题的结构化** —— 把"系统不行了"变成可执行的改进方案
@@ -172,4 +174,4 @@ AI 没有"后果"这个概念。它不需要在凌晨三点被叫起来处理因
 
 ---
 
-*相关笔记：[AI 时代程序员职业价值分析](ai-era-programmer-career-value-analysis.md)*
+*相关笔记：[AI 时代程序员职业价值分析](/articles/personal-growth/ai-era-programmer-career-value-analysis)*
