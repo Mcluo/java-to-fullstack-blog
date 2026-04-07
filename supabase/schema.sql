@@ -44,3 +44,43 @@ create policy "Anyone can read highlights" on highlights for select using (true)
 -- 任何人可写（匿名访客通过 anon key 写入，用户信息存在行内）
 create policy "Anyone can insert comments" on comments for insert with check (true);
 create policy "Anyone can insert highlights" on highlights for insert with check (true);
+
+-- =============================================
+-- AI 聊天记录持久化 Schema
+-- =============================================
+
+-- AI 聊天会话表
+create table chat_sessions (
+  id text primary key,
+  user_github_id text not null,
+  title text not null default '新对话',
+  preview text,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+-- AI 聊天消息表
+create table chat_messages (
+  id uuid primary key default gen_random_uuid(),
+  session_id text not null references chat_sessions(id) on delete cascade,
+  role text not null check (role in ('user', 'assistant')),
+  content text not null,
+  contexts jsonb,
+  created_at timestamptz default now()
+);
+
+create index idx_chat_sessions_user on chat_sessions(user_github_id);
+create index idx_chat_messages_session on chat_messages(session_id);
+
+-- RLS
+alter table chat_sessions enable row level security;
+alter table chat_messages enable row level security;
+
+create policy "Anyone can read chat_sessions" on chat_sessions for select using (true);
+create policy "Anyone can insert chat_sessions" on chat_sessions for insert with check (true);
+create policy "Anyone can update chat_sessions" on chat_sessions for update using (true);
+create policy "Anyone can delete chat_sessions" on chat_sessions for delete using (true);
+
+create policy "Anyone can read chat_messages" on chat_messages for select using (true);
+create policy "Anyone can insert chat_messages" on chat_messages for insert with check (true);
+create policy "Anyone can delete chat_messages" on chat_messages for delete using (true);

@@ -4,10 +4,9 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import { useSettings } from './SettingsProvider'
-
-const STORAGE_KEY = 'ai_chat_history'
-const SESSIONS_KEY = 'ai_chat_sessions'
-const MAX_SESSIONS = 50
+import { useAuth } from './AuthProvider'
+import * as storage from '@/lib/chat-storage'
+import type { ChatSession, Message } from '@/lib/chat-storage'
 
 const DEFAULT_WELCOME_MESSAGE = {
   role: 'assistant' as const,
@@ -23,50 +22,27 @@ interface ContextItem {
   imageData?: string
 }
 
-interface ChatSession {
-  id: string
-  title: string
-  preview: string
-  createdAt: string
-  messageCount: number
-}
-
-type Message = {
-  role: 'user' | 'assistant'
-  content: string
-  contexts?: { type: string; label: string }[]
-}
-
-// --- Session helpers ---
-function getSessions(): ChatSession[] {
-  try {
-    return JSON.parse(localStorage.getItem(SESSIONS_KEY) || '[]')
-  } catch { return [] }
-}
-
-function saveSessions(sessions: ChatSession[]) {
-  localStorage.setItem(SESSIONS_KEY, JSON.stringify(sessions))
-}
-
-function getSessionMessages(id: string): Message[] {
-  try {
-    return JSON.parse(localStorage.getItem(`ai_session_${id}`) || '[]')
-  } catch { return [] }
-}
-
-function saveSessionMessages(id: string, messages: Message[]) {
-  localStorage.setItem(`ai_session_${id}`, JSON.stringify(messages))
-}
-
-function deleteSessionData(id: string) {
-  localStorage.removeItem(`ai_session_${id}`)
-}
-
 function generateTitle(messages: Message[]): string {
   const firstUser = messages.find(m => m.role === 'user')
   if (!firstUser) return '新对话'
-  const text = firstUser.content.trim()
-  return text.length > 30 ? text.slice(0, 28) + '...' : text
+  const raw = firstUser.content.trim()
+
+  // Try to extract a meaningful short title from the question
+  // Remove common filler prefixes
+  let text = raw
+    .replace(/^(请问|帮我|我想|你好[，,]?\s*|hi[,\s]*)/i, '')
+    .replace(/^(解释一下|介绍一下|讲讲|说说|分析一下|对比一下)\s*/, '')
+    .trim()
+  if (!text) text = raw
+
+  // If it's a short question ending with ？, keep it clean
+  if (text.length <= 35) return text.replace(/\n.*/s, '')
+
+  // Try to cut at a natural boundary (punctuation)
+  const cutAt = text.slice(0, 35).search(/[，。？！,.\?\!；;：:]/g)
+  if (cutAt > 8) return text.slice(0, cutAt)
+
+  return text.slice(0, 30).replace(/\n.*/s, '') + '...'
 }
 
 function formatDate(iso: string): string {
@@ -85,7 +61,10 @@ function formatDate(iso: string): string {
 
 export default function AIAssistant() {
   const { settings } = useSettings()
+  const { user } = useAuth()
+  const githubId = user?.githubId
   const [isOpen, setIsOpen] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
   const [messages, setMessages] = useState<Message[]>([DEFAULT_WELCOME_MESSAGE])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -101,6 +80,7 @@ export default function AIAssistant() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectMode, setSelectMode] = useState(false)
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set())
+  const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'synced'>('idle')
   const [copiedId, setCopiedId] = useState<number | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
@@ -112,78 +92,81 @@ export default function AIAssistant() {
   // 初始化：加载当前会话或创建新会话
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const allSessions = getSessions()
-    setSessions(allSessions)
+    let cancelled = false
 
-    // 尝试恢复上次活跃的会话
-    const lastActiveId = localStorage.getItem('ai_active_session')
-    if (lastActiveId) {
-      const msgs = getSessionMessages(lastActiveId)
-      if (msgs.length > 0) {
-        setMessages(msgs)
-        setCurrentSessionId(lastActiveId)
-        return
+    async function init() {
+      // 登录用户：先尝试迁移 localStorage 数据到 Supabase
+      if (githubId) {
+        setSyncStatus('syncing')
+        const migrated = await storage.syncFromLocal(githubId)
+        if (migrated > 0) console.log(`Migrated ${migrated} sessions to Supabase`)
+        if (!cancelled) setSyncStatus('synced')
+      }
+
+      const allSessions = await storage.getSessions(githubId)
+      if (cancelled) return
+      setSessions(allSessions)
+
+      // 尝试恢复上次活跃的会话
+      const lastActiveId = localStorage.getItem('ai_active_session')
+      if (lastActiveId) {
+        const msgs = await storage.getMessages(lastActiveId, githubId)
+        if (!cancelled && msgs.length > 0) {
+          setMessages(msgs)
+          setCurrentSessionId(lastActiveId)
+          return
+        }
+      }
+
+      // 加载最新的会话
+      if (allSessions.length > 0) {
+        const latest = allSessions[0]
+        const msgs = await storage.getMessages(latest.id, githubId)
+        if (!cancelled && msgs.length > 0) {
+          setMessages(msgs)
+          setCurrentSessionId(latest.id)
+          localStorage.setItem('ai_active_session', latest.id)
+          return
+        }
+      }
+
+      // 没有任何历史，创建空会话
+      if (!cancelled) {
+        const id = Date.now().toString()
+        setCurrentSessionId(id)
+        localStorage.setItem('ai_active_session', id)
       }
     }
 
-    // 兼容旧数据迁移
-    const legacySaved = localStorage.getItem(STORAGE_KEY)
-    if (legacySaved) {
-      try {
-        const parsed = JSON.parse(legacySaved)
-        if (Array.isArray(parsed) && parsed.length > 1) {
-          const id = Date.now().toString()
-          saveSessionMessages(id, parsed)
-          const session: ChatSession = {
-            id,
-            title: generateTitle(parsed),
-            preview: parsed.find((m: Message) => m.role === 'user')?.content.slice(0, 60) || '',
-            createdAt: new Date().toISOString(),
-            messageCount: parsed.filter((m: Message) => m.role === 'user').length,
-          }
-          const updated = [session, ...allSessions]
-          saveSessions(updated)
-          setSessions(updated)
-          setMessages(parsed)
-          setCurrentSessionId(id)
-          localStorage.removeItem(STORAGE_KEY)
-          localStorage.setItem('ai_active_session', id)
-          return
-        }
-      } catch {}
-    }
-
-    // 没有任何历史，创建空会话
-    const id = Date.now().toString()
-    setCurrentSessionId(id)
-    localStorage.setItem('ai_active_session', id)
-  }, [])
+    init()
+    return () => { cancelled = true }
+  }, [githubId])
 
   // 自动保存当前会话
-  const saveCurrentSession = useCallback(() => {
+  const saveCurrentSession = useCallback(async () => {
     if (!currentSessionId || typeof window === 'undefined') return
     if (messages.length <= 1) return // 只有欢迎消息不保存
 
-    saveSessionMessages(currentSessionId, messages)
+    await storage.saveMessages(currentSessionId, messages, githubId)
     localStorage.setItem('ai_active_session', currentSessionId)
 
     const userMsgCount = messages.filter(m => m.role === 'user').length
     if (userMsgCount === 0) return
 
+    const session: ChatSession = {
+      id: currentSessionId,
+      title: generateTitle(messages),
+      preview: messages.find(m => m.role === 'user')?.content.slice(0, 60) || '',
+      createdAt: new Date().toISOString(),
+      messageCount: userMsgCount,
+    }
+    await storage.saveSession(session, githubId)
+
     setSessions(prev => {
-      const exists = prev.find(s => s.id === currentSessionId)
-      const session: ChatSession = {
-        id: currentSessionId,
-        title: generateTitle(messages),
-        preview: messages.find(m => m.role === 'user')?.content.slice(0, 60) || '',
-        createdAt: exists?.createdAt || new Date().toISOString(),
-        messageCount: userMsgCount,
-      }
-      const updated = [session, ...prev.filter(s => s.id !== currentSessionId)].slice(0, MAX_SESSIONS)
-      saveSessions(updated)
+      const updated = [session, ...prev.filter(s => s.id !== currentSessionId)].slice(0, 50)
       return updated
     })
-  }, [currentSessionId, messages])
+  }, [currentSessionId, messages, githubId])
 
   useEffect(() => {
     saveCurrentSession()
@@ -493,8 +476,8 @@ export default function AIAssistant() {
   }
 
   // 新建对话（保存当前会话后新建）
-  const handleNewChat = () => {
-    saveCurrentSession()
+  const handleNewChat = async () => {
+    await saveCurrentSession()
     const id = Date.now().toString()
     setCurrentSessionId(id)
     setMessages([DEFAULT_WELCOME_MESSAGE])
@@ -504,9 +487,9 @@ export default function AIAssistant() {
   }
 
   // 加载历史会话
-  const handleLoadSession = (sessionId: string) => {
-    saveCurrentSession()
-    const msgs = getSessionMessages(sessionId)
+  const handleLoadSession = async (sessionId: string) => {
+    await saveCurrentSession()
+    const msgs = await storage.getMessages(sessionId, githubId)
     if (msgs.length > 0) {
       setMessages(msgs)
       setCurrentSessionId(sessionId)
@@ -516,14 +499,10 @@ export default function AIAssistant() {
   }
 
   // 删除单个会话
-  const handleDeleteSession = (e: React.MouseEvent, sessionId: string) => {
+  const handleDeleteSession = async (e: React.MouseEvent, sessionId: string) => {
     e.stopPropagation()
-    setSessions(prev => {
-      const updated = prev.filter(s => s.id !== sessionId)
-      saveSessions(updated)
-      return updated
-    })
-    deleteSessionData(sessionId)
+    await storage.deleteSession(sessionId, githubId)
+    setSessions(prev => prev.filter(s => s.id !== sessionId))
     // 如果删除的是当前会话，新建一个
     if (sessionId === currentSessionId) {
       handleNewChat()
@@ -531,10 +510,9 @@ export default function AIAssistant() {
   }
 
   // 清空所有历史
-  const handleClearAllHistory = () => {
+  const handleClearAllHistory = async () => {
     if (!confirm('确定要清空所有历史对话？此操作不可恢复。')) return
-    sessions.forEach(s => deleteSessionData(s.id))
-    saveSessions([])
+    await storage.clearAllSessions(githubId)
     setSessions([])
     handleNewChat()
   }
@@ -650,8 +628,9 @@ export default function AIAssistant() {
   return (
     <>
       {/* 浮动按钮 */}
+      {!(isOpen && isExpanded) && (
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => { setIsOpen(!isOpen); if (isOpen) setIsExpanded(false) }}
         className={`fixed bottom-6 right-6 w-14 h-14 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center z-50 ${
           isOpen
             ? 'bg-gray-900 hover:bg-gray-800 rotate-0'
@@ -673,6 +652,7 @@ export default function AIAssistant() {
           </>
         )}
       </button>
+      )}
 
       {/* 划线选中弹窗 */}
       {selectionPopup && (
@@ -718,8 +698,12 @@ export default function AIAssistant() {
       {/* 聊天窗口 */}
       {isOpen && (
         <div
-          className="fixed bottom-24 right-6 w-[400px] h-[620px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_24px_80px_-12px_rgba(0,0,0,0.25)] flex flex-col z-50 border border-white/50 overflow-hidden ai-assistant-panel animate-in slide-in-from-bottom-4 fade-in duration-300"
-          style={{ animation: 'slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
+          className={`fixed bg-white/95 backdrop-blur-xl shadow-[0_24px_80px_-12px_rgba(0,0,0,0.25)] flex flex-col z-50 border border-white/50 overflow-hidden ai-assistant-panel transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isExpanded
+              ? 'inset-4 sm:inset-6 lg:inset-10 rounded-2xl'
+              : 'bottom-24 right-6 w-[400px] h-[620px] rounded-3xl'
+          }`}
+          style={isExpanded ? undefined : { animation: 'slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
         >
           <style>{`
             @keyframes slideUp { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -738,12 +722,43 @@ export default function AIAssistant() {
                   <p className="text-[11px] text-white/70 flex items-center gap-1.5">
                     {isLoading ? (
                       <><span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />思考中...</>
+                    ) : syncStatus === 'syncing' ? (
+                      <><span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />同步中...</>
                     ) : (
-                      <><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />在线</>
+                      <><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />{user ? '已同步' : '在线'}</>
                     )}
                   </p>
                 </div>
               </div>
+              <div className="flex items-center gap-1">
+                {/* 放大/缩小 */}
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="p-2 hover:bg-white/20 rounded-lg transition"
+                  title={isExpanded ? '缩小' : '放大'}
+                >
+                  {isExpanded ? (
+                    <svg className="w-4 h-4 text-white/80" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 9L4 4m0 0v4m0-4h4m6 6l5 5m0 0v-4m0 4h-4" />
+                    </svg>
+                  ) : (
+                    <svg className="w-4 h-4 text-white/80" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7" />
+                    </svg>
+                  )}
+                </button>
+                {/* 关闭（放大模式下可见） */}
+                {isExpanded && (
+                  <button
+                    onClick={() => { setIsOpen(false); setIsExpanded(false) }}
+                    className="p-2 hover:bg-white/20 rounded-lg transition"
+                    title="关闭"
+                  >
+                    <svg className="w-4 h-4 text-white/80" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
               <div className="relative">
                 <button
                   onClick={() => setShowMenu(!showMenu)}
@@ -826,6 +841,7 @@ export default function AIAssistant() {
                     </button>
                   </div>
                 )}
+              </div>
               </div>
             </div>
           </div>
