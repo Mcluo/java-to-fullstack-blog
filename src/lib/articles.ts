@@ -40,6 +40,7 @@ export const CATEGORY_CONFIG: Record<string, { name: string; group: string; bgCo
   'work-logs': { name: '工作记录', group: '技术实践', bgColor: 'bg-slate-100', textColor: 'text-slate-800' },
   troubleshooting: { name: '问题排查', group: '技术实践', bgColor: 'bg-red-100', textColor: 'text-red-800' },
   'ai-brief': { name: 'AI论文简报', group: '技术实践', bgColor: 'bg-indigo-100', textColor: 'text-indigo-800' },
+  feeds: { name: '订阅日报', group: '技术实践', bgColor: 'bg-rose-100', textColor: 'text-rose-800' },
   // 思考
   'personal-growth': { name: '个人成长', group: '思考', bgColor: 'bg-pink-100', textColor: 'text-pink-800' },
 }
