@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" font-family="Inter, -apple-system, sans-serif">
+  <defs>
+    <filter id="s" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000010"/>
+    </filter>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#6366F1"/>
+    </marker>
+    <marker id="arrG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16A34A"/>
+    </marker>
+    <marker id="arrO" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#EA580C"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="650" fill="#FAFBFC" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1F2937">Memory Loading Flow</text>
+  <text x="450" y="50" text-anchor="middle" font-size="11" fill="#9CA3AF">From Session Start to Context Injection</text>
+
+  <!-- Phase 1: Session Start -->
+  <rect x="30" y="65" width="840" height="100" rx="10" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1"/>
+  <text x="50" y="85" font-size="10" font-weight="700" fill="#0369A1">Phase 1: Session Initialization</text>
+
+  <rect x="50" y="95" width="140" height="55" rx="8" fill="white" stroke="#7DD3FC" stroke-width="1.5" filter="url(#s)"/>
+  <text x="120" y="118" text-anchor="middle" font-size="11" font-weight="600" fill="#0C4A6E">Session Start</text>
+  <text x="120" y="135" text-anchor="middle" font-size="9" fill="#6B7280">claude / IDE launch</text>
+
+  <line x1="190" y1="122" x2="220" y2="122" stroke="#6366F1" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="225" y="95" width="165" height="55" rx="8" fill="white" stroke="#7DD3FC" stroke-width="1.5" filter="url(#s)"/>
+  <text x="307" y="115" text-anchor="middle" font-size="11" font-weight="600" fill="#0C4A6E">Resolve Memory Dir</text>
+  <text x="307" y="130" text-anchor="middle" font-size="8" fill="#6B7280">~/.claude/projects/</text>
+  <text x="307" y="142" text-anchor="middle" font-size="8" fill="#6B7280">&lt;sanitized-cwd&gt;/memory/</text>
+
+  <line x1="390" y1="122" x2="420" y2="122" stroke="#6366F1" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="425" y="95" width="180" height="55" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.5" filter="url(#s)"/>
+  <text x="515" y="115" text-anchor="middle" font-size="11" font-weight="700" fill="#065F46">Load MEMORY.md</text>
+  <text x="515" y="130" text-anchor="middle" font-size="9" fill="#059669">ALWAYS loaded (hot index)</text>
+  <text x="515" y="142" text-anchor="middle" font-size="8" fill="#6B7280">Max 200 lines, truncated</text>
+
+  <line x1="605" y1="122" x2="635" y2="122" stroke="#6366F1" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="640" y="95" width="210" height="55" rx="8" fill="white" stroke="#7DD3FC" stroke-width="1.5" filter="url(#s)"/>
+  <text x="745" y="115" text-anchor="middle" font-size="11" font-weight="600" fill="#0C4A6E">Load CLAUDE.md (3-level)</text>
+  <text x="745" y="132" text-anchor="middle" font-size="8" fill="#6B7280">Project → Local → User hierarchy</text>
+  <text x="745" y="144" text-anchor="middle" font-size="8" fill="#6B7280">+ .claude/rules/ directory</text>
+
+  <!-- Phase 2: User Message -->
+  <rect x="30" y="180" width="840" height="210" rx="10" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1"/>
+  <text x="50" y="200" font-size="10" font-weight="700" fill="#C2410C">Phase 2: Per-Message Memory Selection (memdir_relevance)</text>
+
+  <rect x="50" y="215" width="160" height="50" rx="8" fill="white" stroke="#FDBA74" stroke-width="1.5" filter="url(#s)"/>
+  <text x="130" y="237" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">User Message</text>
+  <text x="130" y="253" text-anchor="middle" font-size="9" fill="#6B7280">"fix the auth bug"</text>
+
+  <line x1="210" y1="240" x2="240" y2="240" stroke="#EA580C" stroke-width="1.5" marker-end="url(#arrO)"/>
+
+  <rect x="245" y="210" width="200" height="60" rx="8" fill="white" stroke="#FDBA74" stroke-width="1.5" filter="url(#s)"/>
+  <text x="345" y="233" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">Scan Memory Files</text>
+  <text x="345" y="248" text-anchor="middle" font-size="9" fill="#6B7280">Read frontmatter from all *.md</text>
+  <text x="345" y="260" text-anchor="middle" font-size="8" fill="#6B7280">Extract: name + description</text>
+
+  <line x1="445" y1="240" x2="475" y2="240" stroke="#EA580C" stroke-width="1.5" marker-end="url(#arrO)"/>
+
+  <!-- LLM Call - highlighted -->
+  <rect x="480" y="205" width="220" height="70" rx="10" fill="#4F46E5" filter="url(#s)"/>
+  <text x="590" y="228" text-anchor="middle" font-size="12" font-weight="700" fill="white">LLM Selection Call</text>
+  <text x="590" y="245" text-anchor="middle" font-size="9" fill="#C7D2FE">Lightweight model (LT())</text>
+  <text x="590" y="258" text-anchor="middle" font-size="9" fill="#C7D2FE">System prompt: TOY</text>
+  <text x="590" y="268" text-anchor="middle" font-size="8" fill="#A5B4FC">max_tokens: 256, JSON output</text>
+
+  <line x1="700" y1="240" x2="730" y2="240" stroke="#EA580C" stroke-width="1.5" marker-end="url(#arrO)"/>
+
+  <rect x="735" y="210" width="120" height="60" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="2" filter="url(#s)"/>
+  <text x="795" y="233" text-anchor="middle" font-size="11" font-weight="700" fill="#065F46">Result</text>
+  <text x="795" y="250" text-anchor="middle" font-size="9" fill="#059669">selected_memories</text>
+  <text x="795" y="262" text-anchor="middle" font-size="8" fill="#6B7280">max 5 files</text>
+
+  <!-- Selection rules -->
+  <rect x="50" y="285" width="805" height="90" rx="8" fill="white" stroke="#E5E7EB" stroke-width="1" filter="url(#s)"/>
+  <text x="70" y="305" font-size="10" font-weight="600" fill="#374151">Selection Rules (from TOY system prompt):</text>
+  <text x="70" y="322" font-size="9" fill="#6B7280">1. Only include memories you are CERTAIN will be helpful — be selective and discerning</text>
+  <text x="70" y="337" font-size="9" fill="#6B7280">2. Be especially conservative with [user] and [project] types — match on what the question IS ABOUT, not surface keywords</text>
+  <text x="70" y="352" font-size="9" fill="#6B7280">3. Do not re-select memories already returned for an earlier query in this conversation</text>
+  <text x="70" y="367" font-size="9" fill="#6B7280">4. If unsure, return empty list — precision over recall</text>
+
+  <!-- Phase 3: Context Assembly -->
+  <rect x="30" y="405" width="840" height="110" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+  <text x="50" y="425" font-size="10" font-weight="700" fill="#16A34A">Phase 3: Context Assembly</text>
+
+  <rect x="50" y="440" width="170" height="55" rx="8" fill="white" stroke="#86EFAC" stroke-width="1.5" filter="url(#s)"/>
+  <text x="135" y="462" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">MEMORY.md (always)</text>
+  <text x="135" y="478" text-anchor="middle" font-size="9" fill="#6B7280">Hot index layer</text>
+  <text x="135" y="488" text-anchor="middle" font-size="8" fill="#9CA3AF">~200 lines</text>
+
+  <text x="235" y="470" text-anchor="middle" font-size="16" fill="#16A34A">+</text>
+
+  <rect x="255" y="440" width="170" height="55" rx="8" fill="white" stroke="#86EFAC" stroke-width="1.5" filter="url(#s)"/>
+  <text x="340" y="462" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">Selected Memories</text>
+  <text x="340" y="478" text-anchor="middle" font-size="9" fill="#6B7280">LLM-picked (max 5)</text>
+  <text x="340" y="488" text-anchor="middle" font-size="8" fill="#9CA3AF">Full file content</text>
+
+  <text x="440" y="470" text-anchor="middle" font-size="16" fill="#16A34A">+</text>
+
+  <rect x="460" y="440" width="170" height="55" rx="8" fill="white" stroke="#86EFAC" stroke-width="1.5" filter="url(#s)"/>
+  <text x="545" y="462" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">CLAUDE.md Files</text>
+  <text x="545" y="478" text-anchor="middle" font-size="9" fill="#6B7280">Project rules</text>
+  <text x="545" y="488" text-anchor="middle" font-size="8" fill="#9CA3AF">Instructions, constraints</text>
+
+  <line x1="640" y1="467" x2="680" y2="467" stroke="#16A34A" stroke-width="2" marker-end="url(#arrG)"/>
+
+  <rect x="685" y="440" width="170" height="55" rx="10" fill="#16A34A" filter="url(#s)"/>
+  <text x="770" y="462" text-anchor="middle" font-size="12" font-weight="700" fill="white">System Prompt</text>
+  <text x="770" y="478" text-anchor="middle" font-size="9" fill="#BBF7D0">Injected into LLM</text>
+  <text x="770" y="490" text-anchor="middle" font-size="8" fill="#86EFAC">context window</text>
+
+  <!-- Phase 4: Conversation -->
+  <rect x="30" y="530" width="840" height="100" rx="10" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="1"/>
+  <text x="50" y="550" font-size="10" font-weight="700" fill="#7C3AED">Phase 4: In-Conversation Memory Updates</text>
+
+  <rect x="50" y="565" width="200" height="50" rx="8" fill="white" stroke="#D8B4FE" stroke-width="1.5" filter="url(#s)"/>
+  <text x="150" y="585" text-anchor="middle" font-size="10" font-weight="600" fill="#6D28D9">Claude detects pattern</text>
+  <text x="150" y="600" text-anchor="middle" font-size="8" fill="#6B7280">user correction / new info</text>
+
+  <line x1="250" y1="590" x2="285" y2="590" stroke="#7C3AED" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="290" y="565" width="200" height="50" rx="8" fill="white" stroke="#D8B4FE" stroke-width="1.5" filter="url(#s)"/>
+  <text x="390" y="585" text-anchor="middle" font-size="10" font-weight="600" fill="#6D28D9">Write tool call</text>
+  <text x="390" y="600" text-anchor="middle" font-size="8" fill="#6B7280">Save to memory/ directory</text>
+
+  <line x1="490" y1="590" x2="525" y2="590" stroke="#7C3AED" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="530" y="565" width="200" height="50" rx="8" fill="white" stroke="#D8B4FE" stroke-width="1.5" filter="url(#s)"/>
+  <text x="630" y="585" text-anchor="middle" font-size="10" font-weight="600" fill="#6D28D9">Update MEMORY.md index</text>
+  <text x="630" y="600" text-anchor="middle" font-size="8" fill="#6B7280">Add pointer entry (&lt;150 chars)</text>
+</svg>

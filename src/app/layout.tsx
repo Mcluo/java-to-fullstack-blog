@@ -48,6 +48,12 @@ export default function RootLayout({
                 <Link href="/roadmap" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100/80 transition">
                   学习路径
                 </Link>
+                <Link href="/todos" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100/80 transition">
+                  待办
+                </Link>
+                <Link href="/feeds" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100/80 transition">
+                  订阅
+                </Link>
                 <Link href="/settings" className="p-2 text-gray-400 hover:text-gray-700 rounded-lg hover:bg-gray-100/80 transition" title="设置">
                   <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -76,6 +82,7 @@ export default function RootLayout({
               <div className="flex items-center gap-6 text-sm text-gray-500">
                 <Link href="/articles" className="hover:text-gray-700 transition">教程</Link>
                 <Link href="/roadmap" className="hover:text-gray-700 transition">学习路径</Link>
+                <Link href="/todos" className="hover:text-gray-700 transition">待办</Link>
                 <a href="https://github.com/Mcluo/java-to-fullstack-blog" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 transition">
                   GitHub
                 </a>

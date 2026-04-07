@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 580" font-family="Inter, -apple-system, sans-serif">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000012"/>
+    </filter>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0EA5E9;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="580" fill="#FAFBFC" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="18" font-weight="700" fill="#1F2937">Claude Code Memory System Architecture</text>
+  <text x="450" y="55" text-anchor="middle" font-size="11" fill="#9CA3AF">v2.1.92 Source Code Analysis</text>
+
+  <!-- ==================== Layer 1: Storage Layer ==================== -->
+  <rect x="30" y="440" width="840" height="120" rx="12" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"/>
+  <text x="50" y="465" font-size="11" font-weight="600" fill="#16A34A">Storage Layer</text>
+
+  <!-- MEMORY.md -->
+  <rect x="50" y="480" width="150" height="60" rx="8" fill="white" stroke="#86EFAC" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="125" y="503" text-anchor="middle" font-size="12" font-weight="600" fill="#166534">MEMORY.md</text>
+  <text x="125" y="520" text-anchor="middle" font-size="9" fill="#6B7280">Hot Index (200 lines)</text>
+  <text x="125" y="532" text-anchor="middle" font-size="9" fill="#6B7280">Always Loaded</text>
+
+  <!-- Memory Files -->
+  <rect x="220" y="480" width="150" height="60" rx="8" fill="white" stroke="#86EFAC" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="295" y="503" text-anchor="middle" font-size="12" font-weight="600" fill="#166534">Memory Files</text>
+  <text x="295" y="520" text-anchor="middle" font-size="9" fill="#6B7280">*.md with frontmatter</text>
+  <text x="295" y="532" text-anchor="middle" font-size="9" fill="#6B7280">user/feedback/project/ref</text>
+
+  <!-- Team Memory -->
+  <rect x="390" y="480" width="150" height="60" rx="8" fill="white" stroke="#86EFAC" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="465" y="503" text-anchor="middle" font-size="12" font-weight="600" fill="#166534">Team Memory</text>
+  <text x="465" y="520" text-anchor="middle" font-size="9" fill="#6B7280">memory/team/</text>
+  <text x="465" y="532" text-anchor="middle" font-size="9" fill="#6B7280">Shared across agents</text>
+
+  <!-- CLAUDE.md -->
+  <rect x="560" y="480" width="150" height="60" rx="8" fill="white" stroke="#86EFAC" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="635" y="503" text-anchor="middle" font-size="12" font-weight="600" fill="#166534">CLAUDE.md</text>
+  <text x="635" y="520" text-anchor="middle" font-size="9" fill="#6B7280">Project/Local/User</text>
+  <text x="635" y="532" text-anchor="middle" font-size="9" fill="#6B7280">3-level hierarchy</text>
+
+  <!-- localStorage -->
+  <rect x="730" y="480" width="120" height="60" rx="8" fill="white" stroke="#86EFAC" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="790" y="503" text-anchor="middle" font-size="12" font-weight="600" fill="#166534">Settings</text>
+  <text x="790" y="520" text-anchor="middle" font-size="9" fill="#6B7280">autoMemoryEnabled</text>
+  <text x="790" y="532" text-anchor="middle" font-size="9" fill="#6B7280">autoMemoryDirectory</text>
+
+  <!-- ==================== Layer 2: Service Layer ==================== -->
+  <rect x="30" y="280" width="840" height="140" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
+  <text x="50" y="305" font-size="11" font-weight="600" fill="#2563EB">Core Services</text>
+
+  <!-- memdir -->
+  <rect x="50" y="320" width="200" height="80" rx="10" fill="url(#grad1)" filter="url(#shadow)"/>
+  <text x="150" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="white">memdir</text>
+  <text x="150" y="366" text-anchor="middle" font-size="10" fill="#E0E7FF">LLM-based Memory Selection</text>
+  <text x="150" y="382" text-anchor="middle" font-size="9" fill="#C7D2FE">memdir_relevance scoring</text>
+
+  <!-- SessionMemory -->
+  <rect x="270" y="320" width="180" height="80" rx="10" fill="url(#grad2)" filter="url(#shadow)"/>
+  <text x="360" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="white">SessionMemory</text>
+  <text x="360" y="366" text-anchor="middle" font-size="10" fill="#E0F2FE">Per-session state</text>
+  <text x="360" y="382" text-anchor="middle" font-size="9" fill="#BAE6FD">Conversation context cache</text>
+
+  <!-- teamMemorySync -->
+  <rect x="470" y="320" width="180" height="80" rx="10" fill="#F59E0B" filter="url(#shadow)"/>
+  <text x="560" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="white">teamMemorySync</text>
+  <text x="560" y="366" text-anchor="middle" font-size="10" fill="#FEF3C7">Cross-agent sync</text>
+  <text x="560" y="382" text-anchor="middle" font-size="9" fill="#FDE68A">Path traversal protection</text>
+
+  <!-- Auto Dream -->
+  <rect x="670" y="320" width="180" height="80" rx="10" fill="#8B5CF6" filter="url(#shadow)"/>
+  <text x="760" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="white">Auto Dream</text>
+  <text x="760" y="366" text-anchor="middle" font-size="10" fill="#EDE9FE">Background consolidation</text>
+  <text x="760" y="382" text-anchor="middle" font-size="9" fill="#DDD6FE">Experimental feature</text>
+
+  <!-- ==================== Layer 3: Interface Layer ==================== -->
+  <rect x="30" y="75" width="840" height="185" rx="12" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1.5"/>
+  <text x="50" y="100" font-size="11" font-weight="600" fill="#EA580C">Interface Layer</text>
+
+  <!-- utils/memory -->
+  <rect x="50" y="115" width="160" height="55" rx="8" fill="white" stroke="#FDBA74" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="130" y="138" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">utils/memory</text>
+  <text x="130" y="155" text-anchor="middle" font-size="9" fill="#6B7280">File I/O, path resolution</text>
+
+  <!-- commands/memory -->
+  <rect x="230" y="115" width="160" height="55" rx="8" fill="white" stroke="#FDBA74" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="310" y="138" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">commands/memory</text>
+  <text x="310" y="155" text-anchor="middle" font-size="9" fill="#6B7280">/memory CLI command</text>
+
+  <!-- components/memory -->
+  <rect x="410" y="115" width="160" height="55" rx="8" fill="white" stroke="#FDBA74" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="490" y="138" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">components/memory</text>
+  <text x="490" y="155" text-anchor="middle" font-size="9" fill="#6B7280">UI rendering (Ink)</text>
+
+  <!-- System Prompt Builder -->
+  <rect x="590" y="115" width="260" height="55" rx="8" fill="white" stroke="#FDBA74" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="720" y="138" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">System Prompt Builder</text>
+  <text x="720" y="155" text-anchor="middle" font-size="9" fill="#6B7280">Injects memories into LLM context window</text>
+
+  <!-- Write/Read Tools -->
+  <rect x="50" y="185" width="250" height="55" rx="8" fill="white" stroke="#FDBA74" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="175" y="208" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">Tools: Write / Read / Edit</text>
+  <text x="175" y="225" text-anchor="middle" font-size="9" fill="#6B7280">Claude uses standard file tools to save memories</text>
+
+  <!-- Frontmatter Parser -->
+  <rect x="320" y="185" width="200" height="55" rx="8" fill="white" stroke="#FDBA74" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="420" y="208" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">Frontmatter Parser</text>
+  <text x="420" y="225" text-anchor="middle" font-size="9" fill="#6B7280">YAML: name, description, type</text>
+
+  <!-- Security -->
+  <rect x="540" y="185" width="310" height="55" rx="8" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="695" y="208" text-anchor="middle" font-size="11" font-weight="600" fill="#DC2626">Security: PathTraversalError</text>
+  <text x="695" y="225" text-anchor="middle" font-size="9" fill="#6B7280">Null byte check, symlink validation, dir escape prevention</text>
+
+  <!-- ==================== Arrows ==================== -->
+  <!-- Storage to Services -->
+  <line x1="125" y1="480" x2="150" y2="400" stroke="#86EFAC" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <line x1="295" y1="480" x2="150" y2="400" stroke="#86EFAC" stroke-width="1.5"/>
+  <line x1="465" y1="480" x2="560" y2="400" stroke="#86EFAC" stroke-width="1.5"/>
+  <line x1="635" y1="480" x2="360" y2="400" stroke="#86EFAC" stroke-width="1.5"/>
+
+  <!-- Services to Interface -->
+  <line x1="150" y1="320" x2="130" y2="170" stroke="#BFDBFE" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="150" y1="320" x2="720" y2="170" stroke="#4F46E5" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <line x1="360" y1="320" x2="420" y2="240" stroke="#BFDBFE" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="560" y1="320" x2="695" y2="240" stroke="#FED7AA" stroke-width="1.5" stroke-dasharray="4"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4F46E5"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#86EFAC"/>
+    </marker>
+  </defs>
+
+  <!-- Key insight callout -->
+  <rect x="50" y="250" width="300" height="20" rx="4" fill="#4F46E5" opacity="0.1"/>
+  <text x="60" y="264" font-size="9" font-weight="600" fill="#4F46E5">Key: memdir uses a separate LLM call for memory selection</text>
+</svg>
