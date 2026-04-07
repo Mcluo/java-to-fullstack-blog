@@ -1,0 +1,5 @@
+{
+  "installCommand": "npm install --prefer-offline",
+  "buildCommand": "next build",
+  "framework": "nextjs"
+}
