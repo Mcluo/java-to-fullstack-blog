@@ -1,0 +1,26 @@
+name: Production Smoke Test
+
+on:
+  deployment_status:
+
+jobs:
+  smoke-test:
+    name: Smoke Test on Production
+    if: >
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment_status.environment == 'Production'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - run: bun install --frozen-lockfile
+
+      # Run smoke tests against production URL
+      - name: Run Smoke Tests
+        run: bun run smoke-test ${{ github.event.deployment_status.target_url }}

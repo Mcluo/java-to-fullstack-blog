@@ -1,0 +1,32 @@
+name: Preview Smoke Test
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  smoke-test:
+    name: Smoke Test on Preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - run: bun install --frozen-lockfile
+
+      # Wait for Vercel Preview deployment to complete
+      - name: Wait for Vercel Preview
+        uses: patrickedqvist/wait-for-vercel-preview@v1.3.2
+        id: vercel
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 300
+
+      # Run smoke tests against Preview URL
+      - name: Run Smoke Tests
+        run: bun run smoke-test ${{ steps.vercel.outputs.url }}
