@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" font-family="Inter, -apple-system, sans-serif">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000012"/>
+    </filter>
+    <linearGradient id="gLime" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#88CE02"/>
+      <stop offset="100%" style="stop-color:#A8E800"/>
+    </linearGradient>
+    <linearGradient id="gCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00E5C8"/>
+      <stop offset="100%" style="stop-color:#00B8A0"/>
+    </linearGradient>
+    <linearGradient id="gAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9F0A"/>
+      <stop offset="100%" style="stop-color:#FFD54F"/>
+    </linearGradient>
+    <linearGradient id="gPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="620" fill="#0A0A0F" rx="12"/>
+
+  <!-- Title -->
+  <text x="460" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">ahafrog.com 产品架构拆解</text>
+  <text x="460" y="58" text-anchor="middle" font-size="11" fill="#7878A0">逆向分析 · 2026-04</text>
+
+  <!-- ============ Layer 1: Product Modules ============ -->
+  <rect x="30" y="78" width="860" height="200" rx="12" fill="#0F0F14" stroke="#1C1C2E" stroke-width="1.5"/>
+  <text x="50" y="100" font-size="11" font-weight="600" fill="#88CE02" letter-spacing="1.5">PRODUCT LAYER</text>
+
+  <!-- Module 1: Course Library -->
+  <rect x="50" y="115" width="250" height="145" rx="10" fill="#141420" stroke="#88CE0240" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="50" y="115" width="250" height="32" rx="10" fill="url(#gLime)"/>
+  <rect x="50" y="137" width="250" height="10" fill="#141420"/>
+  <text x="175" y="137" text-anchor="middle" font-size="13" font-weight="700" fill="#08080B">官方课程库</text>
+  <text x="70" y="170" font-size="11" fill="#B0B0C8">600+ 游戏课程</text>
+  <text x="70" y="190" font-size="11" fill="#B0B0C8">手工精选 · 多学科覆盖</text>
+  <text x="70" y="210" font-size="11" fill="#B0B0C8">chunk 关卡体系</text>
+  <text x="70" y="235" font-size="10" fill="#88CE02">免费 (官方) / 付费 (UGC)</text>
+
+  <!-- Module 2: Playground -->
+  <rect x="335" y="115" width="250" height="145" rx="10" fill="#141420" stroke="#00E5C840" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="335" y="115" width="250" height="32" rx="10" fill="url(#gCyan)"/>
+  <rect x="335" y="137" width="250" height="10" fill="#141420"/>
+  <text x="460" y="137" text-anchor="middle" font-size="13" font-weight="700" fill="#08080B">Playground (核心)</text>
+  <text x="355" y="170" font-size="11" fill="#B0B0C8">用户输入任意文本</text>
+  <text x="355" y="190" font-size="11" fill="#B0B0C8">AI 实时生成可玩游戏</text>
+  <text x="355" y="210" font-size="11" fill="#B0B0C8">13 步生成流水线</text>
+  <text x="355" y="235" font-size="10" fill="#00E5C8">匿名 3 次 / 注册无限</text>
+
+  <!-- Module 3: Studio -->
+  <rect x="620" y="115" width="250" height="145" rx="10" fill="#141420" stroke="#FF9F0A40" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="620" y="115" width="250" height="32" rx="10" fill="url(#gAmber)"/>
+  <rect x="620" y="137" width="250" height="10" fill="#141420"/>
+  <text x="745" y="137" text-anchor="middle" font-size="13" font-weight="700" fill="#08080B">Studio (创作工具)</text>
+  <text x="640" y="170" font-size="11" fill="#B0B0C8">AI Game Builder</text>
+  <text x="640" y="190" font-size="11" fill="#B0B0C8">创作者发布 &amp; 变现</text>
+  <text x="640" y="210" font-size="11" fill="#7878A0">Coming Soon</text>
+  <text x="640" y="235" font-size="10" fill="#FF9F0A">Join Waitlist</text>
+
+  <!-- Arrows down -->
+  <line x1="175" y1="260" x2="175" y2="300" stroke="#88CE0260" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="460" y1="260" x2="460" y2="300" stroke="#00E5C860" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="745" y1="260" x2="745" y2="300" stroke="#FF9F0A60" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- ============ Layer 2: Growth Engine ============ -->
+  <rect x="30" y="300" width="860" height="100" rx="12" fill="#0F0F14" stroke="#1C1C2E" stroke-width="1.5"/>
+  <text x="50" y="322" font-size="11" font-weight="600" fill="#FFD54F" letter-spacing="1.5">GROWTH ENGINE</text>
+
+  <!-- Growth items -->
+  <rect x="50" y="338" width="130" height="46" rx="8" fill="#141420" stroke="#FFD54F30" stroke-width="1"/>
+  <text x="115" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#FFD54F">XP 经验值</text>
+  <text x="115" y="374" text-anchor="middle" font-size="9" fill="#7878A0">完成课程获得</text>
+
+  <rect x="200" y="338" width="130" height="46" rx="8" fill="#141420" stroke="#C8FB5030" stroke-width="1"/>
+  <text x="265" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#C8FB50">排行榜</text>
+  <text x="265" y="374" text-anchor="middle" font-size="9" fill="#7878A0">用户 + 课程热度</text>
+
+  <rect x="350" y="338" width="130" height="46" rx="8" fill="#141420" stroke="#00E5C830" stroke-width="1"/>
+  <text x="415" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#00E5C8">连续天数</text>
+  <text x="415" y="374" text-anchor="middle" font-size="9" fill="#7878A0">Duolingo 式 Streak</text>
+
+  <rect x="500" y="338" width="130" height="46" rx="8" fill="#141420" stroke="#FF9F0A30" stroke-width="1"/>
+  <text x="565" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#FF9F0A">社区画廊</text>
+  <text x="565" y="374" text-anchor="middle" font-size="9" fill="#7878A0">UGC 游戏展示</text>
+
+  <rect x="650" y="338" width="130" height="46" rx="8" fill="#141420" stroke="#88CE0230" stroke-width="1"/>
+  <text x="715" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#88CE02">分享链接</text>
+  <text x="715" y="374" text-anchor="middle" font-size="9" fill="#7878A0">?share=TOKEN</text>
+
+  <rect x="800" y="338" width="70" height="46" rx="8" fill="#141420" stroke="#6366F130" stroke-width="1"/>
+  <text x="835" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#A78BFA">8 语言</text>
+  <text x="835" y="374" text-anchor="middle" font-size="9" fill="#7878A0">含 RTL</text>
+
+  <!-- Arrow down -->
+  <line x1="460" y1="400" x2="460" y2="430" stroke="#6366F160" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- ============ Layer 3: Tech Stack ============ -->
+  <rect x="30" y="430" width="860" height="170" rx="12" fill="#0F0F14" stroke="#1C1C2E" stroke-width="1.5"/>
+  <text x="50" y="452" font-size="11" font-weight="600" fill="#6366F1" letter-spacing="1.5">TECH STACK (零成本 Serverless)</text>
+
+  <!-- Tech items row 1 -->
+  <rect x="50" y="468" width="190" height="55" rx="8" fill="#141420" stroke="#6366F130" stroke-width="1" filter="url(#shadow)"/>
+  <text x="145" y="490" text-anchor="middle" font-size="12" font-weight="600" fill="#A78BFA">Cloudflare Workers</text>
+  <text x="145" y="506" text-anchor="middle" font-size="10" fill="#7878A0">API 代理 + 业务逻辑</text>
+
+  <rect x="260" y="468" width="160" height="55" rx="8" fill="#141420" stroke="#6366F130" stroke-width="1" filter="url(#shadow)"/>
+  <text x="340" y="490" text-anchor="middle" font-size="12" font-weight="600" fill="#A78BFA">Cloudflare D1</text>
+  <text x="340" y="506" text-anchor="middle" font-size="10" fill="#7878A0">SQLite on Edge</text>
+
+  <rect x="440" y="468" width="160" height="55" rx="8" fill="#141420" stroke="#6366F130" stroke-width="1" filter="url(#shadow)"/>
+  <text x="520" y="490" text-anchor="middle" font-size="12" font-weight="600" fill="#A78BFA">Cloudflare CDN</text>
+  <text x="520" y="506" text-anchor="middle" font-size="10" fill="#7878A0">全球分发 + WAF</text>
+
+  <rect x="620" y="468" width="250" height="55" rx="8" fill="#141420" stroke="#6366F130" stroke-width="1" filter="url(#shadow)"/>
+  <text x="745" y="490" text-anchor="middle" font-size="12" font-weight="600" fill="#A78BFA">原生 HTML/CSS/JS</text>
+  <text x="745" y="506" text-anchor="middle" font-size="10" fill="#7878A0">5700 行单文件 · 无框架</text>
+
+  <!-- Tech items row 2 -->
+  <rect x="50" y="535" width="190" height="50" rx="8" fill="#141420" stroke="#88CE0220" stroke-width="1"/>
+  <text x="145" y="556" text-anchor="middle" font-size="11" font-weight="600" fill="#88CE02">JWT 认证</text>
+  <text x="145" y="572" text-anchor="middle" font-size="9" fill="#7878A0">localStorage token</text>
+
+  <rect x="260" y="535" width="160" height="50" rx="8" fill="#141420" stroke="#88CE0220" stroke-width="1"/>
+  <text x="340" y="556" text-anchor="middle" font-size="11" font-weight="600" fill="#88CE02">自研 Analytics</text>
+  <text x="340" y="572" text-anchor="middle" font-size="9" fill="#7878A0">30s 批量上报</text>
+
+  <rect x="440" y="535" width="160" height="50" rx="8" fill="#141420" stroke="#88CE0220" stroke-width="1"/>
+  <text x="520" y="556" text-anchor="middle" font-size="11" font-weight="600" fill="#88CE02">PixelZH 字体</text>
+  <text x="520" y="572" text-anchor="middle" font-size="9" fill="#7878A0">统一像素美学</text>
+
+  <rect x="620" y="535" width="250" height="50" rx="8" fill="#141420" stroke="#FF9F0A20" stroke-width="1"/>
+  <text x="745" y="556" text-anchor="middle" font-size="11" font-weight="600" fill="#FF9F0A">定价 $3.99-$9.99/月</text>
+  <text x="745" y="572" text-anchor="middle" font-size="9" fill="#7878A0">尚未上线 · 免费增长阶段</text>
+</svg>

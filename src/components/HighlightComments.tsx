@@ -48,6 +48,7 @@ export default function HighlightComments({ articleSlug }: { articleSlug: string
   const [guestName, setGuestName] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [mode, setMode] = useState<'toolbar' | 'input'>('toolbar')
   const popoverRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -57,12 +58,12 @@ export default function HighlightComments({ articleSlug }: { articleSlug: string
     if (highlights.length > 0) renderHighlights()
   }, [highlights])
 
-  // 弹窗出现后自动 focus 输入框
+  // 输入模式时自动 focus
   useEffect(() => {
-    if (popover.visible) {
+    if (popover.visible && mode === 'input') {
       setTimeout(() => inputRef.current?.focus(), 50)
     }
-  }, [popover.visible])
+  }, [popover.visible, mode])
 
   async function loadHighlights() {
     if (!supabase) return
@@ -160,6 +161,7 @@ export default function HighlightComments({ articleSlug }: { articleSlug: string
         endOffset,
         containerPath,
       })
+      setMode('toolbar')
       setCommentInput('')
       setError(null)
     }
@@ -301,118 +303,104 @@ export default function HighlightComments({ articleSlug }: { articleSlug: string
           className="fixed z-[100]"
           style={{ ...popoverStyle, transform: popoverTransform }}
         >
-          {/* 箭头指示器 */}
-          <div className={`
-            absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-gray-200 rotate-45
-            ${popover.placement === 'below'
-              ? '-top-1.5 border-t border-l'
-              : '-bottom-1.5 border-b border-r'}
-          `} />
+          {/* 箭头指示器（仅批注输入模式） */}
+          {mode === 'input' && (
+            <div className={`
+              absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-gray-200 rotate-45
+              ${popover.placement === 'below'
+                ? '-top-1.5 border-t border-l'
+                : '-bottom-1.5 border-b border-r'}
+            `} />
+          )}
 
-          <div className="bg-white rounded-xl shadow-2xl border border-gray-200 w-80 overflow-hidden">
-            {/* 选中文本预览 */}
-            <div className="px-4 pt-3 pb-2 bg-gray-50 border-b border-gray-100">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5 text-xs text-gray-400">
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                  </svg>
-                  添加批注
-                </div>
-                <button
-                  onClick={handleClose}
-                  className="w-5 h-5 flex items-center justify-center rounded text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition"
-                >
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <p className="text-xs text-gray-500 mt-1.5 leading-relaxed line-clamp-2 italic">
-                &ldquo;{popover.selectedText.slice(0, 80)}{popover.selectedText.length > 80 ? '...' : ''}&rdquo;
-              </p>
-            </div>
-
-            {/* 输入区域 */}
-            <div className="p-3">
-              {/* 错误提示 */}
-              {error && (
-                <div className="mb-2 px-2 py-1.5 bg-red-50 border border-red-100 rounded text-red-600 text-xs">
-                  {error}
-                </div>
-              )}
-
-              {/* 昵称输入（未登录时） */}
-              {!user && (
-                <input
-                  type="text"
-                  value={guestName}
-                  onChange={(e) => setGuestName(e.target.value)}
-                  placeholder="你的昵称"
-                  className="w-full px-3 py-1.5 mb-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-400 transition"
-                />
-              )}
-
-              {/* 评论输入 */}
-              <textarea
-                ref={inputRef}
-                value={commentInput}
-                onChange={(e) => setCommentInput(e.target.value)}
-                placeholder="写下你的批注..."
-                className="w-full p-2.5 border border-gray-200 rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-400 transition placeholder:text-gray-300"
-                rows={2}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) handleSubmitHighlight()
-                  if (e.key === 'Escape') handleClose()
+          {mode === 'toolbar' ? (
+            /* 小工具条：复制 / 批注 */
+            <div className="bg-gray-900/95 backdrop-blur-sm rounded-lg shadow-xl flex items-center overflow-hidden">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(popover.selectedText)
+                  handleClose()
                 }}
-              />
-
-              {/* 操作栏 */}
-              <div className="flex items-center justify-between mt-2">
-                <div className="flex items-center gap-2">
-                  {user ? (
-                    <div className="flex items-center gap-1.5">
-                      {user.avatar && (
-                        <img src={user.avatar} alt={user.name} className="w-4 h-4 rounded-full" />
-                      )}
-                      <span className="text-xs text-gray-400">{user.name}</span>
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={signInWithGitHub}
-                      className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition"
-                    >
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                      </svg>
-                      GitHub 登录
-                    </button>
-                  )}
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-gray-300 hidden sm:inline">
-                    {navigator.platform?.includes('Mac') ? '⌘' : 'Ctrl'}+Enter
-                  </span>
+                className="flex items-center gap-1.5 px-3 py-2 text-white/90 text-xs hover:bg-white/10 transition"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                复制
+              </button>
+              <div className="w-px h-5 bg-white/20" />
+              <button
+                onClick={() => setMode('input')}
+                className="flex items-center gap-1.5 px-3 py-2 text-white/90 text-xs hover:bg-white/10 transition"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                </svg>
+                批注
+              </button>
+            </div>
+          ) : (
+            /* 批注输入面板 */
+            <div className="bg-white rounded-xl shadow-2xl border border-gray-200 w-80 overflow-hidden">
+              <div className="px-4 pt-3 pb-2 bg-gray-50 border-b border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                    </svg>
+                    添加批注
+                  </div>
                   <button
-                    onClick={handleSubmitHighlight}
-                    disabled={!commentInput.trim() || submitting || (!user && !guestName.trim())}
-                    className="px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95"
+                    onClick={handleClose}
+                    className="w-5 h-5 flex items-center justify-center rounded text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition"
                   >
-                    {submitting ? (
-                      <span className="inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 animate-spin" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                        </svg>
-                        提交中
-                      </span>
-                    ) : '提交批注'}
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                   </button>
                 </div>
+                <p className="text-xs text-gray-500 mt-1.5 leading-relaxed line-clamp-2 italic">
+                  &ldquo;{popover.selectedText.slice(0, 80)}{popover.selectedText.length > 80 ? '...' : ''}&rdquo;
+                </p>
+              </div>
+              <div className="p-3">
+                {error && (
+                  <div className="mb-2 px-2 py-1.5 bg-red-50 border border-red-100 rounded text-red-600 text-xs">{error}</div>
+                )}
+                {!user && (
+                  <input type="text" value={guestName} onChange={(e) => setGuestName(e.target.value)} placeholder="你的昵称"
+                    className="w-full px-3 py-1.5 mb-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-400 transition" />
+                )}
+                <textarea ref={inputRef} value={commentInput} onChange={(e) => setCommentInput(e.target.value)} placeholder="写下你的批注..."
+                  className="w-full p-2.5 border border-gray-200 rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-400 transition placeholder:text-gray-300"
+                  rows={2}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) handleSubmitHighlight()
+                    if (e.key === 'Escape') handleClose()
+                  }}
+                />
+                <div className="flex items-center justify-between mt-2">
+                  <div className="flex items-center gap-2">
+                    {user ? (
+                      <div className="flex items-center gap-1.5">
+                        {user.avatar && <img src={user.avatar} alt={user.name} className="w-4 h-4 rounded-full" />}
+                        <span className="text-xs text-gray-400">{user.name}</span>
+                      </div>
+                    ) : (
+                      <button type="button" onClick={signInWithGitHub} className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
+                        GitHub 登录
+                      </button>
+                    )}
+                  </div>
+                  <button onClick={handleSubmitHighlight}
+                    disabled={!commentInput.trim() || submitting || (!user && !guestName.trim())}
+                    className="px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95"
+                  >{submitting ? '提交中...' : '提交批注'}</button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       )}
 
