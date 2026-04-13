@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" font-family="'SF Pro Display', 'Inter', -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="pBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <filter id="pShadow">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="360" fill="url(#pBg)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="700">Plugin Ecosystem &amp; Agent Compatibility</text>
+
+  <!-- Plugin cards -->
+  <!-- void -->
+  <rect x="30" y="60" width="100" height="80" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" filter="url(#pShadow)"/>
+  <text x="80" y="82" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="600">void</text>
+  <text x="80" y="100" text-anchor="middle" fill="#64748b" font-size="8">Plain session</text>
+  <text x="80" y="115" text-anchor="middle" fill="#64748b" font-size="8">Full human control</text>
+  <text x="80" y="132" text-anchor="middle" fill="#475569" font-size="7">No automation</text>
+
+  <!-- agtx -->
+  <rect x="140" y="60" width="100" height="80" rx="8" fill="#312e81" stroke="#6366f1" stroke-width="1.5" filter="url(#pShadow)"/>
+  <text x="190" y="82" text-anchor="middle" fill="#c7d2fe" font-size="12" font-weight="600">agtx</text>
+  <text x="190" y="100" text-anchor="middle" fill="#a5b4fc" font-size="8">Built-in workflow</text>
+  <text x="190" y="115" text-anchor="middle" fill="#a5b4fc" font-size="8">Skills per phase</text>
+  <rect x="155" y="125" width="70" height="12" rx="3" fill="#4f46e5"/>
+  <text x="190" y="134" text-anchor="middle" fill="#e0e7ff" font-size="7">DEFAULT</text>
+
+  <!-- gsd -->
+  <rect x="250" y="60" width="100" height="80" rx="8" fill="#1e293b" stroke="#22c55e" stroke-width="1" filter="url(#pShadow)"/>
+  <text x="300" y="82" text-anchor="middle" fill="#86efac" font-size="12" font-weight="600">gsd</text>
+  <text x="300" y="100" text-anchor="middle" fill="#6ee7b7" font-size="8">Get Shit Done</text>
+  <text x="300" y="115" text-anchor="middle" fill="#6ee7b7" font-size="8">Interactive planning</text>
+  <text x="300" y="132" text-anchor="middle" fill="#475569" font-size="7">Spec-driven</text>
+
+  <!-- spec-kit -->
+  <rect x="360" y="60" width="100" height="80" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1" filter="url(#pShadow)"/>
+  <text x="410" y="82" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="600">spec-kit</text>
+  <text x="410" y="100" text-anchor="middle" fill="#60a5fa" font-size="8">GitHub SDD</text>
+  <text x="410" y="115" text-anchor="middle" fill="#60a5fa" font-size="8">Specs as artifacts</text>
+  <text x="410" y="132" text-anchor="middle" fill="#475569" font-size="7">Executable</text>
+
+  <!-- openspec -->
+  <rect x="470" y="60" width="100" height="80" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1" filter="url(#pShadow)"/>
+  <text x="520" y="82" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="600">openspec</text>
+  <text x="520" y="100" text-anchor="middle" fill="#a78bfa" font-size="8">AI-guided spec</text>
+  <text x="520" y="115" text-anchor="middle" fill="#a78bfa" font-size="8">Lightweight</text>
+  <text x="520" y="132" text-anchor="middle" fill="#475569" font-size="7">Fast prototyping</text>
+
+  <!-- bmad -->
+  <rect x="580" y="60" width="100" height="80" rx="8" fill="#1e293b" stroke="#f472b6" stroke-width="1" filter="url(#pShadow)"/>
+  <text x="630" y="82" text-anchor="middle" fill="#f9a8d4" font-size="12" font-weight="600">bmad</text>
+  <text x="630" y="100" text-anchor="middle" fill="#f472b6" font-size="8">AI Agile Dev</text>
+  <text x="630" y="115" text-anchor="middle" fill="#f472b6" font-size="8">Structured phases</text>
+  <text x="630" y="132" text-anchor="middle" fill="#475569" font-size="7">Enterprise</text>
+
+  <!-- superpowers -->
+  <rect x="690" y="60" width="90" height="80" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1" filter="url(#pShadow)"/>
+  <text x="735" y="82" text-anchor="middle" fill="#fde68a" font-size="11" font-weight="600">superpowers</text>
+  <text x="735" y="100" text-anchor="middle" fill="#fcd34d" font-size="8">TDD + subagent</text>
+  <text x="735" y="115" text-anchor="middle" fill="#fcd34d" font-size="8">Brainstorming</text>
+  <text x="735" y="132" text-anchor="middle" fill="#475569" font-size="7">Claude only</text>
+
+  <!-- Agent Compatibility Matrix -->
+  <text x="400" y="170" text-anchor="middle" fill="#cbd5e1" font-size="13" font-weight="600">Agent Compatibility</text>
+
+  <!-- Header row -->
+  <text x="180" y="198" text-anchor="end" fill="#94a3b8" font-size="10" font-weight="500">Agent</text>
+  <text x="250" y="198" text-anchor="middle" fill="#94a3b8" font-size="10">void</text>
+  <text x="330" y="198" text-anchor="middle" fill="#94a3b8" font-size="10">agtx</text>
+  <text x="410" y="198" text-anchor="middle" fill="#94a3b8" font-size="10">gsd</text>
+  <text x="490" y="198" text-anchor="middle" fill="#94a3b8" font-size="10">spec-kit</text>
+  <text x="570" y="198" text-anchor="middle" fill="#94a3b8" font-size="10">openspec</text>
+  <text x="640" y="198" text-anchor="middle" fill="#94a3b8" font-size="10">bmad</text>
+  <text x="720" y="198" text-anchor="middle" fill="#94a3b8" font-size="10">super</text>
+
+  <line x1="195" y1="205" x2="760" y2="205" stroke="#334155" stroke-width="1"/>
+
+  <!-- Claude row -->
+  <text x="180" y="225" text-anchor="end" fill="#c7d2fe" font-size="10">Claude Code</text>
+  <text x="250" y="225" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="330" y="225" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="410" y="225" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="490" y="225" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="570" y="225" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="640" y="225" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="720" y="225" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+
+  <!-- Codex row -->
+  <text x="180" y="248" text-anchor="end" fill="#c7d2fe" font-size="10">Codex</text>
+  <text x="250" y="248" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="330" y="248" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="410" y="248" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="490" y="248" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="570" y="248" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="640" y="248" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="720" y="248" text-anchor="middle" fill="#ef4444" font-size="12">&#x2717;</text>
+
+  <!-- Gemini row -->
+  <text x="180" y="271" text-anchor="end" fill="#c7d2fe" font-size="10">Gemini CLI</text>
+  <text x="250" y="271" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="330" y="271" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="410" y="271" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="490" y="271" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="570" y="271" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="640" y="271" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="720" y="271" text-anchor="middle" fill="#ef4444" font-size="12">&#x2717;</text>
+
+  <!-- Cursor row -->
+  <text x="180" y="294" text-anchor="end" fill="#c7d2fe" font-size="10">Cursor</text>
+  <text x="250" y="294" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="330" y="294" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="410" y="294" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="490" y="294" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="570" y="294" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="640" y="294" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="720" y="294" text-anchor="middle" fill="#ef4444" font-size="12">&#x2717;</text>
+
+  <!-- Copilot row -->
+  <text x="180" y="317" text-anchor="end" fill="#c7d2fe" font-size="10">Copilot</text>
+  <text x="250" y="317" text-anchor="middle" fill="#22c55e" font-size="12">&#x2713;</text>
+  <text x="330" y="317" text-anchor="middle" fill="#fbbf24" font-size="10">~</text>
+  <text x="410" y="317" text-anchor="middle" fill="#ef4444" font-size="12">&#x2717;</text>
+  <text x="490" y="317" text-anchor="middle" fill="#fbbf24" font-size="10">~</text>
+  <text x="570" y="317" text-anchor="middle" fill="#fbbf24" font-size="10">~</text>
+  <text x="640" y="317" text-anchor="middle" fill="#fbbf24" font-size="10">~</text>
+  <text x="720" y="317" text-anchor="middle" fill="#ef4444" font-size="12">&#x2717;</text>
+
+  <!-- Legend -->
+  <text x="250" y="348" fill="#22c55e" font-size="9">&#x2713; Full support</text>
+  <text x="380" y="348" fill="#fbbf24" font-size="9">~ Prompt only</text>
+  <text x="500" y="348" fill="#ef4444" font-size="9">&#x2717; Not supported</text>
+</svg>

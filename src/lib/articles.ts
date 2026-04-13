@@ -32,6 +32,7 @@ export const CATEGORY_CONFIG: Record<string, { name: string; group: string; bgCo
   backend: { name: '后端', group: '学习路径', bgColor: 'bg-green-100', textColor: 'text-green-800' },
   ai: { name: 'AI', group: '学习路径', bgColor: 'bg-purple-100', textColor: 'text-purple-800' },
   devops: { name: 'DevOps', group: '学习路径', bgColor: 'bg-yellow-100', textColor: 'text-yellow-800' },
+  architecture: { name: '架构设计', group: '学习路径', bgColor: 'bg-indigo-100', textColor: 'text-indigo-800' },
   // 技术实践
   'tools-and-tips': { name: '工具技巧', group: '技术实践', bgColor: 'bg-teal-100', textColor: 'text-teal-800' },
   research: { name: '技术调研', group: '技术实践', bgColor: 'bg-amber-100', textColor: 'text-amber-800' },
@@ -71,8 +72,6 @@ export function getAllArticles(): ArticleMeta[] {
       const filePath = path.join(categoryDir, file)
       const fileContents = fs.readFileSync(filePath, 'utf8')
       const { data } = matter(fileContents)
-      const fileMtime = fs.statSync(filePath).mtime.toISOString().slice(0, 10)
-
       articles.push({
         title: data.title || slug,
         excerpt: data.excerpt || '',
@@ -82,13 +81,14 @@ export function getAllArticles(): ArticleMeta[] {
         difficulty: data.difficulty,
         readTime: data.readTime,
         publishedAt: data.publishedAt,
-        updatedAt: data.updatedAt || fileMtime,
+        updatedAt: data.updatedAt,
         notebook: data.notebook,
       })
     }
   }
 
-  // 按最近活跃时间倒序（优先 updatedAt，fallback publishedAt）
+  // 按发布/更新时间倒序：优先用 frontmatter 中显式声明的 updatedAt，其次 publishedAt
+  // 不使用 fileMtime，因为 git 操作会导致 mtime 不可靠
   articles.sort((a, b) => {
     const dateA = a.updatedAt || a.publishedAt || '1970-01-01'
     const dateB = b.updatedAt || b.publishedAt || '1970-01-01'

@@ -63,10 +63,12 @@ readTime: 12
 | 聊天持久化 | Supabase + localStorage 双模式 | Redis Session + MySQL |
 | 认证 | Supabase Auth (GitHub OAuth) | Spring Security + OAuth2 |
 | 部署 | Vercel (已上线) | 阿里云 ECS + Nginx + Jenkins |
+| CI/CD | GitHub Actions（冒烟测试） | Jenkins Pipeline |
+| 健康检查 | /api/health | Spring Boot Actuator |
 
 ---
 
-## 三、六大技术能力详解
+## 三、七大技术能力详解
 
 ### 能力一：Markdown 驱动的内容管理
 
@@ -276,12 +278,16 @@ scripts/
 ├── watch-articles.ts      # 监听文章变更，自动重建 embedding
 ├── sync-notes.ts          # 从技术笔记库同步文章到博客
 ├── convert-ai-brief.mjs   # AI 简报格式转换
-└── fetch-ai-brief.sh      # 拉取 AI 简报数据
+├── fetch-ai-brief.sh      # 拉取 AI 简报数据（支持增量 + 历史补全）
+├── fetch-rss-feeds.ts     # RSS 订阅源抓取
+└── smoke-test.ts          # 冒烟测试（11 个检查点）
 ```
 
 - `build-embeddings.ts`：读取所有 Markdown 文章 → 分块 → 调用 Qwen3-Embedding API → 保存为 `embeddings.json`
 - `watch-articles.ts`：用 `fs.watch` 监听 `content/articles/` 目录变更，有新增或修改时自动触发 embedding 重建
 - `sync-notes.ts`：从 `~/docs/tech-notes/` 同步文章到博客的 `content/articles/` 目录
+- `fetch-ai-brief.sh`：每日自动从 ai-brief.liziran.com 爬取 AI 论文简报，支持增量爬取和历史文章补全（已补全 64 篇，2026-02-01 至今）
+- `smoke-test.ts`：冒烟测试脚本，覆盖首页/文章/API/搜索/健康检查/404 等 11 个关键路径
 
 **自动化链路**：
 
@@ -295,14 +301,49 @@ watch-articles.ts 检测到变更
 build-embeddings.ts 重建向量
     │
     ▼
-git push
+git push → 提 PR
     │
     ▼
-Vercel 自动构建部署
+GitHub Actions: Preview 冒烟测试（自动拦截问题）
+    │
+    ▼
+合并 → Vercel 自动构建部署
+    │
+    ▼
+GitHub Actions: 生产冒烟测试（部署后验证）
     │
     ▼
 线上博客更新，AI 助手的知识库也同步更新
 ```
+
+### 能力七：灰度测试与 CI/CD
+
+博客引入了完整的上线保护链路，解决"每次更新功能都碰到 bug"的问题：
+
+**冒烟测试脚本**（`scripts/smoke-test.ts`）：
+
+| 测试项 | 通过条件 |
+|--------|----------|
+| 首页可访问 | status=200, 返回 HTML |
+| 文章列表页 | status=200 |
+| 文章详情页 | status=200, 包含文章内容 |
+| API: 文章列表 | status=200, 返回 JSON 数组 |
+| API: 搜索 | status=200, 返回 JSON |
+| API: AI 聊天 | status=200（soft fail，Preview 环境可能无 API key） |
+| API: 健康检查 | status=200, 各子系统状态正常 |
+| 静态资源 | status=200 |
+| 404 处理 | status=404, 不崩溃 |
+| RSS Feeds 页 | status=200 |
+| 路线图页 | status=200 |
+
+**GitHub Actions 工作流**：
+
+- `preview-check.yml`：PR 提交 → 等待 Vercel Preview 部署 → 自动跑冒烟测试 → 通过才能合并
+- `production-smoke.yml`：Vercel 生产部署成功 → 自动跑冒烟测试 → 失败显示红叉
+
+**健康检查 API**（`/api/health`）：返回文章数量、RAG 可用性、API Key 状态，供冒烟测试和外部监控使用。
+
+**后端类比**：相当于 Spring Boot Actuator 的 `/health` 端点 + Jenkins Pipeline 的 post-deploy 验证阶段。区别是这里用纯 fetch 而非 Selenium/Playwright，更轻量。
 
 ---
 
@@ -329,12 +370,13 @@ Vercel 自动构建部署
 
 | 指标 | 数值 |
 |------|------|
-| 文章分类 | 14 个 |
-| 文章数量 | 40 篇 |
-| React 组件 | 20 个 |
-| API 接口 | 2 个（AI 聊天 + 搜索） |
+| 文章分类 | 15 个 |
+| 文章数量 | 100+ 篇（含 64 篇 AI 论文简报） |
+| React 组件 | 27 个 |
+| API 接口 | 7 个（AI 聊天 + 搜索 + 文章列表 + 健康检查 + Feeds + Todos） |
 | 数据库表 | 5 个（评论 + 划线 + 聊天会话 + 聊天消息 + 待办事项） |
-| 自动化脚本 | 5 个 |
+| 自动化脚本 | 7 个 |
+| CI/CD | GitHub Actions（Preview 冒烟测试 + 生产部署验证） |
 
 ---
 
@@ -344,8 +386,12 @@ Vercel 自动构建部署
 - [x] AI 助手聊天记录持久化（Supabase，登录用户跨设备同步）
 - [x] GitHub OAuth 登录（Supabase Auth）
 - [x] 全文搜索 API（/api/search）
+- [x] RSS 订阅管理（/feeds 页面 + 订阅源发现 API）
+- [x] 待办事项管理（/todos 页面 + AI 提取）
+- [x] AI 简报历史补全（64 篇，2026-02-01 至今）
+- [x] 冒烟测试 + CI/CD（GitHub Actions 自动验证）
+- [x] 健康检查 API（/api/health）
 - [ ] SEO 优化（sitemap、Open Graph）
-- [ ] RSS 订阅
 - [ ] 暗色模式
 - [ ] 文章阅读数据统计
 - [ ] 基于阅读历史的智能推荐

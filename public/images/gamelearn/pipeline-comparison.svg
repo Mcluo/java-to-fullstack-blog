@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 680" font-family="Inter, -apple-system, sans-serif">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000012"/>
+    </filter>
+    <linearGradient id="gCyan2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00E5C8;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#00E5C8;stop-opacity:0.05"/>
+    </linearGradient>
+    <linearGradient id="gIndigo" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#6366F1;stop-opacity:0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="680" fill="#FAFBFC" rx="12"/>
+
+  <!-- Title -->
+  <text x="460" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="#1F2937">AI 生成流水线对比：ahafrog (13步) vs GameLearn (6步)</text>
+  <text x="460" y="58" text-anchor="middle" font-size="11" fill="#9CA3AF">核心取舍：可靠性 &gt; 灵活性 · 模板注入 &gt; 纯 AI 生成</text>
+
+  <!-- ============ Left: ahafrog 13 steps ============ -->
+  <rect x="30" y="80" width="420" height="580" rx="12" fill="url(#gCyan2)" stroke="#00E5C830" stroke-width="1.5"/>
+  <text x="240" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#0D9488">ahafrog · 13 步纯 AI 生成</text>
+  <text x="240" y="126" text-anchor="middle" font-size="10" fill="#9CA3AF">~$0.50-1.00/次 · 2-5 分钟 · 含图像生成</text>
+
+  <!-- Steps -->
+  <rect x="55" y="142" width="370" height="32" rx="6" fill="white" stroke="#0D948830" stroke-width="1" filter="url(#shadow)"/>
+  <text x="75" y="163" font-size="12" fill="#0D9488" font-weight="600">1</text>
+  <text x="100" y="163" font-size="11" fill="#374151">📚 分析知识内容</text>
+  <rect x="330" y="148" width="80" height="20" rx="4" fill="#ECFDF5"/>
+  <text x="370" y="162" text-anchor="middle" font-size="9" fill="#059669">LLM 调用</text>
+
+  <rect x="55" y="180" width="370" height="32" rx="6" fill="white" stroke="#0D948830" stroke-width="1"/>
+  <text x="75" y="201" font-size="12" fill="#0D9488" font-weight="600">2</text>
+  <text x="100" y="201" font-size="11" fill="#374151">💬 生成对话剧本</text>
+  <rect x="330" y="186" width="80" height="20" rx="4" fill="#ECFDF5"/>
+  <text x="370" y="200" text-anchor="middle" font-size="9" fill="#059669">LLM 调用</text>
+
+  <rect x="55" y="218" width="370" height="32" rx="6" fill="#FFF7ED" stroke="#F97316" stroke-width="1.5"/>
+  <text x="75" y="239" font-size="12" fill="#EA580C" font-weight="600">3</text>
+  <text x="100" y="239" font-size="11" fill="#374151" font-weight="600">🎨 绘制图标</text>
+  <rect x="315" y="224" width="95" height="20" rx="4" fill="#FFEDD5"/>
+  <text x="362" y="238" text-anchor="middle" font-size="9" fill="#EA580C">图像生成 AI</text>
+
+  <rect x="55" y="256" width="370" height="32" rx="6" fill="#FFF7ED" stroke="#F97316" stroke-width="1.5"/>
+  <text x="75" y="277" font-size="12" fill="#EA580C" font-weight="600">4</text>
+  <text x="100" y="277" font-size="11" fill="#374151" font-weight="600">🧑 绘制角色</text>
+  <rect x="315" y="262" width="95" height="20" rx="4" fill="#FFEDD5"/>
+  <text x="362" y="276" text-anchor="middle" font-size="9" fill="#EA580C">图像生成 AI</text>
+
+  <rect x="55" y="294" width="370" height="32" rx="6" fill="#FFF7ED" stroke="#F97316" stroke-width="1.5"/>
+  <text x="75" y="315" font-size="12" fill="#EA580C" font-weight="600">5</text>
+  <text x="100" y="315" font-size="11" fill="#374151" font-weight="600">🌄 绘制场景背景</text>
+  <rect x="315" y="300" width="95" height="20" rx="4" fill="#FFEDD5"/>
+  <text x="362" y="314" text-anchor="middle" font-size="9" fill="#EA580C">图像生成 AI</text>
+
+  <rect x="55" y="332" width="370" height="32" rx="6" fill="#FFF7ED" stroke="#F97316" stroke-width="1.5"/>
+  <text x="75" y="353" font-size="12" fill="#EA580C" font-weight="600">6</text>
+  <text x="100" y="353" font-size="11" fill="#374151" font-weight="600">🖼️ 绘制封面</text>
+  <rect x="315" y="338" width="95" height="20" rx="4" fill="#FFEDD5"/>
+  <text x="362" y="352" text-anchor="middle" font-size="9" fill="#EA580C">图像生成 AI</text>
+
+  <rect x="55" y="370" width="370" height="32" rx="6" fill="white" stroke="#0D948830" stroke-width="1"/>
+  <text x="75" y="391" font-size="12" fill="#0D9488" font-weight="600">7</text>
+  <text x="100" y="391" font-size="11" fill="#374151">🕹️ 设计互动小游戏</text>
+  <rect x="330" y="376" width="80" height="20" rx="4" fill="#ECFDF5"/>
+  <text x="370" y="390" text-anchor="middle" font-size="9" fill="#059669">LLM 调用</text>
+
+  <rect x="55" y="408" width="370" height="32" rx="6" fill="white" stroke="#EF444450" stroke-width="1.5"/>
+  <text x="75" y="429" font-size="12" fill="#EF4444" font-weight="600">8</text>
+  <text x="100" y="429" font-size="11" fill="#374151" font-weight="600">⚙️ 编写游戏代码</text>
+  <rect x="310" y="414" width="100" height="20" rx="4" fill="#FEF2F2"/>
+  <text x="360" y="428" text-anchor="middle" font-size="9" fill="#EF4444">高风险 · 易出错</text>
+
+  <rect x="55" y="446" width="370" height="32" rx="6" fill="white" stroke="#0D948830" stroke-width="1"/>
+  <text x="75" y="467" font-size="12" fill="#0D9488" font-weight="600">9</text>
+  <text x="100" y="467" font-size="11" fill="#374151">🔍 检查游戏代码</text>
+
+  <rect x="55" y="484" width="370" height="32" rx="6" fill="#FFF7ED" stroke="#F97316" stroke-width="1"/>
+  <text x="75" y="505" font-size="12" fill="#EA580C" font-weight="600">10</text>
+  <text x="108" y="505" font-size="11" fill="#374151">✏️ 优化像素画</text>
+
+  <rect x="55" y="522" width="370" height="32" rx="6" fill="white" stroke="#0D948830" stroke-width="1"/>
+  <text x="75" y="543" font-size="12" fill="#0D9488" font-weight="600">11</text>
+  <text x="108" y="543" font-size="11" fill="#374151">📦 打包游戏资源</text>
+
+  <rect x="55" y="560" width="370" height="32" rx="6" fill="white" stroke="#0D948830" stroke-width="1"/>
+  <text x="75" y="581" font-size="12" fill="#0D9488" font-weight="600">12</text>
+  <text x="108" y="581" font-size="11" fill="#374151">☁️ 上传到云端</text>
+
+  <rect x="55" y="598" width="370" height="32" rx="6" fill="white" stroke="#0D948830" stroke-width="1"/>
+  <text x="75" y="619" font-size="12" fill="#0D9488" font-weight="600">13</text>
+  <text x="108" y="619" font-size="11" fill="#374151">✅ 生成完成</text>
+
+  <!-- Label: image gen steps -->
+  <rect x="60" y="215" width="8" height="154" rx="3" fill="#F97316" opacity="0.4"/>
+  <text x="46" y="295" text-anchor="middle" font-size="9" fill="#EA580C" transform="rotate(-90 46 295)">4 步图像生成（高成本）</text>
+
+  <!-- ============ Right: GameLearn 6 steps ============ -->
+  <rect x="470" y="80" width="420" height="580" rx="12" fill="url(#gIndigo)" stroke="#6366F130" stroke-width="1.5"/>
+  <text x="680" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#4F46E5">GameLearn · 6 步模板注入</text>
+  <text x="680" y="126" text-anchor="middle" font-size="10" fill="#9CA3AF">~$0.10-0.15/次 · 30-60 秒 · 纯文本生成</text>
+
+  <!-- Step 1 -->
+  <rect x="495" y="148" width="370" height="62" rx="8" fill="white" stroke="#4F46E530" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="520" cy="179" r="14" fill="#EEF2FF"/>
+  <text x="520" y="184" text-anchor="middle" font-size="12" fill="#4F46E5" font-weight="700">1</text>
+  <text x="545" y="172" font-size="12" font-weight="600" fill="#1F2937">知识分析</text>
+  <text x="545" y="190" font-size="10" fill="#6B7280">提取概念、学习目标、难度、学科分类</text>
+  <rect x="770" y="166" width="80" height="20" rx="4" fill="#EEF2FF"/>
+  <text x="810" y="180" text-anchor="middle" font-size="9" fill="#4F46E5">Claude API</text>
+
+  <!-- Arrow -->
+  <line x1="680" y1="210" x2="680" y2="228" stroke="#4F46E540" stroke-width="2"/>
+  <polygon points="676,224 684,224 680,232" fill="#4F46E540"/>
+
+  <!-- Step 2 -->
+  <rect x="495" y="232" width="370" height="62" rx="8" fill="white" stroke="#4F46E530" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="520" cy="263" r="14" fill="#EEF2FF"/>
+  <text x="520" y="268" text-anchor="middle" font-size="12" fill="#4F46E5" font-weight="700">2</text>
+  <text x="545" y="256" font-size="12" font-weight="600" fill="#1F2937">游戏设计</text>
+  <text x="545" y="274" font-size="10" fill="#6B7280">选择游戏类型 (Quiz/闪卡/拖拽/填空) + 主题配色</text>
+  <rect x="770" y="250" width="80" height="20" rx="4" fill="#EEF2FF"/>
+  <text x="810" y="264" text-anchor="middle" font-size="9" fill="#4F46E5">Claude API</text>
+
+  <!-- Arrow -->
+  <line x1="680" y1="294" x2="680" y2="312" stroke="#4F46E540" stroke-width="2"/>
+  <polygon points="676,308 684,308 680,316" fill="#4F46E540"/>
+
+  <!-- Step 3 -->
+  <rect x="495" y="316" width="370" height="62" rx="8" fill="white" stroke="#4F46E530" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="520" cy="347" r="14" fill="#EEF2FF"/>
+  <text x="520" y="352" text-anchor="middle" font-size="12" fill="#4F46E5" font-weight="700">3</text>
+  <text x="545" y="340" font-size="12" font-weight="600" fill="#1F2937">内容生成</text>
+  <text x="545" y="358" font-size="10" fill="#6B7280">关卡、题目、答案、解释 → GameContent JSON</text>
+  <rect x="770" y="334" width="80" height="20" rx="4" fill="#EEF2FF"/>
+  <text x="810" y="348" text-anchor="middle" font-size="9" fill="#4F46E5">Claude API</text>
+
+  <!-- Arrow -->
+  <line x1="680" y1="378" x2="680" y2="396" stroke="#4F46E540" stroke-width="2"/>
+  <polygon points="676,392 684,392 680,400" fill="#4F46E540"/>
+
+  <!-- Step 4 — highlighted -->
+  <rect x="495" y="400" width="370" height="62" rx="8" fill="#EEF2FF" stroke="#4F46E5" stroke-width="2" filter="url(#shadow)"/>
+  <circle cx="520" cy="431" r="14" fill="#4F46E5"/>
+  <text x="520" y="436" text-anchor="middle" font-size="12" fill="white" font-weight="700">4</text>
+  <text x="545" y="424" font-size="12" font-weight="600" fill="#1F2937">HTML 组装 (核心差异)</text>
+  <text x="545" y="442" font-size="10" fill="#4F46E5" font-weight="500">AI 数据注入预制游戏模板 → 零 JS 错误</text>
+  <rect x="770" y="418" width="80" height="20" rx="4" fill="#4F46E5"/>
+  <text x="810" y="432" text-anchor="middle" font-size="9" fill="white" font-weight="600">模板引擎</text>
+
+  <!-- Arrow -->
+  <line x1="680" y1="462" x2="680" y2="480" stroke="#4F46E540" stroke-width="2"/>
+  <polygon points="676,476 684,476 680,484" fill="#4F46E540"/>
+
+  <!-- Step 5 -->
+  <rect x="495" y="484" width="370" height="62" rx="8" fill="white" stroke="#4F46E530" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="520" cy="515" r="14" fill="#EEF2FF"/>
+  <text x="520" y="520" text-anchor="middle" font-size="12" fill="#4F46E5" font-weight="700">5</text>
+  <text x="545" y="508" font-size="12" font-weight="600" fill="#1F2937">验证修复</text>
+  <text x="545" y="526" font-size="10" fill="#6B7280">HTML 语法 + JS 语法检查 · 最多重试 2 次</text>
+  <rect x="770" y="502" width="80" height="20" rx="4" fill="#FEF3C7"/>
+  <text x="810" y="516" text-anchor="middle" font-size="9" fill="#92400E">本地校验</text>
+
+  <!-- Arrow -->
+  <line x1="680" y1="546" x2="680" y2="564" stroke="#4F46E540" stroke-width="2"/>
+  <polygon points="676,560 684,560 680,568" fill="#4F46E540"/>
+
+  <!-- Step 6 -->
+  <rect x="495" y="568" width="370" height="62" rx="8" fill="white" stroke="#4F46E530" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="520" cy="599" r="14" fill="#ECFDF5"/>
+  <text x="520" y="604" text-anchor="middle" font-size="12" fill="#059669" font-weight="700">6</text>
+  <text x="545" y="592" font-size="12" font-weight="600" fill="#1F2937">存储</text>
+  <text x="545" y="610" font-size="10" fill="#6B7280">保存到 public/games/{id}.html + 索引更新</text>
+  <rect x="770" y="586" width="80" height="20" rx="4" fill="#ECFDF5"/>
+  <text x="810" y="600" text-anchor="middle" font-size="9" fill="#059669">文件系统</text>
+
+  <!-- VS divider -->
+  <circle cx="460" cy="370" r="18" fill="#1F2937"/>
+  <text x="460" y="375" text-anchor="middle" font-size="11" font-weight="700" fill="white">VS</text>
+</svg>
