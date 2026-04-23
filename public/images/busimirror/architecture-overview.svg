@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Noto Sans SC', 'Inter', sans-serif">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#fee140;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" rx="12" fill="#0f0f23"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">BusiMirror  ·  生意仿真引擎架构总览</text>
+  <line x1="280" y1="50" x2="620" y2="50" stroke="#667eea" stroke-width="2" opacity="0.6"/>
+
+  <!-- Step 1: Data Injection -->
+  <rect x="30" y="80" width="150" height="90" rx="10" fill="url(#g1)" filter="url(#shadow)"/>
+  <text x="105" y="108" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">01 数据注入</text>
+  <text x="105" y="128" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">PDF / MD / TXT</text>
+  <text x="105" y="145" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">行业数据 + 需求描述</text>
+  <text x="105" y="160" text-anchor="middle" fill="#ffd700" font-size="10">simulation_manager</text>
+
+  <!-- Arrow 1→2 -->
+  <path d="M180,125 L210,125" stroke="#667eea" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#888"/></marker></defs>
+
+  <!-- Step 2: World Building -->
+  <rect x="215" y="80" width="150" height="90" rx="10" fill="url(#g2)" filter="url(#shadow)"/>
+  <text x="290" y="108" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">02 世界构建</text>
+  <text x="290" y="128" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">本体提取 + 图谱生成</text>
+  <text x="290" y="145" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">Agent Profile 画像</text>
+  <text x="290" y="160" text-anchor="middle" fill="#ffd700" font-size="10">ontology_generator</text>
+
+  <!-- Arrow 2→3 -->
+  <path d="M365,125 L395,125" stroke="#f093fb" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 3: Simulation -->
+  <rect x="400" y="80" width="150" height="90" rx="10" fill="url(#g3)" filter="url(#shadow)"/>
+  <text x="475" y="108" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">03 仿真推演</text>
+  <text x="475" y="128" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">Multi-Agent 多轮博弈</text>
+  <text x="475" y="145" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">结算 → LLM决策 → 执行</text>
+  <text x="475" y="160" text-anchor="middle" fill="#ffd700" font-size="10">simulation_runner</text>
+
+  <!-- Arrow 3→4 -->
+  <path d="M550,125 L580,125" stroke="#4facfe" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 4: Report -->
+  <rect x="585" y="80" width="150" height="90" rx="10" fill="url(#g4)" filter="url(#shadow)"/>
+  <text x="660" y="108" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="600">04 趋势预测</text>
+  <text x="660" y="128" text-anchor="middle" fill="rgba(0,0,0,0.7)" font-size="10">数据聚合 + 报告生成</text>
+  <text x="660" y="145" text-anchor="middle" fill="rgba(0,0,0,0.7)" font-size="10">生意趋势洞察</text>
+  <text x="660" y="160" text-anchor="middle" fill="#1a5276" font-size="10">report_agent</text>
+
+  <!-- Arrow 4→5 -->
+  <path d="M735,125 L765,125" stroke="#43e97b" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 5: Interaction -->
+  <rect x="770" y="80" width="110" height="90" rx="10" fill="url(#g5)" filter="url(#shadow)"/>
+  <text x="825" y="108" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="600">05 深度互动</text>
+  <text x="825" y="128" text-anchor="middle" fill="rgba(0,0,0,0.7)" font-size="10">对话追问</text>
+  <text x="825" y="145" text-anchor="middle" fill="rgba(0,0,0,0.7)" font-size="10">决策逻辑解释</text>
+
+  <!-- Core Engine Section -->
+  <rect x="30" y="200" width="840" height="300" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="50" y="225" fill="#888" font-size="11">CORE ENGINE — 仿真主循环 (custom_simulation_runner)</text>
+
+  <!-- Phase 1: Settlement -->
+  <rect x="50" y="245" width="250" height="230" rx="8" fill="rgba(102,126,234,0.15)" stroke="rgba(102,126,234,0.4)" stroke-width="1"/>
+  <text x="175" y="270" text-anchor="middle" fill="#667eea" font-size="13" font-weight="600">Phase 1 · 结算引擎</text>
+  <text x="175" y="288" text-anchor="middle" fill="#888" font-size="10">settlement_engine_1688</text>
+
+  <!-- Formula cards -->
+  <rect x="65" y="300" width="220" height="28" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <text x="75" y="318" fill="#4facfe" font-size="10">① 商品总销量 = int(50 + 1200 × h³)</text>
+
+  <rect x="65" y="333" width="220" height="28" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <text x="75" y="351" fill="#43e97b" font-size="10">③ 买家能力 = (0.35×eff + 0.65×cap^1.6)</text>
+
+  <rect x="65" y="366" width="220" height="28" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <text x="75" y="384" fill="#f5576c" font-size="10">⑤ 退货率 = 0.25 + 0.28×(pf-1) + noise</text>
+
+  <rect x="65" y="399" width="220" height="28" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <text x="75" y="417" fill="#fee140" font-size="10">⑥ 利润 = (收入-进货-运营) × 销量</text>
+
+  <rect x="65" y="432" width="220" height="28" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <text x="75" y="450" fill="#fa709a" font-size="10">⑦ 资金更新 funding += profit</text>
+
+  <!-- Arrow Phase1 → Phase3 -->
+  <path d="M300,360 L330,360" stroke="#667eea" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Phase 3: LLM Decision -->
+  <rect x="335" y="245" width="250" height="230" rx="8" fill="rgba(240,147,251,0.12)" stroke="rgba(240,147,251,0.4)" stroke-width="1"/>
+  <text x="460" y="270" text-anchor="middle" fill="#f093fb" font-size="13" font-weight="600">Phase 3 · LLM 决策</text>
+  <text x="460" y="288" text-anchor="middle" fill="#888" font-size="10">prompt_generator → openai_agent</text>
+
+  <!-- Action cards -->
+  <rect x="350" y="300" width="100" height="35" rx="6" fill="rgba(79,172,254,0.2)" stroke="rgba(79,172,254,0.5)" stroke-width="1"/>
+  <text x="400" y="315" text-anchor="middle" fill="#4facfe" font-size="10" font-weight="600">ADD_SUPPLY</text>
+  <text x="400" y="328" text-anchor="middle" fill="#888" font-size="8">铺货</text>
+
+  <rect x="460" y="300" width="100" height="35" rx="6" fill="rgba(67,233,123,0.2)" stroke="rgba(67,233,123,0.5)" stroke-width="1"/>
+  <text x="510" y="315" text-anchor="middle" fill="#43e97b" font-size="10" font-weight="600">RESET_PRICE</text>
+  <text x="510" y="328" text-anchor="middle" fill="#888" font-size="8">改价</text>
+
+  <rect x="350" y="345" width="100" height="35" rx="6" fill="rgba(250,112,154,0.2)" stroke="rgba(250,112,154,0.5)" stroke-width="1"/>
+  <text x="400" y="360" text-anchor="middle" fill="#fa709a" font-size="10" font-weight="600">PROMOTE</text>
+  <text x="400" y="373" text-anchor="middle" fill="#888" font-size="8">推广</text>
+
+  <rect x="460" y="345" width="100" height="35" rx="6" fill="rgba(254,225,64,0.2)" stroke="rgba(254,225,64,0.5)" stroke-width="1"/>
+  <text x="510" y="360" text-anchor="middle" fill="#fee140" font-size="10" font-weight="600">STOP_SALE</text>
+  <text x="510" y="373" text-anchor="middle" fill="#888" font-size="8">下架</text>
+
+  <rect x="400" y="390" width="110" height="35" rx="6" fill="rgba(118,75,162,0.2)" stroke="rgba(118,75,162,0.5)" stroke-width="1"/>
+  <text x="455" y="405" text-anchor="middle" fill="#b388ff" font-size="10" font-weight="600">SHOP_SPLIT</text>
+  <text x="455" y="418" text-anchor="middle" fill="#888" font-size="8">店铺分裂</text>
+
+  <!-- LLM output -->
+  <rect x="355" y="435" width="220" height="30" rx="4" fill="rgba(255,255,255,0.08)"/>
+  <text x="465" y="455" text-anchor="middle" fill="#ccc" font-size="9">{execute, action_args, reasoning}</text>
+
+  <!-- Arrow Phase3 → Market -->
+  <path d="M585,360 L615,360" stroke="#f093fb" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Market Evolution -->
+  <rect x="620" y="245" width="235" height="230" rx="8" fill="rgba(67,233,123,0.1)" stroke="rgba(67,233,123,0.3)" stroke-width="1"/>
+  <text x="737" y="270" text-anchor="middle" fill="#43e97b" font-size="13" font-weight="600">市场演化 · State DB</text>
+
+  <!-- State tables -->
+  <rect x="635" y="290" width="205" height="40" rx="4" fill="rgba(79,172,254,0.12)"/>
+  <text x="737" y="308" text-anchor="middle" fill="#4facfe" font-size="11" font-weight="600">buyer_sim_state</text>
+  <text x="737" y="323" text-anchor="middle" fill="#888" font-size="9">资金 / 能力 / 风险 / 状态</text>
+
+  <rect x="635" y="340" width="205" height="40" rx="4" fill="rgba(67,233,123,0.12)"/>
+  <text x="737" y="358" text-anchor="middle" fill="#43e97b" font-size="11" font-weight="600">item_sim_state</text>
+  <text x="737" y="373" text-anchor="middle" fill="#888" font-size="9">热度 / 竞争度 / 价格 / 趋势</text>
+
+  <rect x="635" y="390" width="205" height="40" rx="4" fill="rgba(250,112,154,0.12)"/>
+  <text x="737" y="408" text-anchor="middle" fill="#fa709a" font-size="11" font-weight="600">competition_level</text>
+  <text x="737" y="423" text-anchor="middle" fill="#888" font-size="9">ADD +0.05 / STOP +0.03 / SPLIT +0.08</text>
+
+  <!-- Feedback loop arrow -->
+  <path d="M737,440 C737,490 175,490 175,475" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+  <text x="450" y="498" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9">下一轮循环 →</text>
+</svg>

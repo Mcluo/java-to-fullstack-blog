@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
+import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters'
 
 const EMBEDDING_CONFIG = {
   apiKey: process.env.EMBEDDING_API_KEY || process.env.OPENAI_API_KEY || '',

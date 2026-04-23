@@ -597,6 +597,7 @@ Hermes Agent 证明了一件事：**Agent 架构的核心挑战不是"如何调�
 
 ---
 
-> 如果你对 Agent 架构感兴趣，也推荐阅读我之前的文章：
+> 如果你对 Agent 架构感兴趣，也推荐阅读：
+> - [Hermes Agent vs Claude Code：两种设计哲学的碰撞](/articles/research/hermes-agent-vs-claude-code-comparison)
 > - [Claude Code 源码分析：万行代码背后的 AI Harness 编码操作系统](/articles/tools-and-tips/claude-code-source-analysis-harness-os)
 > - [从 Claude Code 源码看 AI 产品架构：10 大设计模式与产品化路径](/articles/tools-and-tips/claude-code-architecture-to-product)

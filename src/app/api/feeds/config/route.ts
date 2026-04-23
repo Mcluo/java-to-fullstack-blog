@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
   if (guard) return guard
 
   const body = await request.json()
-  const { name, url, category, maxItems, type, feedUrl, platform } = body
+  const { name, url, category, maxItems, type, feedUrl, platform, sourceType, channelId } = body
 
   if (!name || !url) {
     return NextResponse.json({ error: '名称和 URL 为必填' }, { status: 400 })
@@ -38,6 +38,8 @@ export async function POST(request: NextRequest) {
     category: category || '未分类',
     enabled: true,
     maxItems: maxItems || 10,
+    sourceType: sourceType || 'rss',
+    channelId: channelId || undefined,
   }
 
   config.feeds.push(newFeed)

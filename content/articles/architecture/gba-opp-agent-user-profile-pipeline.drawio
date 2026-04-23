@@ -1,0 +1,123 @@
+<mxfile host="app.diagrams.net" modified="2026-04-08T09:00:00.000Z" agent="Claude Code" version="24.7.17">
+  <diagram id="pipeline" name="用户画像数据链路">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- 标题 -->
+        <mxCell id="title" value="遨虾 Agent 用户画像数据链路" style="text;html=1;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="400" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 源表 -->
+        <mxCell id="source" value="&lt;b&gt;gba_opp_agent_chat_task&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#666'&gt;Agent 聊天任务明细&lt;br&gt;3200万+ 行 | 按 ds 分区&lt;br&gt;字段: user_id, session_id, scene,&lt;br&gt;gmt_create, is_success, is_small_talk...&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="580" y="90" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- 分支线 -->
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#6c8ebf;" edge="1" parent="1" source="source" target="profile">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label1" value="&lt;b&gt;① 全量聚合&lt;/b&gt;&lt;br&gt;&lt;font color='#666'&gt;GROUP BY user_id&lt;br&gt;ds &lt;= ${bizdate}&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="arrow1">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint x="-100" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 全量表 profile -->
+        <mxCell id="profile" value="&lt;b&gt;gba_opp_agent_user_profile&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#666'&gt;用户画像全量快照 | 按 ds 分区&lt;br&gt;12.2万用户&lt;br&gt;字段: user_id, first/last_use_time,&lt;br&gt;total_tasks, session_cnt, scene_cnt,&lt;br&gt;scenes_used, success/small_talk_cnt,&lt;br&gt;&lt;b style='color:#e74c3c'&gt;user_profile (JSON)&lt;/b&gt;&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="250" y="310" width="260" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- 箭头: source + profile(T-1) -> input -->
+        <mxCell id="arrow2a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#d6862d;dashed=1;" edge="1" parent="1" source="profile" target="input">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="380" />
+              <mxPoint x="700" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label2a" value="&lt;font color='#d6862d'&gt;&lt;b&gt;LEFT JOIN&lt;/b&gt;&lt;br&gt;profile(ds=${bizdate-1})&lt;br&gt;取 p.user_id IS NULL&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="arrow2a">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="30" y="-20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="arrow2b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#d6862d;" edge="1" parent="1" source="source" target="input">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="240" />
+              <mxPoint x="700" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label2b" value="&lt;b&gt;② 增量筛选&lt;/b&gt;&lt;br&gt;&lt;font color='#666'&gt;chat_task(ds=${bizdate})&lt;br&gt;中的新用户&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="arrow2b">
+          <mxGeometry x="0.3" relative="1" as="geometry">
+            <mxPoint x="80" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 输入表 input -->
+        <mxCell id="input" value="&lt;b&gt;gba_opp_agent_user_input&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#666'&gt;画像分析输入表 | 按 ds 分区&lt;br&gt;每日新增用户 (日均 ~1000+)&lt;br&gt;字段: user_id, first/last_use_time,&lt;br&gt;daily_tasks, daily_sessions, scene_cnt,&lt;br&gt;scenes_used, success/small_talk_cnt,&lt;br&gt;is_new_user&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="570" y="500" width="260" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- 工作流 -->
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#9673a6;" edge="1" parent="1" source="input" target="workflow">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label3" value="&lt;b&gt;③ 逐用户分析&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="arrow3">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="50" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="workflow" value="&lt;b&gt;画像分析工作流&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#666'&gt;Agent 用户画像分析&lt;br&gt;产出: user_profile (JSON)&lt;br&gt;+ trace_id&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=center;size=0.1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="700" width="200" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- daily 表 -->
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#9673a6;" edge="1" parent="1" source="workflow" target="daily">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label4" value="&lt;b&gt;写入结果&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="arrow4">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="daily" value="&lt;b&gt;gba_opp_agent_user_daily&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#666'&gt;用户增量结果表 | 按 ds 分区&lt;br&gt;字段: input 全部字段 +&lt;br&gt;&lt;b style='color:#e74c3c'&gt;user_profile (JSON)&lt;/b&gt;&lt;br&gt;&lt;b style='color:#e74c3c'&gt;trace_id&lt;/b&gt;&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="250" y="670" width="240" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- 回写 profile -->
+        <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#82b366;dashed=1;" edge="1" parent="1" source="daily" target="profile">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="140" y="700" />
+              <mxPoint x="140" y="415" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label5" value="&lt;b&gt;④ 回写画像&lt;/b&gt;&lt;br&gt;&lt;font color='#666'&gt;INSERT OVERWRITE&lt;br&gt;COALESCE(d.user_profile,&lt;br&gt;p.user_profile)&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="arrow5">
+          <mxGeometry x="0.1" relative="1" as="geometry">
+            <mxPoint x="-65" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 调度顺序说明 -->
+        <mxCell id="legend" value="&lt;b&gt;调度顺序&lt;/b&gt;&lt;br&gt;① profile 全量聚合 (无依赖)&lt;br&gt;② input 增量筛选 (依赖 profile T-1)&lt;br&gt;③ 画像工作流 (依赖 input)&lt;br&gt;④ 回写 profile (依赖 daily)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999;fontSize=11;align=left;spacingLeft=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="90" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- 数据规模说明 -->
+        <mxCell id="scale" value="&lt;b&gt;数据规模&lt;/b&gt;&lt;br&gt;源表: 3200万+ 行 (170+ 分区)&lt;br&gt;全量用户: 12.2万&lt;br&gt;日活用户: ~1万&lt;br&gt;日新增: ~1000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999;fontSize=11;align=left;spacingLeft=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="210" width="270" height="100" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

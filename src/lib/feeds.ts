@@ -13,6 +13,24 @@ export interface FeedSource {
   category: string
   enabled: boolean
   maxItems: number
+  sourceType: 'rss' | 'bilibili' | 'youtube'  // 源类型
+  channelId?: string    // B站 UID 或 YouTube channel ID
+  lastFetched?: string  // 上次爬取时间 ISO string
+}
+
+export interface FeedItem {
+  id: string
+  sourceId: string       // 关联 FeedSource.id
+  title: string
+  url: string
+  thumbnail?: string
+  duration?: string      // 视频时长 (如 "12:34")
+  author: string
+  publishedAt: string
+  subtitle?: string      // 字幕/正文内容
+  summary?: string       // AI 总结
+  fetchedAt: string      // 爬取时间 ISO string
+  sourceType: 'rss' | 'bilibili' | 'youtube'
 }
 
 export interface FeedConfig {
@@ -21,6 +39,7 @@ export interface FeedConfig {
 }
 
 const FEEDS_CONFIG_PATH = path.join(process.cwd(), 'content', 'feeds', 'config.json')
+const FEEDS_ITEMS_PATH = path.join(process.cwd(), 'content', 'feeds', 'items.json')
 const FEEDS_ARTICLES_DIR = path.join(process.cwd(), 'content', 'articles', 'feeds')
 
 export function loadFeedConfig(): FeedConfig {
@@ -67,4 +86,51 @@ export function getFeedDigests(): ArticleMeta[] {
   })
 
   return digests
+}
+
+// ── Favorites ──────────────────────────────────────
+
+export interface FeedFavorite {
+  id: string
+  title: string
+  url: string
+  thumbnail?: string
+  duration?: string
+  author: string
+  summary?: string
+  subtitle?: string
+  sourceType: 'bilibili' | 'youtube' | 'rss' | 'web'
+  savedAt: string
+  tags?: string[]
+  note?: string       // 用户备注
+}
+
+const FEEDS_FAVORITES_PATH = path.join(process.cwd(), 'content', 'feeds', 'favorites.json')
+
+export function loadFavorites(): FeedFavorite[] {
+  if (!fs.existsSync(FEEDS_FAVORITES_PATH)) return []
+  return JSON.parse(fs.readFileSync(FEEDS_FAVORITES_PATH, 'utf8'))
+}
+
+export function saveFavorites(items: FeedFavorite[]): void {
+  const dir = path.dirname(FEEDS_FAVORITES_PATH)
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+  const tmpPath = FEEDS_FAVORITES_PATH + '.tmp'
+  fs.writeFileSync(tmpPath, JSON.stringify(items, null, 2) + '\n', 'utf8')
+  fs.renameSync(tmpPath, FEEDS_FAVORITES_PATH)
+}
+
+// ── Feed Items ─────────────────────────────────────
+
+export function loadFeedItems(): FeedItem[] {
+  if (!fs.existsSync(FEEDS_ITEMS_PATH)) return []
+  return JSON.parse(fs.readFileSync(FEEDS_ITEMS_PATH, 'utf8'))
+}
+
+export function saveFeedItems(items: FeedItem[]): void {
+  const dir = path.dirname(FEEDS_ITEMS_PATH)
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+  const tmpPath = FEEDS_ITEMS_PATH + '.tmp'
+  fs.writeFileSync(tmpPath, JSON.stringify(items, null, 2) + '\n', 'utf8')
+  fs.renameSync(tmpPath, FEEDS_ITEMS_PATH)
 }

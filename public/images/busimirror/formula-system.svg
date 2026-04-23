@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 500" font-family="'Noto Sans SC', 'Inter', sans-serif">
+  <defs>
+    <linearGradient id="fbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23"/>
+      <stop offset="100%" style="stop-color:#1a1a3e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="850" height="500" fill="url(#fbg)" rx="12"/>
+  <text x="425" y="35" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">13 个核心公式 · 驱动平行商业世界的数学引擎</text>
+
+  <!-- Module 1: Sales Settlement -->
+  <rect x="20" y="55" width="260" height="210" rx="8" fill="rgba(79,172,254,0.08)" stroke="rgba(79,172,254,0.3)"/>
+  <text x="150" y="78" text-anchor="middle" fill="#4facfe" font-size="13" font-weight="700">模块一 · 下游销售结算</text>
+  <text x="150" y="93" text-anchor="middle" fill="#666" font-size="9">Phase 1 · 每轮自动执行</text>
+
+  <rect x="30" y="105" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="40" y="120" fill="#4facfe" font-size="10">①</text>
+  <text x="60" y="120" fill="#ccc" font-size="10">总销量 = 50 + 1200 × h³</text>
+  <text x="235" y="130" fill="#666" font-size="7">三次方爆发增长</text>
+
+  <rect x="30" y="142" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="40" y="157" fill="#43e97b" font-size="10">②</text>
+  <text x="60" y="157" fill="#ccc" font-size="10">推广系数 = log₁₀₀(cost)</text>
+  <text x="235" y="167" fill="#666" font-size="7">对数防砸钱</text>
+
+  <rect x="30" y="179" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="40" y="194" fill="#f093fb" font-size="10">③</text>
+  <text x="60" y="194" fill="#ccc" font-size="10">销售能力 = 运营×0.35 + 内容^1.6×0.65</text>
+  <text x="235" y="204" fill="#666" font-size="7">内容为王</text>
+
+  <rect x="30" y="216" width="240" height="40" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="40" y="231" fill="#fee140" font-size="10">④</text>
+  <text x="60" y="231" fill="#ccc" font-size="10">份额 = 总量 × (我/所有人)</text>
+  <text x="60" y="247" fill="#666" font-size="8">马太效应: 强者恒强</text>
+
+  <!-- Module 2: Profit -->
+  <rect x="295" y="55" width="260" height="210" rx="8" fill="rgba(67,233,123,0.08)" stroke="rgba(67,233,123,0.3)"/>
+  <text x="425" y="78" text-anchor="middle" fill="#43e97b" font-size="13" font-weight="700">模块二 · 利润与资金</text>
+
+  <rect x="305" y="105" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="315" y="120" fill="#fa709a" font-size="10">⑤</text>
+  <text x="335" y="120" fill="#ccc" font-size="10">退货率 = 25% + 28%×(溢价-1)</text>
+  <text x="510" y="130" fill="#666" font-size="7">价格敏感</text>
+
+  <rect x="305" y="142" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="315" y="157" fill="#4facfe" font-size="10">⑥</text>
+  <text x="335" y="157" fill="#ccc" font-size="10">利润 = (收入-进货-运营)×量</text>
+  <text x="510" y="167" fill="#666" font-size="7">可为负值</text>
+
+  <rect x="305" y="179" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="315" y="194" fill="#43e97b" font-size="10">⑦</text>
+  <text x="335" y="194" fill="#ccc" font-size="10">资金 += 利润</text>
+  <text x="510" y="204" fill="#666" font-size="7">生存命脉</text>
+
+  <rect x="305" y="216" width="240" height="40" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="315" y="231" fill="#b388ff" font-size="10">⑫</text>
+  <text x="335" y="231" fill="#ccc" font-size="10">推广利润 = Σprofit - cost</text>
+  <text x="335" y="247" fill="#666" font-size="8">ROI 评估推广效果</text>
+
+  <!-- Module 3: Pricing & Entry -->
+  <rect x="570" y="55" width="260" height="210" rx="8" fill="rgba(250,112,154,0.08)" stroke="rgba(250,112,154,0.3)"/>
+  <text x="700" y="78" text-anchor="middle" fill="#fa709a" font-size="13" font-weight="700">模块三 · 定价与入场</text>
+
+  <rect x="580" y="105" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="590" y="120" fill="#fee140" font-size="10">⑧</text>
+  <text x="610" y="120" fill="#ccc" font-size="10">售价 = 进货价 × (1 + 加价率)</text>
+  <text x="785" y="130" fill="#666" font-size="7">默认+20%</text>
+
+  <rect x="580" y="142" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="590" y="157" fill="#f093fb" font-size="10">⑨</text>
+  <text x="610" y="157" fill="#ccc" font-size="10">风险阈值 = 初始资金 × 韧性</text>
+  <text x="785" y="167" fill="#666" font-size="7">止损线</text>
+
+  <rect x="580" y="179" width="240" height="32" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="590" y="194" fill="#4facfe" font-size="10">⑩</text>
+  <text x="610" y="194" fill="#ccc" font-size="10">分裂成本 = 当前资金 × 5%</text>
+  <text x="785" y="204" fill="#666" font-size="7">矩阵扩张</text>
+
+  <rect x="580" y="216" width="240" height="40" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="590" y="231" fill="#43e97b" font-size="10">⑪</text>
+  <text x="610" y="231" fill="#ccc" font-size="10">分裂后资金 = (资金-成本) / 2</text>
+  <text x="610" y="247" fill="#666" font-size="8">各持 50%, 能力继承</text>
+
+  <!-- Module 4: Market Regulation -->
+  <rect x="20" y="280" width="535" height="100" rx="8" fill="rgba(254,225,64,0.08)" stroke="rgba(254,225,64,0.3)"/>
+  <text x="287" y="303" text-anchor="middle" fill="#fee140" font-size="13" font-weight="700">模块四 · 竞争演化与市场监管</text>
+
+  <rect x="30" y="315" width="250" height="55" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="40" y="333" fill="#fee140" font-size="10">竞争度变化 (只升不降)</text>
+  <text x="40" y="350" fill="#888" font-size="9">铺货 +0.05 | 下架 +0.03 | 分裂 +0.08</text>
+  <text x="40" y="363" fill="#666" font-size="8">模拟市场成熟化趋势, 上限 1.0</text>
+
+  <rect x="295" y="315" width="250" height="55" rx="4" fill="rgba(255,255,255,0.05)"/>
+  <text x="305" y="333" fill="#fa709a" font-size="10">⑬ 处罚概率 = min(5% + 10%×溢价 + 5%×曝光, 30%)</text>
+  <text x="305" y="350" fill="#888" font-size="9">高溢价 → 被监管关注</text>
+  <text x="305" y="363" fill="#666" font-size="8">普通处罚(80%): 警告扣款 | 严重(20%): 下架封禁</text>
+
+  <!-- Design Philosophy -->
+  <rect x="570" y="280" width="260" height="100" rx="8" fill="rgba(118,75,162,0.15)" stroke="rgba(118,75,162,0.3)"/>
+  <text x="700" y="303" text-anchor="middle" fill="#b388ff" font-size="13" font-weight="700">设计哲学</text>
+  <text x="585" y="325" fill="rgba(255,255,255,0.7)" font-size="10">公式驱动确定性结算</text>
+  <text x="585" y="343" fill="rgba(255,255,255,0.7)" font-size="10">LLM 驱动非确定性决策</text>
+  <text x="585" y="361" fill="rgba(255,255,255,0.7)" font-size="10">随机噪声模拟市场波动</text>
+  <text x="585" y="373" fill="#fee140" font-size="9">= 高保真商业世界</text>
+
+  <!-- Bottom banner -->
+  <rect x="20" y="400" width="810" height="85" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+  <text x="425" y="425" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">核心洞察：为什么是 13 个公式 + LLM，而不是纯 LLM？</text>
+  <text x="425" y="448" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">公式保证了经济学基本规律的确定性（销量分配、利润计算不能"幻觉"），LLM 负责模拟人类的主观商业判断（该不该铺货、何时撤退）</text>
+  <text x="425" y="468" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">这种"确定性基座 + 非确定性决策"的混合架构，是 Agent 仿真系统的最佳实践</text>
+</svg>

@@ -3,8 +3,8 @@ title: "Hermes Agent 被捧为'OpenClaw 杀手'？— 两大开源 AI Agent 框�
 excerpt: "Hermes Agent 和 OpenClaw 是 2026 年最具代表性的两个开源 AI Agent 框架。本报告从技术架构、核心能力、部署方式、社区生态、自我进化机制等多个维度进行详细对比分析，并给出选型建议。"
 category: "ai"
 tags: ["ai-agent", "hermes", "openclaw", "framework-comparison", "self-evolution"]
-publishedAt: "2026-04-10"
-readTime: 25
+publishedAt: "2026-04-13"
+readTime: 30
 ---
 
 Hermes Agent 和 OpenClaw 是 2026 年最具代表性的两个开源 AI Agent 框架。Hermes Agent 由 Nous Research 开发，以其独特的"自我进化"机制和强大的模型微调能力著称；OpenClaw 由 Peter Steinberger 创建，以隐私优先的本地运行架构和丰富的多平台接入能力备受关注。本报告从技术架构、核心能力、部署方式、社区生态等多个维度进行详细对比。
@@ -325,6 +325,113 @@ Hermes Agent 的自我进化机制代表了 Agent 框架发展的一个重要方
 - 看重社区生态和技能市场的丰富度（13,700+ 技能可用）
 - 团队以 TypeScript/Node.js 为主要技术栈
 - 需要强大的浏览器自动化能力（Playwright 深度集成）
+
+---
+
+## 7 Hermes Agent 实战安装指南（macOS + 阿里内网代理）
+
+基于实际搭建验证，以下是在 macOS 上使用阿里内部 Anthropic 代理运行 Hermes Agent 的完整步骤。
+
+### 7.1 环境要求
+
+- Python 3.11+（实测 3.13 可用）
+- uv 包管理器（推荐）
+- Git
+
+### 7.2 安装步骤
+
+```bash
+# 1. 克隆仓库（国内推荐用镜像加速）
+git clone --depth 1 https://ghfast.top/https://github.com/NousResearch/hermes-agent.git ~/hermes-agent
+
+# 2. 创建虚拟环境并安装依赖（使用阿里云镜像）
+cd ~/hermes-agent
+uv venv .venv --python 3.13
+source .venv/bin/activate
+uv pip install -e ".[cli,cron]" --index-url https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+
+# 3. 配置 API Key（阿里内部 Anthropic 代理）
+cat > ~/.hermes/.env << 'EOF'
+ANTHROPIC_API_KEY=你的API_KEY
+ANTHROPIC_BASE_URL=https://1688openai.alibaba-inc.com/api/anthropic
+EOF
+
+# 4. 复制并修改配置文件
+cp ~/hermes-agent/cli-config.yaml.example ~/.hermes/config.yaml
+```
+
+编辑 `~/.hermes/config.yaml`，修改 model 部分：
+
+```yaml
+model:
+  default: "claude-sonnet-4-6"
+  provider: "anthropic"
+  api_key: "你的API_KEY"
+  base_url: "https://1688openai.alibaba-inc.com/api/anthropic"
+```
+
+### 7.3 修复阿里代理 Streaming 兼容性问题
+
+阿里内部 Anthropic 代理在 SSE streaming 结束后会发送格式异常的尾部数据，导致 Anthropic SDK 的 JSON 解析失败。需要修改 `run_agent.py` 中的 streaming 循环：
+
+在 `_call_anthropic()` 函数中，找到 `with self._anthropic_client.messages.stream(**api_kwargs) as stream:` 这行，在 streaming 循环外层添加 `try/except`，跟踪 `message_stop` 事件，在流完成后安全忽略尾部解析错误：
+
+```python
+_stream_completed = False
+with self._anthropic_client.messages.stream(**api_kwargs) as stream:
+    try:
+        for event in stream:
+            # ... 原有事件处理逻辑 ...
+            if event_type == "message_stop":
+                _stream_completed = True
+            # ... 其余处理 ...
+    except Exception as _stream_iter_exc:
+        if _stream_completed:
+            logger.debug("Ignoring post-message_stop stream error: %s", _stream_iter_exc)
+        else:
+            raise
+    return stream.get_final_message()
+```
+
+### 7.4 设置快捷启动
+
+```bash
+# 添加 alias 到 ~/.zshrc
+echo 'alias hermes="source ~/hermes-agent/.venv/bin/activate && python ~/hermes-agent/cli.py"' >> ~/.zshrc
+source ~/.zshrc
+
+# 从此随时启动
+hermes
+```
+
+### 7.5 验证安装
+
+```bash
+hermes --query "Say exactly: Hermes Agent is working!"
+```
+
+看到 `Hermes Agent is working!` 输出即表示安装成功。
+
+### 7.6 常用命令速查
+
+| 命令 | 作用 |
+|------|------|
+| `hermes` | 进入交互式对话 |
+| `hermes --query "..."` | 单次查询 |
+| `hermes --resume <session-id>` | 恢复历史会话 |
+| `/new` | 开始新对话 |
+| `/model` | 切换模型 |
+| `/tools` | 管理工具 |
+| `/skills` | 浏览技能 |
+| `/help` | 查看所有命令 |
+| `Ctrl+C` | 中断当前操作 |
+
+### 7.7 注意事项
+
+- **版本状态：** v0.8.0，仍处早期阶段，生产环境谨慎使用
+- **配置优先级：** `~/.hermes/config.yaml` > `./cli-config.yaml`，务必将配置放在前者
+- **凭证缓存：** Hermes 会在 `~/.hermes/auth.json` 缓存凭证，遇到认证问题时清除此文件
+- **辅助模型：** 上下文压缩等功能需要配置 `OPENROUTER_API_KEY`，否则会降级为直接丢弃中间对话
 
 ---
 

@@ -1,4 +1,31 @@
 {
   "version": 1,
-  "feeds": []
+  "feeds": [
+    {
+      "id": "3f21c147-6f70-41d6-8876-e0725c25d016",
+      "name": "Koala聊开源",
+      "url": "https://space.bilibili.com/489667127",
+      "type": "website",
+      "platform": "Bilibili",
+      "category": "技术",
+      "enabled": true,
+      "maxItems": 3,
+      "sourceType": "bilibili",
+      "channelId": "489667127",
+      "lastFetched": "2026-04-23T01:19:13.817Z"
+    },
+    {
+      "id": "2212af2d-b1d5-46c8-b5c3-0563bce2d667",
+      "name": "马督工",
+      "url": "https://space.bilibili.com/316568752/",
+      "type": "website",
+      "platform": "Bilibili",
+      "category": "实时评论",
+      "enabled": true,
+      "maxItems": 10,
+      "sourceType": "bilibili",
+      "channelId": "316568752",
+      "lastFetched": "2026-04-23T01:19:24.406Z"
+    }
+  ]
 }

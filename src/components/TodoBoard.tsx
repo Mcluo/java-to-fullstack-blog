@@ -28,7 +28,7 @@ export default function TodoBoard() {
   }, [])
 
   useEffect(() => {
-    refresh().then(() => setMounted(true))
+    refresh().then(() => setMounted(true)).catch(() => setMounted(true))
   }, [refresh])
 
   if (!mounted) {

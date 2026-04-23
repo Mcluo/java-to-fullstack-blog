@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="ResumeAI 系统架构">
+    <mxGraphModel dx="1400" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="100" value="ResumeAI 全链路求职助手 — 系统架构图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="200" y="15" width="1000" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== Layer 1: User Entry ====== -->
+        <mxCell id="200" value="用户入口" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;fontStyle=1;fontColor=#6c757d;" vertex="1" parent="1">
+          <mxGeometry x="30" y="65" width="100" height="25" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="10" value="📄 上传/粘贴简历" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=12;fontStyle=1;arcSize=30;" vertex="1" parent="1">
+          <mxGeometry x="60" y="95" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="💬 对话式建立简历" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1976d2;fontSize=12;fontStyle=1;arcSize=30;" vertex="1" parent="1">
+          <mxGeometry x="260" y="95" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="📋 粘贴 JD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#f57c00;fontSize=12;fontStyle=1;arcSize=30;" vertex="1" parent="1">
+          <mxGeometry x="460" y="95" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== Layer 2: Frontend ====== -->
+        <mxCell id="201" value="前端层 (Next.js + React)" style="swimlane;startSize=30;fillColor=#f8f9fa;strokeColor=#dee2e6;rounded=1;fontSize=13;fontStyle=1;fontColor=#495057;" vertex="1" parent="1">
+          <mxGeometry x="30" y="175" width="620" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="ResumeUpload&#xa;上传解析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#adb5bd;fontSize=11;" vertex="1" parent="201">
+          <mxGeometry x="15" y="40" width="110" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="ResumeChat&#xa;多轮对话" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1976d2;fontSize=11;fontStyle=1;" vertex="1" parent="201">
+          <mxGeometry x="140" y="40" width="110" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="ResumeEditor&#xa;简历编辑" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#adb5bd;fontSize=11;" vertex="1" parent="201">
+          <mxGeometry x="265" y="40" width="110" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="ResumePreview&#xa;实时预览" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#adb5bd;fontSize=11;" vertex="1" parent="201">
+          <mxGeometry x="390" y="40" width="110" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="JDAnalyzer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#adb5bd;fontSize=11;" vertex="1" parent="201">
+          <mxGeometry x="515" y="40" width="90" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="25" value="MatchScore / ATSScore / QuestionList" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f1f3f5;strokeColor=#dee2e6;fontSize=10;fontColor=#6c757d;" vertex="1" parent="201">
+          <mxGeometry x="15" y="95" width="590" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== Layer 3: API Routes ====== -->
+        <mxCell id="202" value="API 层 (Next.js Route Handlers)" style="swimlane;startSize=30;fillColor=#fff8e1;strokeColor=#ffcc02;rounded=1;fontSize=13;fontStyle=1;fontColor=#495057;" vertex="1" parent="1">
+          <mxGeometry x="30" y="330" width="620" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="/api/ai/parse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ffa726;fontSize=10;" vertex="1" parent="202">
+          <mxGeometry x="10" y="40" width="90" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="/api/ai/chat-resume" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1976d2;fontSize=10;fontStyle=1;" vertex="1" parent="202">
+          <mxGeometry x="110" y="40" width="120" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="/api/ai/analyze-jd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ffa726;fontSize=10;" vertex="1" parent="202">
+          <mxGeometry x="240" y="40" width="100" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="/api/ai/match" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ffa726;fontSize=10;" vertex="1" parent="202">
+          <mxGeometry x="350" y="40" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="34" value="/api/ai/optimize" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ffa726;fontSize=10;" vertex="1" parent="202">
+          <mxGeometry x="440" y="40" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="35" value="/api/ai/ats-check&#xa;/api/ai/interview" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ffa726;fontSize=9;" vertex="1" parent="202">
+          <mxGeometry x="530" y="40" width="80" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== Layer 4: AI Provider ====== -->
+        <mxCell id="203" value="AI Provider 层" style="swimlane;startSize=30;fillColor=#e8eaf6;strokeColor=#7986cb;rounded=1;fontSize=13;fontStyle=1;fontColor=#283593;" vertex="1" parent="1">
+          <mxGeometry x="30" y="445" width="620" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="40" value="ClaudeProvider&#xa;(CLI 代理调用)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c5cae9;strokeColor=#5c6bc0;fontSize=12;fontStyle=1;" vertex="1" parent="203">
+          <mxGeometry x="60" y="40" width="200" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="QwenProvider&#xa;(DashScope SDK)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c5cae9;strokeColor=#5c6bc0;fontSize=12;" vertex="1" parent="203">
+          <mxGeometry x="350" y="40" width="200" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== Layer 5: External ====== -->
+        <mxCell id="50" value="Claude Code CLI&#xa;(本地认证)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#8e24aa;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="585" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="51" value="DashScope API&#xa;(Qwen 模型)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c62828;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="585" width="170" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== Data Layer ====== -->
+        <mxCell id="60" value="SQLite (Prisma ORM)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#dcedc8;strokeColor=#689f38;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="330" width="140" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="Resume" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#aed581;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="700" y="420" width="60" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="62" value="Version" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#aed581;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="765" y="420" width="60" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="63" value="Job" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#aed581;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="830" y="420" width="50" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== Arrows ====== -->
+        <mxCell id="a1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1976d2;strokeWidth=2;" edge="1" parent="1" source="11" target="21">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#43a047;strokeWidth=1.5;" edge="1" parent="1" source="10" target="20">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#8e24aa;strokeWidth=2;" edge="1" parent="1" source="40" target="50">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#c62828;strokeWidth=1.5;" edge="1" parent="1" source="41" target="51">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ====== Legend ====== -->
+        <mxCell id="700" value="🆕 新增功能" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1976d2;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="120" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="701" value="已有功能" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#adb5bd;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="160" width="120" height="30" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

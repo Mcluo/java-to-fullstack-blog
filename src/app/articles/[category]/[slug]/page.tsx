@@ -4,6 +4,9 @@ import rehypeRaw from 'rehype-raw'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
 import 'highlight.js/styles/github-dark.css'
+import MermaidBlock from '@/components/MermaidBlock'
+import CodeBlock from '@/components/CodeBlock'
+import ImageLightbox from '@/components/ImageLightbox'
 import ArticleProgress from '@/components/ArticleProgress'
 import ArticleNavigation from '@/components/ArticleNavigation'
 import ArticleTags from '@/components/ArticleTags'
@@ -134,6 +137,9 @@ export default async function ArticlePage({
             />
           )}
 
+          {/* 图片点击预览 */}
+          <ImageLightbox />
+
           {/* 文章内容 */}
           <article id="article-content" className="prose prose-lg max-w-none">
             <ReactMarkdown
@@ -145,11 +151,23 @@ export default async function ArticlePage({
                 h3: ({node, ...props}) => <h3 data-p-idx={pIdx++} className="text-xl font-bold mt-8 mb-3 text-gray-900 scroll-mt-20" {...props} />,
                 p: ({node, ...props}) => <p data-p-idx={pIdx++} className="mb-5 text-gray-600 leading-[1.8]" {...props} />,
                 a: ({node, ...props}) => <a className="text-blue-600 hover:text-blue-700 underline underline-offset-2 decoration-blue-200 hover:decoration-blue-400 transition" {...props} />,
-                code: ({node, inline, ...props}: any) =>
-                  inline ?
-                    <code className="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-[0.85em] font-mono" {...props} /> :
-                    <code className="block bg-gray-950 text-gray-200 p-4 rounded-xl overflow-x-auto text-sm font-mono leading-relaxed" {...props} />,
-                pre: ({node, ...props}) => <pre data-p-idx={pIdx++} className="bg-gray-950 rounded-xl overflow-x-auto my-6 shadow-sm" {...props} />,
+                code: ({node, inline, className, children, ...props}: any) => {
+                  const match = /language-mermaid/.exec(className || '')
+                  if (!inline && match) {
+                    const chart = String(children).replace(/\n$/, '')
+                    return <MermaidBlock chart={chart} />
+                  }
+                  return inline ?
+                    <code className="bg-gray-100 !text-gray-900 px-1.5 py-0.5 rounded text-[0.85em] font-mono border-0" {...props}>{children}</code> :
+                    <code className={`block text-gray-200 p-4 overflow-x-auto text-sm font-mono leading-relaxed ${className || ''}`} {...props}>{children}</code>
+                },
+                pre: ({node, children, ...props}: any) => {
+                  const child = Array.isArray(children) ? children[0] : children
+                  if (child?.props?.className?.includes('language-mermaid')) {
+                    return <>{children}</>
+                  }
+                  return <CodeBlock data-p-idx={pIdx++} className={child?.props?.className}>{children}</CodeBlock>
+                },
                 ul: ({node, ...props}) => <ul data-p-idx={pIdx++} className="list-disc pl-6 mb-5 space-y-2 text-gray-600 leading-[1.8]" {...props} />,
                 ol: ({node, ...props}) => <ol data-p-idx={pIdx++} className="list-decimal pl-6 mb-5 space-y-2 text-gray-600 leading-[1.8]" {...props} />,
                 blockquote: ({node, ...props}) => <blockquote data-p-idx={pIdx++} className="border-l-[3px] border-blue-400 pl-5 my-6 text-gray-500 italic bg-blue-50/30 py-3 pr-4 rounded-r-lg" {...props} />,
@@ -157,6 +175,7 @@ export default async function ArticlePage({
                 th: ({node, ...props}) => <th data-p-idx={pIdx++} className="px-4 py-2.5 bg-gray-50 text-left text-xs font-semibold uppercase tracking-wider text-gray-500" {...props} />,
                 td: ({node, ...props}) => <td data-p-idx={pIdx++} className="px-4 py-2.5 border-t border-gray-100 text-sm" {...props} />,
                 li: ({node, ...props}) => <li data-p-idx={pIdx++} {...props} />,
+                kbd: ({node, ...props}) => <kbd className="inline-flex items-center px-2 py-0.5 rounded text-[0.85em] font-mono font-medium bg-gray-100 text-gray-900 border border-gray-300 shadow-[0_1px_0_rgba(0,0,0,0.15)]" {...props} />,
               }}
             >
               {article.content}

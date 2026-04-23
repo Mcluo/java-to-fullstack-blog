@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="'Noto Sans SC', 'Inter', sans-serif">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#667eea"/>
+    </marker>
+    <marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f093fb"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg1)" rx="12"/>
+  <text x="400" y="35" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">Agent 决策循环 · 每轮仿真流程</text>
+
+  <!-- Phase 1: Perception -->
+  <rect x="30" y="60" width="220" height="370" rx="10" fill="rgba(79,172,254,0.08)" stroke="rgba(79,172,254,0.3)"/>
+  <text x="140" y="85" text-anchor="middle" fill="#4facfe" font-size="14" font-weight="700">Phase 1 · 感知</text>
+
+  <!-- Observation cards -->
+  <rect x="45" y="100" width="190" height="45" rx="6" fill="rgba(255,255,255,0.06)"/>
+  <text x="60" y="118" fill="#4facfe" font-size="11">funding</text>
+  <text x="60" y="135" fill="#888" font-size="9">当前资金 ¥12,500</text>
+  <rect x="180" y="108" width="45" height="20" rx="4" fill="rgba(67,233,123,0.2)"/>
+  <text x="202" y="122" text-anchor="middle" fill="#43e97b" font-size="9">+15%</text>
+
+  <rect x="45" y="152" width="190" height="45" rx="6" fill="rgba(255,255,255,0.06)"/>
+  <text x="60" y="170" fill="#f093fb" font-size="11">hot_score_series</text>
+  <text x="60" y="187" fill="#888" font-size="9">[0.3, 0.5, 0.7, 0.8, 0.9]</text>
+  <rect x="180" y="160" width="45" height="20" rx="4" fill="rgba(67,233,123,0.2)"/>
+  <text x="202" y="174" text-anchor="middle" fill="#43e97b" font-size="9">上升</text>
+
+  <rect x="45" y="204" width="190" height="45" rx="6" fill="rgba(255,255,255,0.06)"/>
+  <text x="60" y="222" fill="#fee140" font-size="11">competition_level</text>
+  <text x="60" y="239" fill="#888" font-size="9">0.35 (中等竞争)</text>
+  <rect x="180" y="212" width="45" height="20" rx="4" fill="rgba(254,225,64,0.2)"/>
+  <text x="202" y="226" text-anchor="middle" fill="#fee140" font-size="9">稳定</text>
+
+  <rect x="45" y="256" width="190" height="45" rx="6" fill="rgba(255,255,255,0.06)"/>
+  <text x="60" y="274" fill="#fa709a" font-size="11">my_profit_series</text>
+  <text x="60" y="291" fill="#888" font-size="9">[+200, +350, -50, +180]</text>
+
+  <rect x="45" y="308" width="190" height="45" rx="6" fill="rgba(255,255,255,0.06)"/>
+  <text x="60" y="326" fill="#43e97b" font-size="11">peer_sale_qty</text>
+  <text x="60" y="343" fill="#888" font-size="9">同行月均 150 件</text>
+
+  <rect x="45" y="360" width="190" height="55" rx="6" fill="rgba(255,255,255,0.06)"/>
+  <text x="60" y="378" fill="#b388ff" font-size="11">人设特征</text>
+  <text x="60" y="395" fill="#888" font-size="9">crowd_type: 稳健型分销商</text>
+  <text x="60" y="408" fill="#888" font-size="9">risk_resilience: 0.7</text>
+
+  <!-- Phase 2: Decision -->
+  <rect x="280" y="60" width="230" height="370" rx="10" fill="rgba(240,147,251,0.08)" stroke="rgba(240,147,251,0.3)"/>
+  <text x="395" y="85" text-anchor="middle" fill="#f093fb" font-size="14" font-weight="700">Phase 2 · LLM 决策</text>
+
+  <!-- Prompt Assembly -->
+  <rect x="295" y="100" width="200" height="60" rx="6" fill="rgba(240,147,251,0.15)" stroke="rgba(240,147,251,0.3)"/>
+  <text x="395" y="122" text-anchor="middle" fill="#f093fb" font-size="12" font-weight="600">Prompt 组装</text>
+  <text x="395" y="140" text-anchor="middle" fill="#888" font-size="9">System + 观察数据 + 决策模板</text>
+
+  <!-- LLM -->
+  <rect x="320" y="180" width="150" height="50" rx="25" fill="rgba(118,75,162,0.3)" stroke="#b388ff" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="395" y="202" text-anchor="middle" fill="#e0b0ff" font-size="13" font-weight="700">LLM</text>
+  <text x="395" y="220" text-anchor="middle" fill="#888" font-size="9">qwen / gpt-4o</text>
+
+  <!-- Output JSON -->
+  <rect x="295" y="250" width="200" height="80" rx="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)"/>
+  <text x="310" y="270" fill="#43e97b" font-size="10" font-family="'JetBrains Mono', monospace">{</text>
+  <text x="320" y="286" fill="#4facfe" font-size="9" font-family="'JetBrains Mono', monospace">"execute": true,</text>
+  <text x="320" y="300" fill="#fee140" font-size="9" font-family="'JetBrains Mono', monospace">"action_args": {...},</text>
+  <text x="320" y="314" fill="#fa709a" font-size="9" font-family="'JetBrains Mono', monospace">"reasoning": "..."</text>
+  <text x="310" y="328" fill="#43e97b" font-size="10" font-family="'JetBrains Mono', monospace">}</text>
+
+  <!-- Reasoning bubble -->
+  <rect x="295" y="345" width="200" height="70" rx="6" fill="rgba(254,225,64,0.08)" stroke="rgba(254,225,64,0.3)"/>
+  <text x="305" y="363" fill="#fee140" font-size="10" font-weight="600">reasoning:</text>
+  <text x="305" y="380" fill="rgba(255,255,255,0.6)" font-size="8">"热度持续上升(0.3→0.9),竞争度</text>
+  <text x="305" y="393" fill="rgba(255,255,255,0.6)" font-size="8">仅0.35,同行月销150件,资金充裕,</text>
+  <text x="305" y="406" fill="rgba(255,255,255,0.6)" font-size="8">建议铺货 entry_price=¥45"</text>
+
+  <!-- Phase 3: Execution -->
+  <rect x="540" y="60" width="240" height="370" rx="10" fill="rgba(67,233,123,0.08)" stroke="rgba(67,233,123,0.3)"/>
+  <text x="660" y="85" text-anchor="middle" fill="#43e97b" font-size="14" font-weight="700">Phase 3 · 执行与演化</text>
+
+  <!-- Action execution -->
+  <rect x="555" y="100" width="210" height="50" rx="6" fill="rgba(79,172,254,0.2)" stroke="rgba(79,172,254,0.4)"/>
+  <text x="660" y="122" text-anchor="middle" fill="#4facfe" font-size="12" font-weight="600">ADD_SUPPLY 铺货</text>
+  <text x="660" y="140" text-anchor="middle" fill="#888" font-size="9">item_id=SKU_089, sale_price=¥45</text>
+
+  <!-- Settlement -->
+  <rect x="555" y="165" width="210" height="70" rx="6" fill="rgba(255,255,255,0.06)"/>
+  <text x="565" y="183" fill="#f093fb" font-size="11" font-weight="600">结算公式执行</text>
+  <text x="565" y="200" fill="#888" font-size="9">总销量 = int(50+1200×0.9³) = 924件</text>
+  <text x="565" y="214" fill="#888" font-size="9">你的份额 = 924 × 0.18 = 166件</text>
+  <text x="565" y="228" fill="#43e97b" font-size="9">利润 = ¥1,280 → funding: ¥13,780</text>
+
+  <!-- Market update -->
+  <rect x="555" y="250" width="210" height="55" rx="6" fill="rgba(255,255,255,0.06)"/>
+  <text x="565" y="268" fill="#fee140" font-size="11" font-weight="600">市场演化</text>
+  <text x="565" y="285" fill="#888" font-size="9">competition_level: 0.35 → 0.40 (+0.05)</text>
+  <text x="565" y="299" fill="#888" font-size="9">hot_score: 0.9 → 0.88 (自然衰减)</text>
+
+  <!-- State DB update -->
+  <rect x="580" y="325" width="160" height="40" rx="20" fill="rgba(67,233,123,0.2)" stroke="#43e97b" stroke-width="1.5"/>
+  <text x="660" y="345" text-anchor="middle" fill="#43e97b" font-size="11" font-weight="600">State DB 更新</text>
+  <text x="660" y="360" text-anchor="middle" fill="#888" font-size="8">buyer + item 状态写入</text>
+
+  <!-- Next round -->
+  <rect x="590" y="385" width="140" height="35" rx="17" fill="rgba(102,126,234,0.3)" stroke="#667eea"/>
+  <text x="660" y="407" text-anchor="middle" fill="#667eea" font-size="11" font-weight="600">→ 下一轮</text>
+
+  <!-- Connecting arrows -->
+  <path d="M250,220 L280,220" stroke="#4facfe" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M510,220 L540,220" stroke="#f093fb" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+</svg>

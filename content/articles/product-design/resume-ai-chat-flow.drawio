@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="对话式简历构建流程">
+    <mxGraphModel dx="1200" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="100" value="对话式简历构建 — 交互流程" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="200" y="15" width="800" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Swimlanes -->
+        <mxCell id="lane1" value="用户" style="shape=swimlane;swimlaneHead=1;startSize=25;fillColor=#e3f2fd;strokeColor=#90caf9;rounded=1;fontSize=12;fontStyle=1;horizontal=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="65" width="1140" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane2" value="前端" style="shape=swimlane;swimlaneHead=1;startSize=25;fillColor=#f3e5f5;strokeColor=#ce93d8;rounded=1;fontSize=12;fontStyle=1;horizontal=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="205" width="1140" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane3" value="AI" style="shape=swimlane;swimlaneHead=1;startSize=25;fillColor=#fff3e0;strokeColor=#ffcc80;rounded=1;fontSize=12;fontStyle=1;horizontal=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="345" width="1140" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 1: Basic Info -->
+        <mxCell id="u1" value="输入姓名&#xa;联系方式" style="rounded=1;fillColor=#bbdefb;strokeColor=#42a5f5;fontSize=10;whiteSpace=wrap;" vertex="1" parent="lane1">
+          <mxGeometry x="140" y="45" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Step 2: Experience -->
+        <mxCell id="u2" value="描述工作&#xa;经历" style="rounded=1;fillColor=#bbdefb;strokeColor=#42a5f5;fontSize=10;whiteSpace=wrap;" vertex="1" parent="lane1">
+          <mxGeometry x="340" y="45" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Step 3: Education -->
+        <mxCell id="u3" value="教育经历" style="rounded=1;fillColor=#bbdefb;strokeColor=#42a5f5;fontSize=10;whiteSpace=wrap;" vertex="1" parent="lane1">
+          <mxGeometry x="540" y="45" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Step 4: Skills -->
+        <mxCell id="u4" value="技能特长" style="rounded=1;fillColor=#bbdefb;strokeColor=#42a5f5;fontSize=10;whiteSpace=wrap;" vertex="1" parent="lane1">
+          <mxGeometry x="720" y="45" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Step 5: Confirm -->
+        <mxCell id="u5" value="确认信息" style="rounded=1;fillColor=#c8e6c9;strokeColor=#66bb6a;fontSize=10;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="lane1">
+          <mxGeometry x="920" y="45" width="90" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Frontend actions -->
+        <mxCell id="f1" value="显示欢迎&#xa;气泡" style="rounded=1;fillColor=#e1bee7;strokeColor=#ab47bc;fontSize=10;whiteSpace=wrap;" vertex="1" parent="lane2">
+          <mxGeometry x="50" y="45" width="80" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="f2" value="追加消息&#xa;POST /api/ai/&#xa;chat-resume" style="rounded=1;fillColor=#e1bee7;strokeColor=#ab47bc;fontSize=9;whiteSpace=wrap;" vertex="1" parent="lane2">
+          <mxGeometry x="240" y="40" width="100" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="f3" value="追加消息&#xa;继续请求" style="rounded=1;fillColor=#e1bee7;strokeColor=#ab47bc;fontSize=9;whiteSpace=wrap;" vertex="1" parent="lane2">
+          <mxGeometry x="440" y="45" width="90" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="f6" value="done=true&#xa;→ 跳转编辑器" style="rounded=1;fillColor=#c8e6c9;strokeColor=#66bb6a;fontSize=10;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="lane2">
+          <mxGeometry x="1010" y="45" width="110" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- AI actions -->
+        <mxCell id="a1" value="生成引导问题&#xa;{message, done:false}" style="rounded=1;fillColor=#ffe0b2;strokeColor=#ff9800;fontSize=10;whiteSpace=wrap;" vertex="1" parent="lane3">
+          <mxGeometry x="50" y="40" width="140" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="追问量化数据&#xa;&quot;带了几人？&quot;&#xa;&quot;提升了多少？&quot;" style="rounded=1;fillColor=#ffe0b2;strokeColor=#ff9800;fontSize=9;whiteSpace=wrap;" vertex="1" parent="lane3">
+          <mxGeometry x="300" y="35" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3" value="继续引导&#xa;→ 教育/项目/技能" style="rounded=1;fillColor=#ffe0b2;strokeColor=#ff9800;fontSize=10;whiteSpace=wrap;" vertex="1" parent="lane3">
+          <mxGeometry x="540" y="40" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="a4" value="输出总结 +&#xa;完整 ResumeData&#xa;{done: true}" style="rounded=1;fillColor=#c8e6c9;strokeColor=#66bb6a;fontSize=10;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="lane3">
+          <mxGeometry x="860" y="35" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrows -->
+        <mxCell id="ar1" style="rounded=1;strokeColor=#757575;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="f1" target="a1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ar2" style="rounded=1;strokeColor=#42a5f5;strokeWidth=1.5;" edge="1" parent="1" source="u1" target="f2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ar3" style="rounded=1;strokeColor=#ff9800;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="a2" target="u2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ar7" style="rounded=1;strokeColor=#66bb6a;strokeWidth=2;" edge="1" parent="1" source="a4" target="f6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Loop annotation -->
+        <mxCell id="loop" value="多轮循环：每轮 1-2 个问题&#xa;用户可随时说「跳过」" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;fontColor=#e65100;fontStyle=2;align=center;" vertex="1" parent="1">
+          <mxGeometry x="400" y="495" width="250" height="35" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

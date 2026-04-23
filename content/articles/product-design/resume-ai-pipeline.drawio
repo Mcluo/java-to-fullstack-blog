@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram name="ResumeAI 六步求职流水线">
+    <mxGraphModel dx="1400" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1400" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="100" value="ResumeAI 六步全链路求职流水线" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="200" y="15" width="1000" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 1 -->
+        <mxCell id="s1" value="Step 1&#xa;📄 简历录入" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#43a047;fontSize=13;fontStyle=1;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="30" y="80" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1d" value="上传文件 / 粘贴文本&#xa;💬 对话式建立(NEW)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#2e7d32;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="155" width="170" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 2 -->
+        <mxCell id="s2" value="Step 2&#xa;✏️ 简历编辑" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1976d2;fontSize=13;fontStyle=1;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="250" y="80" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2d" value="结构化编辑器&#xa;实时预览" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#1565c0;align=center;" vertex="1" parent="1">
+          <mxGeometry x="250" y="155" width="170" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 3 -->
+        <mxCell id="s3" value="Step 3&#xa;🔍 JD 分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#f57c00;fontSize=13;fontStyle=1;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="470" y="80" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3d" value="提取必需技能/关键词&#xa;分析岗位要求" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#e65100;align=center;" vertex="1" parent="1">
+          <mxGeometry x="470" y="155" width="170" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 4 -->
+        <mxCell id="s4" value="Step 4&#xa;📊 匹配优化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#8e24aa;fontSize=13;fontStyle=1;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="690" y="80" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4d" value="匹配度评分&#xa;AI 一键优化 STAR" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#6a1b9a;align=center;" vertex="1" parent="1">
+          <mxGeometry x="690" y="155" width="170" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 5 -->
+        <mxCell id="s5" value="Step 5&#xa;🤖 ATS 检查" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#c62828;fontSize=13;fontStyle=1;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="910" y="80" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5d" value="格式/关键词/内容&#xa;三维评分" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#b71c1c;align=center;" vertex="1" parent="1">
+          <mxGeometry x="910" y="155" width="170" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 6 -->
+        <mxCell id="s6" value="Step 6&#xa;🎯 面试准备" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8eaf6;strokeColor=#3f51b5;fontSize=13;fontStyle=1;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="80" width="170" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6d" value="行为/技术/情景题&#xa;+ 参考答案" style="text;html=1;strokeColor=none;fillColor=none;fontSize=10;fontColor=#283593;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="155" width="170" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrows -->
+        <mxCell id="a12" value="" style="endArrow=block;endSize=8;endFill=1;strokeColor=#90a4ae;strokeWidth=2;rounded=1;" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a23" value="" style="endArrow=block;endSize=8;endFill=1;strokeColor=#90a4ae;strokeWidth=2;rounded=1;" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a34" value="" style="endArrow=block;endSize=8;endFill=1;strokeColor=#90a4ae;strokeWidth=2;rounded=1;" edge="1" parent="1" source="s3" target="s4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a45" value="" style="endArrow=block;endSize=8;endFill=1;strokeColor=#90a4ae;strokeWidth=2;rounded=1;" edge="1" parent="1" source="s4" target="s5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="a56" value="" style="endArrow=block;endSize=8;endFill=1;strokeColor=#90a4ae;strokeWidth=2;rounded=1;" edge="1" parent="1" source="s5" target="s6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Bottom: AI Provider -->
+        <mxCell id="ai_bar" value="AI 驱动层：Claude (CLI 代理) / Qwen (DashScope SDK) — 全部 6 步均由 AI 执行" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede7f6;strokeColor=#7e57c2;fontSize=12;fontStyle=2;fontColor=#4527a0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="210" width="1270" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Data flow annotation -->
+        <mxCell id="data" value="数据流：ResumeData (JSON) 贯穿全流程 → Prisma ORM → SQLite 持久化 → 版本对比" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;fontColor=#78909c;fontStyle=2;align=center;" vertex="1" parent="1">
+          <mxGeometry x="200" y="255" width="900" height="25" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -114,6 +114,23 @@ body::before {
   font-size: var(--prose-size);
 }
 
+/* Inline code: remove backtick decoration and enforce contrast */
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: '' !important;
+}
+.prose :not(pre) > code {
+  color: #111827 !important;
+  background-color: #f3f4f6;
+  border: none;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .prose :not(pre) > code {
+  color: #e4e4e7 !important;
+  background-color: #27272a;
+}
+
 .prose h2 {
   scroll-margin-top: 5rem;
 }
