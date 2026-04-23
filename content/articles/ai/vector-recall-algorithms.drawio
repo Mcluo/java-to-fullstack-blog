@@ -14,7 +14,7 @@
         </mxCell>
 
         <!-- 根节点: 向量召回 -->
-        <mxCell id="root" value="向量召回算法" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#1a1a2e;fontColor=#ffffff;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="root_node" value="向量召回算法" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#1a1a2e;fontColor=#ffffff;fontSize=16;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="580" y="90" width="240" height="55" as="geometry"/>
         </mxCell>
 
@@ -44,17 +44,17 @@
         </mxCell>
 
         <!-- 连接根节点到一级分类 -->
-        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root" target="cat_exact" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root" target="cat_graph" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root" target="cat_tree" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root" target="cat_hash" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root" target="cat_quant" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root_node" target="cat_exact" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root_node" target="cat_graph" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root_node" target="cat_tree" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root_node" target="cat_hash" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="root_node" target="cat_quant" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
 
         <!-- 精确搜索子项 -->
-        <mxCell id="flat" value="Flat (暴力搜索)&#xa;精度100% | O(n·d)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fadbd8;strokeColor=#e74c3c;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="flat_cell" value="Flat (暴力搜索)&#xa;精度100% | O(n·d)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fadbd8;strokeColor=#e74c3c;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="30" y="360" width="220" height="55" as="geometry"/>
         </mxCell>
-        <mxCell id="e_flat" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="cat_exact" target="flat" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_flat" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="cat_exact" target="flat_cell" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
 
         <!-- 图索引子项 -->
         <mxCell id="hnsw" value="HNSW ⭐&#xa;最主流，精度高，内存大" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;fontSize=11;" vertex="1" parent="1">
@@ -601,16 +601,16 @@
         <mxCell id="hnsw_to_rrf" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#e74c3c;strokeWidth=2;" edge="1" source="hnsw_result" target="rrf" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
 
         <!-- 过滤 -->
-        <mxCell id="filter" value="元数据过滤&#xa;(类别/时间/权限)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27ae60;strokeColor=#1e8449;fontColor=#ffffff;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="filter_box" value="元数据过滤&#xa;(类别/时间/权限)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27ae60;strokeColor=#1e8449;fontColor=#ffffff;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="430" y="625" width="340" height="60" as="geometry"/>
         </mxCell>
-        <mxCell id="rrf_to_filter" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#f39c12;strokeWidth=2;" edge="1" source="rrf" target="filter" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="rrf_to_filter" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#f39c12;strokeWidth=2;" edge="1" source="rrf" target="filter_box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
 
         <!-- 最终结果 -->
         <mxCell id="final" value="🎯 Top-K 召回结果 → LLM 生成答案" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#1a1a2e;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="380" y="715" width="440" height="55" as="geometry"/>
         </mxCell>
-        <mxCell id="filter_to_final" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#27ae60;strokeWidth=2;" edge="1" source="filter" target="final" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="filter_to_final" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#27ae60;strokeWidth=2;" edge="1" source="filter_box" target="final" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
 
         <!-- 说明框 -->
         <mxCell id="why_hybrid" value="为什么混合？&#xa;BM25: 精确词匹配（向量数据库→找到含'向量数据库'的文档）&#xa;HNSW: 语义理解（faiss, milvus, pinecone等同义文档也能召回）&#xa;两者互补 = 更高召回率" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=11;align=left;" vertex="1" parent="1">

@@ -9,7 +9,7 @@ readTime: 25
 
 > 当你在用 ChatGPT、Notion AI、或者公司内部 RAG 系统提问时，系统在毫秒之内从数百万篇文档里找到最相关的几段——这背后的核心引擎，就是**向量召回**。
 > 
-> 本文从算法原理出发，结合实际工程经验，完整梳理向量召回的技术体系。配有 5 张 draw.io 架构图，适合想深入理解 RAG 底层的工程师。
+> 本文从算法原理出发，结合实际工程经验，完整梳理向量召回的技术体系。配有 5 张架构图，适合想深入理解 RAG 底层的工程师。
 
 ---
 
@@ -39,8 +39,7 @@ readTime: 25
 
 ## 二、算法全景图
 
-> 📊 **图1：向量召回算法全景图**  
-> [vector-recall-algorithms.drawio](./vector-recall-algorithms.drawio) → 打开 `01-算法全景图`
+![向量召回算法全景图](/images/vector-recall/01-algorithm-overview.png)
 
 向量召回算法可以分为五大流派：
 
@@ -82,8 +81,7 @@ def flat_search(query, database, k=10):
 
 ## 四、图索引：HNSW（重点）
 
-> 📊 **图2：HNSW 分层图结构**  
-> [vector-recall-algorithms.drawio](./vector-recall-algorithms.drawio) → 打开 `02-HNSW分层结构`
+![HNSW 分层图结构](/images/vector-recall/02-hnsw-structure.png)
 
 **HNSW（Hierarchical Navigable Small World）** 是目前工业界最主流的向量索引算法，Milvus、Weaviate、Qdrant、OpenSearch 都以它为默认索引。
 
@@ -237,8 +235,7 @@ DiskANN：内存 ~32 GB（PQ缓存）+ SSD ~1.5 TB（全量索引）
 
 ## 八、向量量化：PQ（乘积量化）
 
-> 📊 **图3：PQ 乘积量化原理**  
-> [vector-recall-algorithms.drawio](./vector-recall-algorithms.drawio) → 打开 `04-乘积量化PQ`
+![PQ 乘积量化原理](/images/vector-recall/04-pq-quantization.png)
 
 **向量量化的核心目标：压缩向量，用更少内存存更多数据。**
 
@@ -302,8 +299,7 @@ distance(query, vec_i) ≈ Σ DTable[m][code_i[m]]
 
 ## 九、倒排文件索引：IVF
 
-> 📊 **图4：IVF 倒排索引原理**  
-> [vector-recall-algorithms.drawio](./vector-recall-algorithms.drawio) → 打开 `03-IVF倒排索引`
+![IVF 倒排索引原理](/images/vector-recall/03-ivf-index.png)
 
 **IVF（Inverted File Index）** 的核心思想：先粗粒度聚类，查询时只搜相关的簇。
 
@@ -379,8 +375,7 @@ print(f"Top-10: {indices[0]}")
 
 ## 十一、混合召回：BM25 + 向量（RAG 最佳实践）
 
-> 📊 **图5：RAG 混合召回架构**  
-> [vector-recall-algorithms.drawio](./vector-recall-algorithms.drawio) → 打开 `05-混合召回RAG流程`
+![RAG 混合召回系统架构](/images/vector-recall/05-hybrid-recall.png)
 
 纯向量检索有一个弱点：**对专有名词、术语、数字不敏感**。
 
