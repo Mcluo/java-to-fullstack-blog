@@ -1,8 +1,10 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 import rehypeRaw from 'rehype-raw'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
+import rehypeKatex from 'rehype-katex'
 import 'highlight.js/styles/github-dark.css'
 import MermaidBlock from '@/components/MermaidBlock'
 import CodeBlock from '@/components/CodeBlock'
@@ -12,6 +14,7 @@ import ArticleNavigation from '@/components/ArticleNavigation'
 import ArticleTags from '@/components/ArticleTags'
 import NotebookLinks from '@/components/NotebookLinks'
 import TableOfContents from '@/components/TableOfContents'
+import RelatedKnowledge from '@/components/RelatedKnowledge'
 import CommentSection from '@/components/CommentSection'
 import HighlightComments from '@/components/HighlightComments'
 import AiBriefRenderer from '@/components/AiBriefRenderer'
@@ -143,8 +146,8 @@ export default async function ArticlePage({
           {/* 文章内容 */}
           <article id="article-content" className="prose prose-lg max-w-none">
             <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeSlug]}
+              remarkPlugins={[remarkGfm, remarkMath]}
+              rehypePlugins={[rehypeRaw, rehypeKatex, rehypeHighlight, rehypeSlug]}
               components={{
                 h1: ({node, ...props}) => <h1 data-p-idx={pIdx++} className="text-3xl font-extrabold mt-10 mb-4 text-gray-900 tracking-tight" {...props} />,
                 h2: ({node, ...props}) => <h2 data-p-idx={pIdx++} className="text-2xl font-bold mt-12 mb-4 text-gray-900 tracking-tight scroll-mt-20 pb-2 border-b border-gray-100" {...props} />,
@@ -183,7 +186,7 @@ export default async function ArticlePage({
           </article>
 
           {/* 划线评论 */}
-          <HighlightComments articleSlug={articleSlug} />
+          <HighlightComments articleSlug={articleSlug} articleTitle={article.title} />
 
           {/* 文章评论 */}
           <CommentSection articleSlug={articleSlug} />
@@ -214,10 +217,15 @@ export default async function ArticlePage({
           </div>
         </div>
 
-        {/* 右侧目录 */}
+        {/* 右侧栏：目录 + 相关知识 */}
         <aside className="hidden lg:block w-64 shrink-0 pt-2">
           <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin pr-1">
             <TableOfContents content={article.content} />
+            <RelatedKnowledge
+              title={article.title}
+              excerpt={article.excerpt}
+              currentSlug={articleSlug}
+            />
           </div>
         </aside>
       </div>

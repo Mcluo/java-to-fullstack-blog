@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 import Link from 'next/link'
 import { useSettings } from './SettingsProvider'
 import { useAuth } from './AuthProvider'
@@ -1036,6 +1038,8 @@ export default function AIAssistant() {
                     {msg.role === 'assistant' ? (
                       <div className="text-sm prose prose-sm max-w-none prose-p:my-2 prose-headings:mt-4 prose-headings:mb-2">
                         <ReactMarkdown
+                          remarkPlugins={[remarkMath]}
+                          rehypePlugins={[rehypeKatex]}
                           components={{
                             a: ({ node, ...props }) => {
                               const href = props.href || ''

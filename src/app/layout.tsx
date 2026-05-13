@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
+import 'katex/dist/katex.min.css'
 import AIAssistant from '@/components/AIAssistant'
 import AuthProvider from '@/components/AuthProvider'
 import SettingsProvider from '@/components/SettingsProvider'
@@ -56,6 +57,9 @@ export default function RootLayout({
                 </Link>
                 <Link href="/github" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100/80 transition">
                   GitHub
+                </Link>
+                <Link href="/me/concepts" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100/80 transition">
+                  知识库
                 </Link>
                 <Link href="/settings" className="p-2 text-gray-400 hover:text-gray-700 rounded-lg hover:bg-gray-100/80 transition" title="设置">
                   <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
