@@ -98,6 +98,12 @@ AgentScope Java Harness 用 `AbstractFilesystem` 抽象层来解决分布式场�
 - 对上层：Agent 只需要调用统一的 `read/write/ls/grep` 等接口，不关心"文件"实际落在哪
 - 对下层：可以适配到本机磁盘、远端对象存储（OSS）、KV 数据库（Redis）、沙箱文件系统等任意介质，甚至通过 `CompositeFilesystem` 把不同路径路由到不同后端
 
+![AbstractFilesystem 架构图 — 三种实现模式](https://oss-ata.alibaba.com/article/2026/05/4026a354-e230-4975-a3c8-6bfd52fe4ec3.png)
+
+如上图所示，基于 AbstractFilesystem 接口，AgentScope Java 内置提供了三种拓展实现，对应三种使用模式。
+
+![三种文件系统后端对比](https://oss-ata.alibaba.com/article/2026/05/38fe2be4-0f50-4eef-a219-c75d0394217e.png)
+
 基于这一层抽象，AgentScope Java 直接为智能体开发带来了三大工程能力：
 
 **安全与隔离**：Shell/Code/Skill 的执行通过沙箱后端隔离，工具的注册与暴露由框架统一管理，execute 工具仅在后端实现了沙箱接口时才出现。
