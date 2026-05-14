@@ -79,6 +79,7 @@ export default function QuickSummarize() {
   const [history, setHistory] = useState<HistoryRecord[]>([])
   const [historyExpanded, setHistoryExpanded] = useState(false)
   const [expandedHistoryId, setExpandedHistoryId] = useState<string | null>(null)
+  const [favoritedHistoryIds, setFavoritedHistoryIds] = useState<Set<string>>(new Set())
 
   useEffect(() => { fetchHistory() }, [])
 
@@ -118,15 +119,23 @@ export default function QuickSummarize() {
     const urls = parseUrls(input)
     if (urls.length === 0) return
 
-    setRunning(true)
-    // Initialize all as pending
-    const initial: SummarizeResult[] = urls.map(url => ({ url, status: 'pending' }))
-    setResults(initial)
+    // Clear input immediately after parsing
+    setInput('')
 
-    // Process sequentially
-    for (let i = 0; i < urls.length; i++) {
-      const url = urls[i]
-      // Mark current as loading
+    // Filter out URLs that already exist in current results
+    const existingUrls = new Set(results.map(r => r.url))
+    const newUrls = urls.filter(url => !existingUrls.has(url))
+    if (newUrls.length === 0) return
+
+    setRunning(true)
+    // Initialize new items as pending, prepend to existing results
+    const initial: SummarizeResult[] = newUrls.map(url => ({ url, status: 'pending' }))
+    setResults(prev => [...initial, ...prev])
+
+    // Process sequentially — new items are at the front of the array
+    for (let i = 0; i < newUrls.length; i++) {
+      const url = newUrls[i]
+      // Mark current as loading (index i in the prepended portion)
       setResults(prev => prev.map((r, idx) => idx === i ? { ...r, status: 'loading' } : r))
 
       try {
@@ -167,6 +176,24 @@ export default function QuickSummarize() {
     }
   }
 
+  async function handleFavoriteHistory(record: HistoryRecord) {
+    const res = await fetch('/api/feeds/favorites', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: record.title || record.url,
+        url: record.videoUrl || record.url,
+        summary: record.summary,
+        subtitle: record.subtitle,
+        sourceType: record.platform,
+        author: '',
+      }),
+    })
+    if (res.ok || res.status === 409) {
+      setFavoritedHistoryIds(prev => new Set(prev).add(record.id))
+    }
+  }
+
   const urls = parseUrls(input)
   const isBatch = urls.length > 1
   const doneCount = results.filter(r => r.status === 'done').length
@@ -189,7 +216,6 @@ export default function QuickSummarize() {
           placeholder={"粘贴链接：每行一个\nB站 / YouTube / 小红书 / 任意网页\n支持批量输入多个链接"}
           rows={isBatch ? Math.min(urls.length + 1, 6) : 3}
           className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none placeholder:text-gray-400 resize-none font-mono"
-          disabled={running}
         />
         <div className="flex items-center justify-between">
           {urls.length > 0 ? (
@@ -201,7 +227,7 @@ export default function QuickSummarize() {
           )}
           <button
             onClick={handleSummarize}
-            disabled={running || urls.length === 0}
+            disabled={urls.length === 0}
             className="px-6 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition shadow-sm flex items-center gap-2"
           >
             {running ? (
@@ -350,6 +376,20 @@ export default function QuickSummarize() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          onClick={() => handleFavoriteHistory(record)}
+                          disabled={favoritedHistoryIds.has(record.id)}
+                          className={`px-2 py-1 text-xs rounded-full transition flex items-center gap-1 ${
+                            favoritedHistoryIds.has(record.id)
+                              ? 'bg-amber-100 text-amber-700'
+                              : 'text-amber-600 border border-amber-200 hover:bg-amber-50'
+                          }`}
+                        >
+                          <svg className="w-3 h-3" fill={favoritedHistoryIds.has(record.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                          </svg>
+                          {favoritedHistoryIds.has(record.id) ? '已收藏' : '收藏'}
+                        </button>
                         <button
                           onClick={() => setExpandedHistoryId(isExpanded ? null : record.id)}
                           className="text-xs text-blue-600 hover:text-blue-800 transition"
