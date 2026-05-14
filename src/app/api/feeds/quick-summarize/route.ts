@@ -3,6 +3,7 @@ import { execSync } from 'child_process'
 import Anthropic from '@anthropic-ai/sdk'
 import fs from 'fs'
 import path from 'path'
+import { loadQuickHistory, saveQuickHistory, type QuickSummaryRecord } from '@/lib/feeds'
 
 const HOME = process.env.HOME || ''
 const VENV_BIN = path.join(HOME, '.agent-reach-venv', 'bin')
@@ -228,6 +229,22 @@ export async function POST(request: NextRequest) {
     }
 
     const summary = await summarize(title, subtitle, platform)
+
+    // Save to quick history
+    const record: QuickSummaryRecord = {
+      id: crypto.randomUUID(),
+      url,
+      videoUrl: videoUrl !== url ? videoUrl : undefined,
+      title,
+      summary,
+      subtitle,
+      platform,
+      summarizedAt: new Date().toISOString(),
+    }
+    const history = loadQuickHistory()
+    // Dedup by url: remove old entry if exists, then prepend
+    const deduped = history.filter(r => r.url !== url)
+    saveQuickHistory([record, ...deduped].slice(0, 200))
 
     return NextResponse.json({ summary, subtitle, title, videoUrl })
   } catch (err: any) {

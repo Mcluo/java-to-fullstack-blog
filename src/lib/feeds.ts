@@ -29,6 +29,7 @@ export interface FeedItem {
   publishedAt: string
   subtitle?: string      // 字幕/正文内容
   summary?: string       // AI 总结
+  userInsights?: string[] // 用户追问后提炼的洞见
   fetchedAt: string      // 爬取时间 ISO string
   sourceType: 'rss' | 'bilibili' | 'youtube'
 }
@@ -88,6 +89,34 @@ export function getFeedDigests(): ArticleMeta[] {
   return digests
 }
 
+// ── Quick Summary History ──────────────────────────
+
+export interface QuickSummaryRecord {
+  id: string
+  url: string
+  videoUrl?: string
+  title: string
+  summary: string
+  subtitle?: string
+  platform: 'bilibili' | 'youtube' | 'xiaohongshu' | 'web'
+  summarizedAt: string
+}
+
+const QUICK_HISTORY_PATH = path.join(process.cwd(), 'content', 'feeds', 'quick-history.json')
+
+export function loadQuickHistory(): QuickSummaryRecord[] {
+  if (!fs.existsSync(QUICK_HISTORY_PATH)) return []
+  return JSON.parse(fs.readFileSync(QUICK_HISTORY_PATH, 'utf8'))
+}
+
+export function saveQuickHistory(items: QuickSummaryRecord[]): void {
+  const dir = path.dirname(QUICK_HISTORY_PATH)
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+  const tmpPath = QUICK_HISTORY_PATH + '.tmp'
+  fs.writeFileSync(tmpPath, JSON.stringify(items, null, 2) + '\n', 'utf8')
+  fs.renameSync(tmpPath, QUICK_HISTORY_PATH)
+}
+
 // ── Favorites ──────────────────────────────────────
 
 export interface FeedFavorite {
@@ -102,7 +131,8 @@ export interface FeedFavorite {
   sourceType: 'bilibili' | 'youtube' | 'rss' | 'web'
   savedAt: string
   tags?: string[]
-  note?: string       // 用户备注
+  note?: string           // 用户备注
+  userInsights?: string[] // 用户追问后提炼的洞见
 }
 
 const FEEDS_FAVORITES_PATH = path.join(process.cwd(), 'content', 'feeds', 'favorites.json')

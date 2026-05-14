@@ -27,9 +27,10 @@ const LANG_COLORS: Record<string, string> = {
 interface Props {
   repo: RecommendedRepo
   onDismiss?: (repoId: number) => void
+  onSelect?: (repo: RecommendedRepo) => void
 }
 
-export default function RecommendationCard({ repo, onDismiss }: Props) {
+export default function RecommendationCard({ repo, onDismiss, onSelect }: Props) {
   const rec = repo.recommendation
 
   return (
@@ -81,11 +82,10 @@ export default function RecommendationCard({ repo, onDismiss }: Props) {
       )}
 
       {/* 仓库信息 */}
-      <a
-        href={repo.html_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block p-5"
+      <div
+        className={`block p-5 ${onSelect ? 'cursor-pointer' : ''}`}
+        onClick={onSelect ? () => onSelect(repo) : undefined}
+        role={onSelect ? 'button' : undefined}
       >
         <div className="flex items-start gap-4">
           <img
@@ -154,7 +154,7 @@ export default function RecommendationCard({ repo, onDismiss }: Props) {
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </div>
   )
 }

@@ -8,9 +8,9 @@ export const supabase: SupabaseClient | null =
   supabaseUrl && supabaseAnonKey && !supabaseUrl.startsWith('your-')
     ? createClient(supabaseUrl, supabaseAnonKey, {
         auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-          detectSessionInUrl: false,
+          autoRefreshToken: true,
+          persistSession: true,
+          detectSessionInUrl: true,
         },
       })
     : null

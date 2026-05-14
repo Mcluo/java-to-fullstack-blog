@@ -1,0 +1,12 @@
+{
+  "oneLiner": "LLM智能体领域论文精选合集",
+  "problemSolved": "研究者找LLM Agent相关论文耗时费力，该项目按类别整理了最新论文，省去大量检索时间",
+  "quickStart": "直接访问GitHub仓库README浏览分类论文列表，或阅读配套综述论文：arxiv.org/abs/2503.21460",
+  "keyFeatures": [
+    "持续更新的Agent论文列表",
+    "涵盖构建/协作/安全等七大分类",
+    "附每篇论文简要摘要说明"
+  ],
+  "targetUser": "研究LLM智能体方向的学者和开发者",
+  "cachedAt": "2026-05-05T16:43:30.299Z"
+}

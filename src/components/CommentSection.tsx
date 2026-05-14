@@ -49,7 +49,7 @@ export default function CommentSection({ articleSlug }: { articleSlug: string })
   }, [articleSlug])
 
   useEffect(() => {
-    loadComments()
+    loadComments().catch(() => {})
   }, [loadComments])
 
   async function handleSubmit(e: React.FormEvent) {

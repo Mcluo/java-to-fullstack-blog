@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import SummarizeQA from './SummarizeQA'
 
 interface Chapter {
   timestamp: string
@@ -42,12 +43,20 @@ export default function FeedSummaryView({
   summary,
   subtitle,
   videoUrl,
+  videoTitle,
+  itemId,
+  itemType,
+  onInsightsSaved,
 }: {
   summary: string
   subtitle?: string
   videoUrl: string
+  videoTitle?: string
+  itemId?: string
+  itemType?: 'feedItem' | 'favorite'
+  onInsightsSaved?: (insights: string[]) => void
 }) {
-  const [tab, setTab] = useState<'summary' | 'outline' | 'transcript'>('summary')
+  const [tab, setTab] = useState<'summary' | 'outline' | 'transcript' | 'qa'>('summary')
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null)
 
   const structured = parseSummary(summary)
@@ -59,12 +68,14 @@ export default function FeedSummaryView({
         <div className="flex gap-2 border-b border-gray-100 pb-2">
           <TabButton active={tab === 'summary'} onClick={() => setTab('summary')}>总结</TabButton>
           {subtitle && <TabButton active={tab === 'transcript'} onClick={() => setTab('transcript')}>原文</TabButton>}
+          <TabButton active={tab === 'qa'} onClick={() => setTab('qa')}>
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+            用户追问
+          </TabButton>
         </div>
-        {tab === 'summary' ? (
-          <div className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">{summary}</div>
-        ) : (
-          <div className="text-xs text-gray-500 whitespace-pre-wrap leading-relaxed max-h-80 overflow-y-auto font-mono">{subtitle}</div>
-        )}
+        {tab === 'summary' && <div className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">{summary}</div>}
+        {tab === 'transcript' && <div className="text-xs text-gray-500 whitespace-pre-wrap leading-relaxed max-h-80 overflow-y-auto font-mono">{subtitle}</div>}
+        {tab === 'qa' && <SummarizeQA summary={summary} subtitle={subtitle} videoTitle={videoTitle} videoUrl={videoUrl} itemId={itemId} itemType={itemType} onInsightsSaved={onInsightsSaved} alwaysOpen />}
       </div>
     )
   }
@@ -87,6 +98,10 @@ export default function FeedSummaryView({
             原文转录
           </TabButton>
         )}
+        <TabButton active={tab === 'qa'} onClick={() => setTab('qa')}>
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+          用户追问
+        </TabButton>
       </div>
 
       {/* Overview */}
@@ -200,11 +215,25 @@ export default function FeedSummaryView({
       )}
 
       {/* Takeaway */}
-      {tab !== 'transcript' && structured.takeaway && (
+      {tab !== 'transcript' && tab !== 'qa' && structured.takeaway && (
         <div className="bg-amber-50 border border-amber-100 rounded-lg px-4 py-2.5">
           <div className="text-xs text-amber-600 font-medium mb-0.5">推荐理由</div>
           <div className="text-sm text-gray-700">{structured.takeaway}</div>
         </div>
+      )}
+
+      {/* Tab: QA */}
+      {tab === 'qa' && (
+        <SummarizeQA
+          summary={summary}
+          subtitle={subtitle}
+          videoTitle={videoTitle}
+          videoUrl={videoUrl}
+          itemId={itemId}
+          itemType={itemType}
+          onInsightsSaved={onInsightsSaved}
+          alwaysOpen
+        />
       )}
     </div>
   )

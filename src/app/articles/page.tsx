@@ -1,8 +1,11 @@
-import { Suspense } from 'react'
 import { getAllArticles, getCategories, CATEGORY_CONFIG, CATEGORY_GROUPS } from '@/lib/articles'
 import ArticleListClient from '@/components/ArticleListClient'
 
-export default function ArticlesPage() {
+export default function ArticlesPage({
+  searchParams,
+}: {
+  searchParams: { tag?: string }
+}) {
   const articles = getAllArticles()
   const activeCategorySlugs = getCategories()
 
@@ -18,13 +21,12 @@ export default function ArticlesPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <Suspense fallback={<div>加载中...</div>}>
-        <ArticleListClient
-          articles={articles}
-          categories={categories}
-          groups={[...CATEGORY_GROUPS]}
-        />
-      </Suspense>
+      <ArticleListClient
+        articles={articles}
+        categories={categories}
+        groups={[...CATEGORY_GROUPS]}
+        initialTag={searchParams.tag ?? null}
+      />
     </div>
   )
 }

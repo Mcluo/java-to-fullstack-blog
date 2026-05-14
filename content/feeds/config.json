@@ -12,7 +12,7 @@
       "maxItems": 3,
       "sourceType": "bilibili",
       "channelId": "489667127",
-      "lastFetched": "2026-04-23T01:19:13.817Z"
+      "lastFetched": "2026-05-14T00:45:35.953Z"
     },
     {
       "id": "2212af2d-b1d5-46c8-b5c3-0563bce2d667",
@@ -25,7 +25,7 @@
       "maxItems": 10,
       "sourceType": "bilibili",
       "channelId": "316568752",
-      "lastFetched": "2026-04-23T01:19:24.406Z"
+      "lastFetched": "2026-05-14T00:45:43.949Z"
     }
   ]
 }

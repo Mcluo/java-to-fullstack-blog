@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useState, useCallback, useRef } from 'react'
 import ArticleCard from '@/components/ArticleCard'
 import SearchBar from '@/components/SearchBar'
 import type { ArticleMeta } from '@/lib/articles'
@@ -17,6 +16,7 @@ interface Props {
   articles: ArticleMeta[]
   categories: CategoryInfo[]
   groups: string[]
+  initialTag?: string | null
 }
 
 const difficulties = [
@@ -26,24 +26,15 @@ const difficulties = [
   { name: '高级', slug: 'advanced', color: 'bg-red-100 text-red-700' },
 ]
 
-export default function ArticleListClient({ articles, categories, groups }: Props) {
-  const searchParams = useSearchParams()
-
+export default function ArticleListClient({ articles, categories, groups, initialTag = null }: Props) {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedDifficulty, setSelectedDifficulty] = useState('all')
-  const [selectedTag, setSelectedTag] = useState<string | null>(null)
+  const [selectedTag, setSelectedTag] = useState<string | null>(initialTag)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<ArticleMeta[] | null>(null)
   const [isSearching, setIsSearching] = useState(false)
   const [searchMode, setSearchMode] = useState<string>('')
   const abortRef = useRef<AbortController | null>(null)
-
-  useEffect(() => {
-    const tagFromUrl = searchParams.get('tag')
-    if (tagFromUrl) {
-      setSelectedTag(tagFromUrl)
-    }
-  }, [searchParams])
 
   const handleSearch = useCallback(async (query: string) => {
     setSearchQuery(query)

@@ -7,6 +7,7 @@ import GitHubFilters, { type FilterValues } from '@/components/github/GitHubFilt
 import CustomTopicModal from '@/components/github/CustomTopicModal'
 import PreferencesPanel from '@/components/github/PreferencesPanel'
 import RecommendationTab from '@/components/github/RecommendationTab'
+import RepoInsightDrawer from '@/components/github/RepoInsightDrawer'
 import type { CustomTopic } from '@/components/github/GitHubTopicTabs'
 import type { GitHubRepo } from '@/lib/github'
 import type { GitHubPreferences } from '@/lib/github-preferences'
@@ -56,12 +57,35 @@ export default function GitHubPage() {
   const [showModal, setShowModal] = useState(false)
   const [showPreferences, setShowPreferences] = useState(false)
   const [recommendationMode, setRecommendationMode] = useState(false)
+  const [selectedRepo, setSelectedRepo] = useState<GitHubRepo | null>(null)
+  const [searchHistory, setSearchHistory] = useState<string[]>([])
+  const [showHistory, setShowHistory] = useState(false)
 
   const fetchIdRef = useRef(0)
+  const searchBoxRef = useRef<HTMLDivElement>(null)
 
   // 加载自定义榜单
   useEffect(() => {
     setCustomTopics(loadCustomTopics())
+  }, [])
+
+  // Load search history from backend
+  useEffect(() => {
+    fetch('/api/github/search-history')
+      .then(r => r.json())
+      .then((data: { query: string }[]) => setSearchHistory(data.map(d => d.query)))
+      .catch(() => {})
+  }, [])
+
+  // Close history dropdown on click outside
+  useEffect(() => {
+    function handler(e: MouseEvent) {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(e.target as Node)) {
+        setShowHistory(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
   }, [])
 
   const fetchRepos = useCallback(async (params: {
@@ -173,6 +197,7 @@ export default function GitHubPage() {
   // 搜索提交
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
+    setShowHistory(false)
     setRecommendationMode(false)
     const q = query.trim()
     if (!q) {
@@ -182,6 +207,25 @@ export default function GitHubPage() {
     }
     setMode('search')
     fetchRepos({ q })
+    // Save to backend history
+    fetch('/api/github/search-history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: q }),
+    }).then(() => setSearchHistory(prev => [q, ...prev.filter(h => h !== q)].slice(0, 20))).catch(() => {})
+  }
+
+  function handleSelectHistory(q: string) {
+    setQuery(q)
+    setShowHistory(false)
+    setRecommendationMode(false)
+    setMode('search')
+    fetchRepos({ q })
+  }
+
+  function handleDeleteHistory(q: string) {
+    fetch(`/api/github/search-history?query=${encodeURIComponent(q)}`, { method: 'DELETE' }).catch(() => {})
+    setSearchHistory(prev => prev.filter(h => h !== q))
   }
 
   // 筛选变更
@@ -236,29 +280,66 @@ export default function GitHubPage() {
       </div>
 
       {/* 搜索栏 */}
-      <form onSubmit={handleSearch} className="mb-6">
-        <div className="relative">
-          <input
-            type="text"
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            placeholder="搜索仓库... 例如: react state management"
-            className="w-full px-4 py-3 pl-12 pr-24 text-gray-900 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-base"
-          />
-          <svg
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <button
-            type="submit"
-            className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition"
-          >
-            搜索
-          </button>
-        </div>
-      </form>
+      <div ref={searchBoxRef} className="relative mb-6">
+        <form onSubmit={handleSearch}>
+          <div className="relative">
+            <input
+              type="text"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              onFocus={() => searchHistory.length > 0 && setShowHistory(true)}
+              placeholder="搜索仓库... 例如: react state management"
+              className="w-full px-4 py-3 pl-12 pr-24 text-gray-900 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition text-base"
+            />
+            <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition">
+              搜索
+            </button>
+          </div>
+        </form>
+
+        {/* 搜索历史下拉 */}
+        {showHistory && searchHistory.length > 0 && (
+          <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-30 overflow-hidden">
+            <div className="px-4 py-2 flex items-center justify-between border-b border-gray-100">
+              <span className="text-xs text-gray-400 font-medium">搜索历史</span>
+              <button
+                onClick={() => {
+                  searchHistory.forEach(q => fetch(`/api/github/search-history?query=${encodeURIComponent(q)}`, { method: 'DELETE' }).catch(() => {}))
+                  setSearchHistory([])
+                  setShowHistory(false)
+                }}
+                className="text-xs text-gray-400 hover:text-red-500 transition"
+              >
+                清空
+              </button>
+            </div>
+            {searchHistory.map(q => (
+              <div key={q} className="flex items-center gap-2 px-4 py-2.5 hover:bg-gray-50 group">
+                <svg className="w-4 h-4 text-gray-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <button
+                  className="flex-1 text-left text-sm text-gray-700 truncate"
+                  onClick={() => handleSelectHistory(q)}
+                >
+                  {q}
+                </button>
+                <button
+                  onClick={e => { e.stopPropagation(); handleDeleteHistory(q) }}
+                  className="shrink-0 text-gray-300 hover:text-red-400 transition opacity-0 group-hover:opacity-100"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* 主题标签 */}
       <div className="mb-4">
@@ -283,6 +364,7 @@ export default function GitHubPage() {
       <RecommendationTab
         active={recommendationMode}
         onOpenPreferences={() => setShowPreferences(true)}
+        onSelectRepo={repo => setSelectedRepo(repo as GitHubRepo)}
       />
 
       {/* 结果统计 (非推荐模式) */}
@@ -319,6 +401,7 @@ export default function GitHubPage() {
               key={`${repo.id}-${idx}`}
               repo={repo}
               rank={mode !== 'search' ? (state.page - 1) * 30 + idx + 1 : undefined}
+              onSelect={setSelectedRepo}
             />
           ))}
         </div>
@@ -365,6 +448,12 @@ export default function GitHubPage() {
         open={showPreferences}
         onClose={() => setShowPreferences(false)}
         onSave={handlePreferencesSave}
+      />
+
+      {/* Repo Insight 抽屉 */}
+      <RepoInsightDrawer
+        repo={selectedRepo}
+        onClose={() => setSelectedRepo(null)}
       />
     </div>
   )

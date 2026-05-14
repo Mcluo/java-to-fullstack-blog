@@ -19,9 +19,10 @@ import {
 interface Props {
   active: boolean
   onOpenPreferences: () => void
+  onSelectRepo?: (repo: RecommendedRepo) => void
 }
 
-export default function RecommendationTab({ active, onOpenPreferences }: Props) {
+export default function RecommendationTab({ active, onOpenPreferences, onSelectRepo }: Props) {
   const [repos, setRepos] = useState<RecommendedRepo[]>([])
   const [loading, setLoading] = useState(false)
   const [aiLoading, setAiLoading] = useState(false)
@@ -282,6 +283,7 @@ export default function RecommendationTab({ active, onOpenPreferences }: Props) 
               key={repo.id}
               repo={repo}
               onDismiss={handleDismiss}
+              onSelect={onSelectRepo}
             />
           ))}
         </div>

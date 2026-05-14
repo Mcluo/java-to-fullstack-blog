@@ -26,14 +26,10 @@ const LANG_COLORS: Record<string, string> = {
   HTML: '#e34c26', CSS: '#563d7c', Jupyter: '#DA5B0B',
 }
 
-export default function GitHubRepoCard({ repo, rank }: { repo: GitHubRepo; rank?: number }) {
-  return (
-    <a
-      href={repo.html_url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block group bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all"
-    >
+export default function GitHubRepoCard({ repo, rank, onSelect }: { repo: GitHubRepo; rank?: number; onSelect?: (repo: GitHubRepo) => void }) {
+  const cls = "block group bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer text-left w-full"
+
+  const inner = (
       <div className="flex items-start gap-4">
         {/* 排名 */}
         {rank && (
@@ -122,6 +118,19 @@ export default function GitHubRepoCard({ repo, rank }: { repo: GitHubRepo; rank?
           </div>
         </div>
       </div>
+  )
+
+  if (onSelect) {
+    return (
+      <button className={cls} onClick={() => onSelect(repo)}>
+        {inner}
+      </button>
+    )
+  }
+
+  return (
+    <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className={cls}>
+      {inner}
     </a>
   )
 }
