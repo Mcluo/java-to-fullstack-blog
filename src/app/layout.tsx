@@ -58,6 +58,9 @@ export default function RootLayout({
                 <Link href="/github" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100/80 transition">
                   GitHub
                 </Link>
+                <Link href="/market" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100/80 transition">
+                  行情
+                </Link>
                 <Link href="/me/concepts" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100/80 transition">
                   知识库
                 </Link>

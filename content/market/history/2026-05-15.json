@@ -1,0 +1,272 @@
+{
+  "date": "2026-05-15",
+  "timestamp": "2026-05-15T15:38:28.449346",
+  "a_stock": {
+    "market": "A股",
+    "date": "2026-05-15",
+    "timestamp": "2026-05-15T15:38:28.449352",
+    "index_name": "上证指数",
+    "index_value": 3412.56,
+    "index_change_pct": 0.87,
+    "up_count": 22,
+    "down_count": 9,
+    "sectors": [
+      {
+        "name": "电子",
+        "change_pct": 3.21,
+        "volume": 482.3,
+        "leading_stock": "立讯精密",
+        "net_inflow": 28.5
+      },
+      {
+        "name": "计算机",
+        "change_pct": 2.85,
+        "volume": 356.1,
+        "leading_stock": "中科曙光",
+        "net_inflow": 15.2
+      },
+      {
+        "name": "通信",
+        "change_pct": 2.13,
+        "volume": 198.7,
+        "leading_stock": "中兴通讯",
+        "net_inflow": 8.3
+      },
+      {
+        "name": "电力设备",
+        "change_pct": 1.67,
+        "volume": 412.5,
+        "leading_stock": "宁德时代",
+        "net_inflow": 12.1
+      },
+      {
+        "name": "医药生物",
+        "change_pct": 1.25,
+        "volume": 289.4,
+        "leading_stock": "药明康德",
+        "net_inflow": 5.6
+      },
+      {
+        "name": "汽车",
+        "change_pct": 0.92,
+        "volume": 321.8,
+        "leading_stock": "比亚迪",
+        "net_inflow": 7.8
+      },
+      {
+        "name": "食品饮料",
+        "change_pct": 0.45,
+        "volume": 178.3,
+        "leading_stock": "贵州茅台",
+        "net_inflow": 3.2
+      },
+      {
+        "name": "银行",
+        "change_pct": 0.21,
+        "volume": 156.7,
+        "leading_stock": "招商银行",
+        "net_inflow": 1.5
+      },
+      {
+        "name": "非银金融",
+        "change_pct": 0.08,
+        "volume": 234.1,
+        "leading_stock": "东方财富",
+        "net_inflow": -2.1
+      },
+      {
+        "name": "建筑材料",
+        "change_pct": -0.32,
+        "volume": 87.6,
+        "leading_stock": "海螺水泥",
+        "net_inflow": -3.4
+      },
+      {
+        "name": "钢铁",
+        "change_pct": -0.67,
+        "volume": 65.3,
+        "leading_stock": "宝钢股份",
+        "net_inflow": -5.2
+      },
+      {
+        "name": "煤炭",
+        "change_pct": -1.12,
+        "volume": 98.4,
+        "leading_stock": "中国神华",
+        "net_inflow": -8.7
+      },
+      {
+        "name": "房地产",
+        "change_pct": -1.85,
+        "volume": 145.2,
+        "leading_stock": "万科A",
+        "net_inflow": -12.3
+      },
+      {
+        "name": "传媒",
+        "change_pct": 1.98,
+        "volume": 167.8,
+        "leading_stock": "分众传媒",
+        "net_inflow": 6.4
+      },
+      {
+        "name": "国防军工",
+        "change_pct": 2.45,
+        "volume": 234.6,
+        "leading_stock": "中航沈飞",
+        "net_inflow": 11.2
+      },
+      {
+        "name": "有色金属",
+        "change_pct": -0.54,
+        "volume": 187.9,
+        "leading_stock": "紫金矿业",
+        "net_inflow": -4.1
+      }
+    ]
+  },
+  "us_stock": {
+    "market": "US",
+    "date": "2026-05-15",
+    "timestamp": "2026-05-15T15:38:28.449356",
+    "index_name": "S&P 500",
+    "index_value": 5832.41,
+    "index_change_pct": 1.23,
+    "up_count": 8,
+    "down_count": 3,
+    "sectors": [
+      {
+        "name": "信息技术",
+        "change_pct": 2.15,
+        "volume": 1234.5,
+        "trend_5d": [
+          0.5,
+          -0.3,
+          1.2,
+          0.8,
+          2.15
+        ]
+      },
+      {
+        "name": "通信服务",
+        "change_pct": 1.87,
+        "volume": 567.8,
+        "trend_5d": [
+          0.2,
+          0.5,
+          -0.1,
+          1.3,
+          1.87
+        ]
+      },
+      {
+        "name": "非必需消费",
+        "change_pct": 1.45,
+        "volume": 890.1,
+        "trend_5d": [
+          -0.4,
+          0.8,
+          0.3,
+          0.6,
+          1.45
+        ]
+      },
+      {
+        "name": "医疗保健",
+        "change_pct": 0.92,
+        "volume": 432.1,
+        "trend_5d": [
+          0.3,
+          -0.2,
+          0.5,
+          0.1,
+          0.92
+        ]
+      },
+      {
+        "name": "金融",
+        "change_pct": 0.67,
+        "volume": 789.3,
+        "trend_5d": [
+          -0.1,
+          0.4,
+          0.2,
+          0.3,
+          0.67
+        ]
+      },
+      {
+        "name": "工业",
+        "change_pct": 0.45,
+        "volume": 345.6,
+        "trend_5d": [
+          0.1,
+          -0.3,
+          0.6,
+          0.2,
+          0.45
+        ]
+      },
+      {
+        "name": "材料",
+        "change_pct": 0.23,
+        "volume": 234.5,
+        "trend_5d": [
+          -0.2,
+          0.1,
+          -0.1,
+          0.3,
+          0.23
+        ]
+      },
+      {
+        "name": "必需消费",
+        "change_pct": 0.12,
+        "volume": 178.9,
+        "trend_5d": [
+          0.1,
+          0.0,
+          -0.2,
+          0.1,
+          0.12
+        ]
+      },
+      {
+        "name": "公用事业",
+        "change_pct": -0.34,
+        "volume": 123.4,
+        "trend_5d": [
+          0.2,
+          -0.1,
+          -0.3,
+          0.1,
+          -0.34
+        ]
+      },
+      {
+        "name": "房地产",
+        "change_pct": -0.56,
+        "volume": 98.7,
+        "trend_5d": [
+          -0.3,
+          -0.2,
+          0.1,
+          -0.4,
+          -0.56
+        ]
+      },
+      {
+        "name": "能源",
+        "change_pct": -1.23,
+        "volume": 567.8,
+        "trend_5d": [
+          0.5,
+          -0.8,
+          -0.3,
+          -0.5,
+          -1.23
+        ]
+      }
+    ]
+  }
+}
