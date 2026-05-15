@@ -16,6 +16,7 @@
     "build:embeddings": "bun run scripts/build-embeddings.ts",
     "watch:articles": "bun run scripts/watch-articles.ts",
     "fetch:feeds": "npx tsx scripts/fetch-feeds.ts",
+    "fetch:hn": "npx tsx scripts/fetch-hn-daily.ts",
     "smoke-test": "bun run scripts/smoke-test.ts"
   },
   "dependencies": {

@@ -2,6 +2,7 @@ import FeedConfigManager from '@/components/FeedConfigManager'
 import FeedItemList from '@/components/FeedItemList'
 import FeedFavorites from '@/components/FeedFavorites'
 import QuickSummarize from '@/components/QuickSummarize'
+import Link from 'next/link'
 
 export const metadata = {
   title: '订阅中心 - Java 工程师全栈+AI 转型博客',
@@ -26,6 +27,26 @@ export default function FeedsPage() {
 
       {/* Sections */}
       <div className="space-y-8">
+        {/* HN AI Daily */}
+        <Link href="/feeds/hn-daily" className="block group">
+          <section className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl border border-orange-100 p-6 transition hover:shadow-sm hover:border-orange-200">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                  HN
+                </div>
+                <div>
+                  <h2 className="text-base font-semibold text-gray-900">Hacker News AI 日报</h2>
+                  <p className="text-sm text-gray-500">每日自动聚合 HN 社区 AI 热门讨论</p>
+                </div>
+              </div>
+              <svg className="w-5 h-5 text-gray-400 group-hover:text-orange-500 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </section>
+        </Link>
+
         {/* Quick summarize */}
         <section className="bg-white rounded-2xl border border-gray-100 p-6">
           <h2 className="text-base font-semibold text-gray-900 mb-1">快速总结</h2>
