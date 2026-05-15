@@ -297,7 +297,13 @@ export default function HnDailyPage() {
       const res = await fetch('/api/feeds/hn-daily', { method: 'POST' })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
-      await loadItems()
+      // POST now returns merged items directly
+      if (data.items) {
+        setItems(data.items)
+        setTotal(data.total || data.items.length)
+      } else {
+        await loadItems()
+      }
     } catch (err: any) {
       setError(err.message || '拉取失败')
     } finally {
