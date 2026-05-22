@@ -1,11 +1,11 @@
 {
-  "date": "2026-05-22",
-  "timestamp": "2026-05-22T18:00:02.080558",
+  "date": "2026-05-21",
+  "timestamp": "2026-05-21T18:06:04.715615",
   "a_stock": null,
   "us_stock": {
     "market": "US",
-    "date": "2026-05-22",
-    "timestamp": "2026-05-22T18:00:12.324107",
+    "date": "2026-05-21",
+    "timestamp": "2026-05-21T18:06:15.945193",
     "index_name": "S&P 500",
     "index_value": null,
     "index_change_pct": null,

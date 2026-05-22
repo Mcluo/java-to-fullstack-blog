@@ -42,36 +42,60 @@
 
 ## 🚀 快速开始
 
-### 安装依赖
+### 方式一：一键部署（推荐）
 
 ```bash
+git clone https://github.com/Mcluo/java-to-fullstack-blog.git
+cd java-to-fullstack-blog
+bash setup.sh
+```
+
+脚本会自动：检查环境 → 安装依赖 → 引导配置 API 密钥 → 构建 Embedding → 编译项目
+
+### 方式二：手动部署
+
+```bash
+# 1. 克隆并安装
+git clone https://github.com/Mcluo/java-to-fullstack-blog.git
+cd java-to-fullstack-blog
 npm install
-```
 
-### 配置环境变量
+# 2. 配置环境变量
+cp .env.example .env.local
+# 编辑 .env.local，填入你的 API 密钥
 
-创建 `.env.local` 文件：
+# 3. 构建 Embedding 索引（AI 搜索功能）
+npm run build:embeddings
 
-```env
-DATABASE_URL="your-supabase-database-url"
-NEXT_PUBLIC_SUPABASE_URL="your-supabase-url"
-NEXT_PUBLIC_SUPABASE_ANON_KEY="your-supabase-anon-key"
-OPENAI_API_KEY="your-ai-api-key"
-```
-
-### 初始化数据库
-
-```bash
-npm run db:push
-```
-
-### 运行开发服务器
-
-```bash
+# 4. 启动
 npm run dev
 ```
 
 访问 [http://localhost:3000](http://localhost:3000)
+
+### 环境要求
+
+| 依赖 | 版本 | 用途 |
+|------|------|------|
+| Node.js | 20+ | 运行时 |
+| npm | 9+ | 包管理 |
+| Bun | (可选) | 加速 Embedding 构建 |
+
+### API 密钥获取
+
+| 服务 | 获取地址 | 用途 | 必须 |
+|------|----------|------|------|
+| Claude API | [console.anthropic.com](https://console.anthropic.com/account/keys) | AI 对话助手 | ✅ |
+| ModelScope | [modelscope.cn](https://modelscope.cn) → API Inference | RAG 向量搜索 | ✅ |
+| Supabase | [supabase.com](https://supabase.com) | 评论/聊天持久化 | ❌ |
+| Groq | [console.groq.com](https://console.groq.com) | 视频转录 | ❌ |
+
+### Supabase 初始化（可选）
+
+如需评论和聊天记录持久化：
+1. 在 [supabase.com](https://supabase.com) 创建免费项目
+2. 进入 SQL Editor，执行 `supabase/schema.sql`
+3. 在 Settings → API 中获取 URL 和 anon key，填入 `.env.local`
 
 ## 📖 文章编写
 

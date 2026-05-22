@@ -12,7 +12,7 @@
       "maxItems": 3,
       "sourceType": "bilibili",
       "channelId": "489667127",
-      "lastFetched": "2026-05-14T00:45:35.953Z"
+      "lastFetched": "2026-05-22T01:03:46.385Z"
     },
     {
       "id": "2212af2d-b1d5-46c8-b5c3-0563bce2d667",
@@ -25,7 +25,20 @@
       "maxItems": 10,
       "sourceType": "bilibili",
       "channelId": "316568752",
-      "lastFetched": "2026-05-14T00:45:43.949Z"
+      "lastFetched": "2026-05-22T01:03:47.385Z"
+    },
+    {
+      "id": "aa91db83-c01f-4901-b5c9-f115b04cad53",
+      "name": "凉子访谈录",
+      "url": "https://space.bilibili.com/496688267?spm_id_from=333.337.0.0",
+      "type": "website",
+      "platform": "Bilibili",
+      "category": "生活",
+      "enabled": true,
+      "maxItems": 10,
+      "sourceType": "bilibili",
+      "channelId": "496688267",
+      "lastFetched": "2026-05-22T01:03:59.477Z"
     }
   ]
 }

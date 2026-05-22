@@ -13,8 +13,8 @@ interface DailyReport {
 }
 
 // 骨架屏组件
-function Skeleton({ className = '' }: { className?: string }) {
-  return <div className={`animate-pulse bg-gray-200 rounded ${className}`} />
+function Skeleton({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
+  return <div className={`animate-pulse bg-gray-200 rounded ${className}`} style={style} />
 }
 
 function LoadingSkeleton() {

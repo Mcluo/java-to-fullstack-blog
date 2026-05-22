@@ -17,6 +17,9 @@ import TableOfContents from '@/components/TableOfContents'
 import RelatedKnowledge from '@/components/RelatedKnowledge'
 import CommentSection from '@/components/CommentSection'
 import HighlightComments from '@/components/HighlightComments'
+import ArticleReadingAssistant from '@/components/ArticleReadingAssistant'
+import ReadingPositionResume from '@/components/ReadingPositionResume'
+import ArticleKeyPoints from '@/components/ArticleKeyPoints'
 import AiBriefRenderer from '@/components/AiBriefRenderer'
 import {
   getAllArticles,
@@ -132,6 +135,9 @@ export default async function ArticlePage({
             )}
           </header>
 
+          {/* TL;DR 核心要点 */}
+          {article.keyPoints && <ArticleKeyPoints keyPoints={article.keyPoints} />}
+
           {/* Jupyter Notebook 链接 */}
           {article.notebook && (
             <NotebookLinks
@@ -139,6 +145,9 @@ export default async function ArticlePage({
               title="交互式代码实践"
             />
           )}
+
+          {/* 阅读位置记忆 */}
+          <ReadingPositionResume articleSlug={articleSlug} />
 
           {/* 图片点击预览 */}
           <ImageLightbox />
@@ -184,6 +193,13 @@ export default async function ArticlePage({
               {article.content}
             </ReactMarkdown>
           </article>
+
+          {/* AI 精读助手 */}
+          <ArticleReadingAssistant
+            articleTitle={article.title}
+            articleContent={article.content}
+            articleSlug={articleSlug}
+          />
 
           {/* 划线评论 */}
           <HighlightComments articleSlug={articleSlug} articleTitle={article.title} />

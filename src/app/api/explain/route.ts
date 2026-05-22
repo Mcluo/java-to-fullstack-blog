@@ -1,12 +1,18 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { NextRequest, NextResponse } from 'next/server'
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN,
-  baseURL: process.env.ANTHROPIC_BASE_URL
-    ? `${process.env.ANTHROPIC_BASE_URL}`
-    : undefined,
-})
+function createClient() {
+  // 临时清除 ANTHROPIC_AUTH_TOKEN 防止 SDK 同时发送 x-api-key 和 Authorization header
+  const savedToken = process.env.ANTHROPIC_AUTH_TOKEN
+  delete process.env.ANTHROPIC_AUTH_TOKEN
+  const client = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY || savedToken,
+    baseURL: process.env.ANTHROPIC_BASE_URL || undefined,
+  })
+  // 恢复，不影响其他模块
+  if (savedToken) process.env.ANTHROPIC_AUTH_TOKEN = savedToken
+  return client
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,6 +51,7 @@ ${context.slice(0, 800)}
 
 只返回 JSON，不要其他内容。`
 
+    const anthropic = createClient()
     const message = await anthropic.messages.create({
       model: process.env.CHAT_MODEL || 'claude-sonnet-4-6',
       max_tokens: 512,

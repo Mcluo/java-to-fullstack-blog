@@ -13,6 +13,7 @@ export interface ArticleMeta {
   publishedAt?: string
   updatedAt?: string
   notebook?: string
+  keyPoints?: string[]
 }
 
 export interface Article extends ArticleMeta {

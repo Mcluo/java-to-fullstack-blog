@@ -74,7 +74,28 @@ function transcribeYouTube(url: string): string | null {
   } catch { return null }
 }
 
+function ensureChromeDebug(): boolean {
+  try {
+    execSync('curl -sf http://127.0.0.1:9222/json/version', { timeout: 3000, stdio: 'pipe' })
+    return true
+  } catch {
+    // Chrome debug 未运行，自动启动
+    const startScript = path.join(process.cwd(), 'scripts', 'start-chrome-debug.sh')
+    try {
+      execSync(`bash "${startScript}"`, { timeout: 15000, stdio: 'pipe' })
+      return true
+    } catch {
+      return false
+    }
+  }
+}
+
 function fetchXiaohongshu(url: string): string | null {
+  // 自动确保 Chrome debug 在运行
+  if (!ensureChromeDebug()) {
+    throw new Error('[小红书] 无法自动启动 debug Chrome，请手动运行 scripts/start-chrome-debug.sh')
+  }
+
   const scriptPath = path.join(process.cwd(), 'scripts', 'fetch-xhs.sh')
   let raw = ''
   try {
@@ -84,10 +105,8 @@ function fetchXiaohongshu(url: string): string | null {
       stdio: ['pipe', 'pipe', 'pipe'],
     }).trim()
   } catch (execErr: any) {
-    // execSync 抛出说明脚本非零退出或超时
     const stderr = execErr.stderr?.toString().trim() || ''
     const stdout = execErr.stdout?.toString().trim() || ''
-    // 尝试从 stdout 解析 JSON（有时脚本打印 JSON 后才 exit 1）
     try {
       const d = JSON.parse(stdout || stderr)
       if (d.error) throw new Error(`[小红书] ${d.error}`)
@@ -107,9 +126,6 @@ function fetchXiaohongshu(url: string): string | null {
 
   if (!data.ok) {
     const errMsg = data.error || '内容获取失败'
-    if (errMsg.includes('debug Chrome 未运行')) {
-      throw new Error('请先启动 debug Chrome：运行 scripts/start-chrome-debug.sh')
-    }
     throw new Error(`[小红书] ${errMsg}`)
   }
   return data.content || null

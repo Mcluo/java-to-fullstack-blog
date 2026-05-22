@@ -3,12 +3,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { searchRelevantChunks, buildContext, isRagAvailable } from '@/lib/rag'
 import { getAllArticles, CATEGORY_CONFIG } from '@/lib/articles'
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN,
-  baseURL: process.env.ANTHROPIC_BASE_URL
-    ? `${process.env.ANTHROPIC_BASE_URL}`
-    : undefined,
-})
+function createClient() {
+  // 临时清除 ANTHROPIC_AUTH_TOKEN 防止 SDK 同时发送 x-api-key 和 Authorization header
+  const savedToken = process.env.ANTHROPIC_AUTH_TOKEN
+  delete process.env.ANTHROPIC_AUTH_TOKEN
+  const client = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY || savedToken,
+    baseURL: process.env.ANTHROPIC_BASE_URL || undefined,
+  })
+  if (savedToken) process.env.ANTHROPIC_AUTH_TOKEN = savedToken
+  return client
+}
 
 // 基础系统提示词
 const BASE_SYSTEM_PROMPT = `你是一个专业的全栈+AI学习助手，专门帮助Java工程师转型学习前端、后端和AI技术。
@@ -170,6 +175,7 @@ export async function POST(request: NextRequest) {
       async start(controller) {
         try {
           // 使用Anthropic的流式API
+          const anthropic = createClient()
           const messageStream = await anthropic.messages.stream({
             model: process.env.CHAT_MODEL || 'claude-sonnet-4-6',
             max_tokens: 2048,

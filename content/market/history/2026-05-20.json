@@ -1,0 +1,2507 @@
+{
+  "date": "2026-05-20",
+  "timestamp": "2026-05-20T18:00:01.868795",
+  "a_stock": {
+    "market": "A股",
+    "date": "2026-05-20",
+    "timestamp": "2026-05-20T18:00:05.131309",
+    "index_name": "上证指数",
+    "index_value": null,
+    "index_change_pct": null,
+    "up_count": 115,
+    "down_count": 381,
+    "sectors": [
+      {
+        "name": "防水材料",
+        "change_pct": 8.87,
+        "leading_stock": "凯伦股份"
+      },
+      {
+        "name": "集成电路制造",
+        "change_pct": 6.38,
+        "leading_stock": "华虹公司"
+      },
+      {
+        "name": "半导体设备",
+        "change_pct": 5.9,
+        "leading_stock": "金海通"
+      },
+      {
+        "name": "逆变器",
+        "change_pct": 4.98,
+        "leading_stock": "固德威"
+      },
+      {
+        "name": "集成电路封测",
+        "change_pct": 4.32,
+        "leading_stock": "晶方科技"
+      },
+      {
+        "name": "半导体材料",
+        "change_pct": 3.6,
+        "leading_stock": "上海合晶"
+      },
+      {
+        "name": "半导体",
+        "change_pct": 3.16,
+        "leading_stock": "晶方科技"
+      },
+      {
+        "name": "医美服务",
+        "change_pct": 3.16,
+        "leading_stock": "*ST美谷"
+      },
+      {
+        "name": "氨纶",
+        "change_pct": 3.09,
+        "leading_stock": "华峰化学"
+      },
+      {
+        "name": "氟化工",
+        "change_pct": 2.95,
+        "leading_stock": "多氟多"
+      },
+      {
+        "name": "国际工程",
+        "change_pct": 2.68,
+        "leading_stock": "中工国际"
+      },
+      {
+        "name": "电池化学品",
+        "change_pct": 2.62,
+        "leading_stock": "滨海能源"
+      },
+      {
+        "name": "模拟芯片设计",
+        "change_pct": 2.59,
+        "leading_stock": "盛景微"
+      },
+      {
+        "name": "油品石化贸易",
+        "change_pct": 2.43,
+        "leading_stock": "和顺石油"
+      },
+      {
+        "name": "其他酒类",
+        "change_pct": 2.38,
+        "leading_stock": "威龙股份"
+      },
+      {
+        "name": "有机硅",
+        "change_pct": 2.28,
+        "leading_stock": "江瀚新材"
+      },
+      {
+        "name": "电子化学品Ⅱ",
+        "change_pct": 2.24,
+        "leading_stock": "唯特偶"
+      },
+      {
+        "name": "电子化学品Ⅲ",
+        "change_pct": 2.24,
+        "leading_stock": "唯特偶"
+      },
+      {
+        "name": "光学元件",
+        "change_pct": 2.16,
+        "leading_stock": "茂莱光学"
+      },
+      {
+        "name": "公交",
+        "change_pct": 2.07,
+        "leading_stock": "大众交通"
+      },
+      {
+        "name": "数字芯片设计",
+        "change_pct": 2.01,
+        "leading_stock": "联芸科技"
+      },
+      {
+        "name": "合成树脂",
+        "change_pct": 1.89,
+        "leading_stock": "争光股份"
+      },
+      {
+        "name": "稀土",
+        "change_pct": 1.87,
+        "leading_stock": "北方稀土"
+      },
+      {
+        "name": "锂",
+        "change_pct": 1.75,
+        "leading_stock": "盛新锂能"
+      },
+      {
+        "name": "熟食",
+        "change_pct": 1.62,
+        "leading_stock": "紫燕食品"
+      },
+      {
+        "name": "非白酒",
+        "change_pct": 1.6,
+        "leading_stock": "威龙股份"
+      },
+      {
+        "name": "电池",
+        "change_pct": 1.55,
+        "leading_stock": "滨海能源"
+      },
+      {
+        "name": "其他电子Ⅲ",
+        "change_pct": 1.54,
+        "leading_stock": "可立克"
+      },
+      {
+        "name": "其他电子Ⅱ",
+        "change_pct": 1.54,
+        "leading_stock": "可立克"
+      },
+      {
+        "name": "水产饲料",
+        "change_pct": 1.53,
+        "leading_stock": "粤海饲料"
+      },
+      {
+        "name": "膜材料",
+        "change_pct": 1.51,
+        "leading_stock": "国风新材"
+      },
+      {
+        "name": "产业地产",
+        "change_pct": 1.49,
+        "leading_stock": "市北高新"
+      },
+      {
+        "name": "果蔬加工",
+        "change_pct": 1.46,
+        "leading_stock": "国投中鲁"
+      },
+      {
+        "name": "油气开采Ⅲ",
+        "change_pct": 1.46,
+        "leading_stock": "ST洲际"
+      },
+      {
+        "name": "油气开采Ⅱ",
+        "change_pct": 1.46,
+        "leading_stock": "ST洲际"
+      },
+      {
+        "name": "能源金属",
+        "change_pct": 1.38,
+        "leading_stock": "盛新锂能"
+      },
+      {
+        "name": "炭黑",
+        "change_pct": 1.36,
+        "leading_stock": "龙星科技"
+      },
+      {
+        "name": "电子",
+        "change_pct": 1.32,
+        "leading_stock": "法拉电子"
+      },
+      {
+        "name": "彩电",
+        "change_pct": 1.29,
+        "leading_stock": "兆驰股份"
+      },
+      {
+        "name": "锂电专用设备",
+        "change_pct": 1.24,
+        "leading_stock": "尚水智能"
+      },
+      {
+        "name": "粘胶",
+        "change_pct": 1.24,
+        "leading_stock": "ST海龙"
+      },
+      {
+        "name": "被动元件",
+        "change_pct": 1.2,
+        "leading_stock": "法拉电子"
+      },
+      {
+        "name": "分立器件",
+        "change_pct": 1.19,
+        "leading_stock": "燕东微"
+      },
+      {
+        "name": "环保设备Ⅲ",
+        "change_pct": 1.19,
+        "leading_stock": "法尔胜"
+      },
+      {
+        "name": "环保设备Ⅱ",
+        "change_pct": 1.19,
+        "leading_stock": "法尔胜"
+      },
+      {
+        "name": "制冷空调设备",
+        "change_pct": 1.18,
+        "leading_stock": "汉钟精机"
+      },
+      {
+        "name": "光伏加工设备",
+        "change_pct": 1.14,
+        "leading_stock": "晶盛机电"
+      },
+      {
+        "name": "无机盐",
+        "change_pct": 1.09,
+        "leading_stock": "三祥新材"
+      },
+      {
+        "name": "激光设备",
+        "change_pct": 1.08,
+        "leading_stock": "大族激光"
+      },
+      {
+        "name": "其他运输设备",
+        "change_pct": 1.05,
+        "leading_stock": "绿通科技"
+      },
+      {
+        "name": "橡胶助剂",
+        "change_pct": 1.02,
+        "leading_stock": "彤程新材"
+      },
+      {
+        "name": "锂电池",
+        "change_pct": 0.98,
+        "leading_stock": "德福科技"
+      },
+      {
+        "name": "磁性材料",
+        "change_pct": 0.89,
+        "leading_stock": "龙磁科技"
+      },
+      {
+        "name": "镍",
+        "change_pct": 0.85,
+        "leading_stock": "华友钴业"
+      },
+      {
+        "name": "涂料油墨",
+        "change_pct": 0.84,
+        "leading_stock": "杭华股份"
+      },
+      {
+        "name": "医疗研发外包",
+        "change_pct": 0.81,
+        "leading_stock": "百奥赛图"
+      },
+      {
+        "name": "光伏辅材",
+        "change_pct": 0.76,
+        "leading_stock": "欧晶科技"
+      },
+      {
+        "name": "其他自动化设备",
+        "change_pct": 0.76,
+        "leading_stock": "锐翔智能"
+      },
+      {
+        "name": "印染",
+        "change_pct": 0.76,
+        "leading_stock": "迎丰股份"
+      },
+      {
+        "name": "金属包装",
+        "change_pct": 0.74,
+        "leading_stock": "华源控股"
+      },
+      {
+        "name": "磨具磨料",
+        "change_pct": 0.74,
+        "leading_stock": "金太阳"
+      },
+      {
+        "name": "光伏设备",
+        "change_pct": 0.74,
+        "leading_stock": "欧晶科技"
+      },
+      {
+        "name": "通信线缆及配套",
+        "change_pct": 0.73,
+        "leading_stock": "长盈通"
+      },
+      {
+        "name": "纺织服装设备",
+        "change_pct": 0.7,
+        "leading_stock": "泰坦股份"
+      },
+      {
+        "name": "铝",
+        "change_pct": 0.68,
+        "leading_stock": "鑫源智造"
+      },
+      {
+        "name": "白酒Ⅲ",
+        "change_pct": 0.63,
+        "leading_stock": "金徽酒"
+      },
+      {
+        "name": "白酒Ⅱ",
+        "change_pct": 0.63,
+        "leading_stock": "金徽酒"
+      },
+      {
+        "name": "胶黏剂及胶带",
+        "change_pct": 0.6,
+        "leading_stock": "永冠新材"
+      },
+      {
+        "name": "水泥制品",
+        "change_pct": 0.59,
+        "leading_stock": "苏博特"
+      },
+      {
+        "name": "保健品",
+        "change_pct": 0.57,
+        "leading_stock": "交大昂立"
+      },
+      {
+        "name": "元件",
+        "change_pct": 0.57,
+        "leading_stock": "法拉电子"
+      },
+      {
+        "name": "航运",
+        "change_pct": 0.57,
+        "leading_stock": "招商南油"
+      },
+      {
+        "name": "非金属材料Ⅲ",
+        "change_pct": 0.52,
+        "leading_stock": "天马新材"
+      },
+      {
+        "name": "非金属材料Ⅱ",
+        "change_pct": 0.52,
+        "leading_stock": "天马新材"
+      },
+      {
+        "name": "光伏主材",
+        "change_pct": 0.48,
+        "leading_stock": "隆基绿能"
+      },
+      {
+        "name": "啤酒",
+        "change_pct": 0.47,
+        "leading_stock": "燕京啤酒"
+      },
+      {
+        "name": "化妆品制造及其他",
+        "change_pct": 0.44,
+        "leading_stock": "嘉亨家化"
+      },
+      {
+        "name": "金属新材料",
+        "change_pct": 0.42,
+        "leading_stock": "云路股份"
+      },
+      {
+        "name": "厨房小家电",
+        "change_pct": 0.4,
+        "leading_stock": "利仁科技"
+      },
+      {
+        "name": "通信网络设备及器件",
+        "change_pct": 0.35,
+        "leading_stock": "世嘉科技"
+      },
+      {
+        "name": "玻纤制造",
+        "change_pct": 0.34,
+        "leading_stock": "宏和科技"
+      },
+      {
+        "name": "化学制品",
+        "change_pct": 0.34,
+        "leading_stock": "雅运股份"
+      },
+      {
+        "name": "印制电路板",
+        "change_pct": 0.31,
+        "leading_stock": "华正新材"
+      },
+      {
+        "name": "空调",
+        "change_pct": 0.3,
+        "leading_stock": "美的集团"
+      },
+      {
+        "name": "纺织化学制品",
+        "change_pct": 0.29,
+        "leading_stock": "雅运股份"
+      },
+      {
+        "name": "食用菌",
+        "change_pct": 0.28,
+        "leading_stock": "雪榕生物"
+      },
+      {
+        "name": "塑料",
+        "change_pct": 0.27,
+        "leading_stock": "国风新材"
+      },
+      {
+        "name": "塑料包装",
+        "change_pct": 0.25,
+        "leading_stock": "金富科技"
+      },
+      {
+        "name": "光学光电子",
+        "change_pct": 0.24,
+        "leading_stock": "万润科技"
+      },
+      {
+        "name": "油气及炼化工程",
+        "change_pct": 0.21,
+        "leading_stock": "中油工程"
+      },
+      {
+        "name": "软饮料",
+        "change_pct": 0.21,
+        "leading_stock": "东鹏饮料"
+      },
+      {
+        "name": "其他化学制品",
+        "change_pct": 0.2,
+        "leading_stock": "泰坦科技"
+      },
+      {
+        "name": "其他通信设备",
+        "change_pct": 0.2,
+        "leading_stock": "云里物里"
+      },
+      {
+        "name": "瓷砖地板",
+        "change_pct": 0.18,
+        "leading_stock": "海象新材"
+      },
+      {
+        "name": "工控设备",
+        "change_pct": 0.17,
+        "leading_stock": "宏英智能"
+      },
+      {
+        "name": "信托",
+        "change_pct": 0.17,
+        "leading_stock": "建元信托"
+      },
+      {
+        "name": "钴",
+        "change_pct": 0.17,
+        "leading_stock": "寒锐钴业"
+      },
+      {
+        "name": "辅料",
+        "change_pct": 0.17,
+        "leading_stock": "兴业科技"
+      },
+      {
+        "name": "小金属",
+        "change_pct": 0.15,
+        "leading_stock": "北方稀土"
+      },
+      {
+        "name": "有色金属",
+        "change_pct": 0.14,
+        "leading_stock": "鑫源智造"
+      },
+      {
+        "name": "白色家电",
+        "change_pct": 0.11,
+        "leading_stock": "澳柯玛"
+      },
+      {
+        "name": "仪器仪表",
+        "change_pct": 0.11,
+        "leading_stock": "联讯仪器"
+      },
+      {
+        "name": "其他建材Ⅲ",
+        "change_pct": 0.1,
+        "leading_stock": "中旗新材"
+      },
+      {
+        "name": "其他金属新材料",
+        "change_pct": 0.08,
+        "leading_stock": "云路股份"
+      },
+      {
+        "name": "医疗美容",
+        "change_pct": 0.08,
+        "leading_stock": "*ST美谷"
+      },
+      {
+        "name": "其他专用设备",
+        "change_pct": 0.07,
+        "leading_stock": "利和兴"
+      },
+      {
+        "name": "钨",
+        "change_pct": 0.06,
+        "leading_stock": "中钨高新"
+      },
+      {
+        "name": "磷肥及磷化工",
+        "change_pct": 0.05,
+        "leading_stock": "兴发集团"
+      },
+      {
+        "name": "冰洗",
+        "change_pct": 0.05,
+        "leading_stock": "澳柯玛"
+      },
+      {
+        "name": "自动化设备",
+        "change_pct": 0.04,
+        "leading_stock": "宏英智能"
+      },
+      {
+        "name": "工业金属",
+        "change_pct": 0.03,
+        "leading_stock": "鑫源智造"
+      },
+      {
+        "name": "黑色家电",
+        "change_pct": 0.03,
+        "leading_stock": "兆驰股份"
+      },
+      {
+        "name": "快递",
+        "change_pct": 0.03,
+        "leading_stock": "顺丰控股"
+      },
+      {
+        "name": "食品饮料",
+        "change_pct": 0.02,
+        "leading_stock": "威龙股份"
+      },
+      {
+        "name": "端到端供应链服务",
+        "change_pct": 0.01,
+        "leading_stock": "海晨股份"
+      },
+      {
+        "name": "铁路公路",
+        "change_pct": -0.01,
+        "leading_stock": "大众交通"
+      },
+      {
+        "name": "石油石化",
+        "change_pct": -0.02,
+        "leading_stock": "和顺石油"
+      },
+      {
+        "name": "水泥",
+        "change_pct": -0.02,
+        "leading_stock": "苏博特"
+      },
+      {
+        "name": "电力设备",
+        "change_pct": -0.03,
+        "leading_stock": "和展能源"
+      },
+      {
+        "name": "装修建材",
+        "change_pct": -0.05,
+        "leading_stock": "凯伦股份"
+      },
+      {
+        "name": "基础化工",
+        "change_pct": -0.05,
+        "leading_stock": "三孚股份"
+      },
+      {
+        "name": "其他专业工程",
+        "change_pct": -0.07,
+        "leading_stock": "柏诚股份"
+      },
+      {
+        "name": "摩托车及其他",
+        "change_pct": -0.08,
+        "leading_stock": "绿通科技"
+      },
+      {
+        "name": "其他养殖",
+        "change_pct": -0.08,
+        "leading_stock": "*ST福成"
+      },
+      {
+        "name": "棉纺",
+        "change_pct": -0.12,
+        "leading_stock": "华孚时尚"
+      },
+      {
+        "name": "化妆品",
+        "change_pct": -0.13,
+        "leading_stock": "嘉亨家化"
+      },
+      {
+        "name": "其他小金属",
+        "change_pct": -0.15,
+        "leading_stock": "浩通科技"
+      },
+      {
+        "name": "通信设备",
+        "change_pct": -0.15,
+        "leading_stock": "世嘉科技"
+      },
+      {
+        "name": "其他医疗服务",
+        "change_pct": -0.15,
+        "leading_stock": "润达医疗"
+      },
+      {
+        "name": "炼化及贸易",
+        "change_pct": -0.16,
+        "leading_stock": "和顺石油"
+      },
+      {
+        "name": "建筑材料",
+        "change_pct": -0.17,
+        "leading_stock": "凯伦股份"
+      },
+      {
+        "name": "特种纸",
+        "change_pct": -0.22,
+        "leading_stock": "齐峰新材"
+      },
+      {
+        "name": "照明设备Ⅲ",
+        "change_pct": -0.23,
+        "leading_stock": "*ST星光"
+      },
+      {
+        "name": "照明设备Ⅱ",
+        "change_pct": -0.23,
+        "leading_stock": "*ST星光"
+      },
+      {
+        "name": "金融信息服务",
+        "change_pct": -0.24,
+        "leading_stock": "仁东控股"
+      },
+      {
+        "name": "食品加工",
+        "change_pct": -0.25,
+        "leading_stock": "交大昂立"
+      },
+      {
+        "name": "油服工程",
+        "change_pct": -0.26,
+        "leading_stock": "中曼石油"
+      },
+      {
+        "name": "聚氨酯",
+        "change_pct": -0.29,
+        "leading_stock": "高盟新材"
+      },
+      {
+        "name": "钾肥",
+        "change_pct": -0.29,
+        "leading_stock": "盐湖股份"
+      },
+      {
+        "name": "调味发酵品Ⅱ",
+        "change_pct": -0.31,
+        "leading_stock": "ST加加"
+      },
+      {
+        "name": "调味发酵品Ⅲ",
+        "change_pct": -0.31,
+        "leading_stock": "ST加加"
+      },
+      {
+        "name": "燃气Ⅲ",
+        "change_pct": -0.32,
+        "leading_stock": "胜利股份"
+      },
+      {
+        "name": "燃气Ⅱ",
+        "change_pct": -0.32,
+        "leading_stock": "胜利股份"
+      },
+      {
+        "name": "铁矿石",
+        "change_pct": -0.33,
+        "leading_stock": "大中矿业"
+      },
+      {
+        "name": "蓄电池及其他电池",
+        "change_pct": -0.34,
+        "leading_stock": "浙江恒威"
+      },
+      {
+        "name": "专业工程",
+        "change_pct": -0.35,
+        "leading_stock": "柏诚股份"
+      },
+      {
+        "name": "楼宇设备",
+        "change_pct": -0.37,
+        "leading_stock": "沪宁股份"
+      },
+      {
+        "name": "仓储物流",
+        "change_pct": -0.38,
+        "leading_stock": "宏川智慧"
+      },
+      {
+        "name": "LED",
+        "change_pct": -0.39,
+        "leading_stock": "万润科技"
+      },
+      {
+        "name": "股份制银行Ⅲ",
+        "change_pct": -0.39,
+        "leading_stock": "光大银行"
+      },
+      {
+        "name": "航运港口",
+        "change_pct": -0.4,
+        "leading_stock": "招商南油"
+      },
+      {
+        "name": "其他生物制品",
+        "change_pct": -0.4,
+        "leading_stock": "四环生物"
+      },
+      {
+        "name": "硅料硅片",
+        "change_pct": -0.4,
+        "leading_stock": "双良节能"
+      },
+      {
+        "name": "地面兵装Ⅲ",
+        "change_pct": -0.41,
+        "leading_stock": "光电股份"
+      },
+      {
+        "name": "地面兵装Ⅱ",
+        "change_pct": -0.41,
+        "leading_stock": "光电股份"
+      },
+      {
+        "name": "水泥制造",
+        "change_pct": -0.42,
+        "leading_stock": "上峰水泥"
+      },
+      {
+        "name": "橡胶",
+        "change_pct": -0.43,
+        "leading_stock": "龙星科技"
+      },
+      {
+        "name": "其他电源设备Ⅲ",
+        "change_pct": -0.43,
+        "leading_stock": "恒运昌"
+      },
+      {
+        "name": "休闲食品",
+        "change_pct": -0.43,
+        "leading_stock": "黑芝麻"
+      },
+      {
+        "name": "其他化学纤维",
+        "change_pct": -0.45,
+        "leading_stock": "泰和新材"
+      },
+      {
+        "name": "零食",
+        "change_pct": -0.45,
+        "leading_stock": "黑芝麻"
+      },
+      {
+        "name": "民爆制品",
+        "change_pct": -0.46,
+        "leading_stock": "江南化工"
+      },
+      {
+        "name": "面板",
+        "change_pct": -0.46,
+        "leading_stock": "沃格光电"
+      },
+      {
+        "name": "家电零部件Ⅲ",
+        "change_pct": -0.46,
+        "leading_stock": "海达尔"
+      },
+      {
+        "name": "家电零部件Ⅱ",
+        "change_pct": -0.46,
+        "leading_stock": "海达尔"
+      },
+      {
+        "name": "家用电器",
+        "change_pct": -0.46,
+        "leading_stock": "利仁科技"
+      },
+      {
+        "name": "煤化工",
+        "change_pct": -0.47,
+        "leading_stock": "华谊集团"
+      },
+      {
+        "name": "城商行Ⅲ",
+        "change_pct": -0.47,
+        "leading_stock": "厦门银行"
+      },
+      {
+        "name": "交通运输",
+        "change_pct": -0.48,
+        "leading_stock": "大众交通"
+      },
+      {
+        "name": "专用设备",
+        "change_pct": -0.48,
+        "leading_stock": "利和兴"
+      },
+      {
+        "name": "钢铁管材",
+        "change_pct": -0.48,
+        "leading_stock": "友发集团"
+      },
+      {
+        "name": "铅锌",
+        "change_pct": -0.49,
+        "leading_stock": "国城矿业"
+      },
+      {
+        "name": "线缆部件及其他",
+        "change_pct": -0.49,
+        "leading_stock": "金利华电"
+      },
+      {
+        "name": "机械设备",
+        "change_pct": -0.49,
+        "leading_stock": "汉钟精机"
+      },
+      {
+        "name": "小家电",
+        "change_pct": -0.5,
+        "leading_stock": "利仁科技"
+      },
+      {
+        "name": "其他化学原料",
+        "change_pct": -0.5,
+        "leading_stock": "三孚股份"
+      },
+      {
+        "name": "成品家居",
+        "change_pct": -0.51,
+        "leading_stock": "致欧科技"
+      },
+      {
+        "name": "化学原料",
+        "change_pct": -0.51,
+        "leading_stock": "三孚股份"
+      },
+      {
+        "name": "风电零部件",
+        "change_pct": -0.52,
+        "leading_stock": "和展能源"
+      },
+      {
+        "name": "高速公路",
+        "change_pct": -0.53,
+        "leading_stock": "山东高速"
+      },
+      {
+        "name": "风电设备",
+        "change_pct": -0.53,
+        "leading_stock": "和展能源"
+      },
+      {
+        "name": "医疗服务",
+        "change_pct": -0.55,
+        "leading_stock": "百奥赛图"
+      },
+      {
+        "name": "包装印刷",
+        "change_pct": -0.55,
+        "leading_stock": "大胜达"
+      },
+      {
+        "name": "军工电子Ⅲ",
+        "change_pct": -0.58,
+        "leading_stock": "天微电子"
+      },
+      {
+        "name": "军工电子Ⅱ",
+        "change_pct": -0.58,
+        "leading_stock": "天微电子"
+      },
+      {
+        "name": "风电整机",
+        "change_pct": -0.59,
+        "leading_stock": "电气风电"
+      },
+      {
+        "name": "通用设备",
+        "change_pct": -0.59,
+        "leading_stock": "汉钟精机"
+      },
+      {
+        "name": "饮料乳品",
+        "change_pct": -0.59,
+        "leading_stock": "东鹏饮料"
+      },
+      {
+        "name": "原料药",
+        "change_pct": -0.59,
+        "leading_stock": "宏源药业"
+      },
+      {
+        "name": "农商行Ⅲ",
+        "change_pct": -0.59,
+        "leading_stock": "江阴银行"
+      },
+      {
+        "name": "酒店",
+        "change_pct": -0.59,
+        "leading_stock": "锦江Ｂ股"
+      },
+      {
+        "name": "航海装备Ⅲ",
+        "change_pct": -0.6,
+        "leading_stock": "中国船舶"
+      },
+      {
+        "name": "航海装备Ⅱ",
+        "change_pct": -0.6,
+        "leading_stock": "中国船舶"
+      },
+      {
+        "name": "环保",
+        "change_pct": -0.61,
+        "leading_stock": "法尔胜"
+      },
+      {
+        "name": "电工仪器仪表",
+        "change_pct": -0.62,
+        "leading_stock": "安科瑞"
+      },
+      {
+        "name": "工程机械整机",
+        "change_pct": -0.62,
+        "leading_stock": "华东重机"
+      },
+      {
+        "name": "造纸",
+        "change_pct": -0.63,
+        "leading_stock": "齐峰新材"
+      },
+      {
+        "name": "品牌化妆品",
+        "change_pct": -0.63,
+        "leading_stock": "水羊股份"
+      },
+      {
+        "name": "其他电源设备Ⅱ",
+        "change_pct": -0.63,
+        "leading_stock": "恒运昌"
+      },
+      {
+        "name": "美容护理",
+        "change_pct": -0.64,
+        "leading_stock": "嘉亨家化"
+      },
+      {
+        "name": "化学纤维",
+        "change_pct": -0.64,
+        "leading_stock": "泰和新材"
+      },
+      {
+        "name": "中药Ⅲ",
+        "change_pct": -0.64,
+        "leading_stock": "三力制药"
+      },
+      {
+        "name": "中药Ⅱ",
+        "change_pct": -0.64,
+        "leading_stock": "三力制药"
+      },
+      {
+        "name": "证券Ⅲ",
+        "change_pct": -0.65,
+        "leading_stock": "华安证券"
+      },
+      {
+        "name": "证券Ⅱ",
+        "change_pct": -0.65,
+        "leading_stock": "华安证券"
+      },
+      {
+        "name": "银行",
+        "change_pct": -0.65,
+        "leading_stock": "厦门银行"
+      },
+      {
+        "name": "银行Ⅱ",
+        "change_pct": -0.65,
+        "leading_stock": "厦门银行"
+      },
+      {
+        "name": "玻璃玻纤",
+        "change_pct": -0.66,
+        "leading_stock": "宏和科技"
+      },
+      {
+        "name": "预加工食品",
+        "change_pct": -0.66,
+        "leading_stock": "千味央厨"
+      },
+      {
+        "name": "纸包装",
+        "change_pct": -0.66,
+        "leading_stock": "大胜达"
+      },
+      {
+        "name": "油田服务",
+        "change_pct": -0.66,
+        "leading_stock": "中曼石油"
+      },
+      {
+        "name": "肉制品",
+        "change_pct": -0.67,
+        "leading_stock": "华统股份"
+      },
+      {
+        "name": "物流",
+        "change_pct": -0.67,
+        "leading_stock": "海晨股份"
+      },
+      {
+        "name": "基建市政工程",
+        "change_pct": -0.68,
+        "leading_stock": "新疆交建"
+      },
+      {
+        "name": "航天装备Ⅲ",
+        "change_pct": -0.69,
+        "leading_stock": "星网宇达"
+      },
+      {
+        "name": "航天装备Ⅱ",
+        "change_pct": -0.69,
+        "leading_stock": "星网宇达"
+      },
+      {
+        "name": "国防军工",
+        "change_pct": -0.7,
+        "leading_stock": "航新科技"
+      },
+      {
+        "name": "宠物食品",
+        "change_pct": -0.71,
+        "leading_stock": "乖宝宠物"
+      },
+      {
+        "name": "自然景区",
+        "change_pct": -0.71,
+        "leading_stock": "张家界"
+      },
+      {
+        "name": "资产管理",
+        "change_pct": -0.74,
+        "leading_stock": "四川双马"
+      },
+      {
+        "name": "安防设备",
+        "change_pct": -0.74,
+        "leading_stock": "声迅股份"
+      },
+      {
+        "name": "农产品加工",
+        "change_pct": -0.74,
+        "leading_stock": "国投中鲁"
+      },
+      {
+        "name": "其他塑料制品",
+        "change_pct": -0.74,
+        "leading_stock": "新恒泰"
+      },
+      {
+        "name": "铜",
+        "change_pct": -0.75,
+        "leading_stock": "金田股份"
+      },
+      {
+        "name": "其他通用设备",
+        "change_pct": -0.75,
+        "leading_stock": "川润股份"
+      },
+      {
+        "name": "电网自动化设备",
+        "change_pct": -0.75,
+        "leading_stock": "智光电气"
+      },
+      {
+        "name": "保险Ⅲ",
+        "change_pct": -0.77,
+        "leading_stock": "中国人寿"
+      },
+      {
+        "name": "保险Ⅱ",
+        "change_pct": -0.77,
+        "leading_stock": "中国人寿"
+      },
+      {
+        "name": "基础建设",
+        "change_pct": -0.78,
+        "leading_stock": "诚邦股份"
+      },
+      {
+        "name": "消费电子零部件及组装",
+        "change_pct": -0.79,
+        "leading_stock": "光大同创"
+      },
+      {
+        "name": "冶钢原料",
+        "change_pct": -0.79,
+        "leading_stock": "大中矿业"
+      },
+      {
+        "name": "消费电子",
+        "change_pct": -0.79,
+        "leading_stock": "光大同创"
+      },
+      {
+        "name": "工程机械",
+        "change_pct": -0.79,
+        "leading_stock": "华东重机"
+      },
+      {
+        "name": "运动服装",
+        "change_pct": -0.79,
+        "leading_stock": "探路者"
+      },
+      {
+        "name": "光伏电池组件",
+        "change_pct": -0.8,
+        "leading_stock": "通灵股份"
+      },
+      {
+        "name": "品牌消费电子",
+        "change_pct": -0.8,
+        "leading_stock": "安克创新"
+      },
+      {
+        "name": "改性塑料",
+        "change_pct": -0.8,
+        "leading_stock": "同益股份"
+      },
+      {
+        "name": "饲料",
+        "change_pct": -0.8,
+        "leading_stock": "粤海饲料"
+      },
+      {
+        "name": "非银金融",
+        "change_pct": -0.81,
+        "leading_stock": "华安证券"
+      },
+      {
+        "name": "其他黑色家电",
+        "change_pct": -0.81,
+        "leading_stock": "创维数字"
+      },
+      {
+        "name": "通信",
+        "change_pct": -0.81,
+        "leading_stock": "世嘉科技"
+      },
+      {
+        "name": "农化制品",
+        "change_pct": -0.81,
+        "leading_stock": "*ST辉丰"
+      },
+      {
+        "name": "贸易Ⅲ",
+        "change_pct": -0.81,
+        "leading_stock": "凯瑞德"
+      },
+      {
+        "name": "贸易Ⅱ",
+        "change_pct": -0.81,
+        "leading_stock": "凯瑞德"
+      },
+      {
+        "name": "固废治理",
+        "change_pct": -0.81,
+        "leading_stock": "通源环境"
+      },
+      {
+        "name": "机场",
+        "change_pct": -0.82,
+        "leading_stock": "上海机场"
+      },
+      {
+        "name": "车身附件及饰件",
+        "change_pct": -0.84,
+        "leading_stock": "天成自控"
+      },
+      {
+        "name": "鞋帽及其他",
+        "change_pct": -0.84,
+        "leading_stock": "天创时尚"
+      },
+      {
+        "name": "铁路运输",
+        "change_pct": -0.84,
+        "leading_stock": "三羊马"
+      },
+      {
+        "name": "食品及饲料添加剂",
+        "change_pct": -0.85,
+        "leading_stock": "金丹科技"
+      },
+      {
+        "name": "家纺",
+        "change_pct": -0.87,
+        "leading_stock": "梦洁股份"
+      },
+      {
+        "name": "钼",
+        "change_pct": -0.87,
+        "leading_stock": "金钼股份"
+      },
+      {
+        "name": "化学制药",
+        "change_pct": -0.87,
+        "leading_stock": "宏源药业"
+      },
+      {
+        "name": "农药",
+        "change_pct": -0.87,
+        "leading_stock": "*ST辉丰"
+      },
+      {
+        "name": "建筑装饰",
+        "change_pct": -0.88,
+        "leading_stock": "诚邦股份"
+      },
+      {
+        "name": "炼油化工",
+        "change_pct": -0.91,
+        "leading_stock": "东方盛虹"
+      },
+      {
+        "name": "其他石化",
+        "change_pct": -0.91,
+        "leading_stock": "宝莫股份"
+      },
+      {
+        "name": "纺织制造",
+        "change_pct": -0.91,
+        "leading_stock": "兴业科技"
+      },
+      {
+        "name": "医药生物",
+        "change_pct": -0.92,
+        "leading_stock": "四环生物"
+      },
+      {
+        "name": "动物保健Ⅲ",
+        "change_pct": -0.92,
+        "leading_stock": "贤丰控股"
+      },
+      {
+        "name": "动物保健Ⅱ",
+        "change_pct": -0.92,
+        "leading_stock": "贤丰控股"
+      },
+      {
+        "name": "园林工程",
+        "change_pct": -0.93,
+        "leading_stock": "诚邦股份"
+      },
+      {
+        "name": "乳品",
+        "change_pct": -0.93,
+        "leading_stock": "西部牧业"
+      },
+      {
+        "name": "跨境物流",
+        "change_pct": -0.93,
+        "leading_stock": "东航物流"
+      },
+      {
+        "name": "轨交设备Ⅱ",
+        "change_pct": -0.94,
+        "leading_stock": "九州一轨"
+      },
+      {
+        "name": "轨交设备Ⅲ",
+        "change_pct": -0.94,
+        "leading_stock": "九州一轨"
+      },
+      {
+        "name": "原材料供应链服务",
+        "change_pct": -0.94,
+        "leading_stock": "*ST海钦"
+      },
+      {
+        "name": "航空装备Ⅲ",
+        "change_pct": -0.94,
+        "leading_stock": "航新科技"
+      },
+      {
+        "name": "航空装备Ⅱ",
+        "change_pct": -0.94,
+        "leading_stock": "航新科技"
+      },
+      {
+        "name": "服装家纺",
+        "change_pct": -0.95,
+        "leading_stock": "九牧王"
+      },
+      {
+        "name": "其他汽车零部件",
+        "change_pct": -0.95,
+        "leading_stock": "中自科技"
+      },
+      {
+        "name": "线下药店",
+        "change_pct": -0.95,
+        "leading_stock": "漱玉平民"
+      },
+      {
+        "name": "医美耗材",
+        "change_pct": -0.95,
+        "leading_stock": "华熙生物"
+      },
+      {
+        "name": "林业Ⅲ",
+        "change_pct": -0.95,
+        "leading_stock": "平潭发展"
+      },
+      {
+        "name": "林业Ⅱ",
+        "change_pct": -0.95,
+        "leading_stock": "平潭发展"
+      },
+      {
+        "name": "综合环境治理",
+        "change_pct": -0.96,
+        "leading_stock": "*ST动力"
+      },
+      {
+        "name": "计算机设备",
+        "change_pct": -0.97,
+        "leading_stock": "声迅股份"
+      },
+      {
+        "name": "医疗设备",
+        "change_pct": -0.97,
+        "leading_stock": "奕瑞科技"
+      },
+      {
+        "name": "生物制品",
+        "change_pct": -0.98,
+        "leading_stock": "四环生物"
+      },
+      {
+        "name": "化学制剂",
+        "change_pct": -0.98,
+        "leading_stock": "奥赛康"
+      },
+      {
+        "name": "房产租赁经纪",
+        "change_pct": -0.98,
+        "leading_stock": "宁波富达"
+      },
+      {
+        "name": "清洁小家电",
+        "change_pct": -0.98,
+        "leading_stock": "科沃斯"
+      },
+      {
+        "name": "电网设备",
+        "change_pct": -0.98,
+        "leading_stock": "金利华电"
+      },
+      {
+        "name": "粮食种植",
+        "change_pct": -0.99,
+        "leading_stock": "北大荒"
+      },
+      {
+        "name": "体育Ⅲ",
+        "change_pct": -0.99,
+        "leading_stock": "中体产业"
+      },
+      {
+        "name": "体育Ⅱ",
+        "change_pct": -0.99,
+        "leading_stock": "中体产业"
+      },
+      {
+        "name": "非运动服装",
+        "change_pct": -1.0,
+        "leading_stock": "九牧王"
+      },
+      {
+        "name": "涤纶",
+        "change_pct": -1.01,
+        "leading_stock": "新凤鸣"
+      },
+      {
+        "name": "管材",
+        "change_pct": -1.01,
+        "leading_stock": "雄塑科技"
+      },
+      {
+        "name": "纺织服饰",
+        "change_pct": -1.02,
+        "leading_stock": "九牧王"
+      },
+      {
+        "name": "粮油加工",
+        "change_pct": -1.03,
+        "leading_stock": "京粮B"
+      },
+      {
+        "name": "能源及重型设备",
+        "change_pct": -1.03,
+        "leading_stock": "创力集团"
+      },
+      {
+        "name": "轻工制造",
+        "change_pct": -1.04,
+        "leading_stock": "大胜达"
+      },
+      {
+        "name": "综合包装",
+        "change_pct": -1.05,
+        "leading_stock": "康欣新材"
+      },
+      {
+        "name": "环境治理",
+        "change_pct": -1.05,
+        "leading_stock": "金达莱"
+      },
+      {
+        "name": "综合乘用车",
+        "change_pct": -1.05,
+        "leading_stock": "长  安Ｂ"
+      },
+      {
+        "name": "氯碱",
+        "change_pct": -1.06,
+        "leading_stock": "滨化股份"
+      },
+      {
+        "name": "大宗用纸",
+        "change_pct": -1.07,
+        "leading_stock": "岳阳林纸"
+      },
+      {
+        "name": "农用机械",
+        "change_pct": -1.07,
+        "leading_stock": "格力博"
+      },
+      {
+        "name": "其他计算机设备",
+        "change_pct": -1.07,
+        "leading_stock": "兆日科技"
+      },
+      {
+        "name": "酒店餐饮",
+        "change_pct": -1.08,
+        "leading_stock": "锦江Ｂ股"
+      },
+      {
+        "name": "工程机械器件",
+        "change_pct": -1.08,
+        "leading_stock": "金道科技"
+      },
+      {
+        "name": "黄金",
+        "change_pct": -1.09,
+        "leading_stock": "四川黄金"
+      },
+      {
+        "name": "烘焙食品",
+        "change_pct": -1.1,
+        "leading_stock": "南侨食品"
+      },
+      {
+        "name": "多元金融",
+        "change_pct": -1.1,
+        "leading_stock": "建元信托"
+      },
+      {
+        "name": "洗护用品",
+        "change_pct": -1.1,
+        "leading_stock": "倍加洁"
+      },
+      {
+        "name": "房地产开发",
+        "change_pct": -1.1,
+        "leading_stock": "市北高新"
+      },
+      {
+        "name": "家居用品",
+        "change_pct": -1.11,
+        "leading_stock": "海象新材"
+      },
+      {
+        "name": "旅游及景区",
+        "change_pct": -1.12,
+        "leading_stock": "张家界"
+      },
+      {
+        "name": "医疗器械",
+        "change_pct": -1.12,
+        "leading_stock": "之江生物"
+      },
+      {
+        "name": "汽车电子电气系统",
+        "change_pct": -1.13,
+        "leading_stock": "威迈斯"
+      },
+      {
+        "name": "医疗耗材",
+        "change_pct": -1.13,
+        "leading_stock": "健尔康"
+      },
+      {
+        "name": "检测服务",
+        "change_pct": -1.14,
+        "leading_stock": "实朴检测"
+      },
+      {
+        "name": "装修装饰Ⅲ",
+        "change_pct": -1.14,
+        "leading_stock": "ST名家汇"
+      },
+      {
+        "name": "装修装饰Ⅱ",
+        "change_pct": -1.14,
+        "leading_stock": "ST名家汇"
+      },
+      {
+        "name": "工程咨询服务Ⅲ",
+        "change_pct": -1.16,
+        "leading_stock": "太极实业"
+      },
+      {
+        "name": "工程咨询服务Ⅱ",
+        "change_pct": -1.16,
+        "leading_stock": "太极实业"
+      },
+      {
+        "name": "复合肥",
+        "change_pct": -1.16,
+        "leading_stock": "芭田股份"
+      },
+      {
+        "name": "房地产",
+        "change_pct": -1.17,
+        "leading_stock": "市北高新"
+      },
+      {
+        "name": "水务及水治理",
+        "change_pct": -1.18,
+        "leading_stock": "金达莱"
+      },
+      {
+        "name": "农林牧渔",
+        "change_pct": -1.18,
+        "leading_stock": "国投中鲁"
+      },
+      {
+        "name": "公路货运",
+        "change_pct": -1.19,
+        "leading_stock": "*ST原尚"
+      },
+      {
+        "name": "贵金属",
+        "change_pct": -1.2,
+        "leading_stock": "四川黄金"
+      },
+      {
+        "name": "汽车",
+        "change_pct": -1.21,
+        "leading_stock": "绿通科技"
+      },
+      {
+        "name": "航空机场",
+        "change_pct": -1.22,
+        "leading_stock": "吉祥航空"
+      },
+      {
+        "name": "肉鸡养殖",
+        "change_pct": -1.23,
+        "leading_stock": "圣农发展"
+      },
+      {
+        "name": "商业物业经营",
+        "change_pct": -1.23,
+        "leading_stock": "锦和商管"
+      },
+      {
+        "name": "多业态零售",
+        "change_pct": -1.24,
+        "leading_stock": "合百集团"
+      },
+      {
+        "name": "其他家居用品",
+        "change_pct": -1.24,
+        "leading_stock": "*ST联翔"
+      },
+      {
+        "name": "养殖业",
+        "change_pct": -1.24,
+        "leading_stock": "*ST福成"
+      },
+      {
+        "name": "汽车零部件",
+        "change_pct": -1.25,
+        "leading_stock": "潍柴重机"
+      },
+      {
+        "name": "特钢Ⅲ",
+        "change_pct": -1.26,
+        "leading_stock": "翔楼新材"
+      },
+      {
+        "name": "特钢Ⅱ",
+        "change_pct": -1.26,
+        "leading_stock": "翔楼新材"
+      },
+      {
+        "name": "商用载货车",
+        "change_pct": -1.27,
+        "leading_stock": "江  铃Ｂ"
+      },
+      {
+        "name": "体外诊断",
+        "change_pct": -1.27,
+        "leading_stock": "之江生物"
+      },
+      {
+        "name": "汽车综合服务",
+        "change_pct": -1.27,
+        "leading_stock": "阿尔特"
+      },
+      {
+        "name": "涂料",
+        "change_pct": -1.27,
+        "leading_stock": "三棵树"
+      },
+      {
+        "name": "钟表珠宝",
+        "change_pct": -1.29,
+        "leading_stock": "周大生"
+      },
+      {
+        "name": "机床工具",
+        "change_pct": -1.32,
+        "leading_stock": "宇晶股份"
+      },
+      {
+        "name": "旅游综合",
+        "change_pct": -1.33,
+        "leading_stock": "锦旅Ｂ股"
+      },
+      {
+        "name": "商业地产",
+        "change_pct": -1.34,
+        "leading_stock": "新城控股"
+      },
+      {
+        "name": "其他橡胶制品",
+        "change_pct": -1.34,
+        "leading_stock": "科创新源"
+      },
+      {
+        "name": "医药商业",
+        "change_pct": -1.35,
+        "leading_stock": "漱玉平民"
+      },
+      {
+        "name": "乘用车",
+        "change_pct": -1.35,
+        "leading_stock": "长  安Ｂ"
+      },
+      {
+        "name": "大气治理",
+        "change_pct": -1.36,
+        "leading_stock": "保丽洁"
+      },
+      {
+        "name": "火电设备",
+        "change_pct": -1.37,
+        "leading_stock": "西子洁能"
+      },
+      {
+        "name": "冶钢辅料",
+        "change_pct": -1.37,
+        "leading_stock": "钒钛股份"
+      },
+      {
+        "name": "钢结构",
+        "change_pct": -1.37,
+        "leading_stock": "海波重科"
+      },
+      {
+        "name": "厨房电器",
+        "change_pct": -1.39,
+        "leading_stock": "老板电器"
+      },
+      {
+        "name": "纯碱",
+        "change_pct": -1.41,
+        "leading_stock": "三友化工"
+      },
+      {
+        "name": "通信终端及配件",
+        "change_pct": -1.41,
+        "leading_stock": "菲菱科思"
+      },
+      {
+        "name": "商用车",
+        "change_pct": -1.42,
+        "leading_stock": "江  铃Ｂ"
+      },
+      {
+        "name": "专业服务",
+        "change_pct": -1.42,
+        "leading_stock": "实朴检测"
+      },
+      {
+        "name": "钛白粉",
+        "change_pct": -1.43,
+        "leading_stock": "安 纳 达"
+      },
+      {
+        "name": "配电设备",
+        "change_pct": -1.43,
+        "leading_stock": "柘中股份"
+      },
+      {
+        "name": "航空运输",
+        "change_pct": -1.44,
+        "leading_stock": "吉祥航空"
+      },
+      {
+        "name": "个护用品",
+        "change_pct": -1.44,
+        "leading_stock": "百亚股份"
+      },
+      {
+        "name": "饰品",
+        "change_pct": -1.47,
+        "leading_stock": "周大生"
+      },
+      {
+        "name": "医药流通",
+        "change_pct": -1.48,
+        "leading_stock": "嘉事堂"
+      },
+      {
+        "name": "摩托车",
+        "change_pct": -1.48,
+        "leading_stock": "永安行"
+      },
+      {
+        "name": "租赁",
+        "change_pct": -1.53,
+        "leading_stock": "江苏金租"
+      },
+      {
+        "name": "港口",
+        "change_pct": -1.53,
+        "leading_stock": "唐山港"
+      },
+      {
+        "name": "一般零售",
+        "change_pct": -1.54,
+        "leading_stock": "合百集团"
+      },
+      {
+        "name": "社会服务",
+        "change_pct": -1.54,
+        "leading_stock": "实朴检测"
+      },
+      {
+        "name": "白银",
+        "change_pct": -1.54,
+        "leading_stock": "兴业银锡"
+      },
+      {
+        "name": "玻璃制造",
+        "change_pct": -1.54,
+        "leading_stock": "北玻股份"
+      },
+      {
+        "name": "底盘与发动机系统",
+        "change_pct": -1.54,
+        "leading_stock": "潍柴重机"
+      },
+      {
+        "name": "氮肥",
+        "change_pct": -1.54,
+        "leading_stock": "华鲁恒升"
+      },
+      {
+        "name": "金属制品",
+        "change_pct": -1.55,
+        "leading_stock": "永和智控"
+      },
+      {
+        "name": "生猪养殖",
+        "change_pct": -1.56,
+        "leading_stock": "正邦科技"
+      },
+      {
+        "name": "化学工程",
+        "change_pct": -1.56,
+        "leading_stock": "镇海股份"
+      },
+      {
+        "name": "厨卫电器",
+        "change_pct": -1.56,
+        "leading_stock": "老板电器"
+      },
+      {
+        "name": "动力煤",
+        "change_pct": -1.56,
+        "leading_stock": "电投能源"
+      },
+      {
+        "name": "输变电设备",
+        "change_pct": -1.58,
+        "leading_stock": "扬电科技"
+      },
+      {
+        "name": "水产养殖",
+        "change_pct": -1.58,
+        "leading_stock": "国联水产"
+      },
+      {
+        "name": "渔业",
+        "change_pct": -1.58,
+        "leading_stock": "国联水产"
+      },
+      {
+        "name": "海洋捕捞",
+        "change_pct": -1.58,
+        "leading_stock": "中  鲁Ｂ"
+      },
+      {
+        "name": "轮胎轮毂",
+        "change_pct": -1.58,
+        "leading_stock": "立中集团"
+      },
+      {
+        "name": "生活用纸",
+        "change_pct": -1.58,
+        "leading_stock": "百亚股份"
+      },
+      {
+        "name": "汽车服务",
+        "change_pct": -1.6,
+        "leading_stock": "物贸Ｂ股"
+      },
+      {
+        "name": "金融控股",
+        "change_pct": -1.6,
+        "leading_stock": "中油资本"
+      },
+      {
+        "name": "商贸零售",
+        "change_pct": -1.6,
+        "leading_stock": "合百集团"
+      },
+      {
+        "name": "旅游零售Ⅲ",
+        "change_pct": -1.61,
+        "leading_stock": "中国中免"
+      },
+      {
+        "name": "旅游零售Ⅱ",
+        "change_pct": -1.61,
+        "leading_stock": "中国中免"
+      },
+      {
+        "name": "住宅开发",
+        "change_pct": -1.61,
+        "leading_stock": "福星股份"
+      },
+      {
+        "name": "期货",
+        "change_pct": -1.62,
+        "leading_stock": "瑞达期货"
+      },
+      {
+        "name": "其他农产品加工",
+        "change_pct": -1.63,
+        "leading_stock": "永顺泰"
+      },
+      {
+        "name": "国有大型银行Ⅲ",
+        "change_pct": -1.63,
+        "leading_stock": "建设银行"
+      },
+      {
+        "name": "钢铁",
+        "change_pct": -1.64,
+        "leading_stock": "大中矿业"
+      },
+      {
+        "name": "超市",
+        "change_pct": -1.69,
+        "leading_stock": "家家悦"
+      },
+      {
+        "name": "综合Ⅲ",
+        "change_pct": -1.7,
+        "leading_stock": "东阳光"
+      },
+      {
+        "name": "综合",
+        "change_pct": -1.7,
+        "leading_stock": "东阳光"
+      },
+      {
+        "name": "综合Ⅱ",
+        "change_pct": -1.7,
+        "leading_stock": "东阳光"
+      },
+      {
+        "name": "商用载客车",
+        "change_pct": -1.7,
+        "leading_stock": "中通客车"
+      },
+      {
+        "name": "院线",
+        "change_pct": -1.71,
+        "leading_stock": "金逸影视"
+      },
+      {
+        "name": "房屋建设Ⅲ",
+        "change_pct": -1.72,
+        "leading_stock": "高新发展"
+      },
+      {
+        "name": "房屋建设Ⅱ",
+        "change_pct": -1.72,
+        "leading_stock": "高新发展"
+      },
+      {
+        "name": "房地产服务",
+        "change_pct": -1.72,
+        "leading_stock": "招商积余"
+      },
+      {
+        "name": "长材",
+        "change_pct": -1.74,
+        "leading_stock": "凌钢股份"
+      },
+      {
+        "name": "通信工程及服务",
+        "change_pct": -1.74,
+        "leading_stock": "ST通脉"
+      },
+      {
+        "name": "计算机",
+        "change_pct": -1.75,
+        "leading_stock": "达实智能"
+      },
+      {
+        "name": "综合电力设备商",
+        "change_pct": -1.78,
+        "leading_stock": "上海电气"
+      },
+      {
+        "name": "电商服务",
+        "change_pct": -1.79,
+        "leading_stock": "新迅达"
+      },
+      {
+        "name": "餐饮",
+        "change_pct": -1.81,
+        "leading_stock": "同庆楼"
+      },
+      {
+        "name": "汽车经销商",
+        "change_pct": -1.82,
+        "leading_stock": "物贸Ｂ股"
+      },
+      {
+        "name": "垂直应用软件",
+        "change_pct": -1.82,
+        "leading_stock": "概伦电子"
+      },
+      {
+        "name": "其他专业服务",
+        "change_pct": -1.82,
+        "leading_stock": "零点有数"
+      },
+      {
+        "name": "机器人",
+        "change_pct": -1.82,
+        "leading_stock": "瑞松科技"
+      },
+      {
+        "name": "诊断服务",
+        "change_pct": -1.82,
+        "leading_stock": "金域医学"
+      },
+      {
+        "name": "影视院线",
+        "change_pct": -1.83,
+        "leading_stock": "博纳影业"
+      },
+      {
+        "name": "煤炭开采",
+        "change_pct": -1.84,
+        "leading_stock": "电投能源"
+      },
+      {
+        "name": "人工景区",
+        "change_pct": -1.86,
+        "leading_stock": "大连圣亚"
+      },
+      {
+        "name": "其他种植业",
+        "change_pct": -1.87,
+        "leading_stock": "宏辉果蔬"
+      },
+      {
+        "name": "影视动漫制作",
+        "change_pct": -1.87,
+        "leading_stock": "博纳影业"
+      },
+      {
+        "name": "畜禽饲料",
+        "change_pct": -1.88,
+        "leading_stock": "播恩集团"
+      },
+      {
+        "name": "卫浴制品",
+        "change_pct": -1.89,
+        "leading_stock": "松霖科技"
+      },
+      {
+        "name": "文化用品",
+        "change_pct": -1.89,
+        "leading_stock": "齐心集团"
+      },
+      {
+        "name": "卫浴电器",
+        "change_pct": -1.91,
+        "leading_stock": "万和电气"
+      },
+      {
+        "name": "物业管理",
+        "change_pct": -1.91,
+        "leading_stock": "招商积余"
+      },
+      {
+        "name": "教育出版",
+        "change_pct": -1.92,
+        "leading_stock": "中南传媒"
+      },
+      {
+        "name": "软件开发",
+        "change_pct": -1.92,
+        "leading_stock": "概伦电子"
+      },
+      {
+        "name": "百货",
+        "change_pct": -1.95,
+        "leading_stock": "友阿股份"
+      },
+      {
+        "name": "纺织鞋类制造",
+        "change_pct": -1.95,
+        "leading_stock": "华利集团"
+      },
+      {
+        "name": "电动乘用车",
+        "change_pct": -1.95,
+        "leading_stock": "北汽蓝谷"
+      },
+      {
+        "name": "种植业",
+        "change_pct": -1.96,
+        "leading_stock": "雪榕生物"
+      },
+      {
+        "name": "燃料电池",
+        "change_pct": -1.97,
+        "leading_stock": "亿华通-U"
+      },
+      {
+        "name": "疫苗",
+        "change_pct": -1.99,
+        "leading_stock": "金迪克"
+      },
+      {
+        "name": "农业综合Ⅲ",
+        "change_pct": -1.99,
+        "leading_stock": "辉隆股份"
+      },
+      {
+        "name": "农业综合Ⅱ",
+        "change_pct": -1.99,
+        "leading_stock": "辉隆股份"
+      },
+      {
+        "name": "个护小家电",
+        "change_pct": -1.99,
+        "leading_stock": "彩虹集团"
+      },
+      {
+        "name": "游戏Ⅲ",
+        "change_pct": -2.01,
+        "leading_stock": "名臣健康"
+      },
+      {
+        "name": "游戏Ⅱ",
+        "change_pct": -2.01,
+        "leading_stock": "名臣健康"
+      },
+      {
+        "name": "广告媒体",
+        "change_pct": -2.02,
+        "leading_stock": "分众传媒"
+      },
+      {
+        "name": "电机Ⅱ",
+        "change_pct": -2.02,
+        "leading_stock": "华阳智能"
+      },
+      {
+        "name": "电机Ⅲ",
+        "change_pct": -2.02,
+        "leading_stock": "华阳智能"
+      },
+      {
+        "name": "煤炭",
+        "change_pct": -2.03,
+        "leading_stock": "电投能源"
+      },
+      {
+        "name": "其他家电Ⅲ",
+        "change_pct": -2.05,
+        "leading_stock": "融捷健康"
+      },
+      {
+        "name": "其他家电Ⅱ",
+        "change_pct": -2.05,
+        "leading_stock": "融捷健康"
+      },
+      {
+        "name": "其他纺织",
+        "change_pct": -2.06,
+        "leading_stock": "万事利"
+      },
+      {
+        "name": "锦纶",
+        "change_pct": -2.08,
+        "leading_stock": "神马股份"
+      },
+      {
+        "name": "互联网电商",
+        "change_pct": -2.08,
+        "leading_stock": "新迅达"
+      },
+      {
+        "name": "IT服务Ⅲ",
+        "change_pct": -2.09,
+        "leading_stock": "达实智能"
+      },
+      {
+        "name": "IT服务Ⅱ",
+        "change_pct": -2.09,
+        "leading_stock": "达实智能"
+      },
+      {
+        "name": "普钢",
+        "change_pct": -2.16,
+        "leading_stock": "友发集团"
+      },
+      {
+        "name": "定制家居",
+        "change_pct": -2.17,
+        "leading_stock": "森鹰窗业"
+      },
+      {
+        "name": "人力资源服务",
+        "change_pct": -2.21,
+        "leading_stock": "北京人力"
+      },
+      {
+        "name": "横向通用软件",
+        "change_pct": -2.22,
+        "leading_stock": "英方软件"
+      },
+      {
+        "name": "综合电商",
+        "change_pct": -2.24,
+        "leading_stock": "ST通葡"
+      },
+      {
+        "name": "文娱用品",
+        "change_pct": -2.27,
+        "leading_stock": "金陵体育"
+      },
+      {
+        "name": "焦煤",
+        "change_pct": -2.29,
+        "leading_stock": "冀中能源"
+      },
+      {
+        "name": "通信服务",
+        "change_pct": -2.3,
+        "leading_stock": "线上线下"
+      },
+      {
+        "name": "耐火材料",
+        "change_pct": -2.3,
+        "leading_stock": "瑞泰科技"
+      },
+      {
+        "name": "血液制品",
+        "change_pct": -2.31,
+        "leading_stock": "上海莱士"
+      },
+      {
+        "name": "出版",
+        "change_pct": -2.32,
+        "leading_stock": "中原传媒"
+      },
+      {
+        "name": "跨境电商",
+        "change_pct": -2.34,
+        "leading_stock": "华凯易佰"
+      },
+      {
+        "name": "娱乐用品",
+        "change_pct": -2.38,
+        "leading_stock": "金陵体育"
+      },
+      {
+        "name": "会展服务",
+        "change_pct": -2.43,
+        "leading_stock": "锋尚文化"
+      },
+      {
+        "name": "房地产综合服务",
+        "change_pct": -2.44,
+        "leading_stock": "珠江股份"
+      },
+      {
+        "name": "核力发电",
+        "change_pct": -2.49,
+        "leading_stock": "电投产融"
+      },
+      {
+        "name": "板材",
+        "change_pct": -2.51,
+        "leading_stock": "包钢股份"
+      },
+      {
+        "name": "传媒",
+        "change_pct": -2.52,
+        "leading_stock": "博纳影业"
+      },
+      {
+        "name": "门户网站",
+        "change_pct": -2.54,
+        "leading_stock": "卓创资讯"
+      },
+      {
+        "name": "大众出版",
+        "change_pct": -2.55,
+        "leading_stock": "中原传媒"
+      },
+      {
+        "name": "培训教育",
+        "change_pct": -2.58,
+        "leading_stock": "*ST传智"
+      },
+      {
+        "name": "印刷",
+        "change_pct": -2.62,
+        "leading_stock": "鸿博股份"
+      },
+      {
+        "name": "通信应用增值服务",
+        "change_pct": -2.62,
+        "leading_stock": "线上线下"
+      },
+      {
+        "name": "专业连锁Ⅲ",
+        "change_pct": -2.67,
+        "leading_stock": "孩子王"
+      },
+      {
+        "name": "专业连锁Ⅱ",
+        "change_pct": -2.67,
+        "leading_stock": "孩子王"
+      },
+      {
+        "name": "焦炭Ⅲ",
+        "change_pct": -2.73,
+        "leading_stock": "美锦能源"
+      },
+      {
+        "name": "焦炭Ⅱ",
+        "change_pct": -2.73,
+        "leading_stock": "美锦能源"
+      },
+      {
+        "name": "印刷包装机械",
+        "change_pct": -2.78,
+        "leading_stock": "达 意 隆"
+      },
+      {
+        "name": "数字媒体",
+        "change_pct": -2.82,
+        "leading_stock": "卓创资讯"
+      },
+      {
+        "name": "电视广播Ⅲ",
+        "change_pct": -2.85,
+        "leading_stock": "东方明珠"
+      },
+      {
+        "name": "电视广播Ⅱ",
+        "change_pct": -2.85,
+        "leading_stock": "东方明珠"
+      },
+      {
+        "name": "其他饰品",
+        "change_pct": -2.87,
+        "leading_stock": "ST新华锦"
+      },
+      {
+        "name": "教育",
+        "change_pct": -2.89,
+        "leading_stock": "*ST传智"
+      },
+      {
+        "name": "医院",
+        "change_pct": -2.91,
+        "leading_stock": "ST中珠"
+      },
+      {
+        "name": "视频媒体",
+        "change_pct": -2.94,
+        "leading_stock": "芒果超媒"
+      },
+      {
+        "name": "种子",
+        "change_pct": -3.09,
+        "leading_stock": "国投丰乐"
+      },
+      {
+        "name": "文字媒体",
+        "change_pct": -3.1,
+        "leading_stock": "掌阅科技"
+      },
+      {
+        "name": "其他数字媒体",
+        "change_pct": -3.2,
+        "leading_stock": "凡拓数创"
+      },
+      {
+        "name": "教育运营及其他",
+        "change_pct": -3.24,
+        "leading_stock": "博瑞传播"
+      },
+      {
+        "name": "广告营销",
+        "change_pct": -3.26,
+        "leading_stock": "三人行"
+      },
+      {
+        "name": "热力服务",
+        "change_pct": -3.32,
+        "leading_stock": "亨通股份"
+      },
+      {
+        "name": "营销代理",
+        "change_pct": -3.39,
+        "leading_stock": "三人行"
+      },
+      {
+        "name": "其他能源发电",
+        "change_pct": -3.48,
+        "leading_stock": "顺发恒能"
+      },
+      {
+        "name": "公用事业",
+        "change_pct": -3.82,
+        "leading_stock": "胜利股份"
+      },
+      {
+        "name": "图片媒体",
+        "change_pct": -3.96,
+        "leading_stock": "视觉中国"
+      },
+      {
+        "name": "光伏发电",
+        "change_pct": -4.14,
+        "leading_stock": "*ST聆达"
+      },
+      {
+        "name": "电信运营商",
+        "change_pct": -4.17,
+        "leading_stock": "中国移动"
+      },
+      {
+        "name": "学历教育",
+        "change_pct": -4.25,
+        "leading_stock": "凯文教育"
+      },
+      {
+        "name": "电力",
+        "change_pct": -4.82,
+        "leading_stock": "亨通股份"
+      },
+      {
+        "name": "电能综合服务",
+        "change_pct": -4.91,
+        "leading_stock": "山高环能"
+      },
+      {
+        "name": "风力发电",
+        "change_pct": -5.04,
+        "leading_stock": "*ST宝实"
+      },
+      {
+        "name": "水力发电",
+        "change_pct": -5.17,
+        "leading_stock": "长江电力"
+      },
+      {
+        "name": "火力发电",
+        "change_pct": -5.93,
+        "leading_stock": "上海电力"
+      }
+    ]
+  },
+  "us_stock": {
+    "market": "US",
+    "date": "2026-05-20",
+    "timestamp": "2026-05-20T18:00:13.539892",
+    "index_name": "S&P 500",
+    "index_value": null,
+    "index_change_pct": null,
+    "up_count": 0,
+    "down_count": 0,
+    "sectors": []
+  }
+}
